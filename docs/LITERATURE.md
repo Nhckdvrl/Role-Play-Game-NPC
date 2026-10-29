@@ -15,11 +15,11 @@
 
 | 范围 | 独立论文数 | M：主文完整阅读 | T：定点 | B：元数据／资源 | 其中 2025–2026 年论文 |
 |---|---:|---:|---:|---:|---:|
-| 原创研究、方法与 benchmark（含技术报告） | 75 | 73 | 0 | 2 | 58／75（77.3%） |
+| 原创研究、方法与 benchmark（含技术报告） | 83 | 75 | 4 | 4 | 65／83（78.3%） |
 | 综述 | 7 | 6 | 1 | 0 | 4／7（57.1%） |
-| **合计** | **82** | **79** | **1** | **2** | **62／82（75.6%）** |
+| **合计** | **90** | **81** | **5** | **4** | **69／90（76.7%）** |
 
-在 79 篇主文完整阅读的论文中，59 篇属于 2025–2026 年，占 74.7%。另有 **3 篇官方工业文章**，独立列在末尾。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
+在 81 篇主文完整阅读的论文中，61 篇属于 2025–2026 年，占 75.3%。另有 **3 篇官方工业文章**，独立列在末尾。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
 
 每条的“贡献与证据范围”同时写出做了什么和实验证明到哪里。表中的 venue 表示已核查的发表记录，**Main、Findings、Datasets and Benchmarks、workshop 和 arXiv 分别标注**；未核实录用的预印本不根据作者宣传或聚合站标签升级为正式顶会论文。
 
@@ -163,3 +163,23 @@
 
 阅读深度、发表身份和评价适用范围共同决定一条证据能支持什么结论。这里保留原文中的任务条件、代理指标和资源缺口，避免把角色对话、心理量表、社会目标、叙事推进与游戏执行误当作同一能力。
 
+
+
+## 11. 增补：玩家—NPC 交互、人物状态与游戏接口（2026-10-30）
+
+本轮新增 **8 篇独立论文**（M 2、T 4、B 2），与原 82 篇不重复计数。研究对象以 **Role-Playing 角色的状态、信念、言行和玩家侧输入**为中心。通用 Minecraft 任务分工、纯战斗 AI 和并发调度未因“Game Agent”名称而进入核心文献数量；Sony CPDC 是挑战资源、KRAFTON PUBG Ally 是工业工程资料，均不增加论文计数。
+
+| ID | 完整题名与来源 | 年份／身份 | 阅读 | 方法与证据范围 |
+| --- | --- | --- | --- | --- |
+| A01 | [Codified Finite-State Machines for Role-playing](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) · [全文 HTML](https://arxiv.org/html/2602.05905v1) | ICLR 2026 | **M** | 从 profile 抽取关键心理/叙事状态及事件条件，用 LLM 编译可执行状态转移；CPFSM 加入状态概率。已知简化 FSM 的确定执行测试、Fandom 参考动作 NLI 与 Best@K 分别衡量不同方面；不是引擎动作验收或人物真实心理真值。直接连接 2025 Codified Profile 与 2026 CDT，但研究对象是**状态转移**，不能省略。 |
+| A02 | [RMTBench: Benchmarking LLMs Through Multi-Turn User-Centric Role-Playing](https://aclanthology.org/2025.findings-emnlp.730/) | EMNLP 2025 Findings | **M** | 从玩家/用户目的而非原作人物知识出发，80 个角色、8,156 条中英话语；覆盖人物探查、人设坚持、隐含意图、偏好和敏感试探。用户发言固定，角色从首轮起自行生成前轮回复，介于静态续写与完全双向闭环之间；judge 依赖模型且部分维度校准有限。 |
+| A03 | [PsyMem: Fine-grained Psychological Alignment and Explicit Memory Control for Advanced Role-Playing LLMs](https://aclanthology.org/2026.tacl-1.24/) | TACL 2026 | **T** | 用 26 个心理指标和显式 memory-alignment 训练角色行为，论文包含 5,414 个角色和 38,962 段小说对话。它不是仅用 RAG 召回、也不等于长周期玩家关系学习；本次仅定点核读，资源发布未完整审计。 |
+| A04 | [Can LLM Agents Stick to the Script? A Benchmark for Long-Horizon Consistency in Interactive Narratives](https://proceedings.mlr.press/v306/ma26ap.html) | ICML 2026 | **T** | NCP-Bench 将 100 个叙事环境的初始事实、承诺和轨迹与模拟玩家干扰连起来；作者公开数据、评测 runner 和基线。被测对象是 narrator 而非受部分观察限制的单个 NPC；事实/承诺冲突部分由模型审计，不是引擎硬状态奖励。 |
+| A05 | [MCPDial: A Minecraft Persona-driven Dialogue Dataset](https://arxiv.org/abs/2410.21627) | arXiv 首发 2024，正式 venue 未核实 | **T** | 将玩家—NPC 双侧 persona、长对话及话语之间的函数调用组合为合成监督数据，仓库已见训练/测试 JSON。函数调用标注没有引擎执行回执，不能称闭环行为成功。 |
+| A06 | [Bayesian Social Deduction with Graph-Informed Language Models](https://aclanthology.org/2026.acl-long.1497/) | ACL 2026 Main | **T** | 以因子图跟踪 Avalon 隐藏身份，LLM 处理语言和发言，受控真人试验报告 67% 胜率。实验 agent **只扮演 Good 阵营**，所以不是反派欺骗型角色表演的直接证据。其对 RP 的意义是角色自己的信念、私有信息与策略性语言怎样分离。 |
+| A07 | [Fake Player: Imitating Real Player to Distill Data for LLM-based NPC Training](https://openreview.net/pdf/2e26df077644bbbe3df13f485ea6433e09764b7b.pdf) | 匿名 ICLR 2026 投稿稿，未核正式录用 | **B** | 内心独白、意图栈和打字行为模拟玩家侧受限表达，并使用 Distill Bench 比较数据。明确提出玩家输入分布问题；模拟数据效果不等于已测真实玩家行为，完整发布与身份未核定。 |
+| A08 | [Quest of Aivengarde: Comparative Study of Player Experience Across LLM Dialogue Systems](https://portal.findresearcher.sdu.dk/en/publications/quest-of-aivengarde-comparative-study-of-player-experience-across/) | FDG 2026 发表记录 | **B** | 对比 RPG 中静态、改写、混合和完全生成式 NPC 对话，64 位参与者的日志与问卷衡量开放性和体验。仅核正式摘要及元数据，未完整阅读实验，不能将“更长对话”自动解释为更忠实的人物。 |
+
+**其他已核资料（不另计独立论文）**：[Sony CPDC 2025 官方 NPC 角色对话与函数调用任务](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/problems/task-oriented-dialogue-task-1)、[公开 starter kit](https://github.com/Augustus2011/sony-cpdc-2025-starter-kit)、[KRAFTON / NVIDIA 的 PUBG Ally 工程访谈（2026）](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/)。前者的动作函数无返回值，不能证明执行成功；后者展示世界状态查询和快慢执行分层，不是人物忠实度的独立学术 benchmark。
+
+[The Price of Format（EMNLP 2025 Findings）](https://aclanthology.org/2025.findings-emnlp.836/) 对格式与输出多样性提供相邻机制证据，但它的核心测试是一般开放生成和故事续写，没有 NPC 角色化训练的直接对照；只在正文讨论可能的表达坍缩机制时引用，不进入本次新增的 8 篇核心文献计数。

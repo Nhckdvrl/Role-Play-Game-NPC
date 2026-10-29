@@ -225,6 +225,27 @@
 | 多模态角色表达 | MMRole、Video2Roleplay、OmniCharacter 系列、ActorMind | 图像问答等于具身控制；声音相似等于人格；单个语音模块延迟等于全双工实时 NPC 的端到端延迟 |
 | 角色条件下的安全 | SaRFT、MD-Trace/MD-Shield、Persistent Personas | 静态攻击通过率能代表全部长程安全；拒答率上升必然同时保持角色质量 |
 
-本文覆盖 **75 项论文/资源条目**：训练语料 7 项，推理与交互训练 14 项，角色质量与控制 13 项，时间/知识/记忆/关系 18 项，安全与规范冲突 3 项，社会/叙事/游戏 14 项，多模态 6 项。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
+本文覆盖 **84 项数据、方法与评测资源**：原索引 75 项，本轮增加 8 项对应研究论文的资源及 1 项 Sony CPDC 官方挑战。现有资源涉及已正式发表工作、预印本、投稿稿及挑战数据，不能简单按资源链接数量计算可复现论文数量。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
 
 
+
+
+## 11. 增补：玩家、角色状态与可执行世界的直接相关资源
+
+这九项补充以 **player-facing role play** 为筛选条件，不把 VillagerAgent、MindCraft 或其他通用 Minecraft 任务协作框架算作角色忠实度 baseline。下表的“实查”仅指仓库文件树或实物资源存在，**不表示已运行或复现模型结果**。
+
+| 资源／论文 | 与人物扮演的直接关系及实验边界 | 实际资源和可比较条件 |
+| --- | --- | --- |
+| **H01 CFSM / CPFSM** · [ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) | 将人物状态、事件及转移逻辑显式化。合成简化 FSM 验证执行规则的准确率；Fandom 参考动作 NLI 与 Best@K 检查角色化行为，非真实引擎任务完成率。 | **实查**[作者代码](https://github.com/KomeijiForce/Codified_Finite_State_Machine)包括 README、LICENSE 和编译脚本 codify_cfsm.py；完整概率转移/推理环境与判别器依赖未核为单一可运行包。Baseline：文本 profile、Codified Profile、PromptTrans、Character Updating、Plot Summary；须保持同 RP LLM/条件判别器。 |
+| **H02 RMTBench** · [EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.730/) | 80 角色、8,156 条用户话语，含人物询问、保持、用户目的、偏好与敏感试探；被测 NPC 自己续写前轮回应，但用户后续话语预先给定。不是玩家实时根据 NPC 发言滚动生成的双向交互。 | **实查数据页** [xiangh/RMTBENCH](https://huggingface.co/datasets/xiangh/RMTBENCH)；作者提供 Claude 3.5 论文原版及 Claude 4.5 扩展版，包含中英文件。访问有需同意条款，README 出现非商业限制而标签显示 Apache-2.0；按各项条款独立理解，不把可浏览页面当已取得授权文件。 |
+| **H03 PsyMem** · [TACL 2026](https://aclanthology.org/2026.tacl-1.24/) | 26 个心理指标和显式记忆对齐训练；论文报告 5,414 角色、38,962 段小说对话和 Qwen2.5-7B。测角色心理与记忆响应，而非玩家因果关系或引擎执行。 | 本轮确认 TACL 正式论文与方法/规模；独立的完整训练 JSON、权重和脚本未全部核验，按**待核**而非“缺失”记录。Baseline 应为同人物信息条件下的 profile、记忆输入与对齐训练消融。 |
+| **H04 NCP-Bench** · [ICML 2026](https://proceedings.mlr.press/v306/ma26ap.html) | 100 个电影叙事世界、1,660 个初始事实、1,222 条承诺、1,511 个剧情节点。模拟玩家干扰 narrator，评审事实和承诺冲突；目标是叙述者而非单个角色的错误信念，且部分冲突由模型 auditor 判断。 | **实查**[NLP2CT/NCP-Bench](https://github.com/NLP2CT/NCP-Bench) 有完整 YAML 场景目录、运行器、固定 prompt、Baseline 和 HiAgent 方法、单测。等价复现须固定 narrator、玩家模拟器、auditor 模型及生成设置；不能把故事审计结果当引擎事务成功率。 |
+| **H05 MCPDial** · [arXiv 2024](https://arxiv.org/abs/2410.21627) | 带玩家与 NPC 两侧 persona 的长对话及穿插函数调用，适合作为对话/工具接口数据而不是完整环境。论文主要做数据构造和定性检查，尚非通用角色表现权威 benchmark。 | **实查**[仓库](https://github.com/salavi/MCPDial-A-Minecraft-Persona-driven-Dialogue-Dataset) 有 train-conversations、test-conversations、测试提示 CSV 与多个实际 JSON；工具标注没有世界状态回执。 |
+| **H06 GRAIL / Bayesian Social Deduction** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1497/) | Avalon 中将隐藏身份后验的概率推断与语言发言分离；真人受控对局报告 67% 胜率。Agent 只扮演 **Good** 阵营，因此适用于信念跟踪而非反派角色持久欺骗的直接 benchmark。 | **实查**[项目仓库](https://github.com/camp-lab-purdue/bayesian-social-deduction)有站点源文件、项目页面和静态资源；完整数据、模型 checkpoint 和本地 game runner 的逐个文件级检查未完成。评价需区分身份预测精度、胜率、表述自然性和人物身份坚持。 |
+| **H07 Fake Player / Distill Bench** · [匿名 ICLR 2026 投稿稿](https://openreview.net/pdf/2e26df077644bbbe3df13f485ea6433e09764b7b.pdf) | 内心独白、动态意图栈、受输入约束的 player message 生成；提出训练数据评估。论文仍是未核实正式录用的投稿稿，模拟输入未经过独立真人分布验证。 | 未确认可以独立复用的训练数据、Distill Bench 和完整代码；按**论文/投稿材料**而非已开放 baseline 记录。 |
+| **H08 Quest of Aivengarde** · [FDG 2026](https://portal.findresearcher.sdu.dk/en/publications/quest-of-aivengarde-comparative-study-of-player-experience-across/) | 一套 RPG 比较脚本对白、改写、混合、自由生成，64 人体验/日志补充主观参与感、玩家能动性与自然性。和人格忠实 NLI 不是同一分数。 | 本轮只核到已接收发表记录和摘要，尚未全文阅读或确认环境和行为日志开放；按**元数据／待核**，不写成现成自动评测包。 |
+| **H09 Sony CPDC 2025 官方挑战** · [Task 1](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/problems/task-oriented-dialogue-task-1) | NPC 在世界观、人物设定、角色知识、玩家基本信息和函数定义下生成语言与函数调用；意图属于玩家侧但不会完整公开给 NPC。动作函数没有执行返回，评分为调用/参数和回复质量。 | **实查**[starter kit](https://github.com/Augustus2011/sony-cpdc-2025-starter-kit) 含函数调用、NPC 数据接口、baseline、SFT/RL 示例与训练/运行脚本；组织方保密最终测试集。不能将公开训练数据指标写成官方隐藏集分数。 |
+
+**工业工程参考（不算第 85 个资源，也不算第 91 篇论文）**：[KRAFTON / NVIDIA 关于 PUBG Ally 的访谈（2026）](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/) 介绍世界观察工具、事件驱动的语言模型、行为树 tick 级执行与跨局玩家偏好记忆。该资料主要展示可实施的异步接口，不能替代人物角色一致性实验。
+
+仓库发布状态是**时间点快照**：旧条目如 RoleMemo、DynSess、HAMLET、Video2Roleplay 的部分资源状态均指此前核查时实际文件，不构成永久不可用的判断。做跨文献比较还必须保留数据版本、模型/评分器版本、角色 split 与可见信息条件。
