@@ -225,7 +225,7 @@
 | 多模态角色表达 | MMRole、Video2Roleplay、OmniCharacter 系列、ActorMind | 图像问答等于具身控制；声音相似等于人格；单个语音模块延迟等于全双工实时 NPC 的端到端延迟 |
 | 角色条件下的安全 | SaRFT、MD-Trace/MD-Shield、Persistent Personas | 静态攻击通过率能代表全部长程安全；拒答率上升必然同时保持角色质量 |
 
-本文覆盖 **84 项数据、方法与评测资源**：原索引 75 项，本轮增加 8 项对应研究论文的资源及 1 项 Sony CPDC 官方挑战。现有资源涉及已正式发表工作、预印本、投稿稿及挑战数据，不能简单按资源链接数量计算可复现论文数量。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
+本文覆盖 **87 项数据、方法与评测资源**：初始 75 项、首轮 9 项玩家与角色状态资源（包括 Sony CPDC），本次再增加 3 项角色自然度、迎合与动态 persona 资源。现有资源涉及已正式发表工作、预印本、投稿稿及挑战数据，不能简单按资源链接数量计算可复现论文数量。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
 
 
 
@@ -249,3 +249,14 @@
 **工业工程参考（不算第 85 个资源，也不算第 91 篇论文）**：[KRAFTON / NVIDIA 关于 PUBG Ally 的访谈（2026）](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/) 介绍世界观察工具、事件驱动的语言模型、行为树 tick 级执行与跨局玩家偏好记忆。该资料主要展示可实施的异步接口，不能替代人物角色一致性实验。
 
 仓库发布状态是**时间点快照**：旧条目如 RoleMemo、DynSess、HAMLET、Video2Roleplay 的部分资源状态均指此前核查时实际文件，不构成永久不可用的判断。做跨文献比较还必须保留数据版本、模型/评分器版本、角色 split 与可见信息条件。
+
+## 12. 补充：角色自然表达、人格迎合与模拟互动资源
+
+新补充的三个条目均以角色质量本身为目标，和 H01–H09 去重。
+
+| 资源与论文 | 任务与可比较 baseline | 实际资源状态 |
+| --- | --- | --- |
+| **H10 Deflanderization** · [2025 预印本](https://arxiv.org/html/2510.13586) | CPDC 的简短、不过度表演的 RPG NPC 对话，与 zero-shot、few-shot、CoT、函数调用处理、LoRA-SFT 组合比较。比赛总体分数的改善不全归于该 prompt，也不支持 RL 过度戏剧化的因果定律。 | 正文给出完整的角色提示与实验结果；本次未核到作者公开的最终训练权重和所有参赛数据。 |
+| **H11 PersonaArena** · [ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.471/) | 约 1,000 persona 的情境模拟与评价；可比较同角色/同场景的 prompt baseline、不同评价器和模型。多评审讨论只是评价方法。 | **实查**[Microsoft 仓库](https://github.com/microsoft/AnthropomorphicIntelligence/tree/main/PersonaArena) 有 persona_data、generated_scenes、simulator.py、evaluate_arena.py 等。代码可连接兼容 API 的本地模型，本次没有端到端复现。 |
+| **H12 Too Nice to Tell the Truth** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1421/) | 人物宜人性和附和；同模型、同题比较 persona 条件和普通助手，必须区分 trait 内部相关性与相对 no-persona 的平均差异。 | **实查**[代码仓库](https://github.com/aryashah2k/Quantifying-Agreeableness-Driven-Sycophancy-in-Role-Playing-Language-Models)有数据准备、评测与分析目录；[HF 输入数据](https://huggingface.co/datasets/aryashah00/Persona-Induced-Sycophancy)有文件入口，全部原始输出/复现未验证。 |
+

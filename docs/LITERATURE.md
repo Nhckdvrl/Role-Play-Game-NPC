@@ -15,11 +15,11 @@
 
 | 范围 | 独立论文数 | M：主文完整阅读 | T：定点 | B：元数据／资源 | 其中 2025–2026 年论文 |
 |---|---:|---:|---:|---:|---:|
-| 原创研究、方法与 benchmark（含技术报告） | 83 | 75 | 4 | 4 | 65／83（78.3%） |
+| 原创研究、方法与 benchmark（含技术报告） | 86 | 76 | 6 | 4 | 68／86（79.1%） |
 | 综述 | 7 | 6 | 1 | 0 | 4／7（57.1%） |
-| **合计** | **90** | **81** | **5** | **4** | **69／90（76.7%）** |
+| **合计** | **93** | **82** | **7** | **4** | **72／93（77.4%）** |
 
-在 81 篇主文完整阅读的论文中，61 篇属于 2025–2026 年，占 75.3%。原索引列出 **3 篇官方工业文章**，本次再增补 KRAFTON / PUBG Ally 工程访谈，合计 **4 篇工业来源**，均不计入论文数量。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
+在 82 篇主文完整阅读的论文中，62 篇属于 2025–2026 年，占 75.6%。原索引列出 **3 篇官方工业文章**，本次再增补 KRAFTON / PUBG Ally 工程访谈，合计 **4 篇工业来源**，均不计入论文数量。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
 
 每条的“贡献与证据范围”同时写出做了什么和实验证明到哪里。表中的 venue 表示已核查的发表记录，**Main、Findings、Datasets and Benchmarks、workshop 和 arXiv 分别标注**；未核实录用的预印本不根据作者宣传或聚合站标签升级为正式顶会论文。
 
@@ -183,3 +183,14 @@
 **其他已核资料（不另计独立论文）**：[Sony CPDC 2025 官方 NPC 角色对话与函数调用任务](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/problems/task-oriented-dialogue-task-1)、[公开 starter kit](https://github.com/Augustus2011/sony-cpdc-2025-starter-kit)、[KRAFTON / NVIDIA 的 PUBG Ally 工程访谈（2026）](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/)。前者的动作函数无返回值，不能证明执行成功；后者展示世界状态查询和快慢执行分层，不是人物忠实度的独立学术 benchmark。
 
 [The Price of Format（EMNLP 2025 Findings）](https://aclanthology.org/2025.findings-emnlp.836/) 对格式与输出多样性提供相邻机制证据，但它的核心测试是一般开放生成和故事续写，没有 NPC 角色化训练的直接对照；只在正文讨论可能的表达坍缩机制时引用，不进入本次新增的 8 篇核心文献计数。
+
+## 12. 补充：Role-Play 自然性、迎合与动态人设评价
+
+以下 3 篇直接研究人物扮演的质量，不扩大通用多 agent 协作的覆盖。与前面 90 篇去重。
+
+| ID | 论文与来源 | 发表状态 | 阅读 | 方法和证据边界 |
+| --- | --- | --- | --- | --- |
+| P09 | [Deflanderization for Game Dialogue: Balancing Character Authenticity with Task Execution in LLM-based NPCs](https://arxiv.org/html/2510.13586) | 2025 arXiv 预印本、CPDC 参赛报告 | **M** | 简洁且不夸张的 fantasy RPG 角色提示，与 few-shot、CoT、函数提示和 Qwen3-14B LoRA 共同研究功能性回应与人物自然度。部分组合的比赛收益不证明 GRPO/DPO 普遍导致脸谱化或真实人格被形式化。 |
+| P10 | [Too Nice to Tell the Truth: Quantifying Agreeableness-Driven Sycophancy in Role-Playing Language Models](https://aclanthology.org/2026.acl-long.1421/) | ACL 2026 Main | **T** | 275 合成人设、4,950 观点题、13 模型；9 个模型内宜人性与附和正相关，然而多数模型采用 persona 后较无 persona 的整体平均迎合下降。立场分类分数不是人物心理或真假事实的完备真值。 |
+| P11 | [PersonaArena: Dynamic Simulation for Evaluating and Enhancing Persona-Level Role-Playing in Large Language Models](https://aclanthology.org/2026.findings-acl.471/) | ACL 2026 Findings | **T** | 从社会材料生成 persona bank 和多轮情境，使用多评审提供角色反馈；多 agent 在这里是评审方法，不是 NPC 合作研究，模拟角色与真人玩家的效度需分别理解。 |
+

@@ -313,6 +313,12 @@ $$
 
 这里有两条独立坐标：**是否忠实表现虚构价值**，以及**是否输出现实有害指导**。一个反派可以在故事中威胁、嫉妒和操纵剧情，却不需要提供现实伤害操作细节；一个总是劝人向善的模型也未必演好了反派。FACD 在其安全评测中的低违规率支持特定条件下的兼容性，不能扩大为对所有攻击和长期互动的保证。第 15 节进一步讨论这种区分。
 
+### 6.4.1 人物宜人性与玩家迎合不能混为一谈
+
+角色是否友好、是否赞同玩家、是否忠于自身信念和事实，是不同的行为维度。[Too Nice to Tell the Truth（ACL 2026 Main）](https://aclanthology.org/2026.acl-long.1421/) 使用 275 个合成 persona、4,950 个立场诱导提示、13 个开放权重模型，研究大五人格宜人性对迎合的影响。在 9 个模型内部，宜人性与附和评分呈显著正相关；然而**大部分模型采用 persona 后，相对于无 persona 基线的平均迎合反而下降**。同模型内部特质的相关性，不能替换成“所有人设都会增加迎合”的总体结论。
+
+这与 RoleCDE 的角色价值冲突相呼应：一个善良人物可能温和但不纵容，一个狡猾人物可能为了私利讨好，另一个人物则会因长期经历而提高警惕。检验 Role-Play 不是无条件奖励迎合或反驳，而是判断在特定角色和情境下，人物为什么采取该态度。论文的结构化立场测量也不等于对角色动机或世界事实的完全验证。
+
 ### 6.5 关系、承诺和成长具有不同时间尺度
 
 情绪可在一轮内改变；信任可能积累若干事件才发生变化；身份和核心价值通常更稳定，但也会在角色弧线中改变。把这些变量全部写成一个“好感度”会丢失关系的非对称性：A 信任 B，并不推出 B 信任 A；愿意合作、喜欢对方、害怕对方和相信对方说的话也可以分离。RoleAgent 的关系记忆、CoSER 的私有目标、REMP 的关系与情绪探针，以及 ArcANE 的阶段评价分别触及其中一部分。现有工作已经提供具体表示和测试，但尚没有一个被广泛验证的统一关系状态空间。[RoleAgent](https://papers.nips.cc/paper_files/paper/2024/hash/5875aca1ef70285a35940afbbce0f9fb-Abstract-Datasets_and_Benchmarks_Track.html) · [REMP](https://aclanthology.org/2026.findings-emnlp.602/) · [ArcANE](https://aclanthology.org/2026.emnlp-main.1998/)
@@ -397,6 +403,12 @@ DynSess 值得注意的不只是新算法：它将交互性、人类感、角色
 合理的人物演绎可以**情境触发、强弱有别**：日常寻路问题不必展示所有人格特征；面对背叛或价值冲突时，沉默、愤怒、回避或破例才可能具有情境意义。APC 的主动/被动设定、RMTBench 的用户意图、CFSM 的状态触发提供了三种不同分析视角。诊断时应分别统计回复长度、词语重复、信息完成度、场景相关的人格表达和非必要的内心独白；不能把“更戏剧化”与“更忠实”或“更有趣”直接画等号。
 
 同时，游戏确实提供了部分客观后果奖励，例如门是否打开、交易是否完成、守卫是否放行；**这些是状态与规则层的可验证结果，不是人物价值或动机的唯一标准答案**。一个胆小角色未完成战斗目标，可能恰好符合人设；一个守卫合法拒绝通行也可能使任务失败。角色忠实、用户满意和游戏目标需要分别评价，而不是武断规定所有 NPC 都应采用同一套 reward 分解。
+
+### 7.8 Deflanderization：减少“演得太用力”的游戏角色对白
+
+[Deflanderization for Game Dialogue（2025 预印本）](https://arxiv.org/html/2510.13586) 直接以 fantasy RPG 的玩家—NPC 对话为场景，讨论 excessive role-play 如何干扰自然、简洁的功能性回应。其 prompt 要求 NPC 根据自身知识回答，但避免过度表演和无端猜测；论文还研究 few-shot、CoT、函数提示以及 Qwen3-14B 的 SFT/LoRA 配置。在限定的 CPDC 任务中，这些方法的某些组合取得改善。
+
+该论文是对“角色越显眼越真实”的重要反例线索，却**未建立 GRPO/DPO 导致戏剧化坍缩的普遍因果证明**，最终比赛方案也不只改变一个 prompt 因素。与 APC 的主动/被动人设约束、CFSM 的事件触发状态、RoleCDE 的价值冲突结合来看，关键区别是：**人物特征可以在日常对话中保持隐含，仅在相关情境影响决策；人物少说两句与人物失去人格并不是一回事。**
 
 <a id="memory"></a>
 ## 8. 记忆、角色成长与关系演化
@@ -500,6 +512,8 @@ SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条�
 
 <a id="social"></a>
 ## 10. 多智能体社会交互
+
+**本章与主线的关系。** 社交研究在此用来理解人物如何形成信任、维护立场、策略性隐瞒或经历关系变化。NPC 群体规模、采矿任务分工、战术协作效率不是人物扮演质量的替代变量；这些工作只在对角色行为和信息边界有解释力时作为相邻资料。
 
 ### 10.1 社会性包含人物保持，也包含对他人的适应
 
@@ -777,6 +791,8 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 | 资源 | 直接测什么 | 协议和不能混淆的边界 |
 | --- | --- | --- |
 | [RMTBench](https://aclanthology.org/2025.findings-emnlp.730/) | 用户意图、偏好、人物保持及敏感话题中的角色表达 | 预制用户话语 + NPC 自生成先前回复；不是完全双向玩家模拟 |
+| [PersonaArena](https://aclanthology.org/2026.findings-acl.471/) | 情境模拟中的 persona-level 角色质量与多维反馈 | 多评审是评价方法，不是角色多方合作；模拟用户不是独立真人数据 |
+| [Deflanderization](https://arxiv.org/html/2510.13586) | NPC 过度表演与日常功能性对话的平衡 | CPDC 的提示与组合实验，不证明 RL 必然产生脸谱化 |
 | [MCPDial](https://arxiv.org/abs/2410.21627) | 玩家—NPC 人设对话及中途函数调用样本 | 训练/测试 JSON；不是可执行游戏环境的动作成功标注 |
 | [Sony CPDC 2025](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/problems/task-oriented-dialogue-task-1) | 玩家/NPC 条件下函数选择与角色话语 | 有公开 starter kit，官方测试保密；动作函数无返回 |
 | [CFSM](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) | 经历事件后角色状态能否合理转移及影响选择 | 合成 FSM 和 Fandom NLI；不测完整引擎执行 |
@@ -785,6 +801,14 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 | [Quest of Aivengarde](https://portal.findresearcher.sdu.dk/en/publications/quest-of-aivengarde-comparative-study-of-player-experience-across/) | 玩家感受到的对话自然度、参与度和能动性 | 64 人游戏体验研究；不能代替大规模人物一致性检测 |
 
 新增资源的正式发表状态、公开子集、代码、权重和访问条件见 [资源地图](docs/RESOURCE_ATLAS.md)。**游戏里的任务结果可以作为状态真值，却不能自动提供唯一的人设真值**：守卫拒绝玩家可能是任务失败，也可能是最忠实的人物行为。
+
+### 14.11 情境模拟与真人玩家体验：不同的角色质量证据
+
+[PersonaArena（ACL 2026 Findings）](https://aclanthology.org/2026.findings-acl.471/) 将用户社会内容组织成约 1,000 个 persona，模拟多轮情境并使用多评审机制评价角色表现。它的多 agent 辩论主要是**评价工具**，研究对象仍是人物扮演，不是让 NPC 协作完成任务。[微软仓库](https://github.com/microsoft/AnthropomorphicIntelligence/tree/main/PersonaArena)已有 persona 数据、场景模拟与评价文件。但多位模型评审仍可能共享偏好，模拟互动不是独立的真人体验验证。
+
+[Quest of Aivengarde（FDG 2026）](https://portal.findresearcher.sdu.dk/en/publications/quest-of-aivengarde-comparative-study-of-player-experience-across/) 以及 [CoG 2025 前序试验](https://ieeexplore.ieee.org/abstract/document/11114150) 则比较静态、重述、混合、完全开放的 NPC 对话形式，在同一组约 64 名玩家中观察互动长度和主观体验，不能算成两组独立人群实验。完全开放的对话能让部分玩家更愿意交流，却不必然更符合人物原有的动机、知识边界或关系状态。
+
+它们与 RMTBench 的模拟用户意图和 MCPDial 的玩家 persona 相互补充，构成**人物可信度、模拟互动、真实玩家体验**三种应当分别解释的证据。
 
 <a id="safety"></a>
 ## 15. 角色价值、安全与用户交互边界
@@ -821,6 +845,7 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 | 已有较明确的研究对象 | 已出现的具体方法或资源 | 仍不能直接外推的区域 |
 | --- | --- | --- |
 | 已知/原创人物的条件表达 | RoleLLM、DITTO、OpenCharacter、ProfileAxes | 任意世界、任意语言、所有长程交互中的完整人物一致 |
+| 玩家侧输入、角色自然度与非迎合行为 | MCPDial、RMTBench、Deflanderization、PersonaArena、Too Nice to Tell the Truth、真人玩家试验 | 模拟用户与真人有别；更长的回复、更高的任务完成率不等于角色更忠实 |
 | 细粒度设定与时间知识 | APC、TimeChara、Curse of Knowledge、视角记忆 | 同时处理参数知识、错误信念、传闻、秘密与多人权限的通用保证 |
 | 人格与角色推理 | RolePersonality、RAR、HER、Character-R1、VeriRole | 模型真实内在心理、人类心理外部效度或唯一正确思考 |
 | 主观记忆与动态阶段 | DualMem、PersMem、ArcANE、REMP | 开放玩家行为造成的多年分支关系和可验证成长 |
@@ -836,7 +861,7 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 <a id="corrections"></a>
 ## 17. 跨研究线的概念与证据区分
 
-| 常见说法 | 原论文与资源支持的更准确说法 |
+| 容易混淆的判断 | 根据任务与实证应怎样区分 |
 | --- | --- |
 | 领域已从表面模仿全面进入第三代深层心智 | 经历、反思、目标和心理内容早已出现；近年是监督、结构、训练反馈与评价并行深化，不能把生成独白当真实心智 |
 | More Than a Role 是 KDD 2026 主会 Oral | 正式核验为 KDD 同期 PILA Workshop Oral，非 archival |
@@ -864,12 +889,12 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 
 ### 18.1 本次调查的可核查范围
 
-文献索引登记 **90 篇去重论文**：83 篇原创研究、方法或 benchmark，7 篇综述；其中 **69 篇的正式发表年或预印本首发年为 2025—2026，占 76.7%**。另有原索引 3 篇官方工业文章，加上本次新增的 PUBG Ally 工程访谈，共 4 篇独立记录，不计入论文数量。论文改名、arXiv 更新和正式发表不重复计算，例如 ChARM/AAM、RAIDEN-R1/VeriRole。
+文献索引登记 **93 篇去重论文**：86 篇原创研究、方法或 benchmark，7 篇综述；其中 **72 篇的正式发表年或预印本首发年为 2025—2026，占 77.4%**。另有原索引 3 篇官方工业文章，加上本次新增的 PUBG Ally 工程访谈，共 4 篇独立记录，不计入论文数量。论文改名、arXiv 更新和正式发表不重复计算，例如 ChARM/AAM、RAIDEN-R1/VeriRole。
 
 阅读层级逐条标明：
 
-- **M，81 篇**：阅读主文的问题、方法、实验、分析和局限，并按需要核查附录中的数据、评价、消融或实现细节。这里不声称全部附录逐字阅读，也不声称复现训练结果。
-- **T，5 篇**：定点核读，包括 *Current Status* 及新增的 PsyMem、MCPDial、NCP-Bench、Bayesian Social Deduction；不以它们替代未核读的实验细节。
+- **M，82 篇**：阅读主文的问题、方法、实验、分析和局限，并按需要核查附录中的数据、评价、消融或实现细节。这里不声称全部附录逐字阅读，也不声称复现训练结果。
+- **T，7 篇**：定点核读，包括 *Current Status*、PsyMem、MCPDial、NCP-Bench、Bayesian Social Deduction、PersonaArena 与 Too Nice to Tell the Truth；不以它们替代未核读的实验细节。
 - **B，4 篇**：仅核验正式状态、摘要、有限正文或资源，包括 OmniCharacter++、Setting the DC、Fake Player、Quest of Aivengarde；正文明确限制它们承担的证据。
 
 这是本次真正进入分析的文献数量，不是全部搜索命中量，也不表示领域已经不存在其他相关论文。正式会议、workshop、预印本和工业资料分开记录；强组或顶会身份都不替代对原文实验的判断。
