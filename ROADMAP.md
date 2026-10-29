@@ -107,6 +107,25 @@
 
 这张表是对后文文献的综合组织，不是各阶段互相替代的历史定律。SFT、检索、手工状态、神经模型和游戏规则仍共同存在。
 
+### 2.3 一张以人物扮演本身为中心的六维研究地图
+
+不同研究分支不是可以简单串行替代的“第一代、第二代、第三代”。更有解释力的是问清**模型究竟怎样成为、理解、延续并表达一个人物**：
+
+| 研究问题 | 关键表示与方法脉络 | 研究证据的典型单位 |
+| --- | --- | --- |
+| **Who am I? 身份与属性** | Character-LLM、RoleLLM、DITTO、CoSER、ProfileAxes；已知人物与可定制 profile | 人物—场景、设定事实与角色回复 |
+| **What can I know or believe? 认知边界** | TimeChara、APC、REVERIEMEM、Curse of Knowledge、CHARM；区分世界事实、人物观察和其主观信念 | 时间点、可见性、反事实双胞胎、知识/拒知行为 |
+| **Why do I say and do this? 心智、情绪与选择** | RolePersonality、RoleThink、RAR、HER、EmoCharacter、PersonaForge、Codified Profiles、CFSM | 规定情境、动机或情绪标签、人物行动与理由 |
+| **How can I remain and change? 记忆与人格演进** | THEANINE、BOOKMARKS、RoleMemo、PsyMem、ArcANE、REMP、LifeState-BENCH | 事件、关系、叙事阶段、跨轮探针与轨迹 |
+| **How is the character controlled or learned? 训练与推理** | SFT、DPO/GRPO、VeriRole、CRPO、MOA、RoleRM、PDD、PERSONA、CV-SAE、KSKT | 偏好数据、角色奖励、条件化激活、跨模型与任务对照 |
+| **How do we know it feels like a role? 评价与玩家体验** | InCharacter、CharacterBench、CharacterBox、PersonaArena、RMTBench、PALATE、匿名人设评价、玩家实验 | 静态回答、闭环对话、角色行为、模型/人工评审和玩家体验 |
+
+这不是给六类问题排序，更不是让一个项目同时实现六个模块。它强调各分支的**被测对象不同**：风格和身份可从输出判断，知识权限要知道角色能观察什么，心理推断要明确标签来源，长期成长要记录触发事件，玩家沉浸度需要实际用户证据。社交合作、Minecraft 采集、战术胜负与大规模 agent 调度只有在能解释这些 Role-Play 问题时才进入本地图。
+
+### 2.4 原有路线图需要的不是“放弃核查”，而是让重要机制显形
+
+文献索引按实际发表和资源状态审计，是为了避免混用比赛数据、作者提交版与正式论文。但正文阅读还必须交代研究思想的分野：**CharacterBox** 将角色行动放进叙事沙盒，**RoleThink** 为思考内容构建文学原文与解释性参照，**PERSONA/PDD** 研究控制条件应在生成期怎样生效，**RoleRM/R4** 则问裁判如何检索角色证据，而 **LifeState-BENCH** 检验跨事件的自我与关系知识。它们在此被组织为不同认识论和技术问题，不再用同一个“方法有效但不能外推”的句式把创新思想全部抹平。局限只在改变读者如何解读实验结论时说明。
+
 <a id="framework"></a>
 ## 3. 统一分析框架：人物、状态、观察、记忆与行动
 
@@ -284,6 +303,14 @@ $$
 
 这些区别连接了基于时间点的知识问答、角色推理训练和 [SOTOPIA-TOM](https://arxiv.org/abs/2605.02307) 的多方信息管理。后者使用环境强制的公共/私有通道与共享规则，让知识和披露产生交互后果；它仍主要属于专业合作场景，不能仅因包含 ToM 就外推到文学人物的情感深度。
 
+### 5.6 跨文化角色知识与“模型是否真的相信自己在扮演什么”
+
+[CHARM: Character Hallucination for Multicultural Role Play Benchmark（EMNLP 2026 Findings）](https://aclanthology.org/2026.findings-emnlp.460/) 把角色知识边界放到不同文化语境和语言中，强调人物世界观与时间限制不应只由英语知名 IP 定义。论文关注角色设定幻觉、人物身份与跨文化知识；其当前资源与正文方法仅作定点元数据核验，不能直接宣称已经提供与 TimeChara 完全等价的可运行评测包。
+
+另一条本质不同的研究是 [When Roleplaying, Do Models Believe What They Say?（2026 预印本）](https://arxiv.org/abs/2606.11502)。它让模型扮演持有不符合当代科学共识的历史人物，用线性 activation probe、被质询后的回答保持与下游推理检验：仅通过 prompt、ICL 或部分角色 SFT 获得的**外显身份采纳**，未必同步改变探针所读出的事实信念相关表征；更深的角色训练在部分条件下显示不同结果。它有[作者的探针与研究代码](https://github.com/BenSturgeon/persona-belief-probes-submission)。但“模型内部相信”不是可以直接测量的心理事实：探针方向、训练分布、质询答复与真实内部因果机制之间仍有推断环节。
+
+两篇论文连接了两种看似相近却不同的失效：一是输出不该知道的内容，二是输出像人物但受更深层预训练知识或助手偏好的影响。**不应要求 NPC 修改全部参数事实记忆来证明扮演成功**：人物可以知道他不该知道的事情来自预训练，而任务仍是让他基于当前可见世界与角色信念行动。
+
 <a id="psychology"></a>
 ## 6. 人格、情绪、动机与可解释决策
 
@@ -330,6 +357,16 @@ $$
 论文的合成验证包括 Mario 状态、FPS 敌人反应和小说旅行的简化 FSM；在已知状态转移规则下，程序执行终态优于 LLM 逐步推断，但这种实验只能验证**状态执行正确性**。真实人物部分以 Fandom 原作下一动作 NLI 和 Best@K 评价；例如文本 profile 主角色平均分约 81.10，CFSM 约 82.65。它证明显式状态更新有用，但不意味着人物真实内心状态已被测量，也不等于在游戏引擎中完成行动。作者 [GitHub](https://github.com/KomeijiForce/Codified_Finite_State_Machine) 可查到编译脚本，完整在线运行与外部模型依赖另见资源表。
 
 [PsyMem（TACL 2026）](https://aclanthology.org/2026.tacl-1.24/) 以 26 个心理属性扩展人物表征，并训练角色回答对**显式记忆**的利用；论文报告基于 5,414 角色、38,962 段小说对话训练 Qwen2.5-7B。它与 CFSM 的条件状态转移并非同一方法：一个强调心理属性和记忆控制，另一个强调人物状态随事件转移。两者都属于直接的 role-playing 研究，不应因借用了 FSM 或记忆技术就归进通用 Game AI。
+
+### 6.7 角色情绪与心理状态：不仅是生成一个情绪标签
+
+[EmoCharacter: Evaluating the Emotional Fidelity of Role-Playing Agents in Dialogues（NAACL 2025 Main）](https://aclanthology.org/2025.naacl-long.316/) 将角色在特定刺激中的**情绪方向、幅度、表达及多轮变化**独立于人物知识和口吻评价。它构造单轮和多轮情绪诱发情境与六项指标，观察到某些常见角色提示或合成数据强化会降低情绪保真，而真实角色对白提供的示例对某些设置更有效。此处得到的是特定情绪标签/评价框架下的效果，不是人物内心真实情感的生理测量。
+
+[Beyond Static Persona Consistency: Dynamic Persona Coherence in LLM Role-Playing（ACL 2026 Main）](https://aclanthology.org/2026.acl-long.1336/) 进一步区分长期核心身份、中期压力/意义积累与短期即时情绪，在文本交互中通过 Persona Consistency Critic、case repository 和 drift suppression 调整不同层次的变化。它使“稳定”与“成长”不再被粗暴地视为对立：一位原本谨慎的人物可以随着事件变得愤怒，却不需要凭一句话重写其全部价值观。主要实验规模为少量人物与模型，评价器与修复器存在相互设计依赖，因此报告的改善不自动等于独立人类心理学验证。[论文正文](https://aclanthology.org/2026.acl-long.1336.pdf)
+
+[PersonaForge: Psychology-Grounded Dual-Process Architecture for Personality-Consistent Role-Playing Agents（ACL 2026 Findings）](https://aclanthology.org/2026.findings-acl.386/) 则从 Big Five、心理防御机制及人物动态状态组织生成，在复杂处境才开启更显式的心理独白，而不是每轮自动输出最长思考。其 50 轮设定下的 persona drift 和 token 开销消融直接支持“可选择性地调用角色化思考”这一架构思想；但心理防御标签依赖设计和评价，不能因此把角色的复杂心理还原为客观独立维度。[作者仓库](https://github.com/fQwQf/PersonaForge)发布核心代码、配置和复现说明，因版权**未附完整文学人物数据**，运行还依赖 BookWorld 与模型服务。
+
+将三篇放在一起更容易看清关键差别：EmoCharacter 测情绪输出是否适切，Dynamic Persona Coherence 讨论状态在不同时间尺度怎样更新，PersonaForge 讨论什么时候启用复杂心理生成。这些不是同一条 benchmark 的新旧三个 SOTA。
 
 <a id="training"></a>
 ## 7. 角色推理、偏好优化与强化学习
@@ -410,6 +447,22 @@ DynSess 值得注意的不只是新算法：它将交互性、人类感、角色
 
 该论文是对“角色越显眼越真实”的重要反例线索，却**未建立 GRPO/DPO 导致戏剧化坍缩的普遍因果证明**，最终比赛方案也不只改变一个 prompt 因素。与 APC 的主动/被动人设约束、CFSM 的事件触发状态、RoleCDE 的价值冲突结合来看，关键区别是：**人物特征可以在日常对话中保持隐含，仅在相关情境影响决策；人物少说两句与人物失去人格并不是一回事。**
 
+### 7.9 内心活动从生成技巧变成独立研究对象
+
+[Reasoning Does Not Necessarily Improve Role-Playing Ability（ACL 2025 Findings）](https://aclanthology.org/2025.findings-acl.537/) 研究了“更强的通用推理能力”与“更好地扮演人物”之间的不一致。它比较一般回答、CoT 和推理模型在若干角色基准上的差别，提示常规解题式思考可能偏离人物视角或风格。但“does not necessarily”很重要：它并非所有任务开启思考都变差的定律，也不能仅凭观察关联归因于注意力方向或某个固定神经机制。
+
+[Guess What I am Thinking: A Benchmark for Inner Thought Reasoning of Role-Playing Language Agents（EMNLP 2025 Findings）](https://aclanthology.org/2025.findings-emnlp.819/) 进一步问**角色下一步行动背后的内心活动能否被合理重建**。其 RoleThink 数据构建涉及 76 本书、共 6,058 个条目；Gold 来自作品中的内心独白，Silver 含专家解释性分析。Gemini 引用的约 405 Gold + 211 Silver 属于部分评价划分/参考子集，不应误写为整个 RoleThink 语料的总规模。MIRROR 用事件记忆、多主体视角推断与反思组织人物动机，评价的对象是**与文学参照接近的内心推断和后续选择**，不是模型真的产生了不可观察的人类意识。[作者仓库](https://github.com/airaer1998/RPA_Thought)当前文件树只有简短 README 与 LICENSE，未核到完整公开 benchmark/推理代码。
+
+两篇与 RAR、HER、Character-R1 构成不同问题层次：是否应该思考、思考采用谁的视角、思考内容能否得到叙事证据、以及可见思考是否改善角色行为。不能将有更多角色第一人称文字的输出自动视为更深的角色心智。
+
+### 7.10 奖励模型也需要人物证据：R4 与 RoleRMBench
+
+训练对开放角色回答的偏好时，一个泛用评审可能奖励更礼貌、更长或更富戏剧性的文本，却不知道角色当前处于什么章节、对玩家有何关系。[R4: Nested Reasoning-Retrieval for Reward Modeling in Role-Playing Agents（ICLR 2026）](https://openreview.net/pdf?id=sWQSbVsPEz) 将角色知识检索和分层推理放在 **reward evaluator** 的工作流程中，而不只是让 policy 读取背景。这提出了不同于“给生成模型再塞一段 RAG”的思想：评审本身需要证据。其论文关于奖励模型、角色偏见、检索作用的具体增益，应以正式实验设置为准；当前代码与权重未核实，不把宣传性的“完全解决评审主观偏见”写入证据结论。
+
+[RoleRMBench & RoleRM: Towards Reward Modeling for Profile-Based Role Play in Dialogue Systems（2025 预印本）](https://arxiv.org/abs/2512.10575) 则直接研究**角色偏好评分者是否可靠**。RoleRMBench 分解叙事质量、人物忠实、指令、连贯、吸引力与安全等不同评价对象；RoleRM 以候选排序和 Continuous Implicit Preferences 校准偏好距离。这不是又一套 NPC 模型，而是对已有 RL/DPO 训练链路中“奖励谁、为什么奖励”的实证研究。论文中较高的 RoleRMBench 准确率属于其数据与评审协议，不能直接等同人类对所有故事角色的唯一判断。[作者仓库](https://github.com/Dear-Sloth/RoleRMBench)确有评价脚本和部分数据，但 README 明确表示**完整更新数据与训练权重尚待发布**。
+
+因此，Role-Play 的奖励方向至少有三种不同对象：规则/资料是否满足、候选回答的相对偏好、整段互动的结果与人物体验。R4 主要研究怎样让评分有可查人物依据；RoleRM 主要研究怎样让评分适应偏好模糊；HER-RM 与 AAM、CPO 等则分别采用语境化原则、间距校准和候选比较。
+
 <a id="memory"></a>
 ## 8. 记忆、角色成长与关系演化
 
@@ -481,6 +534,12 @@ SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条�
 
 长上下文保存原始证据，可以减少摘要的信息损失；外部记忆可降低重复输入、建立结构并保留访问权限。但“全部塞进上下文”不会自动解决状态优先级、时间变化和人物可知性；“换成图”也不会自动修正写入时的错误。THEANINE、BOOKMARKS、MRBench 和 SubtleMemory 的任务分别揭示了组织、同步、使用与关系推理的差异。比较系统时，oracle 记忆、给定记忆池、完整上下文和实际检索系统属于不同信息条件，不能把它们不加说明地放进同一性能排名。
 
+### 8.9 LifeState-BENCH：跨事件“我是谁、我记得谁”与在线学习的差别
+
+[If an LLM Were a Character, Would It Know Its Own Story? Evaluating Lifelong Learning in LLMs（ACL 2026 Main）](https://aclanthology.org/2026.acl-long.1659/) 构造 Hamlet 与合成多幕故事中的事件变化，检查人物是否能追踪自己的经历、状态、知识和关系，并比较参数更新及外部记忆方法。它把静态 profile—dialogue 问答改造成在多个时间节点回答“现在发生了什么、对谁的看法如何改变”这样的事实与关系问题。
+
+“Lifelong Learning”是作者任务命名，不能据此直接断言模型已经在无监督玩家互动中持续更新权重；原作/合成故事历史上的状态追踪与部署中的多月持续自演化不同。它与 ArcANE 的人物弧线、REMP 的事件锚点、RoleMemo 的事实—主观洞察、SubtleMemory 的细微事实关系互为补充：**一个评价人物阶段，一个评价经历和关系是否被准确利用，一个评价主观解释；它们不能互相替代。**
+
 <a id="scaling"></a>
 ## 9. 多角色共享与连续人格控制
 
@@ -509,6 +568,18 @@ SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条�
 | 记忆策略 | 哪些经历会被想起和如何解释 | 相似度检索、时间检索、事实/洞察分离、oracle 记忆 |
 
 这些是文献已经采用或明确对应的比较对象，不构成技术路线推荐。不同控制位置会改变信息量、计算量和持续性，因此不能只比较最终“人设分”而忽略代价与作用范围。
+
+### 9.4 训练免费的人格控制：向量、解码、SAE 和双流架构不能混称
+
+人格并非只能由一个长 profile 或一张每角色 LoRA 保持。[PERSONA: Dynamic and Compositional Inference-Time Personality Control via Activation Vector Algebra（ICLR 2026）](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) 从相反人格特质条件下的隐藏状态差异提取方向，通过强度缩放、向量加减及按情境动态加权控制 Big Five 特征，并构造 Persona-Evolve 情境评测。它展示了一定条件下可组合、强弱可调的**行为统计结果**；线性运算规则由向量代数成立，并不表示心理特质在内部表示上必然严格正交、独立或无副作用。[代码](https://github.com/xcfcode/persona)有实际数据生成、steering 和评价文件。
+
+[Enhancing Persona Following at Decoding Time via Dynamic Importance Estimation（PDD，ICLR 2026）](https://arxiv.org/abs/2603.01438) 则不直接改隐藏层，而是估计当前语境中 profile 各属性对生成的相对重要性，并用有条件与去属性条件的 token 概率分布调整解码。相关归一化公式的 Cauchy–Schwarz 等号只刻画其设定的数学目标何时取最大，**不证明真实人物属性的重要性已被客观恢复**。这与 APC 的 active/passive 约束相交，但 APC 侧重检测完整回答的相关性和矛盾，PDD 侧重解码时的条件重加权。
+
+[Facet-Level Persona Control by Trait-Activated Routing with Contrastive SAE（2026 预印本）](https://arxiv.org/abs/2602.19157) 使用 Big Five 的更细 facet、对比样本、SAE 特征选择和情境触发的路由，试图减少多特质 steering 的纠缠。**它才属于真正使用 SAE 的人格控制**；先前 TraitBasis 的激活差向量、PERSONA 的残差向量运算都不能因为能转动特质而被叫作 SAE。其训练语料与评价基准、代码完整性仍需与正式发表工作区分，不能仅据某个 Full-Accuracy 数字宣称全场景人格完全解耦。
+
+[Know Thyself, Know Thy User: Intrinsic Dual-Perspective Reasoning for Role-Playing LLMs（ICML 2026）](https://proceedings.mlr.press/v306/sun26at.html) 把**角色自己的身份条件**与**交互对象的需要**拆成两路表征并在 Transformer 内融合。它直接对应 Role-Play 里“角色有自身世界观，但也必须听懂玩家”的矛盾，属于模型架构而非训练免费 steering。[官方实现](https://github.com/Sunrich-HT/KSKT)已见双流模块、配置与示例运行脚本，完整训练数据和 checkpoint 未核实。
+
+对比这几条方法，最重要的不是按 2026 年的新颖程度排序，而是问它们实际控制的层级：**参数/attention 架构、隐藏层残差、SAE 潜变量、解码 token 分布，以及外部动态状态**。能调节单轮问卷分数，不自动等于在长历史中表现出因果可信的人物成长。
 
 <a id="social"></a>
 ## 10. 多智能体社会交互
@@ -662,6 +733,12 @@ ActorMind 的 RP-MOS 对声线不符或台词错误可直接判最低分，因�
 
 跨模态研究当前已经覆盖图像角色回答、视频条件对话和语音表演。流式观测、声画人物一致、打断后的状态恢复、多人说话者身份与环境动作反馈，是这些分项证据还没有共同覆盖的区域。
 
+### 12.6 感知质量与角色/情绪保真必须分离
+
+[MERRY: Semantically Decoupled Evaluation of Multimodal Emotional and Role Consistencies of Role-Playing Agents（2026 预印本）](https://arxiv.org/abs/2602.21941) 提出在多模态角色问答中把**感知事实、情绪反应与角色化解释**分开评价，而不是用一个“回答像不像角色”的总体 judge 混合三者。它提供不同的情绪与人物维度，但本次对其仅作摘要和元数据核读，数据与评审器的文件级公开尚未确认，不能当作已经可运行的完整 benchmark。
+
+这与 MMRole 的图像+角色评价、CAVI 的感知—角色干预、EmoCharacter 的纯文本情绪基准相互补充。角色注意力偏向某个物体可以是人设表达，**把不存在的物体看出来却不是**。同理，声线逼真、情绪恰当与人物知识忠实属于不同评价对象。
+
 <a id="runtime"></a>
 ## 13. 实时运行与系统代价
 
@@ -810,6 +887,18 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 
 它们与 RMTBench 的模拟用户意图和 MCPDial 的玩家 persona 相互补充，构成**人物可信度、模拟互动、真实玩家体验**三种应当分别解释的证据。
 
+### 14.12 角色 Benchmark 的新基准坐标：CharacterBench、CharacterBox 与匿名测量
+
+[CharacterBench: Benchmarking Character Customization of Large Language Models（AAAI 2025）](https://ojs.aaai.org/index.php/AAAI/article/view/34806) 给出 3,956 个角色、22,859 个中英测试样本，以六类、11 个维度衡量记忆、事实、人格/行为、情绪和拟人吸引等能力，配套 [CharacterJudge 和评价脚本](https://github.com/thu-coai/CharacterBench)。它是后续 RAR、Character-R1、CRPO 等工作的共同参照；但综合分数并非一个可独立验证的“人物心理真值”，judge 的可见上下文和样本类型需要匹配。
+
+[CharacterBox: Evaluating the Role-Playing Capabilities of LLMs in Text-Based Virtual Worlds（NAACL 2025 Main）](https://aclanthology.org/2025.naacl-long.323/) 则将角色置于文本世界：character agent 产生符合人物的语言/行为，narrator 生成后续世界及互动状态，并由特定评价器检查人设、情绪、环境适应和连贯性。这比脱离世界的单句 QA 更贴近“一个人会怎么做”，但 narrator 生成的状态仍不等价于物理引擎的独立执行真值。[作者仓库](https://github.com/Paitesanshi/CharacterBox)可见完整组织的 agent、simulator、评价及数据目录；是否可用同一商业 API/版本复现全部结果仍应另核。
+
+[Rethinking Role-Playing Evaluation: Anonymous Benchmarking and a Systematic Study of Personality Effects（SIGDIAL 2026）](https://aclanthology.org/2026.sigdial-1.15/) 把熟悉人物的名字匿名化、保留人物背景及人格信息，以检验模型究竟在遵循所给 profile，还是依赖预训练已记住的姓名和原作。匿名后部分模型表现下降，外加人格特征又能改变结果，但**删去名字也删去了可能合法的语境线索**，不能简单把下降全部解释为作弊。[官方代码](https://github.com/MiuLab/RolePlayBench)包含 CharacterEval、RoleAgentBench、InCharacter 的改造部分，相关 judge 和外部模型仍需另配。
+
+[Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation（PALATE，2026 预印本）](https://arxiv.org/abs/2607.27816) 将人物评价推进到用户模拟侧：采用真人会话标注训练多个用户模拟器，并用多轮轨迹对角色 agent 进行评价；作者报告 116 个人类会话、5 个用户模拟 LoRA、约 1,600 条评测轨迹。与 RMTBench 固定用户话语和 DMT 动态自动访谈的区别是，PALATE 强调**模拟用户与原始交互者行为的对齐**。[代码](https://github.com/Zhuyh1139/PALATE)、[数据](https://huggingface.co/datasets/muset-ai/PALATE)与[LoRA 入口](https://huggingface.co/muset-ai/PALATE-LoRA)可查，数据含非商业条件。训练得到的模拟用户仍是代理分布，模型排名相关不意味着已复现真人用户的所有行为。
+
+这四篇提供不一样的评价轴：广域静态能力、情境下人物行动、知名角色记忆污染、以及用户驱动的多轮行为。将它们与 CoSER/RAIDEN 放在同一张分数表之前，必须说明是**固定历史、模拟世界还是动态用户**。
+
 <a id="safety"></a>
 ## 15. 角色价值、安全与用户交互边界
 
@@ -837,6 +926,12 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 
 角色研究大量使用小说、影视对白、声线与真实用户式交互。源材料能被研究处理，不等于衍生数据拥有相同的分发和商业使用许可；声音标注公开也不意味着原始演员音频已授权分发。ActorMind、ArcANE 与 OmniCharacter++ 的不同发布条件表明资源许可必须按数据、代码、模型分别理解。本文只记录已核实的资源条件，不代替作者解释未明确的授权，也不把非商业数据列成无条件商用资产。
 
+### 15.5 “演不好反派”与“角色微调会降低安全”并非同一个问题
+
+[Too Good to be Bad: On the Failure of LLMs to Role-Play Villains（ACL 2026 Findings）](https://aclanthology.org/2026.findings-acl.282/) 用涵盖不同道德倾向的文学角色与角色行为场景，指出一些模型更容易表现亲社会角色，难以忠实表达某些复杂、冷漠或自私的人物选择。其 Moral RolePlay 数据侧重**能否在虚构情境中扮演价值倾向不同的人**，不能根据低分直接判定问题完全由安全对齐引起；人物不亲社会也不意味着应输出现实危害操作方法。作者的[数据入口](https://huggingface.co/datasets/Zihao1/Moral-RolePlay)可见，代码位于 [Tencent/DigitalHuman](https://github.com/Tencent/DigitalHuman/tree/main/RolePlay_Villain) 项目子目录，完整训练资产另需核查。
+
+它与 SaRFT 研究的是安全系统的两个方向：SaRFT 问角色训练后现实有害请求是否变得更容易被满足；Too Good to be Bad 问默认助手化是否破坏虚构人物的行为可信度。RoleCDE 把角色价值与普遍规范冲突作结构化测试，Too Nice to Tell the Truth 考察某类宜人性与附和，Persistent Personas? 考察长轮次后人物是否回退助手模式。这些结果不能折叠成“反派越邪恶越好”或“拒答越多越安全”的单轴分数。
+
 <a id="evidence"></a>
 ## 16. 当前证据覆盖与尚未覆盖的区域
 
@@ -847,14 +942,14 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 | 已知/原创人物的条件表达 | RoleLLM、DITTO、OpenCharacter、ProfileAxes | 任意世界、任意语言、所有长程交互中的完整人物一致 |
 | 玩家侧输入、角色自然度与非迎合行为 | MCPDial、RMTBench、Deflanderization、PersonaArena、Too Nice to Tell the Truth、真人玩家试验 | 模拟用户与真人有别；更长的回复、更高的任务完成率不等于角色更忠实 |
 | 细粒度设定与时间知识 | APC、TimeChara、Curse of Knowledge、视角记忆 | 同时处理参数知识、错误信念、传闻、秘密与多人权限的通用保证 |
-| 人格与角色推理 | RolePersonality、RAR、HER、Character-R1、VeriRole | 模型真实内在心理、人类心理外部效度或唯一正确思考 |
+| 人格与角色推理 | RolePersonality、RAR、HER、Character-R1、VeriRole、RoleThink/MIRROR、KSKT | 模型真实内在心理、人类心理外部效度或唯一正确思考 |
 | 主观记忆与动态阶段 | DualMem、PersMem、ArcANE、REMP | 开放玩家行为造成的多年分支关系和可验证成长 |
-| 多目标与轨迹学习 | CPO、AAM、CRPO、MOA、iStar、LSH-RL、DynSess、OSPD | 独立于特定 judge、模拟对手和世界的长期人类体验改善 |
-| 多角色参数与人格控制 | Neeko、TraitBasis、条件化 profile/解码 | 千角色部署成本、完全隔离、任意心理特质的独立连续控制 |
+| 多目标与轨迹学习 | CPO、AAM、CRPO、MOA、iStar、LSH-RL、DynSess、OSPD、RoleRM、R4 | 独立于特定 judge、模拟对手和世界的长期人类体验改善 |
+| 多角色参数与人格控制 | Neeko、TraitBasis、PERSONA、PDD、CV-SAE、KSKT、条件化 profile/解码 | 千角色部署成本、完全隔离、任意心理特质的独立连续控制 |
 | 双人和多方社会交互 | SOTOPIA 系列、ToMATO、SocialBench | 真实社会群体行为预测与长期制度外部效度 |
 | 叙事组织与行动接口 | LIGHT、IBSEN、HAMLET、AdaMARP、Project Sid | 角色自主、玩家能动性、规则一致、实时性共同成立的通用 NPC |
 | 多模态角色表现 | MMRole、Video2Roleplay、OmniCharacter、ActorMind | 连续音视频、可打断语音、多方权限和具身动作的统一闭环 |
-| 分能力评价 | CharacterEval、RAIDEN、PersonaGym、MRBench、StratMem 等 | 跨语言、跨作品、跨协议可直接互换的“总体角色能力分” |
+| 分能力评价 | CharacterEval、RAIDEN、PersonaGym、MRBench、StratMem、CharacterBench、CharacterBox、RoleThink、PALATE 等 | 跨语言、跨作品、跨协议可直接互换的“总体角色能力分” |
 
 领域已经有丰富的数据和 baseline，但它们在几个交叉点上仍不完全对齐：**动态人物与固定标签；自由表达与自动可验证反馈；人物自主与导演控制；主观记忆与客观证据；复杂推理与实时成本；公开论文结果与实际可复现资产。** 这些是从已读工作得出的综合判断，其意义是标明现有证据何时可以组合、何时仍有断层，不是据此宣布新的研究空白。
 
@@ -889,13 +984,13 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 
 ### 18.1 本次调查的可核查范围
 
-文献索引登记 **93 篇去重论文**：86 篇原创研究、方法或 benchmark，7 篇综述；其中 **72 篇的正式发表年或预印本首发年为 2025—2026，占 77.4%**。另有原索引 3 篇官方工业文章，加上本次新增的 PUBG Ally 工程访谈，共 4 篇独立记录，不计入论文数量。论文改名、arXiv 更新和正式发表不重复计算，例如 ChARM/AAM、RAIDEN-R1/VeriRole。
+文献索引登记 **113 篇去重论文**：106 篇原创研究、方法、benchmark 或技术报告，7 篇综述；其中 **92 篇的正式发表年或预印本首发年为 2025—2026，占 81.4%**。本次在原 93 篇基础上增加 20 篇以人物扮演为研究对象的论文，**新增部分为 17 篇定点阅读、3 篇元数据/摘要核查**，未将其称作完成主文通读。另有原索引 3 篇官方工业文章，加上本次新增的 PUBG Ally 工程访谈，共 4 篇独立记录，不计入论文数量。论文改名、arXiv 更新和正式发表不重复计算，例如 ChARM/AAM、RAIDEN-R1/VeriRole。
 
 阅读层级逐条标明：
 
 - **M，82 篇**：阅读主文的问题、方法、实验、分析和局限，并按需要核查附录中的数据、评价、消融或实现细节。这里不声称全部附录逐字阅读，也不声称复现训练结果。
-- **T，7 篇**：定点核读，包括 *Current Status*、PsyMem、MCPDial、NCP-Bench、Bayesian Social Deduction、PersonaArena 与 Too Nice to Tell the Truth；不以它们替代未核读的实验细节。
-- **B，4 篇**：仅核验正式状态、摘要、有限正文或资源，包括 OmniCharacter++、Setting the DC、Fake Player、Quest of Aivengarde；正文明确限制它们承担的证据。
+- **T，24 篇**：定点核读相关章节、实验和方法，包括此前 7 篇与本次新增的 17 篇；这些结论仅以实际核查范围为限，不等于全文逐节精读。
+- **B，7 篇**：仅核验正式状态、摘要、有限正文或资源，包括先前的 4 篇及本次新增的 R4、CHARM、MERRY；不凭摘要推断算法细节或完整消融结果。
 
 这是本次真正进入分析的文献数量，不是全部搜索命中量，也不表示领域已经不存在其他相关论文。正式会议、workshop、预印本和工业资料分开记录；强组或顶会身份都不替代对原文实验的判断。
 

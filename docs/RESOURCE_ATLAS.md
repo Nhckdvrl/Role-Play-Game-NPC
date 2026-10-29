@@ -225,7 +225,7 @@
 | 多模态角色表达 | MMRole、Video2Roleplay、OmniCharacter 系列、ActorMind | 图像问答等于具身控制；声音相似等于人格；单个语音模块延迟等于全双工实时 NPC 的端到端延迟 |
 | 角色条件下的安全 | SaRFT、MD-Trace/MD-Shield、Persistent Personas | 静态攻击通过率能代表全部长程安全；拒答率上升必然同时保持角色质量 |
 
-本文覆盖 **87 项数据、方法与评测资源**：初始 75 项、首轮 9 项玩家与角色状态资源（包括 Sony CPDC），本次再增加 3 项角色自然度、迎合与动态 persona 资源。现有资源涉及已正式发表工作、预印本、投稿稿及挑战数据，不能简单按资源链接数量计算可复现论文数量。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
+本文覆盖 **107 项数据、方法与评测资源**：初始 75 项、首轮 9 项玩家与角色状态资源（包括 Sony CPDC）、3 项角色自然度与动态评价资源，以及本次新增的 20 项人物扮演核心论文资源。按实际数据、代码、模型、评测器和依赖分别标注，**未核实完整发布的条目不能视为即用 baseline**。现有资源涉及已正式发表工作、预印本、投稿稿及挑战数据，不能简单按资源链接数量计算可复现论文数量。综述、工程博客和各资源的方法分析见 [研究 Roadmap](../ROADMAP.md)；本文件侧重“公开资源究竟测什么、当前确实提供什么”。
 
 
 
@@ -260,3 +260,33 @@
 | **H11 PersonaArena** · [ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.471/) | 约 1,000 persona 的情境模拟与评价；可比较同角色/同场景的 prompt baseline、不同评价器和模型。多评审讨论只是评价方法。 | **实查**[Microsoft 仓库](https://github.com/microsoft/AnthropomorphicIntelligence/tree/main/PersonaArena) 有 persona_data、generated_scenes、simulator.py、evaluate_arena.py 等。代码可连接兼容 API 的本地模型，本次没有端到端复现。 |
 | **H12 Too Nice to Tell the Truth** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1421/) | 人物宜人性和附和；同模型、同题比较 persona 条件和普通助手，必须区分 trait 内部相关性与相对 no-persona 的平均差异。 | **实查**[代码仓库](https://github.com/aryashah2k/Quantifying-Agreeableness-Driven-Sycophancy-in-Role-Playing-Language-Models)有数据准备、评测与分析目录；[HF 输入数据](https://huggingface.co/datasets/aryashah00/Persona-Induced-Sycophancy)有文件入口，全部原始输出/复现未验证。 |
 
+
+
+## 13. 新增 20 项 Role-Play 核心论文的实验与发布资产
+
+条目 J01–J20 与上文 87 项去重。这里的一项“资源”也可以表示尚未完整公开的 benchmark 或论文方法，不意味着已可直接下载或训练。本节只保留角色本体相关工作；没有补入通用多智能体采集、矿工协作或战斗胜率的外围系统。
+
+| 编号与论文 | 数据与评测对象、直接可比 baseline | 已核到的资源情况与限制 |
+| --- | --- | --- |
+| **J01 CharacterBench** · [AAAI 2025](https://ojs.aaai.org/index.php/AAAI/article/view/34806) | 3,956 角色/22,859 样本，6 组 11 维人物评价。对照统一人物条件下的角色模型、普通底座和角色思考方法；CharJudge 是 learned evaluator 而非行为硬规则。 | **实查** [thu-coai/CharacterBench](https://github.com/thu-coai/CharacterBench) 有 eval_data、生成、打分脚本，README 链接 [CharacterJudge](https://huggingface.co/thu-coai/CharacterJudge)；未执行评分全链路。 |
+| **J02 Reasoning Does Not Necessarily Improve Role-Playing** · [ACL 2025 Findings](https://aclanthology.org/2025.findings-acl.537/) | 不同模型与 direct/CoT/reasoning 设定下的角色任务；应控制底座、长度、输入情境，不能从题名推出通用推理必定有害。 | 论文正文/实验可读；本次未确认专属可运行模型或测试脚本，**论文方法证据**。 |
+| **J03 RoleThink/MIRROR** · [EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.819/) | 76 本书、6,058 角色内心活动条目，涵盖原作独白和专家解释；参考子集不能充当完整规模，训练与测试的心理来源需要分开。 | **实查**[airaer1998/RPA_Thought](https://github.com/airaer1998/RPA_Thought) 根目录仅 README、LICENSE 等，README 内容极少；**未见完整数据或 MIRROR 代码**。不当作现成可复现 baseline。 |
+| **J04 CharacterBox** · [NAACL 2025 Main](https://aclanthology.org/2025.naacl-long.323/) | 文本虚拟世界的人物对白、动作和后续事件；对比 profile、角色 agent、narrator 和 character reward，不是物理引擎硬执行成功。 | **实查**[Paitesanshi/CharacterBox](https://github.com/Paitesanshi/CharacterBox) 有 agents、simulator.py、evaluate.py、data、叙事器与 reward 数据转换脚本；API 及模型 checkpoint 未全复现。 |
+| **J05 EmoCharacter** · [NAACL 2025 Main](https://aclanthology.org/2025.naacl-long.316/) | 单轮与多轮角色化情绪反应，六项情绪 fidelity 指标；与 RoleBench 的身份和 CharacterEval 的语言侧需独立区分。 | 论文及正式 venue 核实；本次未完成专属 benchmark 全文件检查，属于**评测定义/发布待核**。 |
+| **J06 R4** · [ICLR 2026](https://openreview.net/pdf?id=sWQSbVsPEz) | 在角色奖励评估器侧做证据检索和分层推理；对比 reward model 是否可获得人物原作上下文、不同 retrieval quality 的影响。 | 仅核正式论文与方法摘要，未确认训练数据、完整 R4 代码或 reward weights；**不能列为直接可运行 RM**。 |
+| **J07 RoleRMBench/RoleRM** · [arXiv 2025](https://arxiv.org/abs/2512.10575) | 叙事、角色忠实、指令、多轮连贯、安全与吸引力等七类偏好判别；RoleRM 用候选排序和 CIP，baseline 要同验证集/评审数据。 | **实查**[Dear-Sloth/RoleRMBench](https://github.com/Dear-Sloth/RoleRMBench) 有 RoleRMBench_data、eval_code、结果；README 明确 **完整更新数据与模型权重 Coming Soon**，不把部分评分脚本等同完整可复现 RM。 |
+| **J08 PERSONA** · [ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) | PersonalityBench 与 Persona-Evolve；从对比激活向量组合和动态 steering 生成性格倾向。比较 prompt、ActAdd/CAA、不同层/强度、情境路由并检查非目标能力。 | **实查**[xcfcode/persona](https://github.com/xcfcode/persona) 有 activation_steer.py、generate_vec.py、data_generation、eval 和脚本。训练免费指不更新底座参数，不表示无向量提取与评审成本。 |
+| **J09 PDD** · [ICLR 2026](https://arxiv.org/abs/2603.01438) | 人设属性重要性估计与 token 概率重加权；对比简单提示、固定属性权重与解码期控制，并注意每 token 推理代价。 | 论文和算法公式可读；本次未核到作者完整数据/代码仓库的文件级状态，标为**论文方法、资源待核**。 |
+| **J10 Facet-Level Contrastive SAE** · [arXiv 2026](https://arxiv.org/abs/2602.19157) | 30 个人格 facet、约 15K 对比数据和特质触发路由，测量细粒度受控表达；对比 CAA/ActAdd 与 SAE 表征，不能假设心理向量严格独立。 | 预印本论文核实；作者代码、完整训练集和 checkpoint 本次未确认公开，不可写成现成 SAE 模型。 |
+| **J11 KSKT** · [ICML 2026](https://proceedings.mlr.press/v306/sun26at.html) | 角色自身条件与用户目标的 attention 双路建模；CharacterBench 和 SOTOPIA 部分关系指标，任务对照不等于自动支持任意原创人物。 | **实查**[Sunrich-HT/KSKT](https://github.com/Sunrich-HT/KSKT) 包含 kskt/modeling、训练流程、configs、example sample_data；README 提供 smoke test，**未核到完整论文训练集和权重**。 |
+| **J12 Roleplay Belief Probes** · [arXiv 2026](https://arxiv.org/abs/2606.11502) | 角色假信念的行为坚持、质询和 activation probe。对比 prompt、ICL、SFT 与较深角色训练；probe score 不等于人类心理信念。 | [BenSturgeon/persona-belief-probes-submission](https://github.com/BenSturgeon/persona-belief-probes-submission) 代码/数据入口已核其存在，未完成训练与探针可复现检查。 |
+| **J13 Beyond Static Persona Consistency** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1336/) | 长/中/短角色心理状态与 PCC/PCR/PDS 纠偏；报告在少量人物、三个模型的系统评估，judge 与方法联动。 | 有[匿名提交代码入口](https://anonymous.4open.science/r/DPC-30A1)；本次未核完整独立复制，论文具体人物与评估器版本需保留。 |
+| **J14 PersonaForge** · [ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.386/) | Big Five、心理防御、选择性 inner monologue；50 轮 drift 与 token 开销。Baseline 是同人物、同对话、同模型服务下的简化/完整心理架构。 | **实查**[fQwQf/PersonaForge](https://github.com/fQwQf/PersonaForge) 有 personaforge、experiments、schemas；README 明确**不发布受版权保护的角色资料**，需要 BYO profiles 和 BookWorld/runtime。 |
+| **J15 LifeState-BENCH** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1659/) | Hamlet/合成多幕故事，跨事件自我知识、经历和人物关系追踪；轨迹与时间点问答不能代替自由玩家闭环。 | 正式论文与评测任务可读；完整作者 benchmark 与模型 checkpoint **文件级待核**。 |
+| **J16 Anonymous RolePlayBench** · [SIGDIAL 2026](https://aclanthology.org/2026.sigdial-1.15/) | 匿名已知人物姓名，测保留 profile 条件的角色一致性和人格补充。和原姓名提示同 benchmark 比较，但信息减少本身也可能解释降分。 | **实查**[MiuLab/RolePlayBench](https://github.com/MiuLab/RolePlayBench) 有 CharacterEval、InCharacter、RoleAgentBench 的改造代码/数据；依赖外部 BaichuanCharRM 与 GPT/Gemini API。 |
+| **J17 Too Good to be Bad** · [ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.282/) | Moral RolePlay 的善恶/复杂价值人格，测角色价值与默认助手规范冲突；与安全攻击的现实危害率是不同指标。 | [Moral-RolePlay 数据](https://huggingface.co/datasets/Zihao1/Moral-RolePlay)和[Tencent/DigitalHuman/RolePlay_Villain](https://github.com/Tencent/DigitalHuman/tree/main/RolePlay_Villain) 为作者资源入口；未执行下游训练和模型评审。 |
+| **J18 PALATE** · [arXiv 2026](https://arxiv.org/abs/2607.27816) | 真人会话标注 116 条、用户模拟 LoRA 5 个、模拟轨迹约 1,600 条，比较以用户模拟器驱动的 RP 评价与静态历史测试。 | **实查**[Zhuyh1139/PALATE](https://github.com/Zhuyh1139/PALATE) 有数据准备、轨迹评测、模型服务和 docs；[HF 数据](https://huggingface.co/datasets/muset-ai/PALATE)、[LoRA](https://huggingface.co/muset-ai/PALATE-LoRA) 明确入口，数据 CC BY-NC。 |
+| **J19 CHARM** · [EMNLP 2026 Findings](https://aclanthology.org/2026.findings-emnlp.460/) | 多文化、多语言角色知识与 hallucination 评测；不能将跨文化标签等同文学人物一切心理差异。 | 仅核正式发表与摘要、未核下载文件/评审脚本；资源状态 **待核**。 |
+| **J20 MERRY** · [arXiv 2026](https://arxiv.org/abs/2602.21941) | 多模态角色评价中分离感知、情绪和身份；不应由单一整体问答分推断三方面都优。 | 仅核预印本与摘要，模型、数据与评审代码 **待核**；不列为完整可复现 benchmark。 |
+
+**证据使用提醒**：RoleThink 代码仍仅为占位；RoleRMBench 只有部分数据/评测；PersonaForge 的论文人物数据未随代码发布。PERSONA、CharacterBox、KSKT、PALATE 等虽确有工程文件，但本轮没有对每项完整复现。在之前 87 项上加这 20 项后，资源表涵盖 **107 个独立条目**，其中“条目存在”绝不等于“已能跑完”。

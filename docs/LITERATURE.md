@@ -15,11 +15,11 @@
 
 | 范围 | 独立论文数 | M：主文完整阅读 | T：定点 | B：元数据／资源 | 其中 2025–2026 年论文 |
 |---|---:|---:|---:|---:|---:|
-| 原创研究、方法与 benchmark（含技术报告） | 86 | 76 | 6 | 4 | 68／86（79.1%） |
+| 原创研究、方法与 benchmark（含技术报告） | 106 | 76 | 23 | 7 | 88／106（83.0%） |
 | 综述 | 7 | 6 | 1 | 0 | 4／7（57.1%） |
-| **合计** | **93** | **82** | **7** | **4** | **72／93（77.4%）** |
+| **合计** | **113** | **82** | **24** | **7** | **92／113（81.4%）** |
 
-在 82 篇主文完整阅读的论文中，62 篇属于 2025–2026 年，占 75.6%。原索引列出 **3 篇官方工业文章**，本次再增补 KRAFTON / PUBG Ally 工程访谈，合计 **4 篇工业来源**，均不计入论文数量。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
+在 82 篇主文完整阅读的论文中，62 篇属于 2025–2026 年，占 75.6%。此次新增 20 篇均按 T/B 登记：17 篇定点阅读、3 篇只核查摘要与元数据，未把针对性核读称为完整主文阅读。原索引列出 **3 篇官方工业文章**，本次再增补 KRAFTON / PUBG Ally 工程访谈，合计 **4 篇工业来源**，均不计入论文数量。上述数字来自下面逐条列出的论文，未把仅检索到、只下载但未审读、或综述参考文献里的论文算进覆盖量。
 
 每条的“贡献与证据范围”同时写出做了什么和实验证明到哪里。表中的 venue 表示已核查的发表记录，**Main、Findings、Datasets and Benchmarks、workshop 和 arXiv 分别标注**；未核实录用的预印本不根据作者宣传或聚合站标签升级为正式顶会论文。
 
@@ -193,4 +193,35 @@
 | P09 | [Deflanderization for Game Dialogue: Balancing Character Authenticity with Task Execution in LLM-based NPCs](https://arxiv.org/html/2510.13586) | 2025 arXiv 预印本、CPDC 参赛报告 | **M** | 简洁且不夸张的 fantasy RPG 角色提示，与 few-shot、CoT、函数提示和 Qwen3-14B LoRA 共同研究功能性回应与人物自然度。部分组合的比赛收益不证明 GRPO/DPO 普遍导致脸谱化或真实人格被形式化。 |
 | P10 | [Too Nice to Tell the Truth: Quantifying Agreeableness-Driven Sycophancy in Role-Playing Language Models](https://aclanthology.org/2026.acl-long.1421/) | ACL 2026 Main | **T** | 275 合成人设、4,950 观点题、13 模型；9 个模型内宜人性与附和正相关，然而多数模型采用 persona 后较无 persona 的整体平均迎合下降。立场分类分数不是人物心理或真假事实的完备真值。 |
 | P11 | [PersonaArena: Dynamic Simulation for Evaluating and Enhancing Persona-Level Role-Playing in Large Language Models](https://aclanthology.org/2026.findings-acl.471/) | ACL 2026 Findings | **T** | 从社会材料生成 persona bank 和多轮情境，使用多评审提供角色反馈；多 agent 在这里是评审方法，不是 NPC 合作研究，模拟角色与真人玩家的效度需分别理解。 |
+
+
+
+## 13. Role-Play 核心研究补缺：心智、控制、奖励与人物评价（2026-10-30）
+
+本轮根据新增聊天记录提供的线索逐项检索正式记录、原论文与作者公开资源，**只补与人物扮演直接相关的 20 篇独立论文**。它们与前 93 篇去重。这里的 T 表示有针对性地阅读主文方法、实验或讨论，但没有声称逐页精读完整论文；B 仅表示确认摘要、发表状态或作者资源。这 20 篇均为 2025–2026 年正式发表或首次公开的研究。
+
+| ID | 论文与原始来源 | 正式状态 | 阅读 | 核心思想、真实证据与限制 |
+| --- | --- | --- | --- | --- |
+| N01 | [CharacterBench: Benchmarking Character Customization of Large Language Models](https://ojs.aaai.org/index.php/AAAI/article/view/34806) | AAAI 2025 | **T** | 3,956 角色/22,859 问题，六组 11 维综合人物评测；CharacterJudge 等配套工具。角色模型的共同参照，不等于全部维度都由独立客观真值评分。 |
+| N02 | [Reasoning Does Not Necessarily Improve Role-Playing Ability](https://aclanthology.org/2025.findings-acl.537/) | ACL 2025 Findings | **T** | 比较直接、CoT 与推理模型在角色任务上的行为；常规长推理可能偏离角色视角，但不是所有思考都降低角色能力的通则。 |
+| N03 | [Guess What I am Thinking: A Benchmark for Inner Thought Reasoning of Role-Playing Language Agents](https://aclanthology.org/2025.findings-emnlp.819/) | EMNLP 2025 Findings；RoleThink/MIRROR | **T** | 从 76 本书构建 6,058 条角色心理/内心活动条目，区分原文 Gold 与解释性 Silver，MIRROR 组织记忆与反思；部分测试子集不能冒充全库规模。 |
+| N04 | [CharacterBox: Evaluating the Role-Playing Capabilities of LLMs in Text-Based Virtual Worlds](https://aclanthology.org/2025.naacl-long.323/) | NAACL 2025 Main | **T** | 角色 agent 在 narrator 驱动世界中选择行为与对白，另以 CharacterNR/CharacterRM 评价轨迹；LLM narrator 与可验证真实引擎要区分。 |
+| N05 | [EmoCharacter: Evaluating the Emotional Fidelity of Role-Playing Agents in Dialogues](https://aclanthology.org/2025.naacl-long.316/) | NAACL 2025 Main | **T** | 将情绪触发与人物性格、单/多轮转移分开评价，六类指标揭示部分角色强化方式损害情绪忠实；不是心理生理学的客观情感读数。 |
+| N06 | [R4: Nested Reasoning-Retrieval for Reward Modeling in Role-Playing Agents](https://openreview.net/pdf?id=sWQSbVsPEz) | ICLR 2026 | **B** | 重视 reward evaluator 自身的角色知识检索与分层推理；本次只核正式状态、方法摘要和来源，完整代码/消融尚未核实。 |
+| N07 | [RoleRMBench & RoleRM: Towards Reward Modeling for Profile-Based Role Play in Dialogue Systems](https://arxiv.org/abs/2512.10575) | arXiv 2025 预印本 | **T** | 七类角色偏好子任务与 CIP/候选排序奖励，评估泛用 RM 失配；本论文设置中最高分不代表开放式人物真值，完整更新权重尚待发布。 |
+| N08 | [PERSONA: Dynamic and Compositional Inference-Time Personality Control via Activation Vector Algebra](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) | ICLR 2026 | **T** | 对比激活特质向量、动态缩放/组合和 Persona-Evolve；可组合的行为效果不证明人格维度严格独立。 |
+| N09 | [Enhancing Persona Following at Decoding Time via Dynamic Importance Estimation](https://arxiv.org/abs/2603.01438) | ICLR 2026，PDD | **T** | 根据当前上下文估计人设属性相对重要性，并在 token 解码时对比分布；优化目标的等号条件不是人物心理真实度定理。 |
+| N10 | [Facet-Level Persona Control by Trait-Activated Routing with Contrastive SAE for Role-Playing LLMs](https://arxiv.org/abs/2602.19157) | arXiv 2026 预印本 | **T** | Big Five facet 对比数据、SAE 潜变量和情境路由；它与普通残差激活方向不是同一方法，公开完整训练/权重未核定。 |
+| N11 | [Know Thyself, Know Thy User: Intrinsic Dual-Perspective Reasoning for Role-Playing LLMs](https://proceedings.mlr.press/v306/sun26at.html) | ICML 2026；KSKT | **T** | Transformer self-role 与 other-user 两路条件融合，直接刻画人物立场与玩家需求之间的张力；示例代码不意味着完整训练权重已发布。 |
+| N12 | [When Roleplaying, Do Models Believe What They Say?](https://arxiv.org/abs/2606.11502) | arXiv 2026 预印本 | **T** | 角色假信念、质询与线性 truth probe 的表征/行为关联；probe 不会直接读出模型真实“心理信念”。 |
+| N13 | [Beyond Static Persona Consistency: Dynamic Persona Coherence in LLM Role-Playing](https://aclanthology.org/2026.acl-long.1336/) | ACL 2026 Main | **T** | 长/中/短时间尺度的稳定身份与动态情绪、PCC/PCR/PDS 校正；少量角色与自设 judge 的增益不能外推为普适心理机制。 |
+| N14 | [PersonaForge: Psychology-Grounded Dual-Process Architecture for Personality-Consistent Role-Playing Agents](https://aclanthology.org/2026.findings-acl.386/) | ACL 2026 Findings | **T** | 多层心理状态和选择性 inner monologue，关注 50 轮人格保持与开销；公开代码不附有版权人物原文数据。 |
+| N15 | [If an LLM Were a Character, Would It Know Its Own Story? Evaluating Lifelong Learning in LLMs](https://aclanthology.org/2026.acl-long.1659/) | ACL 2026 Main；LifeState-BENCH | **T** | Hamlet 与合成分幕剧情的经历、自我与关系状态追踪；静态历史或有序事件 probe 不等于真实玩家生命周期的在线参数学习。 |
+| N16 | [Rethinking Role-Playing Evaluation: Anonymous Benchmarking and a Systematic Study of Personality Effects](https://aclanthology.org/2026.sigdial-1.15/) | SIGDIAL 2026 | **T** | 匿名人物名字，保留描述并测试预训练知名度依赖；匿名化同时会删除合法语境线索，下降并不一概是作弊。 |
+| N17 | [Too Good to be Bad: On the Failure of LLMs to Role-Play Villains](https://aclanthology.org/2026.findings-acl.282/) | ACL 2026 Findings | **T** | Moral RolePlay 的价值倾向人物测试，揭示部分模型易同化为亲社会助手；无法凭均分将原因全部归给 safety alignment。 |
+| N18 | [Beyond Borrowed Histories: Person-Aligned User Simulation for Interactive Role-Playing Evaluation](https://arxiv.org/abs/2607.27816) | arXiv 2026 预印本；PALATE | **T** | 116 真人会话、5 个用户模拟 LoRA、约 1,600 条轨迹，研究用户模拟和 persona 评价的对齐；模型用户仍不同于真人。 |
+| N19 | [CHARM: Character Hallucination for Multicultural Role Play Benchmark](https://aclanthology.org/2026.findings-emnlp.460/) | EMNLP 2026 Findings | **B** | 多语言/文化与角色知识幻觉维度；本次仅核原始元数据、摘要及任务范围，不推断未核读的方法细节和资源完备性。 |
+| N20 | [MERRY: Semantically Decoupled Evaluation of Multimodal Emotional and Role Consistencies of Role-Playing Agents](https://arxiv.org/abs/2602.21941) | arXiv 2026 预印本 | **B** | 关注多模态角色感知、情绪与人设的解耦评价；只核摘要与资源声明，不将其列为已核完整评测包。 |
+
+**与旧条目的区分**：PERSONA 的残差向量加减、CV-SAE 的稀疏潜特征路由、PDD 的 token 分布控制、KSKT 的 attention 结构改造不是同一种“人格 steering”；LifeState 的事件问答、ArcANE 的角色弧线和 RoleMemo 的主观洞察不是同一种“长期记忆”；RoleRMBench 的评审准确率与 HER-RM 在政策优化后的效果不是同一分数表。Gemini 关于顶会可投性、无需复杂工程就能完全复现、以及特质已被证明严格正交的表述不据此直接写入路线图。
 
