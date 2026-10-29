@@ -352,7 +352,7 @@ $$
 
 ### 6.6 从“场景决定行为”到“事件改变人物状态”：CFSM 与 PsyMem
 
-[Codified Finite-State Machines for Role-playing（ICLR 2026）](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) 是旧版遗漏的一篇重要人物状态论文。Codified Profiles 和 CDT 主要在**给定情境下检索或归纳行为规则**；CFSM 将人物 profile 编译为一组关键状态和带语义条件检查器的转移函数，使人物经历事件后得到明确下一状态。CPFSM 进一步保存候选状态概率，容许模糊事件导致不同反应。它使用 LLM/判别器判断自然语言条件，不是把人物心理完全还原成无歧义的硬规则。
+[Codified Finite-State Machines for Role-playing（ICLR 2026）](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) 将角色行为规则扩展为带记忆的状态转移。Codified Profiles 和 CDT 主要在**给定情境下检索或归纳行为规则**；CFSM 将人物 profile 编译为一组关键状态和带语义条件检查器的转移函数，使人物经历事件后得到明确下一状态。CPFSM 进一步保存候选状态概率，容许模糊事件导致不同反应。它使用 LLM/判别器判断自然语言条件，不是把人物心理完全还原成无歧义的硬规则。
 
 论文的合成验证包括 Mario 状态、FPS 敌人反应和小说旅行的简化 FSM；在已知状态转移规则下，程序执行终态优于 LLM 逐步推断，但这种实验只能验证**状态执行正确性**。真实人物部分以 Fandom 原作下一动作 NLI 和 Best@K 评价；例如文本 profile 主角色平均分约 81.10，CFSM 约 82.65。它证明显式状态更新有用，但不意味着人物真实内心状态已被测量，也不等于在游戏引擎中完成行动。作者 [GitHub](https://github.com/KomeijiForce/Codified_Finite_State_Machine) 可查到编译脚本，完整在线运行与外部模型依赖另见资源表。
 
@@ -371,6 +371,24 @@ $$
 <a id="training"></a>
 ## 7. 角色推理、偏好优化与强化学习
 
+### 6.8 角色内部状态：规则、记忆与心理动力学的不同建模单位
+
+“在某个情境会怎么做”与“经历这件事后会变成什么状态”是两个层次；而“情绪状态”“人物身份”也不应该使用同一个更新速率。相关工作可按**状态表示、触发机制、生成接口和评价对象**整理，而不是按是否使用 Python/LLM 排序：
+
+| 工作 | 人物被表示为什么 | 什么导致输出/状态改变 | 能从其实验中判断什么 |
+| --- | --- | --- | --- |
+| [Codifying Character Logic](https://papers.neurips.cc/paper_files/paper/2025/hash/15294ba2dcfb4521274f7aa1c26f4dd4-Abstract-Conference.html)（NeurIPS 2025） | 从 profile 编译的条件—行为代码 | 当前 scene 命中某条语义条件 | 参考原作下一行为的 NLI 一致，非在线心理成长 |
+| [CDT](https://aclanthology.org/2026.acl-long.568/)（ACL 2026） | 从故事动作实例归纳的分层 if–then 树 | 当前 scene 命中可同时成立的树分支 | 对角色行动样本的覆盖及参考匹配，树通常离线固定 |
+| [CFSM/CPFSM](https://arxiv.org/abs/2602.05905)（ICLR 2026） | 离散关键人物状态及转移函数；概率版保留状态不确定性 | 新事件满足转换条件，产生下一个状态 | 已知规则的执行终态，以及人物原作行为；心理真值仍是代理 |
+| [MECoT](https://aclanthology.org/2025.findings-acl.435/)（ACL 2025） | 效价—唤醒空间中的离散情绪 | 旧情绪、人物倾向与当前话语 | 情绪标签及回答一致性，不能证明真实情绪动力学 |
+| [Dynamic Persona Coherence](https://aclanthology.org/2026.acl-long.1336/)（ACL 2026） | 长期身份、中期压力/意义、短期情绪 | 累积交互与层级 critic 修复 | 指定情境和轮数下的动态一致，不是普遍认知模型 |
+| [PersonaForge](https://aclanthology.org/2026.findings-acl.386/)（ACL 2026） | 人格特质、心理防御与条件激活的内心独白 | 冲突或心理复杂度触发更充分思考 | 人格漂移、成本与情境质量的架构消融 |
+| [PsyMem](https://aclanthology.org/2026.tacl-1.24/)（TACL 2026） | 心理属性与显式记忆关联 | 相关记忆被调用、对齐到人物反应 | 人物心理与记忆利用，非引擎动作状态机 |
+
+在 CFSM 中，一条规则可抽象为 $s_{k+1}=F(s_k,e_k)$；概率版本可表达 $p(s_{k+1}\mid s_k,e_k)$。这和 MECoT 中 $p(\epsilon_{k+1}\mid\epsilon_k,\mathrm{persona},x_k)$ 的情绪转移形式相似，却**不意味着二者的状态有相同语义或相同标注真值**。前者把有限行为规则变成可执行程序，后者将情绪转换设为心理学启发的概率分布。身份、信念、记忆与短时情绪可相互作用，但不能从一种状态机的高终态准确率推导另一种心理变量的真实因果动态。
+
+**研究演进的实质**是从 profile 描述的“条件表达”，进入事件与状态共同参与行为决定；但程序正确执行一条规则、符合原作行为，以及在现实玩家互动中呈现自然的角色成长，仍需不同证据。
+
 ### 7.1 推理的内容和视角，比是否显示长 CoT 更具体
 
 一般推理模型会分析“怎样作为助手完成扮演任务”，这与人物自身如何感受、打算和行动不同。角色推理研究尝试调整中间表示，使其服务于人物处境。这里的 thought 是训练或生成出的文本，不是可以直接观察的真实内在心理；论文应通过它对行为的影响来验证，而不能凭第一人称独白就宣布有了心智。
@@ -382,6 +400,9 @@ $$
 | [HER，ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.1283/) | 系统规划与人物独白 | 私有系统思考处理整体要求，第一人称角色思考组织情绪与潜台词，再用生成式奖励优化 |
 | [Character-R1，2026 预印本](https://arxiv.org/abs/2601.04611) | 结构化认知焦点 | 显式选择角色认知维度，以焦点标签、属性与参考重叠构造反馈，做角色条件化 GRPO |
 | [VeriRole，ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/12df08e9280061b4877f97598c644c3e-Abstract-Conference.html) | 回答前的可追溯 hint | 从人物、历史与语境提取提示，围绕来源、关键词、语义与角色表现建立奖励 |
+| [Reasoning Does Not Necessarily Improve Role-Playing，ACL 2025 Findings](https://aclanthology.org/2025.findings-acl.537/) | 推理模式诊断 | 比较普通 CoT 与角色表现；说明更长的通用推理不自动更忠实 |
+| [RoleThink / MIRROR，EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.819/) | 内心活动监督与测量 | 原作内心独白、解释性参照，检验推断动机与下一行为；心理文本不是内在心理直接观测 |
+| [KSKT，ICML 2026](https://proceedings.mlr.press/v306/sun26at.html) | 模型内 self/other 双视角 | 角色身份与交互者需要分别表征再融合，不等于生成文本越长越深刻 |
 
 **HER 的两个层次不能与其评价设置分开理解。** 其系统思考不直接作为角色话语，角色第一人称思考则是生成输出的一部分，相关评审会看到它。原版 CoSER 的评价对内心活动的处理不同，HER 又使用不同的 judge，因此不能把两篇的 CoSER 总分拼成统一榜单。HER 的增益也主要包含底座到角色 SFT 的大幅变化；在该论文的消融中，从 SFT 再到 RL 的改善较小，不能将总改善全部归功于 RL。[HER 原文](https://aclanthology.org/2026.findings-acl.1283/)
 
@@ -451,17 +472,56 @@ DynSess 值得注意的不只是新算法：它将交互性、人类感、角色
 
 [Reasoning Does Not Necessarily Improve Role-Playing Ability（ACL 2025 Findings）](https://aclanthology.org/2025.findings-acl.537/) 研究了“更强的通用推理能力”与“更好地扮演人物”之间的不一致。它比较一般回答、CoT 和推理模型在若干角色基准上的差别，提示常规解题式思考可能偏离人物视角或风格。但“does not necessarily”很重要：它并非所有任务开启思考都变差的定律，也不能仅凭观察关联归因于注意力方向或某个固定神经机制。
 
-[Guess What I am Thinking: A Benchmark for Inner Thought Reasoning of Role-Playing Language Agents（EMNLP 2025 Findings）](https://aclanthology.org/2025.findings-emnlp.819/) 进一步问**角色下一步行动背后的内心活动能否被合理重建**。其 RoleThink 数据构建涉及 76 本书、共 6,058 个条目；Gold 来自作品中的内心独白，Silver 含专家解释性分析。Gemini 引用的约 405 Gold + 211 Silver 属于部分评价划分/参考子集，不应误写为整个 RoleThink 语料的总规模。MIRROR 用事件记忆、多主体视角推断与反思组织人物动机，评价的对象是**与文学参照接近的内心推断和后续选择**，不是模型真的产生了不可观察的人类意识。[作者仓库](https://github.com/airaer1998/RPA_Thought)当前文件树只有简短 README 与 LICENSE，未核到完整公开 benchmark/推理代码。
+[Guess What I am Thinking: A Benchmark for Inner Thought Reasoning of Role-Playing Language Agents（EMNLP 2025 Findings）](https://aclanthology.org/2025.findings-emnlp.819/) 进一步问**角色下一步行动背后的内心活动能否被合理重建**。其 RoleThink 数据构建涉及 76 本书、共 6,058 个条目；Gold 来自作品中的内心独白，Silver 含专家解释性分析。常被引用的约 405 Gold + 211 Silver 属于部分评价划分/参考子集，不应误写为整个 RoleThink 语料的总规模。MIRROR 用事件记忆、多主体视角推断与反思组织人物动机，评价的对象是**与文学参照接近的内心推断和后续选择**，不是模型真的产生了不可观察的人类意识。[作者仓库](https://github.com/airaer1998/RPA_Thought)当前文件树只有简短 README 与 LICENSE，未核到完整公开 benchmark/推理代码。
 
 两篇与 RAR、HER、Character-R1 构成不同问题层次：是否应该思考、思考采用谁的视角、思考内容能否得到叙事证据、以及可见思考是否改善角色行为。不能将有更多角色第一人称文字的输出自动视为更深的角色心智。
 
-### 7.10 奖励模型也需要人物证据：R4 与 RoleRMBench
+### 7.10 奖励模型为何需要人物知识：R4 的推理—检索闭环
 
-训练对开放角色回答的偏好时，一个泛用评审可能奖励更礼貌、更长或更富戏剧性的文本，却不知道角色当前处于什么章节、对玩家有何关系。[R4: Nested Reasoning-Retrieval for Reward Modeling in Role-Playing Agents（ICLR 2026）](https://openreview.net/pdf?id=sWQSbVsPEz) 将角色知识检索和分层推理放在 **reward evaluator** 的工作流程中，而不只是让 policy 读取背景。这提出了不同于“给生成模型再塞一段 RAG”的思想：评审本身需要证据。其论文关于奖励模型、角色偏见、检索作用的具体增益，应以正式实验设置为准；当前代码与权重未核实，不把宣传性的“完全解决评审主观偏见”写入证据结论。
+若评分器只看到“这段回答写得好不好”，它可能偏爱流畅、礼貌、长度足够的回答，却不知道人物的经历、关系与知识权限。[R4: Nested Reasoning-Retrieval for Reward Modeling in Role-Playing Agents](https://openreview.net/pdf?id=sWQSbVsPEz)（ICLR 2026）将 **RM 本身**变成可思考、可主动检索的评审，而不只要求被训练的 policy 检索资料。这是其与普通 RAG 和一般 GenRM 的真正方法区别。
 
-[RoleRMBench & RoleRM: Towards Reward Modeling for Profile-Based Role Play in Dialogue Systems（2025 预印本）](https://arxiv.org/abs/2512.10575) 则直接研究**角色偏好评分者是否可靠**。RoleRMBench 分解叙事质量、人物忠实、指令、连贯、吸引力与安全等不同评价对象；RoleRM 以候选排序和 Continuous Implicit Preferences 校准偏好距离。这不是又一套 NPC 模型，而是对已有 RL/DPO 训练链路中“奖励谁、为什么奖励”的实证研究。论文中较高的 RoleRMBench 准确率属于其数据与评审协议，不能直接等同人类对所有故事角色的唯一判断。[作者仓库](https://github.com/Dear-Sloth/RoleRMBench)确有评价脚本和部分数据，但 README 明确表示**完整更新数据与训练权重尚待发布**。
+R4 将长篇故事资料组织成层级角色知识：由作品事件脉络定位人物处境，再进入人物视角与关系信息，最后取出能支持具体判断的细粒度角色事实。多个抽取/视角/动机/风格模块辅助构建知识；在使用时，评分器能够反复提出检索问题、阅读证据、形成结构化偏好理由，再对两条候选回答给出判断。**这一知识结构是用于评审的外部证据组织，不等于已恢复人物真实心理状态。**
 
-因此，Role-Play 的奖励方向至少有三种不同对象：规则/资料是否满足、候选回答的相对偏好、整段互动的结果与人物体验。R4 主要研究怎样让评分有可查人物依据；RoleRM 主要研究怎样让评分适应偏好模糊；HER-RM 与 AAM、CPO 等则分别采用语境化原则、间距校准和候选比较。
+R4 的生成式评审训练同时考虑偏好答案、结构格式和推理与判决的一致性；可以把它概括为 $r_{\mathrm{RM}}=r_{\mathrm{answer}}+\lambda_f r_{\mathrm{format}}+\lambda_c r_{\mathrm{answer}}r_{\mathrm{consistency}}-\mu(1-r_{\mathrm{answer}})$，其中错误答案不应单靠“内部解释自洽”拿高分。其 reward 是训练该评分器的反馈，不是完整角色忠实度的客观真值。训练后的 RM 再监督具有角色检索与推理能力的对话模型，两者既共享人物证据，也可能共享知识构建偏差。
+
+**正式论文 Table 3 给出的关键消融**（同一评价设置中的 Character Consistency 分，非跨论文通用分数）：
+
+| R4 版本 | 角色一致性 | 在该实验中显示的问题 |
+| --- | ---: | --- |
+| 完整 R4 | 64.64 | 评分器与对话模型都有检索和推理 |
+| RM 去掉推理 | 49.87 | 即便 agent 保持推理，评审弱化仍明显影响结果 |
+| Agent 去掉推理 | 56.94 | 在相同 RM 监督下，agent 推理消融影响相对较小 |
+| RM 去掉检索 | 58.31 | 优质角色材料对评审有帮助 |
+| 全系统改用 Generic Retrieval | 47.95 | 无关或低质的泛化检索甚至比 RM 不检索更差 |
+
+这组结果支持两个具体认识：**role-specific evidence 的质量重要；训练评审者的能力是策略优化的一部分**。但它不证明“所有游戏 NPC 的 RM 都比 policy 更重要”，因为替换模型、知识语料、标注和 evaluator 可能改变排序，更不能把每个消融分数的下降直接解释为某一个机制单独的因果效应。R4 当前未核实完整公开 checkpoint 与训练流水线。
+
+### 7.11 主观偏好如何转成监督：RoleRMBench / RoleRM
+
+[RoleRMBench & RoleRM](https://arxiv.org/abs/2512.10575)（2025 预印本）从另一个角度回答“怎样评价演得好”：候选回复可以都符合人物，只在推进剧情、语气细腻度、吸引力上有强弱之分。它将评价分成 Narrative（引入、推进、缝合）、Scene Transition、Role Consistency、Instruction Following、Safety、Multi-turn Coherence、Attractiveness 等维度；同一个总分无法解释每种失败。
+
+训练时，给定角色—语境 $x$，采样多个候选回复（论文使用五个），由人类进行相对排序，再构造相邻配对 NEB、极值配对 BW 与较完整配对 FULL 等监督。基本成对偏好概率仍可表示为：
+
+$$
+P(y_i\succ y_j\mid x)=\sigma\!\left(r_\phi(x,y_i)-r_\phi(x,y_j)\right).
+$$
+
+其 Continuous Implicit Preferences（CIP）着眼于**从排序的相对间隔和样本难度恢复更细的偏好信号**，而不是声称每个开放对话都存在一个可直接测得、绝对连续的“人物品质真分”。RoleRM 在其自建评测上的高 pairwise accuracy（论文报告 88.32%）应解读为该候选池与标注协议内的奖励判别能力，不是生成模型最终的人物真实性达到 88.32%。
+
+[作者仓库](https://github.com/Dear-Sloth/RoleRMBench) 已提供部分评测脚本、数据与结果，但完整更新数据及 reward 权重仍有待发布声明。由此也要区分三个实验环节：**RM 对固定成对标签判得准、用 RM 训练后 policy 更好、玩家实际觉得 NPC 更自然**；前一项不能无条件代表后两项。
+
+### 7.12 角色奖励学习的横向联系
+
+| 奖励研究 | 信号来源与方法核心 | 依赖条件与局限 |
+| --- | --- | --- |
+| APC / VeriRole / Character-R1 | 原子设定、hint、focus、参考重叠 | 可以计算的规则与语义模型混合，不等于完整开放式角色真值 |
+| CPO / AAM | 同语境候选比较、偏好间距 | 排序与 margin 仍受标注者、候选分布和风格偏好影响 |
+| HER-RM | 随人物和场景生成具体评分原则 | 原则生成器与策略可能共同偏向某些表达形式 |
+| R4 | 评审主动检索和推理角色证据 | 依赖角色知识结构、检索可靠性及 RM 与 agent 的配套训练 |
+| RoleRMBench / RoleRM | 人工排序、七种偏好类别、CIP | 评审胜率属于其标签体系，不是唯一的人格质量标尺 |
+| DynSess / LSH-RL / iStar | 局部、步骤与整段轨迹反馈 | 执行协议、模拟对手和 judge 分布会改变结果 |
+
+这些方法不应统称“RLVR 解决了主观角色评价”。它们实际上在解决**目标拆分、可用证据、偏好校准、长时归因以及评审器本身的可靠性**等不同问题。
 
 <a id="memory"></a>
 ## 8. 记忆、角色成长与关系演化
@@ -527,6 +587,9 @@ DynSess 值得注意的不只是新算法：它将交互性、人类感、角色
 | [SubtleMemory，EMNLP 2026 Findings](https://aclanthology.org/2026.findings-emnlp.1199/) | 互补、细微差异和冲突事实，从写入到检索再到回答的分阶段诊断 | 标题或描述中的 relational facts 指事实关系，不一定是人物社会关系 |
 | [RoleMemo / DualMem](https://aclanthology.org/2026.findings-emnlp.270/) | 事实与人格化解释对下游回答的贡献 | 解释合理不自动证明客观记忆准确 |
 | [ArcANE](https://aclanthology.org/2026.emnlp-main.1998/) | 不同叙事阶段的心理与行为一致 | 不直接证明开放世界在线成长 |
+| [PsyMem（TACL 2026）](https://aclanthology.org/2026.tacl-1.24/) | 心理属性、显式记忆与情境回复的关联 | 不直接评估角色实时独立修改参数或长期玩家关系 |
+| [LifeState-BENCH（ACL 2026）](https://aclanthology.org/2026.acl-long.1659/) | 多幕事件后的自我知识、人物状态与关系追踪 | 故事历史的时点探针不等于多月在线自更新 |
+| [REMP（EMNLP 2026 Findings）](https://aclanthology.org/2026.findings-emnlp.602/) | 预制长历史事件后的关系与情绪诊断 | 约 800 轮历史不代表被测 agent 自己生成同长度轨迹 |
 
 SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条件、oracle 条件对照，从而帮助区分“系统没保存/没取到”与“取到了却不会推理”。其数据来自少量合成人物的长历史，公共资源较完整，但人物多样性和合成分布仍限制外推。[原文](https://aclanthology.org/2026.findings-emnlp.1199/)
 
