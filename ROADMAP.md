@@ -899,23 +899,27 @@ ActorMind 的 RP-MOS 对声线不符或台词错误可直接判最低分，因�
 
 ### 14.1 评价首先要定义“演得好”的组成
 
-| 评价维度 | 典型问题 | 对应证据与资源 |
-| --- | --- | --- |
-| 身份与语言 | 能否保持身份、语气、用词与表达习惯 | RoleBench、CharacterEval、RAIDEN |
-| 设定忠实 | 回答是否体现必要设定，是否违反其他设定 | APC、ProfileAxes、FURINA |
-| 知识与时间 | 此人此刻是否应知道这件事 | TimeChara、KBF-QA、Curse of Knowledge |
-| 人格与动机 | 在具体情境中是否体现人物倾向和理由 | InCharacter、RolePersonality、PersonaGym、RoleCDE |
-| 心智推断 | 能否推断他人的信念、意图、情绪和知识 | ToMATO；与行动中的 SOTOPIA-TOM 区分 |
-| 记忆利用 | 是否保存、找出并正确使用相关经历 | THEANINE、MRBench、StratMem、SubtleMemory |
-| 成长与关系 | 变化是否对应事件、阶段与关系 | ArcANE、REMP、LIFELONG-SOTOPIA |
-| 交互与社会目标 | 是否回应对方、推进互动、保护秘密并达成目标 | DMT-RoleBench、CoSER、DynSess、SOTOPIA 系列 |
-| 行动与世界 | 动作是否合法、有效，是否更新状态 | LIGHT、可执行游戏/工具环境；不能由文字动作分代替 |
-| 叙事与体验 | 故事是否连贯，玩家选择是否产生影响 | IBSEN、HAMLET、AdaMARP、真人体验研究 |
-| 多模态 | 感知、人物身份、声音和表达是否一致 | MMRole、Video2Roleplay、OmniCharacter、ActorMind |
-| 安全与实用性 | 是否保留角色又避免现实有害输出和良性误拒 | SaRFT、MD-Trace、Persistent Personas? |
-| 运行代价 | 同一交互质量下的时延、吞吐、内存与成本 | 各系统的运行报告；目前缺少通用对齐协议 |
+任何“角色扮演能力”指标都隐含一个标准：究竟要求**像原作人物**、**遵守提供的人设**、**表现复杂心理**、**自然应对玩家**、**在多轮中有历史依据地变化**，还是**与游戏世界实际状态一致**。这些标准部分相交，却不构成可无条件求和的单一潜在变量。
 
-这些对应关系是任务范围映射，不是把每个资源列成互相可替代的 benchmark。完整原始入口、规模与可用状态见[资源地图](docs/RESOURCE_ATLAS.md)。
+| 评价维度 | 测量对象与主要协议 | 代表资源 |
+| --- | --- | --- |
+| 身份、知识和语言风格 | 人物知识、口气、角色属性；通常是固定输入后的单轮/多轮续写 | RoleBench、CharacterEval、RAIDEN、CharacterBench（6 类 11 维） |
+| 知名角色污染 / profile 自身信息 | 匿名真实姓名、已知/原创人物、完整/删字段人设对照 | Anonymous RolePlayBench、ProfileAxes/FACD、FURINA |
+| 人设与知识边界 | 应激活的主动设定、不得违背的被动设定，时间与视角可知性 | APC、TimeChara、Curse of Knowledge、REVERIEMEM、CHARM |
+| 心理与动机 | 开放心理访谈、内心活动参照、情境选择与理由 | InCharacter、RolePersonality、RoleThink/MIRROR、ToMATO |
+| 情绪保真 | 同一人物受刺激后的情绪方向、强度、表达与变化 | EmoCharacter、MECoT、PersonaForge |
+| 行为、价值与反派 | 人物在具体困境会如何选择，而非一律最大化顺从玩家 | RoleCDE、Too Good to be Bad、PersonaGym、Deflanderization |
+| 主观记忆与角色时点 | 事实写入/选择/使用、关系与多幕事件；固定历史与自滚动严格分开 | MRBench、StratMem、SubtleMemory、PsyMem、LifeState-BENCH |
+| 角色弧线与关系 | 行为阶段、情绪事件、长程保持、持续用户关系 | ArcANE、REMP、Persistent Personas?、DynSess |
+| 对话互动与玩家意图 | 隐含需求、偏好记忆、真实/模拟用户、对话自然度 | RMTBench、PersonaArena、PALATE、MCPDial、DMT-RoleBench |
+| 奖励模型是否可靠 | 角色背景给定/缺失时的候选 pairwise 排序、人类相关性 | RoleRMBench/RoleRM、R4、HER-RM、AAM、CPO |
+| 人物逻辑与场景行动 | 参考故事下一动作、虚拟世界状态、事件触发的角色状态 | Codified Profiles、CDT、CFSM、CharacterBox、LIGHT |
+| 叙事及游戏承诺 | 玩家干预是否破坏既定事实、角色话语是否与执行反馈一致 | NCP-Bench、IBSEN、HAMLET、Sony CPDC |
+| 多模态人物表达 | 图像感知与角色化注意、视频处境、语音声线与情绪表演 | MMRole、MERRY、Video2Roleplay、OmniCharacter、ActorMind |
+| 安全与人物保持 | 现实危害性请求、良性误拒、角色价值被默认助手压制 | SaRFT、MD-Trace、RoleCDE、Persistent Personas? |
+| 人类体验与实际开销 | 真实玩家愿不愿互动；TTFT、完整语音链延迟、资源 | CoG/FDG 玩家研究、OmniCharacter、产品系统工程资料 |
+
+上表是**任务—证据映射**而非排名。RoleThink 的内心文本与 InCharacter 的访谈标签、RoleRM 的判别准确率与游戏执行状态、PersonaArena 的模型评审与真人沉浸评分都不应被简单横比。[统一资源索引](docs/RESOURCE_ATLAS.md)已经按全局 RP 编号记录每个测试集的数据、代码、baseline、真实发布状况。
 
 ### 14.2 中文综合评价：CharacterEval 与 RAIDEN
 
@@ -941,22 +945,26 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 
 动态访谈还有一个内生难度问题：不同目标模型产生不同回答，后续接收到的问题也不同。固定问题提供可比输入，却失去反应性；动态问题贴近互动，却需要明确访谈策略、终止规则和轨迹变异。二者是在测不同对象，不是简单的新旧优劣关系。
 
-### 14.5 Baseline 按机制与信息条件分组
+### 14.5 Baseline 按机制、信息条件与实际评测协议分组
 
-| 比较对象 | 领域中已有的 baseline 族 | 比较时真正变化的因素 |
+**比较原则不是“把所有热门方法堆进一张表”**，而是让同一个研究问题下的控制变量足够一致；否则模型参数、背景资料或评审器差异会冒充算法贡献。
+
+| 比较对象 | 已有的 baseline 家族 | 必须共同控制或明确报告的条件 |
 | --- | --- | --- |
-| 角色数据 | 原底座、通用 instruction 数据、RoleBench、人物经历、人格访谈、CoSER 等情境数据 | 数据内容、样本量、教师、底座和训练预算 |
-| 人物条件 | 仅名字、短 profile、完整 profile、示例对话、结构化/非结构化 profile | 角色信息量、形式和原作熟悉度 |
-| 人设约束 | 全文提示、相关性 RAG、APC 评分偏好、代码 profile、CDT | 约束覆盖、检查器、编译成本及参考信息 |
-| 推理与优化 | 无思考、一般 CoT、角色思考 SFT、DPO、PPO/GRPO、角色/多目标变体 | 中间表示、奖励来源、样本预算和推理长度 |
-| 记忆 | 无记忆、截断历史、完整历史、摘要、向量检索、时间图、检查点、事实/洞察 | 写入与压缩策略、可用证据、查询预算 |
-| 记忆上界 | 给定 gold / oracle 事实、给定候选池、原始全部历史 | 是否免除了实际检索/写入错误；上界不是公平部署系统 |
-| 社交 | 固定对手、自博弈、专家轨迹模仿、筛选自生成轨迹、显式 ToM 状态 | 对手、场景难度、计算量、目标和评审 |
-| 叙事 | 独立演员、固定导演、动态 manager、完整层级系统与模块消融 | 角色自治、剧情控制和调度职责 |
-| 多模态 | 相同文字条件、文字加感知、标准 VLM/语音模型、专门角色模型 | 感知输入、原始音频可用性、声线和目标台词是否给定 |
-| 游戏行动 | 规则/脚本策略、LLM 高层策略加执行器、工具驱动模型 | 合法性与决策质量分别来自何处 |
+| 人物训练数据 | 同底座无微调、一般 instruction SFT、RoleBench/CoSER/RolePersonality、原创人设数据 | 角色和作品 split、训练样本量、教师、数据许可、底座 |
+| 人设条件与外部证据 | 名字提示、短/全 profile、RAG、APC、匿名与删字段 profile | 给定设定的总信息量、原作熟悉度、上下文预算 |
+| 内心活动及角色推理 | ZeroThink、一般 CoT、RoleThink/MIRROR、RAR、R-CHAR、HER、VeriRole、Character-R1 | 同底座、思考 token、是否展示内心文本给 judge、是否有原作 gold |
+| 奖励建模 | ScalarRM、GenRM、CharacterRM、RoleRM、R4、CPO、AAM、HER-RM | 相同候选池、人类排序/标签、检索证据、评审模型与训练预算 |
+| RL 与多轮训练 | 标准 SFT/DPO、PPO/GRPO、CRPO、MOA、LSH-RL、OSPD、DynSess | on-policy/off-policy、轮数、伙伴策略、奖励器与轨迹采样 |
+| 外部角色状态及心理 | 无状态、固定情绪、MECoT、CFSM、Dynamic Persona、PersonaForge、PsyMem | 可见事件、状态真值/合成标签、更新频率、记忆是否给定 |
+| 记忆存取与利用 | 无记忆、全历史、普通 RAG、时间线、检查点、DualMem、oracle | 同检索预算、写入错误、时点和权限；gold memory 不算部署 baseline |
+| 人格激活和解码 | prompt、ActAdd/CAA、NPTI、PAS、DPR、PERSONA、PDD、CV-SAE、FACD | 层/位置、控制强度、条件前向开销、非目标能力变化 |
+| 模型结构与角色共享 | 同规模普通 Transformer、KSKT、每人独立 LoRA、Neeko、共享 adapter | 训练配方与参数量、角色池、推理成本、是否增量加入人物 |
+| 用户模拟与真人交互 | 固定用户脚本、动态 interviewer、RMTBench、PersonaArena、PALATE、真人玩家 | 用户台词固定还是随 agent 回复变化；模型评分/真人指标分开 |
+| 叙事与行动 | 规则/脚本 NPC、文本旁白、CharacterBox、LIGHT、导演与 actor 组织 | 文字提案、函数调用、执行回执、剧情契约分别计分 |
+| 多模态表达 | 文本基线、通用 VLM、语音模型、专用角色语音、视频条件模型 | 是否给定目标台词、图片/音频可获得性、感知与人设分数分离 |
 
-这张表解释“有没有 baseline”时所说的对象。一个名字相同的 benchmark，如果换了 judge、角色子集、输入历史或输出格式，已经不是同一评价条件；一个论文 baseline，如果作者权重未公开而由后续工作自行训练，需要明确是 reproduced baseline。
+基准也并非“开源链接存在即可使用”。论文的训练集、开放测试子集、模型权重与评审代码可能分别发布；RMTBench 有访问条件，RoleThink 与 RoleRM 的完整资产仍不齐，PersonaForge 不附其版权文学人物资料。因此 [RESOURCE_ATLAS](docs/RESOURCE_ATLAS.md) 为每个方法保留发布状态和真实比较协议，而不把未确认的仓库视为现货。
 
 ### 14.6 不能跨论文直接相减的分数
 
