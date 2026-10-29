@@ -45,8 +45,8 @@
 | **RP-029 Reasoning Does Not Necessarily Improve Role-Playing** · [ACL 2025 Findings](https://aclanthology.org/2025.findings-acl.537/) | 不同模型与 direct/CoT/reasoning 设定下的角色任务；应控制底座、长度、输入情境，不能从题名推出通用推理必定有害。 | 论文正文/实验可读；尚未确认专属可运行模型或测试脚本，**论文方法证据**。 |
 | **RP-030 RoleThink/MIRROR** · [EMNLP 2025 Findings](https://aclanthology.org/2025.findings-emnlp.819/) | 76 本书、6,058 角色内心活动条目，涵盖原作独白和专家解释；参考子集不能充当完整规模，训练与测试的心理来源需要分开。 | **实查**[airaer1998/RPA_Thought](https://github.com/airaer1998/RPA_Thought) 根目录仅 README、LICENSE 等，README 内容极少；**未见完整数据或 MIRROR 代码**。不当作现成可复现 baseline。 |
 | **RP-031 EmoCharacter** · [NAACL 2025 Main](https://aclanthology.org/2025.naacl-long.316/) | 单轮与多轮角色化情绪反应，六项情绪 fidelity 指标；与 RoleBench 的身份和 CharacterEval 的语言侧需独立区分。 | 论文及正式 venue 核实；尚未完成专属 benchmark 全文件检查，属于**评测定义/发布待核**。 |
-| **RP-032 Roleplay Belief Probes** · [arXiv 2026](https://arxiv.org/abs/2606.11502) | 角色假信念的行为坚持、质询和 activation probe。对比 prompt、ICL、SFT 与较深角色训练；probe score 不等于人类心理信念。 | [BenSturgeon/persona-belief-probes-submission](https://github.com/BenSturgeon/persona-belief-probes-submission) 代码/数据入口已核其存在，未完成训练与探针可复现检查。 |
-| **RP-033 Beyond Static Persona Consistency** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1336/) | 长/中/短角色心理状态与 PCC/PCR/PDS 纠偏；报告在少量人物、三个模型的系统评估，judge 与方法联动。 | 有[匿名提交代码入口](https://anonymous.4open.science/r/DPC-30A1)；本次未核完整独立复制，论文具体人物与评估器版本需保留。 |
+| **RP-032 When Roleplaying, Do Models Believe What They Say? / Roleplay Belief Probes** · [arXiv 2026](https://arxiv.org/abs/2606.11502) | 角色假信念的行为坚持、质询和 activation probe。对比 prompt、ICL、SFT 与较深角色训练；probe score 不等于人类心理信念。 | [BenSturgeon/persona-belief-probes-submission](https://github.com/BenSturgeon/persona-belief-probes-submission) 代码/数据入口已核其存在，未完成训练与探针可复现检查。 |
+| **RP-033 Beyond Static Persona Consistency / Dynamic Persona Coherence** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1336/) | 长/中/短角色心理状态与 PCC/PCR/PDS 纠偏；报告在少量人物、三个模型的系统评估，judge 与方法联动。 | 有[匿名提交代码入口](https://anonymous.4open.science/r/DPC-30A1)；本次未核完整独立复制，论文具体人物与评估器版本需保留。 |
 | **RP-034 PersonaForge** · [ACL 2026 Findings](https://aclanthology.org/2026.findings-acl.386/) | Big Five、心理防御、选择性 inner monologue；50 轮 drift 与 token 开销。Baseline 是同人物、同对话、同模型服务下的简化/完整心理架构。 | **实查**[fQwQf/PersonaForge](https://github.com/fQwQf/PersonaForge) 有 personaforge、experiments、schemas；README 明确**不发布受版权保护的角色资料**，需要 BYO profiles 和 BookWorld/runtime。 |
 | **RP-035 ToMATO** · [AAAI 2025 Main](https://ojs.aaai.org/index.php/AAAI/article/view/32143) | **实查 5,401 题**：一阶 2,676、二阶 2,725；false-belief 806 题是二阶子集，不能另加。753 段对话、15 种人格模式，每段 16 utterance；观察者在固定对话上答选择题，输入可含被问时点之后的对话。合成私有思想是标签来源，不是真实心智真值。 **Baseline：** 同对话/选项的 LLM、直接回答与推理提示；一阶、二阶、错误信念分别比较。不能据此替代被测 NPC 在线管理自己与他人的信念。 | **实查**[代码与 4 个 JSON](https://github.com/nttmdlab-nlp/ToMATO)。数据采用 META LLAMA 3 条件且 README 要求仅评价、不作 SFT；代码为 NTT 非商业内部研究/评价许可。静态检查发现数据 `conversation` 与脚本 `transcript` 等不一致，未运行修复，不能称开箱可复现。 |
 | **RP-036 Too Nice to Tell the Truth** · [ACL 2026 Main](https://aclanthology.org/2026.acl-long.1421/) | 人物宜人性和附和；同模型、同题比较 persona 条件和普通助手，必须区分 trait 内部相关性与相对 no-persona 的平均差异。 | **实查**[代码仓库](https://github.com/aryashah2k/Quantifying-Agreeableness-Driven-Sycophancy-in-Role-Playing-Language-Models)有数据准备、评测与分析目录；[HF 输入数据](https://huggingface.co/datasets/aryashah00/Persona-Induced-Sycophancy)有文件入口，全部原始输出/复现未验证。 |
@@ -98,7 +98,7 @@
 | **RP-067 CFSM / CPFSM** · [ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) | 将人物状态、事件及转移逻辑显式化。合成简化 FSM 验证执行规则的准确率；Fandom 参考动作 NLI 与 Best@K 检查角色化行为，非真实引擎任务完成率。 | **实查**[作者代码](https://github.com/KomeijiForce/Codified_Finite_State_Machine)包括 README、LICENSE 和编译脚本 codify_cfsm.py；完整概率转移/推理环境与判别器依赖未核为单一可运行包。Baseline：文本 profile、Codified Profile、PromptTrans、Character Updating、Plot Summary；须保持同 RP LLM/条件判别器。 |
 | **RP-068 PERSONA** · [ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) | PersonalityBench 与 Persona-Evolve；从对比激活向量组合和动态 steering 生成性格倾向。比较 prompt、ActAdd/CAA、不同层/强度、情境路由并检查非目标能力。 | **实查**[xcfcode/persona](https://github.com/xcfcode/persona) 有 activation_steer.py、generate_vec.py、data_generation、eval 和脚本。训练免费指不更新底座参数，不表示无向量提取与评审成本。 |
 | **RP-069 PDD** · [ICLR 2026](https://arxiv.org/abs/2603.01438) | 人设属性重要性估计与 token 概率重加权；对比简单提示、固定属性权重与解码期控制，并注意每 token 推理代价。 | 论文和算法公式可读；尚未核到作者完整数据/代码仓库的文件级状态，标为**论文方法、资源待核**。 |
-| **RP-070 Facet-Level Contrastive SAE** · [arXiv 2026](https://arxiv.org/abs/2602.19157) | 30 个人格 facet、约 15K 对比数据和特质触发路由，测量细粒度受控表达；对比 CAA/ActAdd 与 SAE 表征，不能假设心理向量严格独立。 | 预印本论文核实；作者代码、完整训练集和 checkpoint 尚未确认公开，不可写成现成 SAE 模型。 |
+| **RP-070 CV-SAE / Facet-Level Contrastive SAE** · [arXiv 2026](https://arxiv.org/abs/2602.19157) | 30 个人格 facet、约 15K 对比数据和特质触发路由，测量细粒度受控表达；对比 CAA/ActAdd 与 SAE 表征，不能假设心理向量严格独立。 | 预印本论文核实；作者代码、完整训练集和 checkpoint 尚未确认公开，不可写成现成 SAE 模型。 |
 | **RP-071 KSKT** · [ICML 2026](https://proceedings.mlr.press/v306/sun26at.html) | 角色自身条件与用户目标的 attention 双路建模；CharacterBench 和 SOTOPIA 部分关系指标，任务对照不等于自动支持任意原创人物。 | **实查**[Sunrich-HT/KSKT](https://github.com/Sunrich-HT/KSKT) 包含 kskt/modeling、训练流程、configs、example sample_data；README 提供 smoke test，**未核到完整论文训练集和权重**。 |
 
 ## 7. 评价、玩家输入、自然度与安全（20 项）
@@ -204,3 +204,23 @@
 ## 14. 如何解释资源结论
 
 这 107 项有不同的证据强度：部分有代码、部分只有训练集、部分仅有测试评价器或作者声明。它们不构成可以直接横比的单一排行榜；同一论文的数据量不代表独立人类标注量，拥有 800 轮预制历史不代表 agent 完成 800 轮自生成交互。使用前冻结底座、角色 split、judge、对话/引擎协议并重新核验发布日期与许可证。
+
+<a id="evaluation-cost"></a>
+## 15. 评测运行摩擦与裁判依赖：离线可运行不等于客观真值
+
+本表按**测试协议与依赖**分类，不按论文价值排序。需要分别检查输入历史是否固定、目标模型生成几轮、判分器是规则还是另一个模型、以及替换模型后能否与原论文分数直接比较。无需商业 API 不等于没有 GPU/显存/时间成本；能本地运行的 NLI、RM 或 LLM judge 也不是独立的人格真值。
+
+| 运行形态 | 代表工作与统一 ID | 常见评分器及运行需求 | 原论文复现和本地替换的区别 |
+| --- | --- | --- | --- |
+| **A1. 固定样例与结构化标签** | TimeChara **RP-018**、RoleCDE **RP-080**、PersonalityBench **BASE-NPTI** | 部分任务用答案键、应答/拒知类别或二选一结果；待测模型仍需推理，开放理由可能需要语义判断。 | 规则汇总能固定，不能因此声称整个 benchmark 均为确定性人格评分。PersonalityBench 约 18 万条主要用于神经元识别，评价题规模另计。 |
+| **A2. 固定输入与本地学习型评分器** | Codified Profiles **RP-063**、CDT **RP-064**、CFSM **RP-067**、APC **RP-017**、CharacterBench **RP-087**、CharacterEval **RP-073**、RAIDEN **RP-077**；HER **RP-025** 的 RM | DeBERTa/NLI、CharacterJudge、CharacterRM、RPCAJudger、HER-RM-32B 等可使用本地公开权重；部分动作和结构标签可由代码验证。 | **仅说明某些判分组件可本地运行**；原论文的 profile 编译、数据生成、训练及全部判分不一定零 API。学习型裁判存在偏差，32B RM 还需相应算力。 |
+| **B1. 固定历史/情境与模型语义评价** | ArcANE **RP-052**、ProfileAxes **RP-016**、StratMem **RP-057**、SubtleMemory **RP-058**、FURINA **RP-078**、Too Nice **RP-036**、匿名 RolePlayBench **RP-089** | 主要在给定前缀或人物条件下生成或选择，部分维度调用 LLM judge、NLI 或完整记忆系统。 | 本地评测可建立新的统一比较，但更换论文原始 judge、模型和原作知识条件以后，不能直接宣称复现原分数。匿名评测使用的模型 API 也要单独核对。 |
+| **B2. 用户脚本固定、角色自行累计历史** | RMTBench **RP-081** | 用户侧话语预制，NPC 自己连续生成回复；评审模型和跨轮上下文也会增加成本。 | 不是普通静态单轮测试，也不是用户会按 NPC 的新回答实时改变后续输入的自由双向交互；数据访问条件需先确认。 |
+| **C. 多轮动态模拟与多模型评价** | CoSER/GCA **RP-013**、PersonaArena **RP-086**、CharacterBox **RP-088**、PALATE **RP-091** | 角色、模拟对手、narrator/环境及多裁判可能重复生成；运行量取决于轮次、模型数、输入长度及批处理。 | 动态**不必然依赖商业 API**。PersonaArena 支持自托管兼容服务；PALATE 有用户模拟 LoRA，但完整 1,600 条主实验轨迹不随资源发布。改用本地 judge 应重新定义比较协议。 |
+| **相邻且默认服务依赖明显** | τ-Trait / TraitBasis **RP-066** | 示例默认 STEER 用户模型服务和外部 LLM provider。 | 主要测试客服工具 agent 面对复杂用户行为，不能因模拟用户真实就等同于人物角色扮演 benchmark。 |
+
+**三个实际复现边界：** [CoSER 官方仓库](https://github.com/Neph0s/CoSER) 明确要求使用指定版本 **gpt-4o-24-08-06** 作为 judge 才能与其论文 GCA 分数直接对照；可改为本地模型，但那是新评审协议。[PersonaArena 官方实现](https://github.com/microsoft/AnthropomorphicIntelligence/tree/main/PersonaArena) 支持 Ollama、vLLM、SGLang 等 OpenAI-compatible 端点，并非必须调用付费模型。[PALATE 作者资源](https://github.com/Zhuyh1139/PALATE) 区分复算已发布汇总、重跑开放子流程与重新生成完整交互，三者工作量不同。
+
+**记录运行成本时应至少保存：** 样例/角色数量、模拟轮数、每轮 agent/对手/环境/judge 调用数、输入输出 token、裁判和模型版本、本地 GPU 小时或外部 API 调用记录、是否存在可复用的预测及轨迹缓存。当前没有针对这些资源的统一硬件和版本下实测，因此**不提供未经核实的金额或 GPU 小时估计**。
+
+表内名称与具体数据/权重发布情况可以通过本文件第 2–10 节的 RP 编号互查；此附录不改变 113 篇论文与 107 项资源统计。

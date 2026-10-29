@@ -12,6 +12,8 @@
 
 两份索引使用全局论文 ID **RP-001–RP-113**，每篇论文只在一个主题下登记；对应资源通过同一 ID 直接查找。PersonaArena 与 LSH-RL、ChARM 与 CHARM 等易混淆名称有明确消歧，NPTI/PersonalityBench、PAS、DPR 等前置基线单列。
 
+**评测依赖速查：** [静态任务、本地学习型裁判、动态多轮与原论文 judge 依赖](docs/RESOURCE_ATLAS.md#evaluation-cost)。本地可运行不等于零计算成本，也不保证原论文分数可直接复现。
+
 ## 研究范围
 
 **核心：** 人物设定、心理与内心推理、自然表达、知识边界、人格控制、主观记忆和角色成长、角色训练与评价。

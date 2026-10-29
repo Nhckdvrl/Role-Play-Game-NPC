@@ -66,7 +66,7 @@
 | RP-029 | [Reasoning Does Not Necessarily Improve Role-Playing Ability](https://aclanthology.org/2025.findings-acl.537/) | ACL 2025 Findings | **T** | 比较直接、CoT 与推理模型在角色任务上的行为；常规长推理可能偏离角色视角，但不是所有思考都降低角色能力的通则。 |
 | RP-030 | [Guess What I am Thinking: A Benchmark for Inner Thought Reasoning of Role-Playing Language Agents](https://aclanthology.org/2025.findings-emnlp.819/) | EMNLP 2025 Findings；RoleThink/MIRROR | **T** | 从 76 本书构建 6,058 条角色心理/内心活动条目，区分原文 Gold 与解释性 Silver，MIRROR 组织记忆与反思；部分测试子集不能冒充全库规模。 |
 | RP-031 | [EmoCharacter: Evaluating the Emotional Fidelity of Role-Playing Agents in Dialogues](https://aclanthology.org/2025.naacl-long.316/) | NAACL 2025 Main | **T** | 将情绪触发与人物性格、单/多轮转移分开评价，六类指标揭示部分角色强化方式损害情绪忠实；不是心理生理学的客观情感读数。 |
-| RP-032 | [When Roleplaying, Do Models Believe What They Say?](https://arxiv.org/abs/2606.11502) | arXiv 2026 预印本 | **T** | 角色假信念、质询与线性 truth probe 的表征/行为关联；probe 不会直接读出模型真实“心理信念”。 |
+| RP-032 | [When Roleplaying, Do Models Believe What They Say?](https://arxiv.org/abs/2606.11502)（Roleplay Belief Probes） | arXiv 2026 预印本 | **T** | 角色假信念、质询与线性 truth probe 的表征/行为关联；probe 不会直接读出模型真实“心理信念”。 |
 | RP-033 | [Beyond Static Persona Consistency: Dynamic Persona Coherence in LLM Role-Playing](https://aclanthology.org/2026.acl-long.1336/) | ACL 2026 Main | **T** | 长/中/短时间尺度的稳定身份与动态情绪、PCC/PCR/PDS 校正；少量角色与自设 judge 的增益不能外推为普适心理机制。 |
 | RP-034 | [PersonaForge: Psychology-Grounded Dual-Process Architecture for Personality-Consistent Role-Playing Agents](https://aclanthology.org/2026.findings-acl.386/) | ACL 2026 Findings | **T** | 多层心理状态和选择性 inner monologue，关注 50 轮人格保持与开销；公开代码不附有版权人物原文数据。 |
 | RP-035 | [ToMATO: Verbalizing the Mental States of Role-Playing LLMs for Benchmarking Theory of Mind](https://ojs.aaai.org/index.php/AAAI/article/view/32143) | AAAI 2025；39(2):1520–1528 | **M** | 将角色合成的私有思想转为 5,401 道一/二阶心理状态问题，测试观察者从完整对话推断他人状态；标签不是实际心智真值，任务不直接评价 NPC 在线决策，作者建议数据仅用于评测，代码受 NTT 非商业研究评估许可约束。 |
@@ -122,7 +122,7 @@
 | RP-067 | [Codified Finite-State Machines for Role-playing](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) · [全文 HTML](https://arxiv.org/html/2602.05905v1) | ICLR 2026 | **M** | 从 profile 抽取关键心理/叙事状态及事件条件，用 LLM 编译可执行状态转移；CPFSM 加入状态概率。已知简化 FSM 的确定执行测试、Fandom 参考动作 NLI 与 Best@K 分别衡量不同方面；不是引擎动作验收或人物真实心理真值。直接连接 2025 Codified Profile 与 2026 CDT，但研究对象是**状态转移**，不能省略。 |
 | RP-068 | [PERSONA: Dynamic and Compositional Inference-Time Personality Control via Activation Vector Algebra](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) | ICLR 2026 | **T** | 对比激活特质向量、动态缩放/组合和 Persona-Evolve；可组合的行为效果不证明人格维度严格独立。 |
 | RP-069 | [Enhancing Persona Following at Decoding Time via Dynamic Importance Estimation](https://arxiv.org/abs/2603.01438) | ICLR 2026，PDD | **T** | 根据当前上下文估计人设属性相对重要性，并在 token 解码时对比分布；优化目标的等号条件不是人物心理真实度定理。 |
-| RP-070 | [Facet-Level Persona Control by Trait-Activated Routing with Contrastive SAE for Role-Playing LLMs](https://arxiv.org/abs/2602.19157) | arXiv 2026 预印本 | **T** | Big Five facet 对比数据、SAE 潜变量和情境路由；它与普通残差激活方向不是同一方法，公开完整训练/权重未核定。 |
+| RP-070 | [Facet-Level Persona Control by Trait-Activated Routing with Contrastive SAE for Role-Playing LLMs](https://arxiv.org/abs/2602.19157)（CV-SAE） | arXiv 2026 预印本 | **T** | Big Five facet 对比数据、SAE 潜变量和情境路由；它与普通残差激活方向不是同一方法，公开完整训练/权重未核定。 |
 | RP-071 | [Know Thyself, Know Thy User: Intrinsic Dual-Perspective Reasoning for Role-Playing LLMs](https://proceedings.mlr.press/v306/sun26at.html) | ICML 2026；KSKT | **T** | Transformer self-role 与 other-user 两路条件融合，直接刻画人物立场与玩家需求之间的张力；示例代码不意味着完整训练权重已发布。 |
 
 <a id="topic-7"></a>
@@ -170,7 +170,7 @@
 | RP-103 | [Setting the DC: Tool-Grounded D&D Simulations to Test LLM Agents](https://openreview.net/pdf?id=3Op7kJOvaD) · [补充原始记录／版本](https://genprocc.github.io/) | NeurIPS 2025 GenProCC Workshop；非主会 | **B** | 官方摘要提出以规则与工具驱动的 D&D 战斗评价工具使用、参数、表演、战术、状态和效率；PDF 访问受阻，仅核正式工作坊与摘要，不能借 2026 年新闻替代全文效果证据。 |
 | RP-104 | [CriticaLLM: Using LLMs as Autonomous Game Master for Tabletop Role-Playing Games](https://arxiv.org/abs/2610.21525v1) | arXiv v1（2026-10-15） | **M** | 将简化桌游规则、地图、骰子和局部记忆接入自主 GM，测试叙事与对抗请求；三房间冒险和九名资深玩家的证据有限，选择影响感偏弱，不能说明通用长篇 GM 已成熟。 |
 | RP-105 | [Can LLM Agents Stick to the Script? A Benchmark for Long-Horizon Consistency in Interactive Narratives](https://proceedings.mlr.press/v306/ma26ap.html) | ICML 2026 | **T** | NCP-Bench 将 100 个叙事环境的初始事实、承诺和轨迹与模拟玩家干扰连起来；作者公开数据、评测 runner 和基线。被测对象是 narrator 而非受部分观察限制的单个 NPC；事实/承诺冲突部分由模型审计，不是引擎硬状态奖励。 |
-| RP-106 | [Bayesian Social Deduction with Graph-Informed Language Models](https://aclanthology.org/2026.acl-long.1497/) | ACL 2026 Main | **T** | 以因子图跟踪 Avalon 隐藏身份，LLM 处理语言和发言，受控真人试验报告 67% 胜率。实验 agent **只扮演 Good 阵营**，所以不是反派欺骗型角色表演的直接证据。其对 RP 的意义是角色自己的信念、私有信息与策略性语言怎样分离。 |
+| RP-106 | [Bayesian Social Deduction with Graph-Informed Language Models](https://aclanthology.org/2026.acl-long.1497/)（GRAIL） | ACL 2026 Main | **T** | 以因子图跟踪 Avalon 隐藏身份，LLM 处理语言和发言，受控真人试验报告 67% 胜率。实验 agent **只扮演 Good 阵营**，所以不是反派欺骗型角色表演的直接证据。其对 RP 的意义是角色自己的信念、私有信息与策略性语言怎样分离。 |
 
 <a id="topic-9"></a>
 ## 9. 多模态角色感知、语音与表达
@@ -212,7 +212,7 @@
 | IND-01 | [Ubisoft Teammates](https://news.ubisoft.com/it-it/article/3mWlITIuWuu0MoVuR6o8ps/ubisoft-reveals-teammates-an-ai-experiment-to-change-the-game) | 语音队友与作者设定边界，研究演示不等于角色真实性 benchmark。 |
 | IND-02 | [NVIDIA ACE Game Agent SDK / Unreal](https://developer.nvidia.com/blog/build-on-device-ai-companions-with-the-nvidia-ace-game-agent-sdk-and-unreal-engine-5-plugins/) | 语音与引擎接口、计算资源约束。 |
 | IND-03 | [Inworld Inference](https://inworld.ai/blog/introducing-inworld-inference) | 组件级延迟与模型路由，不能与全双工端到端延迟混比。 |
-| IND-04 | [KRAFTON PUBG Ally](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/) | 事件语言与高频动作执行接口，不作为个体文学人物忠实度评分。 |
+| IND-04 | [PUBG Ally 工程报告（arXiv 2026）](https://arxiv.org/abs/2609.29837) · [KRAFTON/NVIDIA 开发者说明](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/) | 同一部署系统的研究报告与工程说明；仅为外围工程证据，不纳入 113 篇核心 Role-Play 论文，也不作为人物忠实度 benchmark。 |
 
 ## 13. 阅读与资源审计约束
 

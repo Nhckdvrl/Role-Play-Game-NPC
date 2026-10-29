@@ -131,16 +131,16 @@
 
 ### 3.1 一个角色至少包含哪些不同状态
 
-以下是本文用于比较方法的分析模型，不是某篇论文已经验证的统一 NPC 架构。对角色 $i$，可以区分：
+以下是本文用于比较方法的分析模型，不是某篇论文已经验证的统一 NPC 架构。对角色 $i$ ，可以区分：
 
-- $I_i$：身份、背景、稳定倾向与原始设定。
-- $W_t$：世界在时刻 $t$ 的真实状态，包括位置、物品、任务和事件。
-- $o_t^i=\Omega(W_t,i)$：该角色实际能观察到或被告知的内容。
-- $b_t^i$：角色对世界的信念；允许不完整、过时或错误。
-- $\hat b_t^{i\to j}$：角色对另一个主体 $j$ 的信念、目标或知识的估计。
-- $m_t^i$：可持久化的经历、事实、推断、关系记录和检索索引。
-- $d_t^i$：当前目标、情绪、关系、承诺和叙事阶段等动态状态。
-- $(u_t^i,a_t^i)$：角色说出的内容与提交给世界的行动。
+- $I_i$ ：身份、背景、稳定倾向与原始设定。
+- $W_t$ ：世界在时刻 $t$ 的真实状态，包括位置、物品、任务和事件。
+- $o_t^i=\Omega(W_t,i)$ ：该角色实际能观察到或被告知的内容。
+- $b_t^i$ ：角色对世界的信念；允许不完整、过时或错误。
+- $\hat b_t^{i\to j}$ ：角色对另一个主体 $j$ 的信念、目标或知识的估计。
+- $m_t^i$ ：可持久化的经历、事实、推断、关系记录和检索索引。
+- $d_t^i$ ：当前目标、情绪、关系、承诺和叙事阶段等动态状态。
+- $(u_t^i,a_t^i)$ ：角色说出的内容与提交给世界的行动。
 
 在**角色决策事件**的抽象尺度上，可写成一个条件策略。下式将语言与高层动作意图写在同一事件索引下，仅为分析哪些条件影响人物选择，**不是声称台词与引擎动作同步完成**：
 
@@ -148,7 +148,7 @@ $$
 (u_t^i,a_t^i)\sim\pi_i(\cdot\mid I_i,o_{\le t}^i,b_t^i,\hat b_t^{i\to *},m_t^i,d_t^i).
 $$
 
-行动只有经过环境规则才产生状态转移：$W_{t+1}=\mathcal T(W_t,a_t^1,\ldots,a_t^n)$。在纯文字 benchmark 中，$\mathcal T$ 可能不存在、由评审想象，或由另一个 LLM 叙述；在游戏引擎中，它可以是独立、可检查的规则。两者的“行动成功”证据强度不同。
+行动只有经过环境规则才产生状态转移： $W_{t+1}=\mathcal T(W_t,a_t^1,\ldots,a_t^n)$ 。在纯文字 benchmark 中， $\mathcal T$ 可能不存在、由评审想象，或由另一个 LLM 叙述；在游戏引擎中，它可以是独立、可检查的规则。两者的“行动成功”证据强度不同。
 
 ```mermaid
 flowchart TD
@@ -168,7 +168,7 @@ flowchart TD
 
 ### 3.1.1 双时间尺度、主观状态与引擎可行域
 
-将游戏 tick 或连续世界时间记为 $\tau$，将一次新玩家话语、重要剧情事件或高层决策记为 $k$。世界真实状态为 $W_\tau$，角色只拥有在该时刻权限与感知允许的观察 $o_\tau^i=\Omega_i(W_\tau)$。角色内部状态可概括为 $z_k^i=(I_i,b_k^i,m_k^i,d_k^i,c_k^i)$，其中 $c_k^i$ 特别记录**已承诺、请求中、执行中、已完成或失败**的行为状态。信念、记忆和动态人物状态可由新观察、语言和执行反馈更新：
+将游戏 tick 或连续世界时间记为 $\tau$ ，将一次新玩家话语、重要剧情事件或高层决策记为 $k$ 。世界真实状态为 $W_\tau$ ，角色只拥有在该时刻权限与感知允许的观察 $o_\tau^i=\Omega_i(W_\tau)$ 。角色内部状态可概括为 $z_k^i=(I_i,b_k^i,m_k^i,d_k^i,c_k^i)$ ，其中 $c_k^i$ 特别记录**已承诺、请求中、执行中、已完成或失败**的行为状态。信念、记忆和动态人物状态可由新观察、语言和执行反馈更新：
 
 $$
 z_{k+1}^i=U_i(z_k^i,\mathcal O_{k+1}^i,
@@ -177,7 +177,7 @@ $$
 
 这只是角色架构的归纳模型。严格 POMDP 的充分 belief state 必须满足特定观察模型和后验更新条件；实际 NPC 的记忆摘要、检索和人物状态往往只是近似表示。原始事件证据仍可能必须保留，不能武断认定拼接历史必然有害。
 
-引擎在状态 $W_\tau$ 下有合法动作集 $\mathcal A_{\mathrm{valid}}(W_\tau,i)$；角色只能使用**通过局部观察或工具获知**的可行域估计 $\widehat{\mathcal A}_{k,\mathrm{valid}}^i$。角色可以先提出动作意图，再由引擎在真正执行时检查权限、前置条件、资源冲突和过期状态：
+引擎在状态 $W_\tau$ 下有合法动作集 $\mathcal A_{\mathrm{valid}}(W_\tau,i)$ ；角色只能使用**通过局部观察或工具获知**的可行域估计 $\widehat{\mathcal A}_{k,\mathrm{valid}}^i$ 。角色可以先提出动作意图，再由引擎在真正执行时检查权限、前置条件、资源冲突和过期状态：
 
 $$
 \hat a_k^i\sim\pi_{\rm act}^i(\cdot\mid z_k^i,\widehat{\mathcal A}_{k,\rm valid}^i),
@@ -261,7 +261,7 @@ RolePersonality 沿用 InCharacter 改写的 **14 类量表访谈**，让带 pro
 
 [APC：Quantifying and Optimizing Global Faithfulness](https://proceedings.neurips.cc/paper_files/paper/2024/hash/309cadc33589efca4018a490c07db263-Abstract-Conference.html) 将 persona 拆成原子陈述，区分当前问题的 **active constraints** 与 **passive constraints**。例如，问题问一个角色的职业，职业信息需要体现；角色不喝酒这一事实虽不必主动提及，也不应被顺带违背。它把“召回了相关资料”与“没有冲撞其他资料”区分开来。
 
-若 $g_i$ 表示陈述 $s_i$ 与问题相关的概率，$e_i$、$c_i$ 表示回答对该陈述的蕴含、矛盾概率，论文的软评分可以写为：
+若 $g_i$ 表示陈述 $s_i$ 与问题相关的概率， $e_i$ 、 $c_i$ 表示回答对该陈述的蕴含、矛盾概率，论文的软评分可以写为：
 
 $$
 V_{\mathrm{APC}}=\sum_i[g_ie_i+(1-g_i)(1-c_i)].
@@ -307,7 +307,7 @@ $$
 
 [CHARM: Character Hallucination for Multicultural Role Play Benchmark（EMNLP 2026 Findings）](https://aclanthology.org/2026.findings-emnlp.460/) 把角色知识边界放到不同文化语境和语言中，强调人物世界观与时间限制不应只由英语知名 IP 定义。论文关注角色设定幻觉、人物身份与跨文化知识；其当前资源与正文方法仅作定点元数据核验，不能直接宣称已经提供与 TimeChara 完全等价的可运行评测包。
 
-另一条本质不同的研究是 [When Roleplaying, Do Models Believe What They Say?（2026 预印本）](https://arxiv.org/abs/2606.11502)。它让模型扮演持有不符合当代科学共识的历史人物，用线性 activation probe、被质询后的回答保持与下游推理检验：仅通过 prompt、ICL 或部分角色 SFT 获得的**外显身份采纳**，未必同步改变探针所读出的事实信念相关表征；更深的角色训练在部分条件下显示不同结果。它有[作者的探针与研究代码](https://github.com/BenSturgeon/persona-belief-probes-submission)。但“模型内部相信”不是可以直接测量的心理事实：探针方向、训练分布、质询答复与真实内部因果机制之间仍有推断环节。
+另一条本质不同的研究是 [When Roleplaying, Do Models Believe What They Say?](https://arxiv.org/abs/2606.11502)（**Roleplay Belief Probes，RP-032**；2026 预印本）。它让模型扮演持有不符合当代科学共识的历史人物，用线性 activation probe、被质询后的回答保持与下游推理检验：仅通过 prompt、ICL 或部分角色 SFT 获得的**外显身份采纳**，未必同步改变探针所读出的事实信念相关表征；更深的角色训练在部分条件下显示不同结果。它有[作者的探针与研究代码](https://github.com/BenSturgeon/persona-belief-probes-submission)。但“模型内部相信”不是可以直接测量的心理事实：探针方向、训练分布、质询答复与真实内部因果机制之间仍有推断环节。
 
 两篇论文连接了两种看似相近却不同的失效：一是输出不该知道的内容，二是输出像人物但受更深层预训练知识或助手偏好的影响。**不应要求 NPC 修改全部参数事实记忆来证明扮演成功**：人物可以知道他不该知道的事情来自预训练，而任务仍是让他基于当前可见世界与角色信念行动。
 
@@ -362,7 +362,7 @@ $$
 
 [EmoCharacter: Evaluating the Emotional Fidelity of Role-Playing Agents in Dialogues（NAACL 2025 Main）](https://aclanthology.org/2025.naacl-long.316/) 将角色在特定刺激中的**情绪方向、幅度、表达及多轮变化**独立于人物知识和口吻评价。它构造单轮和多轮情绪诱发情境与六项指标，观察到某些常见角色提示或合成数据强化会降低情绪保真，而真实角色对白提供的示例对某些设置更有效。此处得到的是特定情绪标签/评价框架下的效果，不是人物内心真实情感的生理测量。
 
-[Beyond Static Persona Consistency: Dynamic Persona Coherence in LLM Role-Playing（ACL 2026 Main）](https://aclanthology.org/2026.acl-long.1336/) 进一步区分长期核心身份、中期压力/意义积累与短期即时情绪，在文本交互中通过 Persona Consistency Critic、case repository 和 drift suppression 调整不同层次的变化。它使“稳定”与“成长”不再被粗暴地视为对立：一位原本谨慎的人物可以随着事件变得愤怒，却不需要凭一句话重写其全部价值观。主要实验规模为少量人物与模型，评价器与修复器存在相互设计依赖，因此报告的改善不自动等于独立人类心理学验证。[论文正文](https://aclanthology.org/2026.acl-long.1336.pdf)
+[Beyond Static Persona Consistency: Dynamic Persona Coherence in LLM Role-Playing（RP-033；ACL 2026 Main）](https://aclanthology.org/2026.acl-long.1336/) 进一步区分长期核心身份、中期压力/意义积累与短期即时情绪，在文本交互中通过 Persona Consistency Critic、case repository 和 drift suppression 调整不同层次的变化。它使“稳定”与“成长”不再被粗暴地视为对立：一位原本谨慎的人物可以随着事件变得愤怒，却不需要凭一句话重写其全部价值观。主要实验规模为少量人物与模型，评价器与修复器存在相互设计依赖，因此报告的改善不自动等于独立人类心理学验证。[论文正文](https://aclanthology.org/2026.acl-long.1336.pdf)
 
 [PersonaForge: Psychology-Grounded Dual-Process Architecture for Personality-Consistent Role-Playing Agents（ACL 2026 Findings）](https://aclanthology.org/2026.findings-acl.386/) 则从 Big Five、心理防御机制及人物动态状态组织生成，在复杂处境才开启更显式的心理独白，而不是每轮自动输出最长思考。其 50 轮设定下的 persona drift 和 token 开销消融直接支持“可选择性地调用角色化思考”这一架构思想；但心理防御标签依赖设计和评价，不能因此把角色的复杂心理还原为客观独立维度。[作者仓库](https://github.com/fQwQf/PersonaForge)发布核心代码、配置和复现说明，因版权**未附完整文学人物数据**，运行还依赖 BookWorld 与模型服务。
 
@@ -378,11 +378,11 @@ $$
 | [CDT](https://aclanthology.org/2026.acl-long.568/)（ACL 2026） | 从故事动作实例归纳的分层 if–then 树 | 当前 scene 命中可同时成立的树分支 | 对角色行动样本的覆盖及参考匹配，树通常离线固定 |
 | [CFSM/CPFSM](https://arxiv.org/abs/2602.05905)（ICLR 2026） | 离散关键人物状态及转移函数；概率版保留状态不确定性 | 新事件满足转换条件，产生下一个状态 | 已知规则的执行终态，以及人物原作行为；心理真值仍是代理 |
 | [MECoT](https://aclanthology.org/2025.findings-acl.435/)（ACL 2025） | 效价—唤醒空间中的离散情绪 | 旧情绪、人物倾向与当前话语 | 情绪标签及回答一致性，不能证明真实情绪动力学 |
-| [Dynamic Persona Coherence](https://aclanthology.org/2026.acl-long.1336/)（ACL 2026） | 长期身份、中期压力/意义、短期情绪 | 累积交互与层级 critic 修复 | 指定情境和轮数下的动态一致，不是普遍认知模型 |
+| [Dynamic Persona Coherence / Beyond Static Persona Consistency（RP-033）](https://aclanthology.org/2026.acl-long.1336/)（ACL 2026） | 长期身份、中期压力/意义、短期情绪 | 累积交互与层级 critic 修复 | 指定情境和轮数下的动态一致，不是普遍认知模型 |
 | [PersonaForge](https://aclanthology.org/2026.findings-acl.386/)（ACL 2026） | 人格特质、心理防御与条件激活的内心独白 | 冲突或心理复杂度触发更充分思考 | 人格漂移、成本与情境质量的架构消融 |
 | [PsyMem](https://aclanthology.org/2026.tacl-1.24/)（TACL 2026） | 心理属性与显式记忆关联 | 相关记忆被调用、对齐到人物反应 | 人物心理与记忆利用，非引擎动作状态机 |
 
-在 CFSM 中，一条规则可抽象为 $s_{k+1}=F(s_k,e_k)$；概率版本可表达 $p(s_{k+1}\mid s_k,e_k)$。这和 MECoT 中 $p(\epsilon_{k+1}\mid\epsilon_k,\mathrm{persona},x_k)$ 的情绪转移形式相似，却**不意味着二者的状态有相同语义或相同标注真值**。前者把有限行为规则变成可执行程序，后者将情绪转换设为心理学启发的概率分布。身份、信念、记忆与短时情绪可相互作用，但不能从一种状态机的高终态准确率推导另一种心理变量的真实因果动态。
+在 CFSM 中，一条规则可抽象为 $s_{k+1}=F(s_k,e_k)$ ；概率版本可表达 $p(s_{k+1}\mid s_k,e_k)$ 。这和 MECoT 中 $p(\epsilon_{k+1}\mid\epsilon_k,\mathrm{persona},x_k)$ 的情绪转移形式相似，却**不意味着二者的状态有相同语义或相同标注真值**。前者把有限行为规则变成可执行程序，后者将情绪转换设为心理学启发的概率分布。身份、信念、记忆与短时情绪可相互作用，但不能从一种状态机的高终态准确率推导另一种心理变量的真实因果动态。
 
 **研究演进的实质**是从 profile 描述的“条件表达”，进入事件与状态共同参与行为决定；但程序正确执行一条规则、符合原作行为，以及在现实玩家互动中呈现自然的角色成长，仍需不同证据。
 
@@ -482,7 +482,7 @@ DynSess 值得注意的不只是新算法：它将交互性、人类感、角色
 
 R4 将长篇故事资料组织成层级角色知识：由作品事件脉络定位人物处境，再进入人物视角与关系信息，最后取出能支持具体判断的细粒度角色事实。多个抽取/视角/动机/风格模块辅助构建知识；在使用时，评分器能够反复提出检索问题、阅读证据、形成结构化偏好理由，再对两条候选回答给出判断。**这一知识结构是用于评审的外部证据组织，不等于已恢复人物真实心理状态。**
 
-R4 的生成式评审训练同时考虑偏好答案、结构格式和推理与判决的一致性；可以把它概括为 $r_{\mathrm{RM}}=r_{\mathrm{answer}}+\lambda_f r_{\mathrm{format}}+\lambda_c r_{\mathrm{answer}}r_{\mathrm{consistency}}-\mu(1-r_{\mathrm{answer}})$，其中错误答案不应单靠“内部解释自洽”拿高分。其 reward 是训练该评分器的反馈，不是完整角色忠实度的客观真值。训练后的 RM 再监督具有角色检索与推理能力的对话模型，两者既共享人物证据，也可能共享知识构建偏差。
+R4 的生成式评审训练同时考虑偏好答案、结构格式和推理与判决的一致性；可以把它概括为 $r_{\mathrm{RM}}=r_{\mathrm{answer}}+\lambda_f r_{\mathrm{format}}+\lambda_c r_{\mathrm{answer}}r_{\mathrm{consistency}}-\mu(1-r_{\mathrm{answer}})$ ，其中错误答案不应单靠“内部解释自洽”拿高分。其 reward 是训练该评分器的反馈，不是完整角色忠实度的客观真值。训练后的 RM 再监督具有角色检索与推理能力的对话模型，两者既共享人物证据，也可能共享知识构建偏差。
 
 **正式论文 Table 3 给出的关键消融**（同一评价设置中的 Character Consistency 分，非跨论文通用分数）：
 
@@ -500,7 +500,7 @@ R4 的生成式评审训练同时考虑偏好答案、结构格式和推理与�
 
 [RoleRMBench & RoleRM](https://arxiv.org/abs/2512.10575)（2025 预印本）从另一个角度回答“怎样评价演得好”：候选回复可以都符合人物，只在推进剧情、语气细腻度、吸引力上有强弱之分。它将评价分成 Narrative（引入、推进、缝合）、Scene Transition、Role Consistency、Instruction Following、Safety、Multi-turn Coherence、Attractiveness 等维度；同一个总分无法解释每种失败。
 
-训练时，给定角色—语境 $x$，采样多个候选回复（论文使用五个），由人类进行相对排序，再构造相邻配对 NEB、极值配对 BW 与较完整配对 FULL 等监督。基本成对偏好概率仍可表示为：
+训练时，给定角色—语境 $x$ ，采样多个候选回复（论文使用五个），由人类进行相对排序，再构造相邻配对 NEB、极值配对 BW 与较完整配对 FULL 等监督。基本成对偏好概率仍可表示为：
 
 $$
 P(y_i\succ y_j\mid x)=\sigma\!\left(r_\phi(x,y_i)-r_\phi(x,y_j)\right).
@@ -637,7 +637,7 @@ SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条�
 
 ### 9.4 PERSONA：从对比残差向量到情境组合
 
-[PERSONA，ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) 的 Persona-Base 在正负人格条件输入上抽取隐藏层均值差；以特质 $j$、层 $\ell$ 表示一个方向：
+[PERSONA，ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) 的 Persona-Base 在正负人格条件输入上抽取隐藏层均值差；以特质 $j$ 、层 $\ell$ 表示一个方向：
 
 $$
 v_{\ell,j}=
@@ -652,11 +652,11 @@ h'_\ell=h_\ell+\sum_{j\in\mathcal J(c)}
 \alpha_j(c)\,v_{\ell,j},
 $$
 
-其中 $\mathcal J(c)$ 是由情境选择的特质集合，$\alpha_j$ 允许表达强弱和正负方向。论文进一步用约正交分析和特质强度相关性检验这些算术操作能否转为输出行为。在其 PersonalityBench 评价中，PERSONA 均分 9.60，接近相同实验设置的 SFT 9.61；Persona-Evolve 则测试多轮情境变化。两组结果支持**可提取和组合的表现方向**，不是心理学特质已严格独立的定理；人格维度相关和 steering 强度引发的副作用仍要单独测。[作者实现](https://github.com/xcfcode/persona)确有方向提取、组合、对话评价和相关脚本。
+其中 $\mathcal J(c)$ 是由情境选择的特质集合， $\alpha_j$ 允许表达强弱和正负方向。论文进一步用约正交分析和特质强度相关性检验这些算术操作能否转为输出行为。在其 PersonalityBench 评价中，PERSONA 均分 9.60，接近相同实验设置的 SFT 9.61；Persona-Evolve 则测试多轮情境变化。两组结果支持**可提取和组合的表现方向**，不是心理学特质已严格独立的定理；人格维度相关和 steering 强度引发的副作用仍要单独测。[作者实现](https://github.com/xcfcode/persona)确有方向提取、组合、对话评价和相关脚本。
 
 ### 9.5 PDD：人设属性的重要性由当前问题决定
 
-[Persona Dynamic Decoding（PDD，ICLR 2026）](https://arxiv.org/abs/2603.01438) 不修改激活，而是估计“如果不告诉模型这条人物属性，当前预期回复的概率会变化多少”。设完整条件 $T=(C,P,x)$，人设属性为 $w_i\in P$，移除该属性后的输入为 $T_i=T\setminus\{w_i\}$；由模型自身生成参考 $G$，定义可计算的条件重要性代理：
+[Persona Dynamic Decoding（PDD，ICLR 2026）](https://arxiv.org/abs/2603.01438) 不修改激活，而是估计“如果不告诉模型这条人物属性，当前预期回复的概率会变化多少”。设完整条件 $T=(C,P,x)$ ，人设属性为 $w_i\in P$ ，移除该属性后的输入为 $T_i=T\setminus\{w_i\}$ ；由模型自身生成参考 $G$ ，定义可计算的条件重要性代理：
 
 $$
 \widehat I_i=\log
@@ -666,7 +666,7 @@ $$
 
 它借鉴条件互信息的直觉，但**单条自身生成回答的对数似然比不是完整输出分布上的精确互信息，也不是经人工证明的心理学显著性标签**。如果生成器本身忽略了某属性，这个估计同样可能失真。
 
-接着 PDD 比较完整条件与去属性条件下候选 token 的概率，得到属性相关 log-ratio 奖励 $r_i$，再使奖励向量与重要性向量的方向对齐：
+接着 PDD 比较完整条件与去属性条件下候选 token 的概率，得到属性相关 log-ratio 奖励 $r_i$ ，再使奖励向量与重要性向量的方向对齐：
 
 $$
 R_{\mathrm{norm}}(\mathbf r,\widehat{\mathbf I})
@@ -674,7 +674,7 @@ R_{\mathrm{norm}}(\mathbf r,\widehat{\mathbf I})
        {\|\mathbf r\|_2}.
 $$
 
-由 Cauchy–Schwarz 可知 $R_{\mathrm{norm}}\leq\|\widehat{\mathbf I}\|_2$，正向取等需 $\mathbf r$ 与 $\widehat{\mathbf I}$ 成比例；这**只是对代理奖励的代数性质**，不能证明“保持了真实人物属性的重要性排序”。最终在推理时以候选 token 相关奖励对原分布作指数重加权，形式为：
+由 Cauchy–Schwarz 可知 $R_{\mathrm{norm}}\leq\|\widehat{\mathbf I}\|_2$ ，正向取等需 $\mathbf r$ 与 $\widehat{\mathbf I}$ 成比例；这**只是对代理奖励的代数性质**，不能证明“保持了真实人物属性的重要性排序”。最终在推理时以候选 token 相关奖励对原分布作指数重加权，形式为：
 
 $$
 p_*(y_t\mid T,y_{<t})
@@ -690,7 +690,7 @@ PDD 与 APC 的区别也在作用层次：APC 对完整回答判主动/被动设
 
 ### 9.6 CV-SAE、KSKT 与经典前置基线
 
-[Facet-Level Persona Control with Contrastive SAE（2026 预印本）](https://arxiv.org/abs/2602.19157) 不直接叠加完整残差差向量：先在 SAE 特征中识别与特定 Big Five 子维度相关的稀疏支持，再用正负示例的潜特征中心差与掩码构造方向。其操作可以概括为
+[Facet-Level Persona Control with Contrastive SAE（CV-SAE，RP-070；2026 预印本）](https://arxiv.org/abs/2602.19157) 不直接叠加完整残差差向量：先在 SAE 特征中识别与特定 Big Five 子维度相关的稀疏支持，再用正负示例的潜特征中心差与掩码构造方向。其操作可以概括为
 
 $$
 v_{\mathrm{facet}}
@@ -699,7 +699,7 @@ $$
 
 随后只在当前情境触发该 facet 时做特征干预或解码。这个式子是方法结构的概括，省略了其原型对比损失、距离损失和 SAE 解码过程，不能误解为论文只算一次均值差。其 30-facet、约 15K 对比样本与条件路由实验的关键问题是**细粒度可控性和跨 facet 泄漏**；官方完整代码、训练语料和 checkpoint 的发布状况仍待核实。
 
-[KSKT：Know Thyself, Know Thy User（ICML 2026）](https://proceedings.mlr.press/v306/sun26at.html) 则选择另一种控制位置：模型内部以 self stream 表征人物身份/价值约束，以 other stream 表征玩家或对话者的意图需求，再以 token 级动态权重融合。概念形式为 $h_t=\alpha_t h_t^{\rm self}+(1-\alpha_t)h_t^{\rm other}$，但真实网络仍涉及各自的 attention、投影和训练配方。这是**改变模型结构和训练**，不能与零参数更新的 PERSONA/PDD 用同一成本口径比较。[作者代码](https://github.com/Sunrich-HT/KSKT)提供双流模块与 smoke test；完整训练数据和模型权重未核实。
+[KSKT：Know Thyself, Know Thy User（ICML 2026）](https://proceedings.mlr.press/v306/sun26at.html) 则选择另一种控制位置：模型内部以 self stream 表征人物身份/价值约束，以 other stream 表征玩家或对话者的意图需求，再以 token 级动态权重融合。概念形式为 $h_t=\alpha_t h_t^{\rm self}+(1-\alpha_t)h_t^{\rm other}$ ，但真实网络仍涉及各自的 attention、投影和训练配方。这是**改变模型结构和训练**，不能与零参数更新的 PERSONA/PDD 用同一成本口径比较。[作者代码](https://github.com/Sunrich-HT/KSKT)提供双流模块与 smoke test；完整训练数据和模型权重未核实。
 
 上述方法还依赖三类不能省略的前置对照：
 
@@ -724,7 +724,7 @@ $$
 
 [SOTOPIA（ICLR 2024）](https://arxiv.org/abs/2310.11667) 将角色关系、秘密和不同的私有目标放入双人交互，提供目标、关系、规则与社交适应评价。它使角色不只是输出看起来友好的话，还需要面对拒绝、谈判和局部信息。后续 [SOTOPIA-π（ACL 2024）](https://aclanthology.org/2024.acl-long.698/) 主要通过专家轨迹模仿与高分轨迹筛选后的监督训练改善社交策略，**其 self-reinforcement 不能误写成 PPO/GRPO**。[SOTOPIA-Ω（ACL 2025）](https://aclanthology.org/2025.acl-long.1203/) 将不同社交策略用于训练数据生成；部署时的实际思考成本要另计。
 
-[SOTOPIA-TOM（COLM 2026）](https://arxiv.org/abs/2605.02307) 扩展到 3–5 个主体、公共/私人消息、共享禁止规则和行动披露。由环境过滤消息比在全局 prompt 中写“你不知道”更易验证权限，但其主要设置是职业合作。相应的 [ToMATO（AAAI 2025）](https://ojs.aaai.org/index.php/AAAI/article/view/32143) 测**旁观者从对话推断**信念和意图，并非被测 NPC 当场据错误信念行动；[Bayesian Social Deduction / GRAIL（ACL 2026）](https://aclanthology.org/2026.acl-long.1497/) 则将隐藏身份的概率推断与发言连接，原实验主要控制 Good 阵营。三类任务都能说明**角色的知识、他人信念与表面台词不可等同**，但不是反派演技或自由剧情人物的直接排行榜。
+[SOTOPIA-TOM（COLM 2026）](https://arxiv.org/abs/2605.02307) 扩展到 3–5 个主体、公共/私人消息、共享禁止规则和行动披露。由环境过滤消息比在全局 prompt 中写“你不知道”更易验证权限，但其主要设置是职业合作。相应的 [ToMATO（AAAI 2025）](https://ojs.aaai.org/index.php/AAAI/article/view/32143) 测**旁观者从对话推断**信念和意图，并非被测 NPC 当场据错误信念行动；[GRAIL / Bayesian Social Deduction（RP-106；ACL 2026）](https://aclanthology.org/2026.acl-long.1497/) 则将隐藏身份的概率推断与发言连接，原实验主要控制 Good 阵营。三类任务都能说明**角色的知识、他人信念与表面台词不可等同**，但不是反派演技或自由剧情人物的直接排行榜。
 
 ### 10.3 长期关系的社会证据仍需真正依赖历史
 
@@ -762,7 +762,7 @@ $$
 
 ### 11.4 真实系统怎样连接角色语言与执行反馈
 
-[KRAFTON PUBG Ally 技术报告](https://arxiv.org/abs/2609.29837) 和 [NVIDIA 工程说明](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/) 给出一种可实施分层：玩家语音/游戏事件触发较慢的语言与高层决策，较快的 behavior tree 控制动作，并通过世界状态和跨局记忆影响回复。它说明“说、执行、反馈”如何对接，却主要以队友协作为任务，不能当作完整人格忠实度对照。
+[KRAFTON PUBG Ally 技术报告](https://arxiv.org/abs/2609.29837) 和 [NVIDIA 工程说明](https://developer.nvidia.com/blog/how-krafton-built-pubg-ally-a-co-playable-character-powered-by-nvidia-ace/)（资源索引 IND-04） 给出一种可实施分层：玩家语音/游戏事件触发较慢的语言与高层决策，较快的 behavior tree 控制动作，并通过世界状态和跨局记忆影响回复。它说明“说、执行、反馈”如何对接，却主要以队友协作为任务，不能当作完整人格忠实度对照。
 
 [CriticaLLM（2026 预印本）](https://arxiv.org/abs/2610.21525) 和 [Setting the DC（NeurIPS 2025 Workshop）](https://openreview.net/pdf?id=3Op7kJOvaD) 属简化跑团/工具规则的外围任务：它们帮助理解导演或规则裁判职责，但不在本地图中扩展为战术、战斗或完整游戏通关研究。
 
@@ -874,7 +874,7 @@ RAIDEN 的优势是把不同能力对应到特定对话轮，而不是所有输�
 
 [DMT-RoleBench，AAAI 2025](https://ojs.aaai.org/index.php/AAAI/article/view/34768) 使用 996 个中文 seed，每个包含人物、主题、评价意图和初始问题。访谈生成器根据被测模型的**实际上一轮回答**生成下一轮问题，并决定停止。这是闭环 rollout，区别于预先写好的多轮前缀；名称相近也不意味着它与 RoleLLM 的 RoleBench 是同一数据集。
 
-其 14 个分维度指标由 DMT-RM 判断，再聚合为 DMT-Score。多数维度采用“截至该轮尚未出错”的前缀事件；因此曲线随长度下降，部分是定义带来的累积风险。即使每轮成功概率始终是固定的 $p$，前缀全成功率也会随 $p^t$ 下降，不能单凭该曲线证明每轮能力正在退化。主图的 1—8 轮也不是百轮长程记忆实验。论文报告评审与人工的一致性，但公开仓库目前仍为占位，完整 seeds、judge、提示与评价流程未能实际核验。
+其 14 个分维度指标由 DMT-RM 判断，再聚合为 DMT-Score。多数维度采用“截至该轮尚未出错”的前缀事件；因此曲线随长度下降，部分是定义带来的累积风险。即使每轮成功概率始终是固定的 $p$ ，前缀全成功率也会随 $p^t$ 下降，不能单凭该曲线证明每轮能力正在退化。主图的 1—8 轮也不是百轮长程记忆实验。论文报告评审与人工的一致性，但公开仓库目前仍为占位，完整 seeds、judge、提示与评价流程未能实际核验。
 
 CoSER 的规定情境多角色表演，让目标和对方反应进入评价；DynSess 将片段与会话级偏好用于训练。两者补充了动态交互证据，但它们的 judge、可见 inner thoughts、轮数、历史前缀与角色样本不同。[CoSER](https://proceedings.mlr.press/v267/wang25dk.html) · [DynSess](https://aclanthology.org/2026.findings-emnlp.689/)
 
@@ -947,7 +947,7 @@ CoSER 的规定情境多角色表演，让目标和对方反应进入评价；Dy
 | [Sony CPDC 2025](https://www.aicrowd.com/challenges/commonsense-persona-grounded-dialogue-challenge-2025/problems/task-oriented-dialogue-task-1) | 玩家/NPC 条件下函数选择与角色话语 | 有公开 starter kit，官方测试保密；动作函数无返回 |
 | [CFSM](https://proceedings.iclr.cc/paper_files/paper/2026/hash/a862f5788fd09bb6843c694d8120d50c-Abstract-Conference.html) | 经历事件后角色状态能否合理转移及影响选择 | 合成 FSM 和 Fandom NLI；不测完整引擎执行 |
 | [NCP-Bench](https://proceedings.mlr.press/v306/ma26ap.html) | 玩家干扰下叙事事实和承诺能否保持 | narrator-agent 闭环；判分涉及模型审计，不是单 NPC 人物真值 |
-| [GRAIL / Avalon](https://aclanthology.org/2026.acl-long.1497/) | 基于私有信息更新其他角色身份信念并作交互选择 | 仅扮演 Good 阵营，胜率不等于角色表演质量 |
+| [GRAIL / Bayesian Social Deduction（RP-106）](https://aclanthology.org/2026.acl-long.1497/) | 基于私有信息更新其他角色身份信念并作交互选择 | 仅扮演 Good 阵营，胜率不等于角色表演质量 |
 | [Quest of Aivengarde](https://portal.findresearcher.sdu.dk/en/publications/quest-of-aivengarde-comparative-study-of-player-experience-across/) | 玩家感受到的对话自然度、参与度和能动性 | 64 人游戏体验研究；不能代替大规模人物一致性检测 |
 
 这些资源的正式发表状态、公开子集、代码、权重和访问条件见 [资源地图](docs/RESOURCE_ATLAS.md)。**游戏里的任务结果可以作为状态真值，却不能自动提供唯一的人设真值**：守卫拒绝玩家可能是任务失败，也可能是最忠实的人物行为。
