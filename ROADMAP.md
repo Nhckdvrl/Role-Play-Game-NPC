@@ -620,29 +620,96 @@ SubtleMemory 的价值尤其在于使用同一个回答模型与不同记忆条�
 
 该工作的组合特质结果还提示评价风险：自动评分和人类对组合逼真度的排序可能不同。公开 τ-Trait 环境也不等于整个特质提取和服务栈离线开放，默认用户模拟依赖外部 STEER API。连续调节激活在技术上有明确对象，但“旋钮强度”与心理量表尺度、持久行为变化或其他能力是否独立，仍是不同层面的证据。
 
-### 9.3 文本、参数、激活与外部状态各控制什么
+### 9.3 人格控制发生在哪里：八种不同的介入位置
 
-| 控制位置 | 能直接改变的内容 | 常见可比 baseline |
+| 控制位置 | 实际改变的对象 | 对应工作与可比 baseline | 直接需要观察的副作用 |
+| --- | --- | --- | --- |
+| 文本人设 / 证据 | 可见 profile、场景、角色已知事实 | 短/全 profile、RAG、APC、MRPrompt、完整/删字段对照 | 人物信息量、冗长、提示遗失与知识越界 |
+| 参数 / LoRA | 不同输入上的条件化策略 | Character-LLM、Neeko、SFT、DPO、共享/角色专属 adapter | 新角色泛化、其他能力遗忘、推理/显存 |
+| 残差流激活 | 某层、某位置的隐状态方向与强度 | CAA/ActAdd、PERSONA、TraitBasis；同强度/层的无干预对照 | 目标特质纯度、通用语言与推理退化 |
+| 注意力头 / 神经元 | 特定头、FFN 单元或结构 | PAS（注意力头）、NPTI（FFN 神经元） | 对应特质以外的指令和知识能力 |
+| SAE 特征 | 稀疏潜变量的选择和路由 | CV-SAE、对比残差 steering、无特征掩码 | facet 泄漏、潜变量稳定性及解码误差 |
+| 解码分布 | 候选 token 的条件概率 | PDD、FACD、固定重要性权重、去人设条件对照 | 每 token 额外计算、分布扭曲、重复和流畅性 |
+| Transformer 架构 | 自我角色、其他主体条件的表征与融合 | KSKT、普通 attention、同预算 SFT | 不同训练数据/模型结构之间的公平性 |
+| 外部状态 / 记忆 | 当前情绪、关系、承诺、角色弧线和可见事件 | CFSM、MECoT、PsyMem、DualMem、完整上下文和 oracle 记忆 | 状态写入是否准确、延迟更新、过期信息 |
+
+“training-free”只表示不更新底座模型参数，**不表示无需构造对比样本、调用额外模型、估计多个条件分布或承担推理成本**。同样，“更好控制 Big Five 分数”并不能直接推出开放剧情中的人物可信度和长期稳定关系。
+
+### 9.4 PERSONA：从对比残差向量到情境组合
+
+[PERSONA，ICLR 2026](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) 的 Persona-Base 在正负人格条件输入上抽取隐藏层均值差；以特质 $j$、层 $\ell$ 表示一个方向：
+
+$$
+v_{\ell,j}=
+\mathbb E_{x\sim D_j^+}[h_\ell(x)]
+-\mathbb E_{x\sim D_j^-}[h_\ell(x)].
+$$
+
+Persona-Algebra 在残差流施加向量加减与强度缩放；Persona-Flow 根据当前场景预测 OCEAN 的系数，并合成当前需要的方向。其主要介入形式可抽象为：
+
+$$
+h'_\ell=h_\ell+\sum_{j\in\mathcal J(c)}
+\alpha_j(c)\,v_{\ell,j},
+$$
+
+其中 $\mathcal J(c)$ 是由情境选择的特质集合，$\alpha_j$ 允许表达强弱和正负方向。论文进一步用约正交分析和特质强度相关性检验这些算术操作能否转为输出行为。在其 PersonalityBench 评价中，PERSONA 均分 9.60，接近相同实验设置的 SFT 9.61；Persona-Evolve 则测试多轮情境变化。两组结果支持**可提取和组合的表现方向**，不是心理学特质已严格独立的定理；人格维度相关和 steering 强度引发的副作用仍要单独测。[作者实现](https://github.com/xcfcode/persona)确有方向提取、组合、对话评价和相关脚本。
+
+### 9.5 PDD：人设属性的重要性由当前问题决定
+
+[Persona Dynamic Decoding（PDD，ICLR 2026）](https://arxiv.org/abs/2603.01438) 不修改激活，而是估计“如果不告诉模型这条人物属性，当前预期回复的概率会变化多少”。设完整条件 $T=(C,P,x)$，人设属性为 $w_i\in P$，移除该属性后的输入为 $T_i=T\setminus\{w_i\}$；由模型自身生成参考 $G$，定义可计算的条件重要性代理：
+
+$$
+\widehat I_i=\log
+\frac{P_\theta(G\mid T)}
+     {P_\theta(G\mid T_i)}.
+$$
+
+它借鉴条件互信息的直觉，但**单条自身生成回答的对数似然比不是完整输出分布上的精确互信息，也不是经人工证明的心理学显著性标签**。如果生成器本身忽略了某属性，这个估计同样可能失真。
+
+接着 PDD 比较完整条件与去属性条件下候选 token 的概率，得到属性相关 log-ratio 奖励 $r_i$，再使奖励向量与重要性向量的方向对齐：
+
+$$
+R_{\mathrm{norm}}(\mathbf r,\widehat{\mathbf I})
+=\frac{\sum_i\widehat I_i r_i}
+       {\|\mathbf r\|_2}.
+$$
+
+由 Cauchy–Schwarz 可知 $R_{\mathrm{norm}}\leq\|\widehat{\mathbf I}\|_2$，正向取等需 $\mathbf r$ 与 $\widehat{\mathbf I}$ 成比例；这**只是对代理奖励的代数性质**，不能证明“保持了真实人物属性的重要性排序”。最终在推理时以候选 token 相关奖励对原分布作指数重加权，形式为：
+
+$$
+p_*(y_t\mid T,y_{<t})
+\propto p_\theta(y_t\mid T,y_{<t})
+\exp\!\left[
+\frac{R_t(y_t;T,y_{<t})}{\beta}
+\right].
+$$
+
+这里明确写出 $R_t$ 需要依赖**候选 token $y_t$**：如果一个因子只依赖固定前缀、对所有候选词恒定，它归一化后会相消，实际上不能改变 token 分布。论文中的简略记号需结合候选词打分过程理解。实际实现往往选取少数高重要性属性控制开销；对多次条件前向的延迟不能因为“不训练”而忽略。
+
+PDD 与 APC 的区别也在作用层次：APC 对完整回答判主动/被动设定，PDD 在解码中施加上下文相关概率约束。两种方法都依赖模型估计，不能以名称中的“importance”直接当成外部人格真值。
+
+### 9.6 CV-SAE、KSKT 与经典前置基线
+
+[Facet-Level Persona Control with Contrastive SAE（2026 预印本）](https://arxiv.org/abs/2602.19157) 不直接叠加完整残差差向量：先在 SAE 特征中识别与特定 Big Five 子维度相关的稀疏支持，再用正负示例的潜特征中心差与掩码构造方向。其操作可以概括为
+
+$$
+v_{\mathrm{facet}}
+=\big(\mu^+_{\mathrm{SAE}}-\mu^-_{\mathrm{SAE}}\big)\odot m,
+$$
+
+随后只在当前情境触发该 facet 时做特征干预或解码。这个式子是方法结构的概括，省略了其原型对比损失、距离损失和 SAE 解码过程，不能误解为论文只算一次均值差。其 30-facet、约 15K 对比样本与条件路由实验的关键问题是**细粒度可控性和跨 facet 泄漏**；官方完整代码、训练语料和 checkpoint 的发布状况仍待核实。
+
+[KSKT：Know Thyself, Know Thy User（ICML 2026）](https://proceedings.mlr.press/v306/sun26at.html) 则选择另一种控制位置：模型内部以 self stream 表征人物身份/价值约束，以 other stream 表征玩家或对话者的意图需求，再以 token 级动态权重融合。概念形式为 $h_t=\alpha_t h_t^{\rm self}+(1-\alpha_t)h_t^{\rm other}$，但真实网络仍涉及各自的 attention、投影和训练配方。这是**改变模型结构和训练**，不能与零参数更新的 PERSONA/PDD 用同一成本口径比较。[作者代码](https://github.com/Sunrich-HT/KSKT)提供双流模块与 smoke test；完整训练数据和模型权重未核实。
+
+上述方法还依赖三类不能省略的前置对照：
+
+| 前置方法 | 介入对象 | 评价的必要区别 |
 | --- | --- | --- |
-| 提示与检索 | 人物描述、示例、当前可见知识 | 名字提示、完整 profile、相关资料检索、同预算示例 |
-| 模型参数与 adapter | 多场景中较稳定的条件响应倾向 | 同底座 SFT、每角色 LoRA、共享 LoRA、动态路由 |
-| 解码分布与激活 | 当前生成的属性倾向或被压制条件 | 无干预、提示对照、不同强度/位置、属性移除对照 |
-| 外部角色状态 | 情绪、信任、目标、承诺和阶段 | 无状态、固定状态、完整状态、状态更新机制对照 |
-| 记忆策略 | 哪些经历会被想起和如何解释 | 相似度检索、时间检索、事实/洞察分离、oracle 记忆 |
+| [NPTI / PersonalityBench（ICLR 2025）](https://github.com/RUCAIBox/NPTI) | 通过约 18 万人格样本识别 FFN 神经元，再干预人格倾向 | **18 万主要是识别数据**，不是全部测试题；评价约 450 个问题 |
+| [PAS（ICLR 2025）](https://proceedings.iclr.cc/paper_files/paper/2025/file/25203d1cc8c58381eab578f4fcf9c4f8-Paper-Conference.pdf) | 搜索人格相关 attention head 和控制方向 | 不是 SAE，头级控制与残差 steering 需要统一强度/层级比较 |
+| [DPR（CogSci 2026）](https://arxiv.org/abs/2604.11048) | 比较人格干预对指令、推理等非目标任务的影响，再进行任务路由 | 性格分提高、MMLU/BBH 等损失属于独立维度，不能只报告目标人格分数 |
 
-这些是文献已经采用或明确对应的比较对象，不构成技术路线推荐。不同控制位置会改变信息量、计算量和持续性，因此不能只比较最终“人设分”而忽略代价与作用范围。
-
-### 9.4 训练免费的人格控制：向量、解码、SAE 和双流架构不能混称
-
-人格并非只能由一个长 profile 或一张每角色 LoRA 保持。[PERSONA: Dynamic and Compositional Inference-Time Personality Control via Activation Vector Algebra（ICLR 2026）](https://proceedings.iclr.cc/paper_files/paper/2026/hash/f66ce276436c4cd151535b03841ac713-Abstract-Conference.html) 从相反人格特质条件下的隐藏状态差异提取方向，通过强度缩放、向量加减及按情境动态加权控制 Big Five 特征，并构造 Persona-Evolve 情境评测。它展示了一定条件下可组合、强弱可调的**行为统计结果**；线性运算规则由向量代数成立，并不表示心理特质在内部表示上必然严格正交、独立或无副作用。[代码](https://github.com/xcfcode/persona)有实际数据生成、steering 和评价文件。
-
-[Enhancing Persona Following at Decoding Time via Dynamic Importance Estimation（PDD，ICLR 2026）](https://arxiv.org/abs/2603.01438) 则不直接改隐藏层，而是估计当前语境中 profile 各属性对生成的相对重要性，并用有条件与去属性条件的 token 概率分布调整解码。相关归一化公式的 Cauchy–Schwarz 等号只刻画其设定的数学目标何时取最大，**不证明真实人物属性的重要性已被客观恢复**。这与 APC 的 active/passive 约束相交，但 APC 侧重检测完整回答的相关性和矛盾，PDD 侧重解码时的条件重加权。
-
-[Facet-Level Persona Control by Trait-Activated Routing with Contrastive SAE（2026 预印本）](https://arxiv.org/abs/2602.19157) 使用 Big Five 的更细 facet、对比样本、SAE 特征选择和情境触发的路由，试图减少多特质 steering 的纠缠。**它才属于真正使用 SAE 的人格控制**；先前 TraitBasis 的激活差向量、PERSONA 的残差向量运算都不能因为能转动特质而被叫作 SAE。其训练语料与评价基准、代码完整性仍需与正式发表工作区分，不能仅据某个 Full-Accuracy 数字宣称全场景人格完全解耦。
-
-[Know Thyself, Know Thy User: Intrinsic Dual-Perspective Reasoning for Role-Playing LLMs（ICML 2026）](https://proceedings.mlr.press/v306/sun26at.html) 把**角色自己的身份条件**与**交互对象的需要**拆成两路表征并在 Transformer 内融合。它直接对应 Role-Play 里“角色有自身世界观，但也必须听懂玩家”的矛盾，属于模型架构而非训练免费 steering。[官方实现](https://github.com/Sunrich-HT/KSKT)已见双流模块、配置与示例运行脚本，完整训练数据和 checkpoint 未核实。
-
-对比这几条方法，最重要的不是按 2026 年的新颖程度排序，而是问它们实际控制的层级：**参数/attention 架构、隐藏层残差、SAE 潜变量、解码 token 分布，以及外部动态状态**。能调节单轮问卷分数，不自动等于在长历史中表现出因果可信的人物成长。
+由此，控制研究可按**介入位置、学习需求、计算开销和下游证据**比较，不必把“人格向量”“角色逻辑代码”“个人记忆系统”误当成同一种人格表示。
 
 <a id="social"></a>
 ## 10. 多智能体社会交互
