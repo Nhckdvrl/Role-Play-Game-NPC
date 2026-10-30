@@ -1,137 +1,123 @@
-# 本地实验 Agent 交接与自主探索清单 (Local Agent Handoff & Exploration Guide)
+# 本地实验 Agent 交接与自主探索指南 (Local Agent Handoff & Exploration Guide)
 
 > [!IMPORTANT]
 > **致本地实验 Agent 的最高行动宪章（Autonomous Research Charter）**：
-> 你不是一个机械执行预设脚本的“代码搬运工”，而是一名拥有充分自主探索空间的 **AI 算法研究员**。
-> 在本项目中，**研究范围与核心科学问题已经收敛锁死**（见 [RESEARCH_IDEAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/RESEARCH_IDEAS.md)），但**具体哪一种推理形式、奖励结构、采样探索策略或表征干预机制最优，故意留白不写死**！
-> 你必须遵循 **“先跑 `E0` 诊断看真实数据现象 $\to$ 定位瓶颈假说（`H1/H2/H3/H4`） $\to$ 提出针对性算法假设 $\to$ 小规模快速试错并查看真实生成台词 $\to$ 迭代优化甚至推翻无效设计”** 的科学闭环。
+> 1. **核心研究主干（绝对不准跑偏！）**：本项目聚焦于 Role-Playing 对话领域最正统、最核心的主干问题——**“人设一致性（Persona Consistency & Character Fidelity）”**：即如何让模型在单轮与多轮角色对话中**死死立住人设（背景事实不违背、性格态度不跑偏、多轮长聊不出戏、不退化回通用 AI 助手、也不沦为只会无脑刷口头禅的复读机）**。
+> 2. **核心技术抓手**：围绕 **强化学习与角色推理（RL & Role `<think>`）** 与 **内部人格探针与表征控制（Persona Probes & Activation Control）** 两条主线展开。
+> 3. **充分的自主探索权**：你是一名拥有独立思考与算法迭代权限的 **AI 研究员**，而不是机械执行死命令的脚本工具。[RESEARCH_IDEAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/RESEARCH_IDEAS.md) 锁定了“解决人设一致性”的科学目标与评测标准，但**具体怎样的 `<think>` 结构、怎样的混合人设奖励、怎样的 RL 采样/优化策略、或怎样的 Probe 监测与激活控制最有效，完全交由你根据实验现象去探索、发现、迭代和优化**！
 
 ---
 
-## 一、 接手必读文档与优先级（Onboarding Checklist）
+## 一、 接手必读文档顺序（Onboarding Checklist）
 
-在编写任何一行实验代码前，请按顺序阅读仓库内的四份核心文档：
+在动手写代码或启动训练前，请务必依次通读仓库内的四份文档：
 
-1. **[RESEARCH_IDEAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/RESEARCH_IDEAS.md)（v1.1 正式收敛版）**：明确我们的核心问题（纯文本多轮角色对话中的 **Sensitivity vs. Stability**）、文献坐标与 `E0 -> E1 -> E2` 框架。**注意：未经用户明确批准，不得擅自更改该文档锁定的研究范围**。
-2. **[DISCUSSION_GUIDELINES.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/DISCUSSION_GUIDELINES.md)**：了解前期讨论中确立的科研纪律（拒绝生造黑话、拒绝遇到问题就往 Loss 里盲目打补丁、强推论路线）。
-3. **[docs/RESOURCE_ATLAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md) & [docs/LITERATURE.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/LITERATURE.md)**：核查 107 项开源数据集、代码、模型权重与本地裁判的真实文件状态与许可证限制。
-4. **[ROADMAP.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/ROADMAP.md)**：重点阅读第 5–7 章（知识边界、人格决策、推理与 RL）、第 9 章（激活与解码控制）及第 14–17 章（评测协议陷阱与跨论文概念区分）。
+1. **[RESEARCH_IDEAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/RESEARCH_IDEAS.md)（v2.0 核心主干校准版）**：掌握我们在“人设一致性”上的三大核心痛点、代表性基线拆解（`HER`、`APC`、`RAR`、`CRPO`、`PERSONA` 等）以及 `E0 -> E1 -> E2` 整体框架。**未经用户明确批准，不得擅自偏离“人设一致性”这一核心主干**。
+2. **[DISCUSSION_GUIDELINES.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/DISCUSSION_GUIDELINES.md)**：遵守科研讨论与实验铁律（拒绝生造玄学黑话、拒绝遇洞就盲目堆砌 Loss 补丁、坚持直白锋利的机制假说）。
+3. **[docs/RESOURCE_ATLAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md) & [docs/LITERATURE.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/LITERATURE.md)**：查阅 107 项开源资源的具体文件路径、数据规模、模型权重与许可证要求。
+4. **[ROADMAP.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/ROADMAP.md)**：重点阅读第 5 章（人设忠实度 `APC` 与知识边界）、第 6 章（人格一致性）、第 7 章（角色推理 `<think>`、奖励模型与 RL）、第 8.9/15.3 节（长对话人设消退 `Persistent Personas`）、第 9 章（`PERSONA` 等激活与解码控制）及第 14 章（评测协议防坑）。
 
 ---
 
-## 二、 什么必须锁死 vs. 什么完全开放供你探索？
+## 二、 锁死的硬护栏 vs. 开放的算法探索空间
 
-为了保证你不偏离跑道、同时拥有最大的算法创新自由度，请严格区分以下边界：
-
-| 维度 | 🔒 必须锁死的硬边界（不可违背） | 🚀 完全开放的自主探索空间（由你根据实验结果决定） |
+| 维度 | 🔒 必须锁死的硬护栏（Guardrails） | 🚀 完全开放的算法探索空间（Your Playground） |
 | :--- | :--- | :--- |
-| **任务形态** | **100% 纯文本、多轮角色扮演对话（Role-Playing Dialogue）**。输入为人设 + 对话历史，输出为（可选 `<think>`）+ 自然角色台词。**严禁**引入外部 3D 游戏引擎、工具函数调用或复杂环境状态机。 | 对话上下文的组织方式、多轮追问/条件切换的具体评测构造、训练样本中单轮与多轮对话的配比。 |
-| **核心能力目标** | 同时提升并平衡：<br>1. **Sensitivity（条件敏感性）**：面对真正触及角色动机、关系或有效新证据的对话，作出恰当反应或合理改变立场；<br>2. **Stability（抗干扰稳定性）**：面对无关恭维、死缠烂打或情绪施压，不盲目迎合；<br>3. **Naturalness（自然对话质量）**：保持生动自然的戏剧对白，不退化为死板拒绝机器。 | 如何将 Sensitivity、Stability 与 Naturalness 转化为具体的训练监督信号、成对采样策略或课程学习阶段。 |
-| **算法与模型设计** | 必须在相同底座、相同自然角色对话数据上进行公平对比（Fair Baseline Control），不把尚未验证的假设当成既定事实，不堆砌超过 2–3 个耦合超参的“缝合怪”公式。 | - **是否需要显式 `<think>`**？什么格式的 `<think>` 最有效？还是隐式无思考更好？<br>- **DPO vs. GRPO vs. 两阶段混合**谁更有效？<br>- **Reward 怎么设计**？如何组合本地 `HER-RM-32B`、Answer-Only Judge 或条件对比评分？<br>- **是否需要引导探索**？如何改进 `A1/A2/A3`？<br>- **Probe / Steering（路线 B）**在哪一层、哪个 Token 位置最具预测力与因果控制力？ |
-| **算力与 API 预算** | 训练循环与高频评测**必须 100% 使用本地开源模型与裁判**；仅允许在极少量离线数据构造/校验时按需调用廉价的 DeepSeek / StepFun (`step5`) API；严禁依赖 `gpt-4o` / Claude 等昂贵 API。 | 如何高效调度日常 **4×A100 / Pro 6000** 节点与周末 **8×H20 (96GB)** 节点，设计最高效的验证与训练流水线。 |
+| **核心任务与主干目标** | **纯文本单轮与多轮角色扮演对话的人设一致性（Persona Consistency）**：<br>1. **设定忠实（Global Faithfulness）**：体现相关设定，绝不违背背景设定（`APC`）；<br>2. **多轮不消退、不出戏（Anti-Fading & Anti-OOC）**：长对话或遇追问/诱导时不退化回通用 AI 助手；<br>3. **自然不脸谱化（Naturalness）**：不靠无脑复读口头禅刷分，不损害基本指令遵循能力（`RoleMRC`）。 | - 怎样定义与度量“浅层口癖模仿”与“深层人设一致”的差距？<br>- 怎样构建最能暴露模型“出戏/崩人设”的多轮压力测试集与训练混合配比？ |
+| **路线 A：RL 与角色推理 `<think>`** | 必须在统一的底座模型与统一的训练数据上设置公平基线（对比 `SFT`、`DPO`、`Vanilla GRPO`、`CRPO`），且训练裁判不能与最终唯一评测裁判完全重合。 | - **思考机制探索**：是否需要 `<think>`？对比无思考、`HER` 式双层思考、`VeriRole` 式设定提取与你设计的**轻量级人设约束自检思考**；<br>- **人设奖励设计**：如何组合细粒度设定判别器（如 `APC` 主动+被动 DeBERTa NLI）与整体角色裁判（如本地 `HER-RM-32B` / 屏蔽独白刷分的 Answer-Only Judge）？<br>- **RL 探索与优化**：当组内 $G$ 次采样全部出戏成通用助手时，如何引导采样探索并稳定更新策略？ |
+| **路线 B：Persona Probes 与表征控制** | 探针实验必须包含严格的**非表征基线对照**（对比直接看文本词面、RM 分数、Token 输出熵），且必须区分相关性与因果性（通过 Activation Patching / Steering 验证）。 | - 在哪一层、哪个 Token 位置（如生成台词前的瓶颈位置）提取“角色表征 vs 默认助手表征”最敏锐？<br>- 能否用 Probe 实时监测多轮对话中的“人设消退（Persona Fading）”并提前预警出戏？<br>- 能否用轻量级激活锚定或表征正则锁住多轮人设一致性？ |
+| **算力与经费约束** | 训练循环与高频调参评测**必须 100% 本地化**（使用本地开源模型与本地裁判），严禁依赖 `gpt-4o`/Claude 等昂贵 API；仅在极少量离线数据预处理时按需使用 DeepSeek / StepFun (`step5`) API。 | 自由调配日常 **4×A100 / Pro 6000** 节点（做 `E0` 诊断、Probe 分析、快速 SFT/DPO/小规模 RL 试错）与周末 **2–3 台 8×H20 (96GB)** 节点（跑 `vLLM` + `EasyR1`/`verl` + 本地 32B/70B 裁判同驻显存的大规模在线 RL）。 |
 
 ---
 
-## 三、 硬件算力调度指南（Daily 4×A100 vs. Weekend 8×H20）
+## 三、 核心基线与工具包大白话速查（直接拉取使用）
 
-1. **日常节点（多台 4×A100 / Pro 6000）——用于快速诊断、小步快跑与机制探测**：
-   - 运行 **阶段 `E0` 诊断实验**（无需训练，直接用 `vLLM` 跑 `Qwen3-8B`、`HER-32B`、`CoSER-8B`、`FACD` 生成候选，并用本地 `HER-RM-32B` / `CharacterJudge` 打分）。
-   - 运行 **路线 `B` 内部表征实验**（提取 7B/8B 模型隐藏层激活、训练 Linear Probe、跑 Activation Patching / Steering）。
-   - 运行 **轻量级算法原型验证**（在数千条精选纯对话样本上快速对比不同形式的 `SFT`、`DPO` 与小规模 `GRPO` 变体，几小时内看清趋势）。
-2. **周末爆发节点（2–3 台 8×H20，单卡 96GB 显存）——用于全量在线 RL 与大规模多轮评测**：
-   - 基于 `EasyR1`（见 `CRPO` 仓库）或 `verl`，在单台 8×H20 节点内同时驻留 **`Qwen3-8B / 14B` 策略模型 + 本地 `HER-RM-32B`（或 `Qwen3-32B/72B` Answer-Only Judge）**，实现高吞吐在线 GRPO Rollout 与策略更新。
-   - 批量运行 `CoSER`、`CharacterBench`、`RoleMRC` 与多轮追问的完整评测矩阵。
+为了让实验迅速启动，以下是与**人设一致性**最直接相关的现货开源工具包（全部在 [docs/RESOURCE_ATLAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md) 中实查确认）：
+
+1. **`HER` 全套资产 (`RP-025`, ACL 2026 Findings)** —— *双层思考 + 32B 角色奖励模型*
+   - **是什么**：用 `<system_thinking>`（导演规划）+ `<role_thinking>`（角色内心独白）配合 32B 生成式角色奖励模型做 RL，专门提升多轮角色对话一致性。
+   - **怎么用**：
+     - 代码：`https://github.com/cydu24/HER`
+     - 数据集：`https://huggingface.co/datasets/ChengyuDu0123/HER-Dataset`（含单轮与多轮角色对话）
+     - 对话模型与**本地 32B 裁判权重**：`https://huggingface.co/ChengyuDu0123/HER-32B` 与 **`https://huggingface.co/ChengyuDu0123/HER-RM-32B`**（强烈推荐把 `HER-RM-32B` 部署在本地作为零 API 成本的角色一致性打分器与研究对象！）。
+2. **`APC` 全套资产 (`RP-017`, NeurIPS 2024)** —— *主动/被动细粒度人设忠实度判别器*
+   - **是什么**：将人设拆成原子设定，用两个本地 `DeBERTa-v3-large` 分别计算“当前该体现的主动设定有没有体现”和“其他背景被动设定有没有被顺嘴违背”。
+   - **怎么用**：
+     - 代码：`https://github.com/KomeijiForce/Active_Passive_Constraint_Koishiday_2024`
+     - 两个现成 DeBERTa 权重：`https://huggingface.co/KomeijiForce/deberta-v3-large-relevance-12character` 与 `https://huggingface.co/KomeijiForce/deberta-v3-large-nli-12character`（极轻量，可直接接入 RL 奖励或离线评测！）。
+3. **`CRPO` (`RP-039`, ICML 2026) & `MOA` (`RP-040`, ACL 2026)** —— *角色 RL (GRPO) 训练框架*
+   - **是什么**：`CRPO` 提供基于 `EasyR1` 的 Qwen3-8B 角色 GRPO 训练代码（含角色级与问题级双流优势归一化）；`MOA` 提供在 `RoleMRC` 上兼顾人设风格与指令遵循的多目标 RL 代码。
+   - **怎么用**：`https://github.com/Toyhom/CRPO` 与 `https://github.com/ChonghuaLiao/MOA`。
+4. **`PERSONA` (`RP-068`, ICLR 2026) & `Roleplay Belief Probes` (`RP-032`)** —— *内部人格探针与激活控制*
+   - **是什么**：提取隐藏层人设方向向量、训练线性探针（Linear Probe）、进行残差流激活干预（Activation Steering）以及多轮追问质询测试的现成代码库。
+   - **怎么用**：`https://github.com/xcfcode/persona` 与 `https://github.com/BenSturgeon/persona-belief-probes-submission`。
+5. **主流人设一致性评测基准与辅助数据**：
+   - **`CharacterBench` (`RP-087`)**：`https://github.com/thu-coai/CharacterBench`（22,859 样本、11 维度，含本地裁判模型 **[CharacterJudge](https://huggingface.co/thu-coai/CharacterJudge)**）。
+   - **`CoSER` (`RP-013`)**：`https://github.com/Neph0s/CoSER`（多轮小说角色情境对话基准与 `CoSER-8B/70B` 权重）。
+   - **`RoleMRC` (`RP-021`)**：`https://github.com/LuJunru/RoleMRC`（37.9k 训练 + 1.4k 测试，测人设保持与多级指令遵循）。
+   - **`Persistent Personas?` (`RP-061`)**：`https://github.com/peluz/persistent-personas`（测 100+ 轮长对话中的人设消退 Persona Fading）。
+   - **`ProfileAxes / FACD` (`RP-016`)**：`https://github.com/yonghyun010102/RPA_Bottleneck`（211 个结构化人设 + 训练免费字段对比解码基线）。
+   - **`RAR` (`RP-024`) & `VeriRole` (`RP-027`)**：`https://huggingface.co/datasets/Toyhom/thinking_in_character_datas` 与 `https://github.com/FrontierLabs/VeriRole`（角色思考与 `<hint>` 训练 JSON）。
+   - **`Too Nice to Tell the Truth` (`RP-036`) & `RoleCDE` (`RP-080`)**：测用户诱导或价值冲突下模型是否崩人设变回讨好型助手。
 
 ---
 
-## 四、 实验推进路线图与自主决策树（`E0 -> E1 -> E2` Playbook）
+## 四、 自主实验探索工作流（`E0 -> E1 -> E2` 决策树）
 
-请按以下阶段推进，并在每个阶段结束时将定量表格、定性案例（**必须人工/Agent 抽检真实生成的对话文本！**）及下一步算法决策记录到实验日志（建议新建 `EXPERIMENTS_LOG.md`）中：
+请按以下闭环推进，并在仓库中创建和持续更新实验日志（如 `EXPERIMENTS_LOG.md`），用真实实验证据决定每一步的算法走向：
 
 ```mermaid
 flowchart TD
-    Start["启动：准备四情境/配对条件纯对话诊断集"] --> E0["阶段 E0：零训练归因诊断<br/>(测 Base / Role-SFT / HER / CRPO / FACD + 本地 RM)"]
-    E0 --> H1{"H1：模型没认出<br/>哪些条件与角色动机相关？"}
-    E0 --> H2{"H2：模型懂条件，但 G 次采样<br/>立场坍缩（全顺从或全死板拒绝）？"}
-    E0 --> H3{"H3：采样中有好回应，<br/>但被 RM 排在华丽独白/讨好回复之后？"}
-    E0 --> H4{"H4：单点都对，但训练后<br/>难以兼顾 Sensitivity & Stability 或跨场景泛化？"}
+    Start["启动：锁定纯文本角色对话【人设一致性】主干"] --> E0["阶段 E0：人设崩塌与出戏归因诊断 (日常 4xA100)<br/>测 Qwen3-8B / HER-32B / CoSER-8B / FACD"]
+    E0 --> D1{"痛点 A：细粒度设定违背？<br/>(漏掉主动设定 / 冲撞被动设定 APC)"}
+    E0 --> D2{"痛点 B：长对话或追问下出戏？<br/>(Persona Fading / 回退成通用讨好助手)"}
+    E0 --> D3{"痛点 C：RL 裁判偏差与思考脱节？<br/>(HER-RM 被华丽独白/口头禅刷分，未罚出戏)"}
+    E0 --> D4{"痛点 D：内部人设表征何时衰减？<br/>(用 Probe 观测残差流人设方向 vs 助手轴)"}
 
-    H1 -->|显著| Act1["主攻 A1：角色条件相关性推理<br/>对比 NoThink / Generic CoT / 独白 / 动机相关性推理"]
-    H2 -->|显著| Act2["主攻 A1 推理扩探索 或 A2/A3 引导采样<br/>测试何种中间表示或条件引导能打破组内坍缩"]
-    H3 -->|显著| Act3["主攻 A2：裁判改造与立场解耦奖励<br/>屏蔽独白刷分、构建条件敏感的 Answer-Only / 成对评分"]
-    H4 -->|显著| Act4["主攻 A2：成对条件一致性优化<br/>同数据对比 Natural-DPO vs Condition-Aware RL"]
+    D1 & D2 & D3 --> RouteA["主线 A 探索：RL + <think> 人设一致性后训练<br/>1. 探索真正锚定设定的轻量 <think><br/>2. 组合细粒度设定约束 (APC) + 去偏角色裁判 (Answer-Only / HER-RM)<br/>3. 解决多轮/追问下的组内出戏采样坍缩"]
+    D2 & D4 --> RouteB["主线 B 探索：Persona Probe 诊断与防漂移控制<br/>1. 用 Probe 量化 SFT/DPO/RL 前后的人设表征稳固度<br/>2. 预测下一轮追问出戏风险 (对比文本/RM/熵基线)<br/>3. 探索激活空间防漂移锚定或引导探索"]
 
-    Act1 & Act2 & Act3 & Act4 --> E1["阶段 E1：两阶段公平对比与算法迭代<br/>(Group 1 既有系统对比 + Group 2 同底座同数据严格算法对比)"]
-    E1 --> E2["阶段 E2：三层能力评测 + 路线 B 内部表征探针与因果干预"]
+    RouteA & RouteB --> E1["阶段 E1：同底座同数据公平消融 + 系统横评<br/>迭代并收敛最干净、最有效的核心算法"]
+    E1 --> E2["阶段 E2：主流人设一致性 Benchmark 全面验证<br/>(CharacterBench / APC / CoSER / Persistent Personas / RoleMRC)"]
 ```
 
-### 第一步：构建并运行 `E0` 归因诊断（最高优先级，绝不跳过）
-1. **构建高信噪比的四情境纯对话诊断集（基于现成数据改造与组合）**：
-   - 复用 [RoleCDE (`RP-080`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L116)（公开的 986 个角色 JSON）、[Too Nice to Tell the Truth (`RP-036`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L52)、[ProfileAxes / FACD (`RP-016`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L27)（211 个结构化角色）以及 [CoSER (`RP-013`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L24) / [CDT (`RP-064`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L95) 中的角色与场景。
-   - 针对同一角色，组织四类对照对话输入：
-     1. **普通无关请求（Baseline Request）**；
-     2. **无关恭维/情绪施压（Irrelevant Pressure — 测 Stability）**：不提供角色真正关心的理由，仅靠拍马屁、卖惨或强硬命令要求角色妥协；
-     3. **核心动机/关系触发（Motive/Relationship Trigger — 测 Sensitivity）**：触及角色的核心价值观、好胜心、私利或亲密关系，使角色有充分的性格依据去合作或改变态度；
-     4. **有效新证据/多轮延续（Valid Evidence Continuation — 测 Multi-Turn Sensitivity）**：在多轮对话中提供符合逻辑的新证据或澄清。
-2. **在 `E0` 中必须回答的四个诊断问题**：
-   - **Q0.1（训练免费方法够不够？）**：运行普通 Prompting 与 `FACD` (`RP-016`) 类对比解码。推理期放大角色属性后，模型是“既能抗住无关施压、又能在动机触发时合理合作”，还是“一味变得更极端/更爱拒绝（损毁 Sensitivity）”？
-   - **Q0.2（`H1` vs `H2`：是没看懂条件，还是生成坍缩？）**：对每个情境采样 $G=8\sim 16$ 条回复，统计组内**有效立场覆盖率（Effective Stance Coverage）**。如果模型在直接问答时能判断“情境 2 不该答应、情境 3 应该感兴趣”，但自由采样 8 次全是顺从（或全是拒绝），则证实 `H2`（探索/生成瓶颈）。
-   - **Q0.3（`<think>` 的真实作用是什么？）**：对比 `NoThink`、`Generic CoT`、`HER 式第一人称独白` 与 `动机相关性分析` 下的采样立场分布。同时测试修改 `<think>` 内容对最终台词的影响（注意区分“模型自发生成的推理”与“外部强插前缀充当指令”的差异）。
-   - **Q0.4（`H3`：现有 RM 到底在奖励什么？）**：用本地 `HER-RM-32B`、`CharacterJudge` 以及独立配置的 **Answer-Only Judge（仅看角色条件与最终台词，不看 `<think>`）** 对 `2×2` 候选（立场恰当 vs 立场错误 $\times$ 华丽心理独白/口头禅 vs 简洁自然表达）打分，量化现有 RM 的偏好偏差。
+### 阶段 `E0`：先做高信息量的人设崩塌诊断（日常 4×A100，无需重训模型）
+在动手改 RL 算法前，先拿现成的 `Qwen3-8B`、`HER-32B`、`CoSER-8B` 以及推理期对比解码 `FACD`，跑一组干净的诊断实验，回答四个具体问题：
+1. **模型到底是怎么“崩人设/出戏”的？**
+   - 在 **单轮细粒度设定测试（`APC`）**、**多轮长对话（`CoSER` / `Persistent Personas` 不同轮次前缀）** 以及 **用户追问/反驳施压（`Roleplay Belief Probes` / `Too Nice`）** 三种场景下，统计模型失分的具体比例：是因为忘了设定、顺嘴违背了被动设定、还是在多轮对话/追问后语气和态度退化成了通用 AI 助手？
+2. **现有的 `<think>` 和本地裁判（`HER-RM-32B`、`CharacterJudge`）有没有漏洞？**
+   - 测试当候选回复的 `<role_thinking>` 写得充满角色感情、但外显台词其实已经出戏或违背人设设定时，`HER-RM-32B` 会不会给高分？如果把 `<role_thinking>` 屏蔽（只看最终台词，即 Answer-Only）并结合 `APC` 的主被动设定判别器，能否更准地抓出“假入戏、真出戏”的样本？
+3. **在容易出戏的轮次上，GRPO 采样 $G=8$ 条回复时有没有“全员出戏”现象？**
+   - 检查在长对话第 15–30 轮或用户强力追问时，模型自由采样的 8 条候选里是否还有保持人设的好样本？如果 8 条全出戏成了通用助手，说明需要通过人设锚定 `<think>`、上下文提示或激活方向微扰来帮 RL 找回人设样本。
+4. **内部表征（Persona Probe）能看到什么？**
+   - 用 `PERSONA` (`RP-068`) 和 `Roleplay Belief Probes` (`RP-032`) 的方法提取残差流中的“角色表征方向”与“通用助手方向”，画一条**随对话轮数增加（或遭遇用户追问时）内部人设表征强度的衰减曲线**——看看模型是不是在台词彻底崩掉之前，内部表征就已经先滑向通用助手了！
 
-### 第二步：在 `E1` 中开展算法探索与双组公平对比
-根据 `E0` 的结果，你有充分的自由度去设计和迭代训练机制（无论是改进推理监督 `A1`、成对条件奖励/优化 `A2`，还是带 Off-Policy 修正的引导探索 `A3`）：
-- **铁律 1（双组对比协议）**：
-  - **Group 1（既有系统对照）**：直接评测官方公开或复现的 `HER`、`CRPO`、`RoleCDE-SFT/DPO`、`FACD` 等系统，展示现有工作在 Sensitivity × Stability × Naturalness 上的表现边界。
-  - **Group 2（同底座、同自然对话数据的严格算法消融）**：固定同一个底座（如 `Qwen3-8B`）和同一份自然角色对话训练集，严格对比：
-    - `Natural-Dialogue SFT`
-    - `Natural-Dialogue DPO`（含单条件偏好 vs 成对条件偏好）
-    - `Standard GRPO` / `CRPO`
-    - **你迭代出的新方法（Your Method）**
-- **铁律 2（勇于接受简洁有效的结论）**：
-  - 如果实验发现经过精心设计的成对条件 `Natural-Dialogue DPO` 或简单的 `Stance-Grounded Answer-Only GRPO` 已经显著击败复杂方案，**请如实保留并深入分析为什么它有效、在什么边界下失效**，绝不要为了追求表面复杂度而硬塞无效模块！
-- **铁律 3（跨条件训练防坑）**：
-  - 当使用同一角色的配对条件 $(c^+, c^-)$ 训练时，不要把不同条件的 rollout 直接混进同一个 GRPO group 算均值和方差（因为不同条件的固有难度和基础分不同，混算会导致错误惩罚）；你可以探索组内各自归一化后再加跨条件一致性约束、成对轨迹对比更新等更合理的数学形式。
+### 阶段 `E1`：自主迭代算法与严格公平对比（日常 4×A100 原型 $\to$ 周末 8×H20 放大）
+根据 `E0` 的真实发现，你可以自由探索并打磨最具穿透力的创新方案（切忌堆砌冗杂模块，追求**问题准、机制净、效果硬**）：
+- **你可以在主线 A（RL + `<think>`）上探索的方向包括但不限于**：
+  - **去偏的全局人设混合奖励（Global Persona Faithfulness Reward）**：例如将 `APC` 的细粒度主被动设定约束（既奖励主动体现相关设定，又严惩违背被动设定）与屏蔽独白刷分的角色表现裁判（`HER-RM-32B` / `CharacterJudge` Answer-Only）结合，防止 RL 只学会刷表面口头禅。
+  - **真正防出戏的 `<think>` 机制**：对比在多轮对话中何时及如何用简短 `<think>` 锚定核心人设，避免冗长通用推理导致注意力偏离人设（`RAR` / `RP-029`）。
+  - **多轮抗消退训练**：在多轮对话的中后段前缀（容易发生 Persona Fading 的位置）采样并做 DPO / GRPO 强化，专门攻克多轮长聊出戏顽疾。
+- **你可以在主线 B（Persona Probe & 表征控制）上探索的方向包括但不限于**：
+  - 用 Probe 作为**训练前后的人设表征稳固度显微镜**：对比 `Base`、`SFT`、`DPO`、`CRPO`、`HER` 与你的新 RL 方法，证明你的方法不仅提高了外显跑分，更在内部残差流上抑制了多轮对话向通用助手的漂移。
+  - 探索**基于 Probe 的出戏预警与防漂移控制**：当 Probe 检测到长对话中角色表征强度跌破阈值时，触发轻量级激活校准或人设重锚定；或者在训练期利用人设表征方向辅助探索（若在 RL Rollout 中使用激活引导，务必参考 `ASE` `arXiv:2610.27012` / `EDGE` 处理 Off-Policy 分布权重问题）。
 
-### 第三步：在 `E2` 与路线 `B` 中完成泛化验证与内部机制闭环
-1. **三层评测（Structured $\to$ Open-Ended $\to$ Multi-Turn）**：
-   - 除了受控的四情境 Sensitivity / Stability 评测外，必须在未参与训练的新角色与开放式基准（**[CoSER (`RP-013`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L24)**、**[CharacterBench (`RP-087`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L123)**、**[RoleMRC (`RP-021`)](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md#L32)**）上评测自然度与综合角色表现，证明方法没有牺牲戏剧张力或指令遵循能力。
-2. **路线 `B`（Probe 与 Activation Patching 机制研究）**：
-   - 在模型处理完当前轮输入（及 `<think>`）、即将生成角色台词的瓶颈 Token 位置提取各层隐藏状态：
-     - 检验内部表征如何编码“当前玩家话语与角色动机的相关性”，以及训练前后（Base vs SFT vs DPO vs RL）该表征路由发生了什么变化。
-     - 检验该表征能否预测模型在下一轮追问下的立场稳定性，并且**必须与非表征基线（直接基于首轮台词文本、RM 分数、Token 输出熵的预测器）做严格对比**。
-     - 通过 Activation Patching / Steering（参考 `PERSONA` `RP-068` 与 `Roleplay Belief Probes` `RP-032` 代码），验证干预该内部表征是否能因果性地改变模型的条件反应。
+### 阶段 `E2`：在主流人设一致性 Benchmark 上全面交卷
+所有最终模型必须在领域公认的**人设一致性标准测试集**上完成系统对比：
+- **核心必测基准**：
+  1. `CharacterBench` (`RP-087`, 11 维角色能力与人设一致性，使用本地 `CharacterJudge`)；
+  2. `APC` (`RP-017`, 主动设定体现率、被动设定不违背率与 $\Delta V_{\mathrm{APC}}$)；
+  3. `CoSER` (`RP-013`, 多轮剧情角色对话表现)；
+  4. `Persistent Personas` (`RP-061`) & `Roleplay Belief Probes` (`RP-032`) / `Too Nice` (`RP-036`)（长轮次与追问施压下的人设保持率）；
+  5. `RoleMRC` (`RP-021`, 验证提升人设一致性时未破坏基础指令遵循能力)。
 
 ---
 
-## 五、 核心开源资产快速索引与避坑铁律
+## 五、 实验红线与科研纪律（六条铁律）
 
-### 1. 优先拉取的现货代码、数据与权重
-- **本地奖励模型与评测裁判**：
-  - `HER-RM-32B` (`RP-025`)：`https://huggingface.co/ChengyuDu0123/HER-RM-32B`（配套代码：`https://github.com/cydu24/HER`）
-  - `CharacterBench` & `CharacterJudge` (`RP-087`)：`https://github.com/thu-coai/CharacterBench` & `https://huggingface.co/thu-coai/CharacterJudge`
-  - `APC` 相关性与 NLI 判别器 (`RP-017`)：`https://github.com/KomeijiForce/Active_Passive_Constraint_Koishiday_2024`
-- **RL / 后训练与解码基线仓库**：
-  - `CRPO` (`RP-039`, `EasyR1` 8 卡 GRPO)：`https://github.com/Toyhom/CRPO`
-  - `MOA` (`RP-040`, 多目标 RL/SFT)：`https://github.com/ChonghuaLiao/MOA`
-  - `RoleCDE` (`RP-080`, 冲突困境数据与 SFT/DPO 脚本)：`https://github.com/rabbitrose/RoleCDE`
-  - `ProfileAxes / FACD` (`RP-016`, 211 profiles + 对比解码实现)：`https://github.com/yonghyun010102/RPA_Bottleneck`
-- **纯对话与推理数据集**：
-  - `HER-Dataset` (`RP-025`)：`https://huggingface.co/datasets/ChengyuDu0123/HER-Dataset`
-  - `CoSER` (`RP-013`)：`https://github.com/Neph0s/CoSER` & `https://huggingface.co/datasets/Neph0s/CoSER`
-  - `RoleMRC` (`RP-021`)：`https://github.com/LuJunru/RoleMRC` & `https://huggingface.co/datasets/Junrulu/RoleMRC`
-  - `Too Nice to Tell the Truth` (`RP-036`)：`https://github.com/aryashah2k/Quantifying-Agreeableness-Driven-Sycophancy-in-Role-Playing-Language-Models`
-  - `RAR` (`RP-024`)：`https://huggingface.co/datasets/Toyhom/thinking_in_character_datas`
-  - `VeriRole` (`RP-027`)：`https://github.com/FrontierLabs/VeriRole` (`VeriRole_train_v1.json`)
-  - `CDT` (`RP-064`)：`https://github.com/KomeijiForce/Codified_Decision_Tree`
-- **探针与激活干预仓库**：
-  - `PERSONA` (`RP-068`)：`https://github.com/xcfcode/persona`
-  - `Roleplay Belief Probes` (`RP-032`)：`https://github.com/BenSturgeon/persona-belief-probes-submission`
-
-### 2. 绝对禁止踩的六个坑（Red Lines）
-1. ❌ **严禁只看标量均分不看生成文本**：每次跑完消融或 RL checkpoint，必须抽样打印真实生成的 `<think>` 与台词，检查是否存在复读机、过度演戏（Flanderization）、格式投机或答非所问。
-2. ❌ **严禁优化与最终评测共用唯一裁判**：如果训练时用 `HER-RM-32B`（或其变体）作为在线 Reward，评测时必须同时报告独立裁判（如 `CharacterJudge`、独立 Answer-Only Judge、受控条件准确率及 `APC` NLI）的结果。
-3. ❌ **严禁跨轮隐藏状态谬误**：在路线 `B` 中，标准自回归多轮对话通过文本历史（及对应 Token KV）传递信息，不要假设单位置隐藏向量 $h_t$ 在不改变输出文本的情况下能脱离序列独立跨轮传递。
-4. ❌ **严禁违反数据许可或污染测试集**：严禁将测试角色/测试对话混入训练集；严禁拿 `ToMATO` (`RP-035`) 做 SFT 微调。
-5. ❌ **严禁误用辅助分类器**：`CDT` 的 `deberta-v3-base-check-scene` 仅用于判断场景条件是否触发，绝不能当作最终角色回复的质量评分器。
-6. ❌ **严禁死磕无效预设**：如果实验数据明确证伪了某个候选想法，立即在实验日志中记录该反面发现并转向更有希望的分支——**一个干净、扎实、经得起推敲的真发现，远胜过十个靠拼凑模块强行刷分的花架子！**
+1. **永远围绕“人设一致性”核心主干**：任何实验和改进都要回答“这是否让角色在单轮和多轮对话里人设更稳、更忠实、更不容易出戏？”，绝不偏离到无关任务。
+2. **定量必配定性检查**：每跑出一个模型或消融结果，必须抽样打印 10–20 条真实的多轮对话生成结果（含 `<think>` 和台词），亲眼检查模型是真正自然地保持了人设，还是变成了只会复读口头禅的复读机。
+3. **训练裁判与评测裁判交叉验证**：若训练时使用了某个本地 RM（如 `HER-RM-32B` 或 `APC` DeBERTa），最终评测必须同时报告其他独立指标（如 `CharacterJudge`、`CoSER` 评测、`RoleMRC` 等），防止单一裁判过拟合。
+4. **同底座、同数据公平消融**：除对比公开的模型权重（如 `HER-32B`、`CoSER-8B`）外，核心算法消融必须在同一底座（如 `Qwen3-8B`）和相同训练数据上对比 `SFT`、`DPO`、`Vanilla GRPO`、`CRPO` 与你的新方法。
+5. **严守数据集许可与防泄漏**：严禁把测试集角色或对话混入训练；`ToMATO` (`RP-035`) 仅限评测严禁 SFT；`CDT` 的 `deberta-v3-base-check-scene` 仅判场景条件触发，不可当最终回复质量裁判。
+6. **尊重实验事实，大胆迭代**：如果某个设想在 `E0/E1` 小规模实验中被证伪，立即记录原因并切换到真正涨点、机制干净的方向！
