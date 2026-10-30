@@ -4,7 +4,8 @@
 > **核心定位与文档维护准则**：
 > 1. **彻底锚定核心主干**：本课题旗帜鲜明地聚焦于 Role-Playing Language Agents (RPLA) 最核心、最正统的主干问题——**纯文本角色对话中的“人设一致性（Persona Consistency & Character Fidelity）”**（即如何让模型在单轮与多轮对话中真正立住人设：背景事实不违背、性格态度不跑偏、多轮长聊不出戏、不沦为只会刷表面口头禅或讨好用户的通用 AI 助手）。
 > 2. **核心技术视角**：围绕 **强化学习与角色推理（RL & Role-Aware `<think>`）** 以及 **内部人格探针与表征控制（Persona Probes & Activation Control）** 两条紧密协同的技术路线展开。
-> 3. **受控维护与开放探索**：未经用户明确批准，不得擅自偏离本文档确立的“人设一致性”核心主题（参见 [DISCUSSION_GUIDELINES.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/DISCUSSION_GUIDELINES.md)）。同时，具体算法细节不预设立场，交由本地实验 Agent 根据 `E0` 诊断现象自主探索、迭代与优化（详见 [AGENT_HANDOFF.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/AGENT_HANDOFF.md)）。
+> 3. **定死大方向，放开具体探索（拒绝事无巨细的预设幻想）**：本文档的作用是**彻底定下大题目、梳理清楚可用的数据与 Baseline、提供核心思考方向与初步实验思路**。科研实验充满不确定性，绝不幻想一套预先写死的方案能一口气顺顺利利跑到最后。除大题目外，文档中提到的具体思考格式、奖励组合、数据配比、探针层位与初步实验设计**均为启发式参考起点**，本地实验 Agent 拥有充分的探究空间去尝试、推翻、调整和迭代（详见 [AGENT_HANDOFF.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/AGENT_HANDOFF.md)）。
+> 4. **受控维护**：未经用户明确批准，不得擅自修改本文档确立的核心主题（参见 [DISCUSSION_GUIDELINES.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/DISCUSSION_GUIDELINES.md)）。
 
 - **当前版本**：v2.0（2026-10-30 核心主干校准版：全面回归“角色对话人设一致性”主航道，详尽拆解 `HER` / `APC` / `RAR` / `CRPO` / `PERSONA` 等核心基线，构建 `RL + <think> + Persona Probe` 开放探索体系）
 - **关联基石文档**：[ROADMAP.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/ROADMAP.md) · [docs/LITERATURE.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/LITERATURE.md) · [docs/RESOURCE_ATLAS.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/docs/RESOURCE_ATLAS.md) · [DISCUSSION_GUIDELINES.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/DISCUSSION_GUIDELINES.md) · [AGENT_HANDOFF.md](file:///Users/nhckdvrl/Desktop/研究/Role-Play-Game-NPC/AGENT_HANDOFF.md)
