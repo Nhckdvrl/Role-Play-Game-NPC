@@ -17,7 +17,17 @@ python data_factory/factory.py init --split pilot --count 12 --out runs/RCD-pilo
 
 **这些命令不会调用Astra/Terra，不会生成150个故事族。** `init`只建立`planned_not_generated`种子清单；`make_smoke`是一个手写短接口样例。接下来本地Agent必须通过当前可用、已授权的子Agent／CLI／API，按提示词实际完成骨架、块／分支渲染、四格候选、独立盲审与仲裁，并装配为最终JSONL。
 
-默认先跑12族完整生产闭环，计入pilot150。协议稳定后继续校准，同时推进训练覆盖流，不等GPU。完整目标见[production_plan.json](production_plan.json)：pilot150、train2000、dev200、test300；该配置是调度器使用的目标，不是CLI已经自动执行的任务量。
+默认先跑12族完整生产闭环，计入pilot150。协议稳定后继续校准，同时推进训练覆盖流，不等GPU。完整扩产计划见[production_plan.json](production_plan.json)：Pilot150；早期快照train/dev/test=2,000/200/300，正式规模20,000/1,000/2,000，大规模扩展50,000/2,000/5,000，之后仍可按质量和资源向100,000训练族以上扩展。它们是累计目标，**不是已执行的任务量或固定上限**。
+
+## 大规模增量shard举例
+
+```bash
+python data_factory/factory.py init --split train --count 100 --offset 0 --out runs/RCD-train-000000
+python data_factory/factory.py init --split train --count 100 --offset 100 --out runs/RCD-train-000100
+# 之后以唯一的--offset与--out目录继续；planned_not_generated不是已生成。
+```
+
+50,000族应通过分片和独立任务队列推进，不必在一个模型会话里承载全部状态。各shard分别保存原始输出、盲审与去重记录，维护累计独立族与覆盖账本。不能因为数据计划变大而降低最终样本的语义审查标准；也不能因某一组失败而停掉其他组。详细见数据协议。
 
 ## 文件与职责
 
