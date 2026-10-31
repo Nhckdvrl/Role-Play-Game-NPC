@@ -1,0 +1,32 @@
+{
+  "protocol_version": "0.2",
+  "research_version": "3.0",
+  "status": "production_targets_not_completed_counts",
+  "initial_end_to_end_batch": 12,
+  "family_targets": {"pilot": 150, "train": 2000, "dev": 200, "test": 300},
+  "histories_per_family": 2,
+  "branches_per_history": 6,
+  "base_candidates_per_node": 4,
+  "train_base_candidate_instances_target": 96000,
+  "train_coverage_fraction": 0.7,
+  "train_hard_fraction": 0.3,
+  "hardness_sources": ["design_hard_before_gpu", "model_hard_after_observed_errors"],
+  "mechanism_subset_initial_targets": {"train": 200, "dev": 50, "test": 50},
+  "mechanism_targets_are_inside_existing_splits": true,
+  "natural_history_exchange_range": [15, 25],
+  "recommended_shard_family_range": [10, 25],
+  "human_calibration_whole_family_range": [20, 30],
+  "motive_axes": ["利润/信誉", "求知/程序", "自尊/交易", "独立/协作", "忠诚/规则", "承诺/效率", "创作/配合"],
+  "deployment_output": "natural_role_dialogue_not_decision_json",
+  "wait_for_gpu_before_generation": false,
+  "test_used_for_training_or_error_driven_scaling": false,
+  "offline_teacher_replies_replace_on_policy_samples": false,
+  "provider_dispatch": "local_agent_must_map_existing_authorized_tools",
+  "new_paid_services_authorized": false,
+  "notes": [
+    "factory init creates seed manifests only; it does not dispatch a model.",
+    "The CLI's initial mechanism mix is a seed suggestion; the local scheduler uses the split-specific targets above for scale-up.",
+    "Extra evaluator-calibration negatives and retries are counted separately.",
+    "All numerical production ratios are adjustable starting settings, not experimentally established optima."
+  ]
+}
