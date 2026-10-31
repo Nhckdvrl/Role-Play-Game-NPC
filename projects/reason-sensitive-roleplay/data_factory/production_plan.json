@@ -1,18 +1,18 @@
 {
   "protocol_version": "0.2",
-  "research_version": "3.1",
+  "research_version": "3.2",
   "status": "production_targets_not_completed_counts",
   "initial_end_to_end_batch": 12,
   "family_targets": {
     "pilot": 150,
-    "train": 50000,
-    "dev": 2000,
-    "test": 5000
+    "train": 5000,
+    "dev": 500,
+    "test": 800
   },
   "histories_per_family": 2,
   "branches_per_history": 6,
   "base_candidates_per_node": 4,
-  "train_base_candidate_instances_target": 2400000,
+  "train_base_candidate_instances_target": 240000,
   "train_coverage_fraction": 0.7,
   "train_hard_fraction": 0.3,
   "hardness_sources": [
@@ -20,9 +20,9 @@
     "model_hard_after_observed_errors"
   ],
   "mechanism_subset_initial_targets": {
-    "train": 3000,
-    "dev": 300,
-    "test": 600
+    "train": 500,
+    "dev": 100,
+    "test": 150
   },
   "mechanism_targets_are_inside_existing_splits": true,
   "natural_history_exchange_range": [
@@ -53,15 +53,16 @@
   "provider_dispatch": "local_agent_must_map_existing_authorized_tools",
   "new_paid_services_authorized": false,
   "notes": [
-    "Initial 2k/200/300 is an early release milestone, never a fixed cap.",
-    "Main 20k/1k/2k and large-scale 50k/2k/5k are cumulative targets; continue past 100k train if quality and authorized resources permit.",
-    "The family schema still requires 2 histories, 6 branches and 4 intended candidates per node; release size is subject to independent observed annotation.",
+    "First 2k/200/300 is an early milestone; realistic current goal is cumulative 5k/500/800 (pilot 150 separate).",
+    "At 5k train, 12 prompts and four candidates each imply 240k base candidate texts, plus blind audits. Real throughput and accepted samples are measured in pilot.",
+    "Do not automatically plan 10k/50k/100k; any further expansion requires a new evidence-based decision.",
+    "A trained evaluator and GPU RL are not prerequisites for offline data generation, but independent semantic review is required.",
     "The CLI init stage only creates planned seeds; use --offset and separate --out directories for resumable shards.",
-    "Extra evaluator-calibration negatives and retries are counted separately.",
-    "High-level ratios and thresholds are production starting points, not validated statistical optima."
+    "Extra evaluator calibration negatives and retries are separate from four-grid counts.",
+    "All numerical targets are planning decisions, not measured quality or performance."
   ],
-  "production_protocol_version": "0.3",
-  "scaling_policy": "cumulative_milestones_no_hard_cap_quality_gated",
+  "production_protocol_version": "0.4",
+  "scaling_policy": "measured_cost_and_quality_bounded_growth",
   "milestones": [
     {
       "id": "first_trainable_snapshot",
@@ -70,28 +71,14 @@
       "test": 300
     },
     {
-      "id": "main_release",
-      "train": 20000,
-      "dev": 1000,
-      "test": 2000
-    },
-    {
-      "id": "large_scale_release",
-      "train": 50000,
-      "dev": 2000,
-      "test": 5000
-    },
-    {
-      "id": "optional_continued_growth",
-      "train": 100000,
-      "dev": null,
-      "test": null
+      "id": "current_realistic_target",
+      "train": 5000,
+      "dev": 500,
+      "test": 800
     }
   ],
   "milestones_are_cumulative": true,
-  "training_family_hard_cap": null,
-  "train_base_candidate_instances_main_release": 960000,
-  "train_base_candidate_instances_optional_growth": 4800000,
+  "training_family_hard_cap": 5000,
   "shard_family_range": {
     "pilot": [
       10,
@@ -99,16 +86,16 @@
     ],
     "steady_state": [
       25,
-      100
+      50
     ]
   },
   "split_policy": "Freeze source/template groups before generation; hold back test from model-guided generation and reuse.",
   "scale_up_decision_signals": [
-    "actual audited unique story families",
-    "coverage of novel causal/character condition combinations",
-    "rate of semantic near duplicates and template clones",
-    "independent decision/evidence/B6 audit quality",
-    "availability of currently authorized generation capacity"
+    "measured total model calls and token cost per audited family",
+    "audited family acceptance and dispute rate",
+    "novel story-structure yield vs near-duplicate ratio",
+    "actual training benefit and coverage gaps from 2k snapshot",
+    "available already authorized generation capacity"
   ],
   "pilot_is_additional_to_train_dev_test": true
 }
