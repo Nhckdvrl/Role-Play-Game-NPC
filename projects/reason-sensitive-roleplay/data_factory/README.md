@@ -1,19 +1,31 @@
 # 条件决策专项数据工厂 v0.2
 
-这是数据生产的最小可运行脚手架与条件关系奖励参考实现，不是已经接好供应商的全自动生成服务。正式协议见[数据构建](../docs/DATA_CONSTRUCTION.md)，worker提示词见[生成提示词](../docs/GENERATION_PROMPTS.md)，执行授权见[AGENT_HANDOFF](../AGENT_HANDOFF.md)。
+这里包含本地数据生产管线、独立审查与条件关系奖励参考实现。模型调用使用本机已授权的 Codex CLI，仍依赖相应账户与可用配额。正式协议见[数据构建](../docs/DATA_CONSTRUCTION.md)，worker提示词见[生成提示词](../docs/GENERATION_PROMPTS.md)，执行授权见[AGENT_HANDOFF](../AGENT_HANDOFF.md)。
+
+本地生产已接入当前授权的 Codex CLI；实时数量和质量状态以 [DATA_PROGRESS](../DATA_PROGRESS.md) 为准。`agent_dispatch.py` 保存每次独立会话的输入、原文、schema 校验、实际 token 和失败类型；`produce_pilot.py` 执行历史／四格／单候选盲审；`adjudicate_release.py` 在移除生成意图后独立仲裁标签。初次盲审可能误读，不能强迫改成作者答案，也不能把所有审查意见当作数据错误。
+
+```bash
+python3 -m unittest discover -s data_factory -p 'test_*.py' -v
+python3 data_factory/produce_pilot.py --run-dir runs/<batch> --stage blind --concurrency 8
+python3 data_factory/adjudicate_release.py --run-dir runs/<batch> --concurrency 4
+python3 data_factory/quality.py runs/<batch>/families.jsonl --report runs/<batch>/quality.json
+python3 data_factory/report_run.py --run-dir runs/<batch>
+```
+
+运行前须已有真实骨架／渲染输入，不能将空目录或种子当成数据。四格在同一节点联合渲染以匹配语言长度，每条候选随后进入独立、无意图标签的会话；全局仲裁也移除意图。共享文件系统不是保密沙箱，实际 worker 禁止工具活动并留事件记录。`quality.py`、`measure_histories.py` 分别检查结构／划分及本地完整 chat 模板下的真实 token，不替代语义审查。`scale_train.py` 按已审查 Train 数续跑，首两批质量不足会停止该流，当前上限 5,000；20,000 是用户许可的后续条件扩展。
 
 ## 先从仓库根目录 `cd projects/reason-sensitive-roleplay`，再运行
 
 ```bash
-python -m pip install -r data_factory/requirements.txt
-python -m unittest discover -s data_factory -p 'test_*.py' -v
-python data_factory/make_smoke.py data_factory/examples/smoke.jsonl
-python data_factory/factory.py validate data_factory/examples/smoke.jsonl --report runs/smoke/validation.jsonl
-python data_factory/factory.py export data_factory/examples/smoke.jsonl --out runs/smoke/jobs --include-teacher
-python data_factory/factory.py init --split pilot --count 12 --out runs/RCD-pilot-first12
+python3 -m pip install -r data_factory/requirements.txt
+python3 -m unittest discover -s data_factory -p 'test_*.py' -v
+python3 data_factory/make_smoke.py data_factory/examples/smoke.jsonl
+python3 data_factory/factory.py validate data_factory/examples/smoke.jsonl --report runs/smoke/validation.jsonl
+python3 data_factory/factory.py export data_factory/examples/smoke.jsonl --out runs/smoke/jobs --include-teacher
+python3 data_factory/factory.py init --split pilot --count 12 --out runs/RCD-pilot-first12
 ```
 
-`story_family.schema.json`已提交；修改schema时运行`python data_factory/build_schema.py`重新生成并一起提交。生成器输出缩进格式，与仓库初始紧凑JSON语义一致，可能产生纯格式差异。
+`story_family.schema.json`已提交；修改schema时运行`python3 data_factory/build_schema.py`重新生成并一起提交。生成器输出缩进格式，与仓库初始紧凑JSON语义一致，可能产生纯格式差异。
 
 **这些命令不会调用Astra/Terra，不会生成150个故事族。** `init`只建立`planned_not_generated`种子清单；`make_smoke`是一个手写短接口样例。接下来本地Agent必须通过当前可用、已授权的子Agent／CLI／API，按提示词实际完成骨架、块／分支渲染、四格候选、独立盲审与仲裁，并装配为最终JSONL。
 
@@ -22,8 +34,8 @@ python data_factory/factory.py init --split pilot --count 12 --out runs/RCD-pilo
 ## 大规模增量shard举例
 
 ```bash
-python data_factory/factory.py init --split train --count 100 --offset 0 --out runs/RCD-train-000000
-python data_factory/factory.py init --split train --count 100 --offset 100 --out runs/RCD-train-000100
+python3 data_factory/factory.py init --split train --count 100 --offset 0 --out runs/RCD-train-000000
+python3 data_factory/factory.py init --split train --count 100 --offset 100 --out runs/RCD-train-000100
 # 之后以唯一的--offset与--out目录继续；planned_not_generated不是已生成。
 ```
 
@@ -62,6 +74,6 @@ python data_factory/factory.py init --split train --count 100 --offset 100 --out
 
 ## 结果状态
 
-2026-11-01本轮本地运行16项单元测试全部通过；短样例结构校验和导出完成：actor12、local_blind12、candidate_auditor48、teacher12。没有执行真实Astra–Terra数据生产、评分器训练或在线RL。见[实现状态](../docs/IMPLEMENTATION_STATUS.md)。
+2026-11-01，本地 30 项单元测试通过，首批 12 个真实 Pilot 族完成生成、盲审、仲裁与结构检查：144 节点、576 个唯一候选；数据与原始记录留在 `runs/pilot12-20261101-semantic-v4/` 及其来源 run。短接口样例仍独立标记为未审查，不能算正式数据。评分器训练与在线 RL 尚未执行。实际扩产数量、代价和人工抽样状态见 [DATA_PROGRESS](../DATA_PROGRESS.md)。
 
 旧v0.1 ZIP不是v0.2的即插即用数据。保留原文件，显式补充新的字段和来源映射，重新验证；缺失的独立审查标签保持null，不伪造历史审查记录。

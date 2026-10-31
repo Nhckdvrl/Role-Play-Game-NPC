@@ -55,14 +55,14 @@
   "notes": [
     "First 2k/200/300 is an early milestone; realistic current goal is cumulative 5k/500/800 (pilot 150 separate).",
     "At 5k train, 12 prompts and four candidates each imply 240k base candidate texts, plus blind audits. Real throughput and accepted samples are measured in pilot.",
-    "Do not automatically plan 10k/50k/100k; any further expansion requires a new evidence-based decision.",
     "A trained evaluator and GPU RL are not prerequisites for offline data generation, but independent semantic review is required.",
     "The CLI init stage only creates planned seeds; use --offset and separate --out directories for resumable shards.",
     "Extra evaluator calibration negatives and retries are separate from four-grid counts.",
-    "All numerical targets are planning decisions, not measured quality or performance."
+    "All numerical targets are planning decisions, not measured quality or performance.",
+    "User clarified the new 5,000 then conditional 20,000 counts mean Train story families. First checkpoint stays 5,000; a measured decision may then extend Train to 20,000. Pilot and dev/test stay separate."
   ],
   "production_protocol_version": "0.4",
-  "scaling_policy": "measured_cost_and_quality_bounded_growth",
+  "scaling_policy": "quality_first_5000_train_checkpoint_then_conditional_20000",
   "milestones": [
     {
       "id": "first_trainable_snapshot",
@@ -97,5 +97,18 @@
     "actual training benefit and coverage gaps from 2k snapshot",
     "available already authorized generation capacity"
   ],
-  "pilot_is_additional_to_train_dev_test": true
+  "pilot_is_additional_to_train_dev_test": true,
+  "current_train_checkpoint": 5000,
+  "conditional_train_expansion": {
+    "target": 20000,
+    "unit": "train_story_families",
+    "authorization": "user_2026-11-01_followup",
+    "status": "conditional_on_measured_quality_and_existing_resources",
+    "gates": [
+      "independent semantic review keeps pace",
+      "natural dialogue and distinct story structures remain strong",
+      "real token usage and available authorized quota support continuation",
+      "test groups remain frozen and isolated"
+    ]
+  }
 }

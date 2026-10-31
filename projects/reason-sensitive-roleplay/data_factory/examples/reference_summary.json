@@ -1,0 +1,189 @@
+{
+  "reference_type": "中文任务型角色扮演采集对话；双方为采集人员模拟用户与服务方，不是无约束自然闲聊或NPC游戏对话。",
+  "source": {
+    "dataset": "CrossWOZ",
+    "source_url": "https://github.com/thu-coai/CrossWOZ",
+    "train_url": "https://github.com/thu-coai/CrossWOZ/tree/master/data/crosswoz",
+    "license_url": "https://github.com/thu-coai/CrossWOZ/blob/master/LICENSE",
+    "license": "Apache-2.0，原仓库 LICENSE；遵守其条款并保留许可。",
+    "local_train_archive": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/pilot12-20261101/reference/crosswoz_train.json.zip",
+    "sha256": "b81f6a0845011bb4593d21dd58e2d76af4dd5d52e300ecc68cb8dee17ccc3cf8",
+    "bytes": 13624132,
+    "local_license": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/pilot12-20261101/reference/CrossWOZ_LICENSE.txt",
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "split": "train",
+    "downloaded_other_splits": false,
+    "paper_url": "https://aclanthology.org/2020.tacl-1.19/"
+  },
+  "sampling": {
+    "statistics": "train全部5012段，程序遍历每个消息；不含验证、测试分区。",
+    "semantic_review": "在文件顺序中取间隔均匀的30段，完整查看各段连续用户/系统消息；模型语义细读，非人类审读。",
+    "selected": [
+      {
+        "sample_index": 0,
+        "dialogue_id": "391"
+      },
+      {
+        "sample_index": 1,
+        "dialogue_id": "9884"
+      },
+      {
+        "sample_index": 2,
+        "dialogue_id": "8668"
+      },
+      {
+        "sample_index": 3,
+        "dialogue_id": "10255"
+      },
+      {
+        "sample_index": 4,
+        "dialogue_id": "6274"
+      },
+      {
+        "sample_index": 5,
+        "dialogue_id": "9935"
+      },
+      {
+        "sample_index": 6,
+        "dialogue_id": "2710"
+      },
+      {
+        "sample_index": 7,
+        "dialogue_id": "8257"
+      },
+      {
+        "sample_index": 8,
+        "dialogue_id": "8921"
+      },
+      {
+        "sample_index": 9,
+        "dialogue_id": "10761"
+      },
+      {
+        "sample_index": 10,
+        "dialogue_id": "11077"
+      },
+      {
+        "sample_index": 11,
+        "dialogue_id": "8638"
+      },
+      {
+        "sample_index": 12,
+        "dialogue_id": "10525"
+      },
+      {
+        "sample_index": 13,
+        "dialogue_id": "11021"
+      },
+      {
+        "sample_index": 14,
+        "dialogue_id": "6832"
+      },
+      {
+        "sample_index": 15,
+        "dialogue_id": "11594"
+      },
+      {
+        "sample_index": 16,
+        "dialogue_id": "8585"
+      },
+      {
+        "sample_index": 17,
+        "dialogue_id": "3067"
+      },
+      {
+        "sample_index": 18,
+        "dialogue_id": "11935"
+      },
+      {
+        "sample_index": 19,
+        "dialogue_id": "8172"
+      },
+      {
+        "sample_index": 20,
+        "dialogue_id": "10808"
+      },
+      {
+        "sample_index": 21,
+        "dialogue_id": "10036"
+      },
+      {
+        "sample_index": 22,
+        "dialogue_id": "6184"
+      },
+      {
+        "sample_index": 23,
+        "dialogue_id": "12344"
+      },
+      {
+        "sample_index": 24,
+        "dialogue_id": "11901"
+      },
+      {
+        "sample_index": 25,
+        "dialogue_id": "7694"
+      },
+      {
+        "sample_index": 26,
+        "dialogue_id": "10733"
+      },
+      {
+        "sample_index": 27,
+        "dialogue_id": "11539"
+      },
+      {
+        "sample_index": 28,
+        "dialogue_id": "4466"
+      },
+      {
+        "sample_index": 29,
+        "dialogue_id": "7469"
+      }
+    ],
+    "limitation": "非随机分层；风格观察不能推广至真人日常闲聊或所有中文NPC。"
+  },
+  "statistics": {
+    "dialogues": 5012,
+    "messages": 84692,
+    "user_messages": 42346,
+    "system_messages": 42346,
+    "adjacent_user_system_exchanges_per_dialogue": {
+      "n": 5012,
+      "min": 2,
+      "median": 8.0,
+      "mean": 8.45,
+      "p90": 13,
+      "max": 22
+    },
+    "system_response_unicode_characters": {
+      "n": 42346,
+      "min": 1,
+      "median": 21.0,
+      "mean": 24.96,
+      "p90": 48,
+      "max": 222
+    },
+    "system_sentence_approx_unicode_characters": {
+      "n": 44907,
+      "min": 1,
+      "median": 19,
+      "mean": 22.54,
+      "p90": 44,
+      "max": 208
+    },
+    "system_marker_counts": {
+      "承接指示词_开头": 3944,
+      "限定否定_任意位置": 5253,
+      "询问_含问号": 2421,
+      "道歉_任意位置": 3337,
+      "动作括注_任意位置": 0
+    },
+    "marker_method": "固定正则匹配次数；承接、否定、疑问、动作均仅代理，非语义标注；括注动作检测漏检无括号动作。"
+  },
+  "limitations": [
+    "30段由模型查看，不是人类审读；没有逐段评分或独立盲审。",
+    "训练数据不进入本专项训练族；只提取概括，不复制语料原文、场景实体或答案。",
+    "规范化正则统计无法评判真实自然度或互动质量；其数据采集方式具有任务脚本偏差。",
+    "只统计 train，对话为双人任务角色扮演，非未经约束日常会话；不读取其他benchmark测试数据。"
+  ]
+}

@@ -10,6 +10,8 @@
 
 用户已授权Astra总控＋Terra并行合成受控故事族。**数据生产不等待GPU；小批校准与覆盖扩产并行。** 强提示是可利用的教师信号，普通SFT/DPO是比较起点，不是停止后训练的理由。其他候选另行保留。
 
+**本地实际生产状态见 [DATA_PROGRESS.md](DATA_PROGRESS.md)。** 当前已接通独立 Codex CLI 会话，实际调用 `gpt-6.1-terra` 生成／盲审、`gpt-6-astra` 修订／仲裁，并参考公开训练侧真实对话。原始输出、失败和分歧均保留。用户最新明确：数量单位为 **Train 故事族**，先到 5,000，质量和现有资源支持时再考虑 20,000；后者不是自动完成数，也不改变 Pilot 和测试隔离。
+
 ## 立即开始
 
 给本地Agent直接使用：**[LOCAL_AGENT_DATA_START.md](prompts/LOCAL_AGENT_DATA_START.md)**。
@@ -50,9 +52,9 @@ python -m pip install -r data_factory/requirements.txt
 python -m unittest discover -s data_factory -p 'test_*.py' -v
 ```
 
-本轮本地**16项单元测试通过**；短接口样例的结构验证、隔离任务导出、种子清单创建已跑通。样例为1族、12节点、48候选实例／24唯一文本，审查pending；它不是正式生产集。
+本轮本地**30项单元测试通过**；短接口样例的结构验证、隔离任务导出、种子清单创建已跑通。样例为1族、12节点、48候选实例／24唯一文本，审查pending；它不是正式生产集。
 
-目前尚未执行真实Astra–Terra批量生成、训练语义评分器、Probe或在线RL。`factory.py`不自动调用供应商；本地Agent需接已有授权工具。`scoring.py`提供接口与规则组合，不含已训练语言理解backend；奖励代码也不是完整veRL trainer。全错节点的教师恢复是独立CE/KL任务，不把离线示范伪装成在线采样。
+真实 Astra–Terra 数据生产与独立审查已经执行，首批交付详见 [DATA_PROGRESS](DATA_PROGRESS.md)；语义评分器训练、Probe 和在线 RL 尚未执行。`factory.py`仍只负责数据接口，实际调用由 `agent_dispatch.py` 接入本地已授权 CLI。`scoring.py`提供接口与规则组合，不含已训练语言理解backend；奖励代码也不是完整veRL trainer。全错节点的教师恢复是独立CE/KL任务，不把离线示范伪装成在线采样。
 
 ## 领域地图与历史资产
 

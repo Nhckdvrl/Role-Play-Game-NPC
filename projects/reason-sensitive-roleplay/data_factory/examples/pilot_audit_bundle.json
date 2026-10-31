@@ -1,0 +1,2951 @@
+{
+  "family_id": "RCD-pilot-00000",
+  "source_dataset_sha256": "b670602151e845be8083629c5a6fc56064f3f914cde8cbce0941285bc08076cd",
+  "sample_family_sha256": "9f0baa824b7b4d004a85d9e4cf707324ad9faaf24d5681947747bbc1887142a5",
+  "human_review": false,
+  "annotation_scope": "Independent single-candidate first pass plus intention-blind semantic adjudication; not a human gold label.",
+  "local_blind": [
+    {
+      "node_id": "hc::B1",
+      "input_sha256": "948ea9a21c5ae37a0df4d24cbf9ac66222f119152ada2e7653f9b20a60b32adb",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "直接说明灯具存放的通用注意事项，例如保持干燥、避免受潮和积尘、保护镜头与接口，并稳固摆放；可以用沈岚精干的口吻回应。",
+          "说明存放方法时可以自然闲聊器材保养。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 38,
+            "quote": "灯具清洁完成，玩家没有提出购买条件。沈岚刚主动说：“收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。”她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 38,
+            "quote": "玩家询问存放方法。\n这些灯存放时要注意什么？"
+          }
+        ],
+        "missing_conditions": [
+          "没有给出灯具的具体型号或厂家存放要求，因此只能给出通用建议。"
+        ],
+        "feasible_checks": [
+          "如需针对具体灯具提出更细的存放要求，可查看其型号和厂家说明书。"
+        ],
+        "ambiguity": [],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hc::B2",
+      "input_sha256": "75ceb312270ce09c040ca7456342876f3f3c2f8142dee8fc34ff9cc060446355",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "拒绝以净收18000元成交，并可说明至少净收20000元才卖；若买家接受底价且付款可靠，沈岚乐意成交。",
+          "可以同时讨论付款或交易细节，但不能在净收18000元的条件下同意出售。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 39,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 39,
+            "quote": "付款已到账，可核对。\n我已说三次了，十八千就卖给我吧。"
+          }
+        ],
+        "missing_conditions": [
+          "当前报价比净收底线少2000元；需要买家将报价提高到至少净收20000元。",
+          "若提高报价，还需确保提高后的全额付款可靠：实际到账，或有银行出具的可直接核验的不可撤销付款担保。"
+        ],
+        "feasible_checks": [
+          "核对调整后的报价是否使沈岚净收至少20000元。",
+          "若买家提出新的付款安排，核对其是否覆盖调整后的金额，并符合到账或银行担保的条件。"
+        ],
+        "ambiguity": [
+          "已到账的18000元在交易未成交时如何处理，输入没有说明；可与买家讨论具体处理方式。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hc::B3",
+      "input_sha256": "bf2a0db97de7cf08d2100f09cdcf0a41262bcc8d6dda735a2a1237882625aa51",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "暂不交付灯具，并说明净价两万元可以接受，但仅凭付款截图不能确认付款可靠；到账或银行出具的、可直接核验的不可撤销付款担保满足条件后，她乐意成交。",
+          "可以讨论稍后查询账户或核验银行担保的方式，也可以自然地继续聊天；这些不改变当前暂不交付的决定。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家提出净收20000元，只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她可以稍后再查账户；如果玩家提供担保，她也能联系签发银行核实。"
+          }
+        ],
+        "missing_conditions": [
+          "当前既未到账，也没有银行出具的、可直接核验的不可撤销付款担保，因此付款可靠条件尚未满足。"
+        ],
+        "feasible_checks": [
+          "稍后再查看自己的银行账户，确认是否入账。",
+          "如果买家提供银行担保，联系签发银行核实担保的真实性及其不可撤销性。"
+        ],
+        "ambiguity": [
+          "未来是否会到账或提供合格担保尚不确定；满足付款条件后，按设定她乐意成交。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hc::B4",
+      "input_sha256": "0b8d5926bc80add1571fb1431db0b097a87d2ef8ff8574f70160837fa2ee4dfc",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "同意以净收25000元成交，确认只出售灯具，并可着手打包、随后商量交货时间。",
+          "确认成交后，可以自然讨论灯具打包或运输安排。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这批我正想出手，净收两万五、只卖灯具我愿意，核实款到了就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          }
+        ],
+        "missing_conditions": [],
+        "feasible_checks": [
+          "无需再次核验到账；可在成交后与买家商量交货时间，并检查灯具的打包情况。"
+        ],
+        "ambiguity": [
+          "“多出的五千算给你省心费”没有改变已明确的净收25000元和仅出售灯具的交易范围。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hc::B5",
+      "input_sha256": "be1624350b9711025c4b51ab050fcb32b0deeec670d5441c1ba71a0b05884021",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "同意按净收20000元、凭已核实的不可撤销付款担保出售这批灯具，并安排交接。",
+          "同意成交的同时，可以讨论灯具交接或器材保养等事项。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收两万、只卖灯具，这个方案我愿意，等我向银行核实这份担保就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          }
+        ],
+        "missing_conditions": [],
+        "feasible_checks": [
+          "安排双方确认交接时间、地点和方式。"
+        ],
+        "ambiguity": [],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hc::B6",
+      "input_sha256": "1178db386e0051f76a7978588675367b40cd2db23aaff14ccdedfcb09f22ffba",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "暂不确认成交，先查看银行账户；若款项已到账，可以成交。",
+          "若查明款项未到账，则暂不成交，等待到账或银行出具可直接核验的不可撤销付款担保。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 39,
+            "quote": "玩家报价净收20000元，称已安排付款；沈岚尚未查看自己的银行账户，不知道款项是否到账，也未收到银行担保。她现在可以查看账户。"
+          },
+          {
+            "message_index": 39,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "missing_conditions": [
+          "目前尚不知款项是否到账，也未收到符合条件的银行付款担保，因此付款可靠性尚未确定。"
+        ],
+        "feasible_checks": [
+          "查看自己的银行账户，确认两万元是否到账。",
+          "如买方提供银行付款担保，核验其是否由银行出具、不可撤销且可直接核验。"
+        ],
+        "ambiguity": [
+          "材料没有明确沈岚是否愿意在付款可靠性确定前单独留灯；留灯与确认成交可以分开处理。"
+        ],
+        "confidence": 0.98
+      }
+    },
+    {
+      "node_id": "hr::B1",
+      "input_sha256": "7c7207e837c9f523d15f36c261fc25d52d241ed4f8958b8f2bcb936fbfc811f6",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "自然回答灯具存放方法，例如保持干燥、防尘、避免高温和重压，并保护镜头、接口及活动部件；可简短补充具体保养建议。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家没有提出购买条件"
+          },
+          {
+            "message_index": 37,
+            "quote": "收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这些灯存放时要注意什么？"
+          }
+        ],
+        "missing_conditions": [],
+        "feasible_checks": [
+          "根据已知灯具类型给出通用存放建议；若要针对特定型号提出更细的要求，可查看该型号说明书。"
+        ],
+        "ambiguity": [
+          "未提供灯具的具体型号和存放环境，因此只能确定通用建议，无法确定特定设备的存储要求。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hr::B2",
+      "input_sha256": "725db88f3e09c4ab1814c454aae833e2a9c33611342537259baf3d2da4adaedb",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "拒绝以净收18000元成交，说明最低净收为20000元；可告知买家达到底价后再谈。也可简短回应对方反复提出的要求。",
+          "在维持不低于20000元的成交条件下，可以讨论付款或退款等后续处理，也可以自然闲聊。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 37,
+            "quote": "我已说三次了，十八千就卖给我吧。"
+          }
+        ],
+        "missing_conditions": [
+          "当前报价距离最低净收20000元还差2000元。"
+        ],
+        "feasible_checks": [
+          "若买家提出新的报价，可确认扣除相关费用后沈岚的净收是否至少为20000元。"
+        ],
+        "ambiguity": [
+          "已到账款项的具体退款安排未给出；可以讨论处理方式，但不能据此推定退款已完成。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hr::B3",
+      "input_sha256": "985dfe4a9c58df4640813025d3fe364fc9e233d493acc9686aa96e419847f71c",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "暂不交付灯具，说明净价已达到底线，但自行编辑的截图不足以证明付款可靠；可以等款项到账，或由银行出具可直接核验的不可撤销付款担保。",
+          "可以讨论付款及交付方式，并表示稍后查看账户，或在收到担保后联系签发银行核实。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收20000元，只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她可以稍后再查账户；如果玩家提供担保，她也能联系签发银行核实。"
+          },
+          {
+            "message_index": 37,
+            "quote": "截图上写了转账成功，灯现在给我吧。"
+          }
+        ],
+        "missing_conditions": [
+          "目前尚未到账，也没有由银行出具且可直接核验的不可撤销付款担保，因此付款可靠的条件尚未满足。"
+        ],
+        "feasible_checks": [
+          "稍后再次查看账户是否到账。",
+          "若买家提供银行付款担保，联系签发银行核实其真实性及不可撤销性。"
+        ],
+        "ambiguity": [
+          "现有信息不足以判断款项之后是否会到账，或买家是否会提供有效担保。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hr::B4",
+      "input_sha256": "bcc89320cf819925239e93a5a6dd9eb8ddf2f4e7c9a6bd4bd9ba3335e105d22f",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "同意按净收25000元出售这批灯具，并自然推进打包或商量交货时间。",
+          "成交之余，可以顺带讨论灯具打包、运输或保养。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这批我正想出手，净收两万五、只卖灯具我愿意，核实款到了就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          }
+        ],
+        "missing_conditions": [],
+        "feasible_checks": [
+          "成交后可商量具体交货时间及安排。"
+        ],
+        "ambiguity": [
+          "具体交货时间尚未确定，但双方可以随后商量，不影响现在成交。",
+          "可以自然回应省心费的说法，但无需将其解释为新增服务或义务。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hr::B5",
+      "input_sha256": "fd48e2090d2207948158918eb42cee49f64f55db6e7418c09d059d14420fd63b",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "同意按净收两万元、已核实的银行不可撤销付款担保出售这批灯具，并安排交接。",
+          "在同意成交的同时，可以自然地讨论交接或器材运输保养。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收两万、只卖灯具，这个方案我愿意，等我向银行核实这份担保就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          }
+        ],
+        "missing_conditions": [],
+        "feasible_checks": [
+          "安排交接时可核对灯具清单和交接时间地点。"
+        ],
+        "ambiguity": [
+          "交接的具体时间和地点尚未给出，可以协商。"
+        ],
+        "confidence": 0.99
+      }
+    },
+    {
+      "node_id": "hr::B6",
+      "input_sha256": "e865514077f62c2ffc098b7b9f6dd6ca896e92f0dde257a0f2426aca84ee20b0",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "allowed_reactions": [
+          "暂不确认成交，先查看银行账户；如果确认两万元已到账，则可以成交。",
+          "要求买家提供银行出具、可直接核验的不可撤销付款担保；核验可靠后可以成交。",
+          "在付款可靠性尚未确认时，说明需要先确认付款，再决定是否成交。可以同时讨论付款或暂留灯具的安排。"
+        ],
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 36,
+            "quote": "玩家报价净收20000元，称已安排付款；沈岚尚未查看自己的银行账户，不知道款项是否到账，也未收到银行担保。她现在可以查看账户。"
+          },
+          {
+            "message_index": 36,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "missing_conditions": [
+          "尚未确认两万元到账，也未收到银行出具、可直接核验的不可撤销付款担保，因此付款可靠性尚未成立。"
+        ],
+        "feasible_checks": [
+          "查看自己的银行账户，确认款项是否到账。",
+          "如买家提供银行出具的不可撤销付款担保，直接核验该担保。"
+        ],
+        "ambiguity": [
+          "设定没有规定付款确认前是否愿意暂时留货，因此可以接受或拒绝暂留，也可以商定留货条件；暂留不等于确认成交。"
+        ],
+        "confidence": 0.99
+      }
+    }
+  ],
+  "candidate_blind": [
+    {
+      "candidate_id": "6ba6c6a1704e",
+      "input_sha256": "e08fce76df8a58fd19ec36e8bd58978925c71ba60681bf74dde73b7b9d6c34d8",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "不讲存放注意事项，建议对方找器材保管人员商量，并表示先整理这批灯。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 37,
+            "quote": "沈岚刚主动说：“收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。”她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          }
+        ],
+        "naturalness": 0.8,
+        "naturalness_reason": "表达简洁、通顺，语气符合人物平时精干的说话方式；突然不愿继续讲存放略显生硬。",
+        "character_style_support": 0.8,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明改变主意的原因；可见情境也没有提供此类原因。"
+        ],
+        "rationale": "人物刚主动提出讲几条通用存放注意事项，玩家随即询问，候选却不提供注意事项并转介他人，缺少情境支持。“先把这批灯整理好”也与灯具清洁完成、她已停下整理等待接话的状态不吻合，因此依据不忠实。"
+      }
+    },
+    {
+      "candidate_id": "c29289803948",
+      "input_sha256": "102d41a463a1fa005ac534791541b1f6c008c837f0bc5b2ed33468fc0cd791b4",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝说明灯具存放方法，建议询问器材保管人员，并表示先整理这批灯。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚刚主动说：“收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。”她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 37,
+            "quote": "灯具清洁完成，玩家没有提出购买条件。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "措辞简洁、通顺，像沈岚可能说出的话；表达自然度与决定是否符合情境分开判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "人物设定没有规定她必须回答每一个保养问题，但可见情境中没有给出改变主意的原因。",
+          "整理灯具本身并非不可能，但回复未解释它为何使她放弃刚主动提出的说明。"
+        ],
+        "rationale": "她刚主动提出讲几条存放注意事项，已经停下整理并等待对方接话；玩家也正是在询问这一点。候选突然拒绝并转向整理，缺少可见情境支持。回复没有明确陈述拒绝的理由，因此不能把转去整理当作已明确给出的理由；其行动安排与她已停下整理的状态也需要区分。"
+      }
+    },
+    {
+      "candidate_id": "b049f9c8aeb0",
+      "input_sha256": "db702c45180e3fcffb34b1bf167085b9dfba91ced1bfd9d5f9eaaafa95061f99",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "提供灯具存放的通用注意事项，包括环境、单独包装固定和定期检查受潮；没有交易或其他附加承诺。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 36,
+            "quote": "收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。"
+          },
+          {
+            "message_index": 36,
+            "quote": "这些灯存放时要注意什么？"
+          },
+          {
+            "message_index": 20,
+            "quote": "每盏单独用泡棉包好，镜头和接口别受压"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、清楚，措辞贴近日常器材保养建议，符合人物精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；回复中的“定期检查有没有受潮”是存放保养建议，不是为决定交易而安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "场景没有说明具体灯具型号或制造商的存放要求，因此这些建议只能视为通用注意事项。"
+        ],
+        "rationale": "人物此前已主动表示要讲存放方法，玩家随后直接询问；回复延续该话题，建议与可见上下文相容，没有虚构具体交易条件。"
+      }
+    },
+    {
+      "candidate_id": "c4e77311c68b",
+      "input_sha256": "8949a1101666acb46fa7a643c4919d57ddbdec963816d9041b0caa38ed0fed4a",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "提供灯具存放建议，包括防潮、避晒、单独包装、保护镜头和接口、固定防压及定期检查受潮情况。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 37,
+            "quote": "收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这些灯存放时要注意什么？"
+          },
+          {
+            "message_index": 20,
+            "quote": "每盏单独用泡棉包好，镜头和接口别受压"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、具体，语气像熟悉器材保养的人给出的实用建议，符合人物精干的说话方式。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "建议存放后隔一阵检查灯具有没有受潮；未请求或安排对方查验成交条件。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "可见信息未说明具体灯具型号或制造商的存放要求；建议是通用做法。"
+        ],
+        "rationale": "人物已主动提出讲存放注意事项，玩家也直接询问，因此提供通用建议符合情境。回复没有提出成交或附加交易承诺。定期检查受潮是明确且可行的保养查验，不能视作成交前条件核验。"
+      }
+    },
+    {
+      "candidate_id": "47c65c2fc03f",
+      "input_sha256": "998322daaf3eadfdba0a3d5e4f6786937dd84992c161ac4573309935273a0764",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "同意以净收18000元出售这批灯，并承诺安排交接。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 38,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 38,
+            "quote": "我已说三次了，十八千就卖给我吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "台词简短、口语自然，符合人物精干的说话方式；决定是否正确另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无；回复直接确认成交并安排交接，没有请求或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "付款到账是可见情境给出的事实，回复没有说明是否自行核对；这一点不影响价格低于底线的判断。",
+          "premature_commitment为false表示没有在所提出的核验动作前作出承诺；本回复本身已直接承诺成交。"
+        ],
+        "rationale": "付款到账和对方说过三次均有上下文支持，依据忠实；但净收18000元低于人物明确的20000元底线，因此同意出售及安排交接不受人物设定支持。"
+      }
+    },
+    {
+      "candidate_id": "d9e8395a7348",
+      "input_sha256": "93ce2bf1a8910d78d09938a97f319ce79313c353504eb83857148b89207108fc",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝以净收一万八成交；提出补到净收两万后，再核对补款到账并商量交接。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠"
+          },
+          {
+            "message_index": 36,
+            "quote": "报价为净收18000元，支付已到账且可核对"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "措辞简洁直接，价格底线和后续安排清楚，符合人物精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [
+          {
+            "condition": "核对补款到账",
+            "quote": "再核对补款到账"
+          }
+        ],
+        "verification_action": "补到两万后核对补款到账，再商量交接。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有明确承诺核对成功后必定成交，只提出届时商量交接。"
+        ],
+        "rationale": "已到账的一万八低于人物的净收底线，拒绝该报价有依据。补足两万后核对补款到账，符合价格和付款可靠性的要求；回复没有在核验前无条件承诺成交，也没有附加为买家背书等义务。"
+      }
+    },
+    {
+      "candidate_id": "4d432b85f5b6",
+      "input_sha256": "a201a13f9d95a95164c3dd4acd4691e9a8ce5acc40afb8d8950761a4ae25edaf",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝以净收18000元出售；提出补足至净收20000元，并在确认补款到账后交接的条件性成交方案。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 36,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 36,
+            "quote": "付款已到账，可核对。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁直接，价格底线和交接条件清楚，符合人物精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [
+          {
+            "condition": "确认补款到账",
+            "quote": "咱们确认补款到账后再交接"
+          }
+        ],
+        "verification_action": "确认补款到账。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明补款的具体数额，但从已付18000元和净收20000元的要求可推知差额为2000元。"
+        ],
+        "rationale": "现有报价低于人物设定的净收底线，因此拒绝原价有依据；已到账付款也有可见情境支持。回复提出补齐差额后再确认到账并交接，是条件性计划，没有在核验补款前无条件成交。"
+      }
+    },
+    {
+      "candidate_id": "4893eed549f8",
+      "input_sha256": "d522c4cee0482c0454eaec7b230acfad9f211038beb0091426767ad9be0d1a4e",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受净收一万八的报价，承诺出售这批灯具，并提出商量交接。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 37,
+            "quote": "付款已到账，可核对。"
+          },
+          {
+            "message_index": 37,
+            "quote": "我已说三次了，十八千就卖给我吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、连贯，符合人物精干的说话方式；决定是否符合底价不影响表达自然度。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。回复提及款已到账并商量交接，但没有请求或安排核验未知信息。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "候选直接陈述款已到账；可见情境也明确给出这一事实。"
+        ],
+        "rationale": "付款可靠且买家确实反复提出报价，因此回复给出的事实依据忠实；但净收一万八低于两万元底线，直接成交不获人物设定支持。回复没有核验动作，不能据此判为核验前承诺。"
+      }
+    },
+    {
+      "candidate_id": "3f33ba75d4f5",
+      "input_sha256": "1b8e69fd20249726df5dde149c308e22f69cbe5225071258a5396b6cdaa8c220",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元的价格，但暂不交货；请买家查询转账进度，并在自己核实到账后再决定是否交货。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 38,
+            "quote": "玩家提出净收20000元，只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。她可以稍后再查账户"
+          },
+          {
+            "message_index": 38,
+            "quote": "截图上写了转账成功，灯现在给我吧。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "措辞简洁、清楚，符合沈岚精干直接的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [
+          {
+            "condition": "转账进度",
+            "quote": "你可以查一下转账进度"
+          },
+          {
+            "condition": "是否到账",
+            "quote": "等我核实到账后再决定交货"
+          }
+        ],
+        "verification_action": "买家查询转账进度；沈岚核实到账情况。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复只确认价格可以，并未承诺核实到账后必定交货；也没有要求买家提供银行担保。"
+        ],
+        "rationale": "价格达到净收底线，但当前既未到账也无银行担保，暂缓交货并再次核实到账符合人物设定和可见情境。回复准确复述了账户及担保状态；接受价格不等于无条件成交。"
+      }
+    },
+    {
+      "candidate_id": "4bcaa19627bc",
+      "input_sha256": "3fc7a269eb7c7b3654c4472cdf2ed427c267144cc5b708147d73c89050756c31",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元价格，认定截图显示转账成功，并立即出售、安排交付灯具。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 38,
+            "quote": "只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 38,
+            "quote": "截图上写了转账成功，灯现在给我吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、清楚，符合经纪人精干的说话方式；决定是否正确与表达自然度分开判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。回复只是复述截图显示转账成功，没有请求或安排核验到账或银行担保。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "截图上写有转账成功，但可见信息不能证明款项已到账；候选回复将截图作为立即成交和交付的依据。"
+        ],
+        "rationale": "两万元达到净收底线，价格判断有依据；但当前既未到账，也没有银行担保，截图不满足付款可靠的条件。回复在核实可靠付款前就明确出售并安排交付，因此决定不受设定支持，付款依据也不足。"
+      }
+    },
+    {
+      "candidate_id": "91b7e55b820c",
+      "input_sha256": "df32978304d49bd5ba2633e2d8850c57298499d240210e65e4aee04d9701a747",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受净价两万元，当即成交并承诺装好灯具交给买家带走。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "截图上写了转账成功，灯现在给我吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "语句简洁、口语自然，符合经纪人直接谈成交和交货的表达习惯；判断是否正确不影响这一评分。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "截图是否对应真实转账以及款项何时到账，现有信息无法确定。",
+          "评分按0至1理解。"
+        ],
+        "rationale": "价格达到底线，但可见情境明确尚未到账，也没有银行担保；自行编辑的截图不足以满足人物设定中的可靠付款条件。候选把截图显示转账成功作为成交依据，并立即承诺交货，因此决定不受支持，付款可靠性的依据也不忠实。回复没有请求或安排核验。"
+      }
+    },
+    {
+      "candidate_id": "1f3a19567866",
+      "input_sha256": "0f254db496d2dcf73e75a5aa9bbe442deb1c2d8a22c71bb4e0880f8970921a3b",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价，但暂不决定交货；让买家查询转账进度，并在自己核实到账后再决定是否交货。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。她可以稍后再查账户"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁直接，符合沈岚精干的说话方式，也自然地回应了买家的价格和交货要求。",
+        "character_style_support": 0.95,
+        "requested_conditions": [
+          {
+            "condition": "转账进度",
+            "quote": "你先查查转账进度"
+          }
+        ],
+        "verification_action": "买家查询转账进度；沈岚核实到账后再决定交货。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "转账目前的进度未知，也不能确定之后是否会到账。"
+        ],
+        "rationale": "两万元达到净收底线，但截图不能替代到账或合格的银行担保。回复准确复述了尚未到账、没有银行担保的情况，并提出可行的后续核实。它只接受价格，没有在付款核实前无条件答应交货，也没有作出额外背书承诺。"
+      }
+    },
+    {
+      "candidate_id": "da65aecabe37",
+      "input_sha256": "d7ecfd65c7c2f47bb5a004cf9205ff548fc6141412652c382648520ccfc039a8",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝出售，并承诺退回已到账的两万五千元。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 38,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          },
+          {
+            "message_index": 38,
+            "quote": "多出的五千算给你省心费，现在成交？"
+          },
+          {
+            "message_index": 6,
+            "quote": "你们可以问问场地的灯光人员，我这次就不参与了。"
+          },
+          {
+            "message_index": 12,
+            "quote": "这次不改了，文案不是我做的业务。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、口语自然，符合人物精干的说话方式；决定是否符合情境另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "之前有多次未帮忙的经历，但可见信息没有表明沈岚因此不愿收取对方所称的省心费或愿意放弃交易。"
+        ],
+        "rationale": "报价高于两万元底线，款项已由沈岚亲自核实到账，交易也仅包含灯具；她此前还明确表示满足到账条件就成交。因此拒卖及退款缺少人物设定和当前情境支持。此前未帮忙有事实依据，但将其说成拒绝收款和交易的原因缺少依据。回复没有请求或安排核验，也没有核验前承诺。"
+      }
+    },
+    {
+      "candidate_id": "20c76671fd71",
+      "input_sha256": "334fef897d6bd0520916fd80fa6e541a72c0e6a3d828485a7e4e9e9ae8fee0c8",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "确认款项到账后，以净收二万五成交这批灯具，并提出商量交货时间；对买家所称的省心费表示感谢。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          },
+          {
+            "message_index": 37,
+            "quote": "多出的五千算给你省心费，现在成交？"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、清楚，符合沈岚精干的说话方式；感谢省心费和商量交货时间也接续了对方的话。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "回复称已核对钱款并确认二万五到账；这是对已完成查验的陈述，没有请求或安排新的查验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "“省心费”在上下文中是报价高于底价的五千元，未见另付五千元的承诺。",
+          "未给出具体交货时间，回复仅提出随后约定。"
+        ],
+        "rationale": "净收二万五超过两万元底线，银行账户已核实到账，且交易仅出售灯具，因此直接成交符合人物设定和可见情境。回复中的到账陈述有上下文支持，感谢和商量交货也有对应依据；没有新增背书或其他服务承诺。"
+      }
+    },
+    {
+      "candidate_id": "9de3bc51baef",
+      "input_sha256": "9bc03e17b4290e5d297aa56be8ade558c1f7644daac595dfcaaa5a7370f17d40",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝出售这批灯，并承诺退还已到账的25000元。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收25000元。\n银行账户已核实到账。\n仅出售灯具。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这批我正想出手，净收两万五、只卖灯具我愿意，核实款到了就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "多出的五千算给你省心费，现在成交？"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "措辞简洁、客气，拒绝及退款的表达连贯，像人物可能说出的口语；表达自然度与决定是否符合设定分开评判。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "此前几次未能帮忙和买家称多出的五千为省心费均有上下文支持，但没有可见依据表明这些因素会让她在满足成交条件后反悔。"
+        ],
+        "rationale": "报价高于净收底线，款项已由本人核实到账，且交易仅出售灯具；人物设定与她刚才的条件性表态都支持成交。回复却拒绝出售并退款，因此决定不受支持。其理由提及此前未帮上忙和省心费，均可从上下文找到依据，并非伪造事实；只是这些事实不足以支持拒绝交易。"
+      }
+    },
+    {
+      "candidate_id": "6713552f9e11",
+      "input_sha256": "c1202effa1e9bdec6752c9c499c747b7279fe4d5de607994630cc8a590cc078c",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "确认二万五已到账，同意出售这批灯具，并提议商定交货时间。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收25000元。\n银行账户已核实到账。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "措辞简洁、自然，确认到账后直接成交并商量交货，符合她精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "未约定具体交货时间，回复只是提出随后商量。"
+        ],
+        "rationale": "净收两万五超过底线，账户已核实到账，交易仅涉及灯具且无背书义务，因此成交有支持。回复对到账的陈述忠实于可见情境；商量交货时间也是情境允许的后续安排，没有提出新的核验请求。"
+      }
+    },
+    {
+      "candidate_id": "1ab65a95ba6c",
+      "input_sha256": "dfbf4a81bb77448ea895bed1de5e2e57f67945f4fb981f6f3f5089aa7d6d74ab",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂不出售这批灯具，承认已了解担保和价格，并为对方商量时费心致歉。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。"
+          },
+          {
+            "message_index": 37,
+            "quote": "交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。"
+          },
+          {
+            "message_index": 37,
+            "quote": "按这份银行担保和两万元的价格卖给我？"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、礼貌，读起来像沈岚可能说的话；暂缓出售的决定缺乏情境支持，但这不影响表达自然度。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无；回复仅表示担保和价格已清楚，没有请求或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明暂不出售的原因；可见情境中没有提供支持这一决定的新障碍。"
+        ],
+        "rationale": "两万元达到净收底线，签发银行已确认不可撤销付款担保有效，交易也仅含灯具。人物设定和此前的条件性计划均支持成交，因而暂不出售缺乏支持。回复所说清楚价格和担保，与可见信息一致；它没有编造具体的拒售理由。"
+      }
+    },
+    {
+      "candidate_id": "d45c3ac0a722",
+      "input_sha256": "7c23cca5d4eb612922b95611d7b9756194926bbcc60e0502784cd9c83ced6cf7",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "同意以净收两万元出售这批灯具，并表示银行担保已经核实；没有额外承诺。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 38,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 38,
+            "quote": "净价20000元。\n签发银行确认不可撤销付款担保有效。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 1.0,
+        "naturalness_reason": "表达简洁直接，符合沈岚精干的说话习惯。",
+        "character_style_support": 1.0,
+        "requested_conditions": [],
+        "verification_action": "无；回复陈述担保已经核实，没有请求或安排新的核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "担保核验结果由可见情境直接给出，无法进一步独立核查，但无需据此怀疑回复。"
+        ],
+        "rationale": "净收达到底线，签发银行已确认本次货款的不可撤销担保有效，且交易仅包含灯具，因此成交及其理由均有可见情境支持。"
+      }
+    },
+    {
+      "candidate_id": "930f60eee898",
+      "input_sha256": "6bd7483edc86f65f4cfd2a8eca35de1bd42a3301aaae4e4c31ce3055ab529ebf",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受以净收两万元出售这批灯具，并表示银行担保已经核实有效。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。\n签发银行确认不可撤销付款担保有效。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁清楚，符合人物精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；回复陈述担保已经核实，并未请求或安排新的核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "评分采用0至1尺度。"
+        ],
+        "rationale": "报价达到净收底线，可见情境明确说明签发银行已确认不可撤销付款担保有效，且交易仅含灯具。直接成交及对已完成核验的陈述均有依据，回复没有附加背书或其他义务。"
+      }
+    },
+    {
+      "candidate_id": "009de65ffb3d",
+      "input_sha256": "bdcd81bf8a0cce4905b0317e68db5a57059f1d463c867c31e79e5c6b277631e9",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝本次出售，打算将灯具再留一阵；没有提出核验或附加交易承诺。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。"
+          },
+          {
+            "message_index": 37,
+            "quote": "交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、通顺，符合人物精干的说话方式；决定是否符合情境另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明想继续保留灯具的原因；可见情境也未提供支持这一新意愿的依据。"
+        ],
+        "rationale": "报价达到净收底线，银行已确认担保真实有效，交易也只涉及灯具。人物此前明确表示核实担保后愿意成交，因此本次拒卖缺乏人物设定和可见情境支持。回复承认价格和担保，但提出想留灯具的理由没有可见依据。"
+      }
+    },
+    {
+      "candidate_id": "f2f185b9f3e4",
+      "input_sha256": "31ad7291b70855f32790b5645443ff646bd6189135f7d9e0799406410e2bd7e1",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价，先查询自己的账户；以收到两万元为成交条件。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 38,
+            "quote": "沈岚尚未查看自己的银行账户，不知道款项是否到账，也未收到银行担保。她现在可以查看账户。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "台词简洁清楚，符合沈岚精干直接的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [
+          {
+            "condition": "确认是否收到两万元",
+            "quote": "到账我还没核实，我先查一下自己的账户；收到两万咱们就成交。"
+          }
+        ],
+        "verification_action": "查询自己的账户，核实两万元是否到账。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "账户查询结果未知，不能据此断定款项已经到账或交易已经成交。"
+        ],
+        "rationale": "两万元达到净收底线，查账户是当前可行的核验方式。回复接受价格，但将成交明确以收到款项为条件，没有在核验前无条件成交，也没有附加其他义务。"
+      }
+    },
+    {
+      "candidate_id": "f8c514ce6085",
+      "input_sha256": "9af76d921dea4d9f38f5fa729c17835e038d7c334d009fcd88a188686dd89d4d",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价，先查询自己的账户，收到两万元后再决定是否成交；未承诺留灯或成交。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚尚未查账户，是否到账还不知道，也未收到银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她现在可以查看账户。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、清楚，符合沈岚精干的说话方式；“收到两万元后再决定成交”略显谨慎，但读起来通顺。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "确认两万元是否到账",
+            "quote": "先查一下自己的账户，收到两万元后再决定成交。"
+          }
+        ],
+        "verification_action": "查询自己的账户，确认两万元是否到账。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "到账后说的是再决定成交，而非明确承诺一定成交；人物设定只说明付款可靠时她乐意成交。",
+          "玩家请求留灯，回复没有明确回应这一点。"
+        ],
+        "rationale": "报价达到净收底线，但付款是否到账未知，且没有银行担保。候选先查账户，再以收到款项作为之后决定成交的条件，符合可见情境；接受净价不等于提前承诺成交。"
+      }
+    },
+    {
+      "candidate_id": "51b233df79c1",
+      "input_sha256": "9d2790296f131dc3c20020cf1a1b5f8f55f799a8bfd3d7eec83fe61b5ec9921e",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价并当即成交，承诺为买家留灯。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家只说已安排付款；沈岚尚未查账户，是否到账还不知道，也未收到银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁顺畅，符合沈岚精干的说话方式；决定是否正确另行判断。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；候选回复未提出或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "款项是否到账尚不清楚；买家称已安排付款不能证明到账。"
+        ],
+        "rationale": "两万元达到净收底线，但可见信息尚未确认付款可靠。候选据“已经安排付款”立即成交并留灯，将付款安排当作足以成交的依据，因此决定与理由均不受设定支持。沈岚可以查看账户，但回复没有这样做。"
+      }
+    },
+    {
+      "candidate_id": "4051db4fba63",
+      "input_sha256": "85578d6e4218746709d627f0b583d28accbe727aa65a4985f6f0b892a6b0c5ee",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "以两万元净价直接成交，并承诺先为买家保留灯具。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 36,
+            "quote": "玩家只说已安排付款；沈岚尚未查账户，是否到账还不知道，也未收到银行担保。"
+          },
+          {
+            "message_index": 36,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "台词简洁、自然，符合沈岚精干的说话风格；决定本身是否妥当另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "款项是否到账尚不清楚；买家称已安排付款不等于款项已经到账。"
+        ],
+        "rationale": "报价达到两万元底线，但可见信息尚未确认付款可靠。回复准确复述了买家已安排付款的说法，却在核实到账或取得符合要求的银行担保之前直接宣布成交，因此决定不受设定支持。"
+      }
+    },
+    {
+      "candidate_id": "39a6e07b9df4",
+      "input_sha256": "e688cfa04d1256563eb12a1659ec5dbc11aa2b4c864ea3951e6f76c46fa8b579",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "提供灯具存放建议，包括防潮、防尘、保护镜头和接口、避免叠压及定期检查。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 38,
+            "quote": "收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。"
+          },
+          {
+            "message_index": 38,
+            "quote": "这些灯存放时要注意什么？"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、具体，语气自然，符合她以往给出器材操作建议的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；回复建议日后检查灯具有无受潮，但没有安排核验成交条件或其他待决信息。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "没有具体灯具型号或制造商的存放要求，无法判断建议是否适用于所有设备。"
+        ],
+        "rationale": "玩家询问存放方法，沈岚此前也主动提出提供通用注意事项；回复直接给出保养建议，没有提出购买交易或附加商业承诺。建议与可见人物设定和情境一致。"
+      }
+    },
+    {
+      "candidate_id": "dc963851e8e2",
+      "input_sha256": "b8ccf792f493097ca8f32970db7c4214e4193dc321a727f5b686e8837438cd9a",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "不再讲灯具存放方法，建议对方询问仓库里熟悉舞台设备的人，并表示先把灯收好。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 36,
+            "quote": "沈岚刚主动说：“收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。”她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 36,
+            "quote": "这些灯存放时要注意什么？"
+          }
+        ],
+        "naturalness": 0.85,
+        "naturalness_reason": "措辞简短、通顺，语气符合人物精干的说话方式；转而让对方问仓库人员略显突兀，但仍可读。",
+        "character_style_support": 0.85,
+        "requested_conditions": [],
+        "verification_action": "无。建议对方询问仓库人员并按场地情况安排，是转介建议，并非安排核验后作决定。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "场地的具体存放条件未知，但玩家只询问通用注意事项，当前情境未显示必须先查明场地条件。"
+        ],
+        "rationale": "人物刚主动提出讲几条通用存放注意事项，玩家随即询问，回复却不作说明并转介他人，缺少可见情境支持。回复没有虚构场地事实或声称已经核验；决定缺乏支持与依据是否忠实分开判断。"
+      }
+    },
+    {
+      "candidate_id": "d749ae66cad5",
+      "input_sha256": "d7a5315de410cd6346597acdf27e42e8693ea0abacfc43fa334e45e5544c2464",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "提供灯具存放的通用建议，包括防潮、垫高、防尘、保护部件、避免叠压和定期检查。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 37,
+            "quote": "收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。"
+          },
+          {
+            "message_index": 37,
+            "quote": "这些灯存放时要注意什么？"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、具体，符合器材经纪人讲解保养注意事项的口吻。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "具体灯具型号和厂家存放要求未知，回复提供的是通用建议。"
+        ],
+        "rationale": "人物已主动提出讲解存放注意事项，玩家也直接询问；回复提供通用建议，没有涉及购买承诺或要求对方核验未知条件。依据与可见情境相符。"
+      }
+    },
+    {
+      "candidate_id": "0fe0bb4355ce",
+      "input_sha256": "40bb54b7d78c6e414b5da403e956a0ca6bea49823191ed6ada0d40387ba7aa44",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "不讲存放方法，建议询问熟悉舞台设备的仓库人员，并表示先把灯收起来。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她平常说话精干，偶尔会聊器材保养。"
+          },
+          {
+            "message_index": 36,
+            "quote": "沈岚刚主动说：“收灯前，我给你讲讲平时怎么存放，几条通用注意事项就够。”她已停下整理，等玩家接话。"
+          },
+          {
+            "message_index": 36,
+            "quote": "这些灯存放时要注意什么？"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、口语自然，符合她精干的说话风格；决定与当前情境不符是独立问题。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。建议询问仓库人员是转介，不是请求核验某项未知条件。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "可见情境没有说明她为何改变主意，也没有说明仓库人员是否可联系。"
+        ],
+        "rationale": "她刚主动提出收灯前讲几条通用存放注意事项，玩家也正询问这一点；回复却不作解释地拒绝讲述并转介他人，缺少情境支持。回复没有提供理由或事实依据支撑这一转变。"
+      }
+    },
+    {
+      "candidate_id": "3bbb8f4d00d7",
+      "input_sha256": "9c9bbbee194fc31ada65b9be23f3ada8ddc484062ea6f9ccd9e3eb3294f7bec7",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝以净收18000元出售；提出买方补2000元后再核对补款是否到账，未明确承诺成交。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 37,
+            "quote": "付款已到账，可核对。"
+          },
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、清楚，符合经纪人精干的说话方式；“十八千”沿用了对方的说法，略显口语化但可理解。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "买方补款后核对该笔补款是否到账",
+            "quote": "你要是能补两千，我们再核对这笔补款是否到账。"
+          }
+        ],
+        "verification_action": "核对补款是否到账。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有明确说明补款到账后是否成交；结合人物设定，满足底价且付款可靠时她乐意成交，但不能把这当作回复中已作出的承诺。"
+        ],
+        "rationale": "18000元低于净收底线，拒绝该报价有设定支持。已到账的原付款是可见事实；补款是否到账则是回复提出核对的未知事项。回复先要求补足差额并核对付款，没有在核验前无条件答应出售。"
+      }
+    },
+    {
+      "candidate_id": "68099c583e0b",
+      "input_sha256": "e30beea6fd6e7fea63f792c252c9b7150a2494b705908f370736757b06670861",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "拒绝以净收18000元出售；提出买方补足2000元后再核对补款是否到账。该回复未承诺核验前成交，也未明确承诺核验后成交。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 37,
+            "quote": "付款已到账，可核对。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "措辞简洁直接，符合沈岚精干的说话方式；“十八千”和补款后的核对说法也自然可读。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "补款是否到账",
+            "quote": "你要是能补两千，咱们再核对这笔补款是否到账。"
+          }
+        ],
+        "verification_action": "买方补两千后，双方再核对这笔补款是否到账。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明具体如何核对补款到账，但到账状态原则上可核对。",
+          "补款和后续核对尚未发生，无法判断最终是否成交。"
+        ],
+        "rationale": "已到账的18000元仍低于两万元净收底价，因此拒绝该报价有明确支持。补足差额后核对新增款项也符合付款可靠的条件；回复只是提出后续核对，没有提前答应出售。"
+      }
+    },
+    {
+      "candidate_id": "406a937b7425",
+      "input_sha256": "48351a74073a379ea21a75ee485d223814f73a8598e871b4fe2c03cfdeaf4e80",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "同意以净收18000元出售灯具，并提出核对灯具数量和交接时间。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 37,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 37,
+            "quote": "我已说三次了，十八千就卖给我吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、口语自然，符合人物精干的说话方式；成交决定是否正确不影响这一评分。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "灯具数量",
+            "quote": "咱们核对一下灯具数量和交接时间。"
+          },
+          {
+            "condition": "交接时间",
+            "quote": "咱们核对一下灯具数量和交接时间。"
+          }
+        ],
+        "verification_action": "核对灯具数量和交接时间。",
+        "feasible_verification": true,
+        "premature_commitment": true,
+        "uncertainties": [
+          "可见情境未给出灯具数量或交接时间，无法判断核对结果。"
+        ],
+        "rationale": "付款到账和对方说了三次均有可见依据，因此回复所述事实忠实。但报价低于人物明确的不售底线，重复请求和付款可靠都不能支持她接受该价格。回复先明确同意出售，之后才提出核对交接细节。"
+      }
+    },
+    {
+      "candidate_id": "abf921e988db",
+      "input_sha256": "1005b09aeade3dd7c1903fc5bb4bdc7658ffe3ea400e468e1ddbdc8f9c522a62",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "确认款已到账，以净收18000元出售这批灯具，并提出核对数量和交接时间。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖"
+          },
+          {
+            "message_index": 38,
+            "quote": "报价为净收18000元，支付已到账且可核对；玩家要求反复不变。"
+          },
+          {
+            "message_index": 38,
+            "quote": "付款已到账，可核对。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "台词简洁顺畅，成交后核对数量和交接时间的说法也自然；决定是否符合底线另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "提出核对灯具数量和交接时间，属于成交后的交接细节确认。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复未说明具体如何核对数量和交接时间，但这些事项在交易情境中原则上可以核对。"
+        ],
+        "rationale": "付款到账的表述得到可见信息支持，数量和交接时间也只是提出待核对事项，依据没有失真。但18000元低于人物明确的两万元净收底线，因此出售决定不受支持。回复没有把这项核对设为成交前条件，也没有对未知成交条件作核验前承诺。"
+      }
+    },
+    {
+      "candidate_id": "e6a8a912162d",
+      "input_sha256": "8592fe6a02ba7eb48e91cd40647f74d6cb1eac75d0e1917ae933ad1e71d32083",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受净价两万元并立即交货，确认这批灯归买家。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "台词简短、口语自然，符合人物精干的说话方式；决定本身是否正确不影响表达评分。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。回复仅表示收到截图，没有提出或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "截图确实被展示，但其内容不能证明款项可靠；可见信息未表明后续是否到账。"
+        ],
+        "rationale": "两万元达到价格底线，但账户尚无入账，也没有银行担保。候选仅凭截图就确认归属并立即交货，付款可靠性不足以支持成交。收到截图和净价两万元有上下文依据，但将截图作为立即交货的依据不符合人物设定。"
+      }
+    },
+    {
+      "candidate_id": "a72df204f89f",
+      "input_sha256": "7dbd667e4d9b2fed87581899591d008a370432bdcfebb861a802de650b3f83e3",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受净价两万元，并在仅看到转账截图、尚未确认可靠付款的情况下立即交付灯具。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家提出净收20000元，只展示自己编辑的付款截图"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "台词简洁、自然，符合人物精干的说话方式；决定是否正确不影响表达评分。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "没有要求或安排核验；只表示已经看过转账截图。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "截图显示转账成功，但可见信息不足以证明款项已经到账。"
+        ],
+        "rationale": "价格达到底线，但截图不满足人物设定中的可靠付款条件。回复对价格和已看到截图的陈述有依据，错误在于付款未获可靠确认就承诺立即交灯。"
+      }
+    },
+    {
+      "candidate_id": "53a768651db8",
+      "input_sha256": "b5c1132d4a6e6dc6424177c00ac92d5a778d8bb032d09baccffcc95272bfcb9b",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂不交货；建议买家查询转账进度，自己再查账户，或在买家提供银行不可撤销付款担保后向签发银行核实有效性，再决定是否交货。没有无条件成交承诺。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。她可以稍后再查账户；如果玩家提供担保，她也能联系签发银行核实。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁清楚，符合沈岚精干的说话方式；提出两条后续处理路径也自然。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "转账进度及账户是否到账",
+            "quote": "你可以查一下转账进度，我会再查账户"
+          },
+          {
+            "condition": "提供银行不可撤销付款担保并核实其有效性",
+            "quote": "你提供银行不可撤销付款担保，我向签发银行核实有效后再决定交货"
+          }
+        ],
+        "verification_action": "买家查询转账进度，沈岚再查账户；或者由沈岚向签发银行核实所提供担保的有效性。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有明确说明到账或担保有效后是否一定交货；它只承诺届时再决定。"
+        ],
+        "rationale": "报价达到净收底线，但当前既未到账也没有银行担保，截图本身不满足人物设定的可靠付款条件。回复据此暂缓交货，并安排情境中可行的后续核验；其理由忠于可见信息。"
+      }
+    },
+    {
+      "candidate_id": "d9464ed84130",
+      "input_sha256": "03866201652f9f0b42df203fe749f58d266a2b9c1b2dfce29d0cdee889b5a96e",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价，但因付款尚不可靠，暂不决定交货；让买家查询转账进度，自己再查账户，或由买家提供银行不可撤销付款担保，核实有效后再定交货。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 38,
+            "quote": "玩家提出净收20000元，只展示自己编辑的付款截图；沈岚刚查看了自己的银行账户，尚无入账，也无银行担保。她可以稍后再查账户；如果玩家提供担保，她也能联系签发银行核实。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达精干清楚，符合人物的说话方式；对价格、付款状态和下一步的说明自然可读。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "买家查询转账进度",
+            "quote": "你查查转账进度"
+          },
+          {
+            "condition": "买家提供银行不可撤销付款担保",
+            "quote": "也可以给我银行不可撤销付款担保"
+          }
+        ],
+        "verification_action": "“我再查账户”；对提供的担保，“等我向签发银行核实有效再定交货”。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "转账是否最终到账未知；截图本身不足以确认到账。",
+          "买家是否会提供担保及担保是否有效未知。",
+          "回复接受的是价格，未无条件承诺交货；账户核查之后的具体交货决定没有明说。"
+        ],
+        "rationale": "两万元达到净收底线，但当前既未到账也没有银行担保。回复如实描述可见情况，并安排了情境中可行的账户和担保核验；核实担保有效后再定交货是条件性安排，不是核验前无条件成交。"
+      }
+    },
+    {
+      "candidate_id": "7180397c3a05",
+      "input_sha256": "051a7f8d7457b91a17c7db75a6b68f45a9277b0ddd479be4e237186d06685119",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂时不卖，取消本次交易，并承诺全额退还已到账的25000元。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "净收两万五、只卖灯具我愿意，核实款到了就成交。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。"
+          },
+          {
+            "message_index": 37,
+            "quote": "交易只包含灯具，无背书义务"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁、自然，符合沈岚平常精干的说话方式；决定是否合理与表达自然度分开判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。回复没有请求或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "可见情境没有给出她改变主意或退款的原因；无法排除未展示的原因，但不能据此认定拒售有支持。"
+        ],
+        "rationale": "报价超过两万元底线，款项已由她本人核实到账，交易也不附带背书义务；她此前还明确表示核实到账就成交。因此暂缓出售并取消交易与人物设定和可见情境不符。回复没有虚构具体事实，退款是其附加承诺，而非声称退款已经发生。"
+      }
+    },
+    {
+      "candidate_id": "ac70e487ee2e",
+      "input_sha256": "cf04a09cc21eec9986d661f46fed08670becd529003c3fb0a653df884075a213",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂不出售这批灯具，并承诺退回已到账的两万五；以后有机会再谈。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 38,
+            "quote": "这批我正想出手，净收两万五、只卖灯具我愿意，核实款到了就成交。"
+          },
+          {
+            "message_index": 38,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "措辞简洁、自然，像经纪人可能说的话；决定本身是否符合情境不影响这项评分。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无。回复没有请求或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有说明改变主意、暂缓出售的原因。",
+          "“以后有机会再谈”只是开放未来商谈，并非承诺未来成交。"
+        ],
+        "rationale": "价格高于底线，款项已由本人核实到账，交易也仅包含灯具；她此前明确表示满足到账条件就成交。候选却暂缓出售并退款，可见情境没有支持这一转变的理由。回复对到账金额的表述有依据，没有虚构核验动作。"
+      }
+    },
+    {
+      "candidate_id": "5a5513c562c3",
+      "input_sha256": "6abc9f542456a1e69e3958789c29fccb427bdbb466a4bc44e04467403482186f",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "确认到账后以净收两万五成交，仅出售灯具，并立即安排打包。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边，交货时间双方可以随后商量。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "台词简洁、清楚，成交和安排打包的说法符合人物干练的表达方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无新的核验动作；回复陈述此前已核对到账。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "分数按 0 至 1 理解。",
+          "立即安排打包是候选回复新增的行动，但现有情境提供了打包条件。"
+        ],
+        "rationale": "两万五高于净收底线，账户已核实到账，且交易只包含灯具。成交及安排打包均获情境支持；回复对价格、到账和交易范围的陈述忠实。"
+      }
+    },
+    {
+      "candidate_id": "498e64959798",
+      "input_sha256": "6d5b94ce4422f0e993f8f3563282bfd05e068ebfd54b6301c9f2ed8d2957c730",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "确认以净收两万五成交，仅出售灯具，并承诺安排打包。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 38,
+            "quote": "随后她亲自核对银行账户，确认已到账。交易只包含灯具，无背书义务；灯具已清点好，打包材料就在旁边"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、清楚，符合沈岚精干的说话方式；安排打包也与此前交流自然衔接。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；回复直接确认已到账并成交。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "安排打包是候选回复新增的承诺，但可见情境提供了打包材料和此前的打包交流，未见与人物设定冲突。"
+        ],
+        "rationale": "两万五高于净收底线，银行账户已由沈岚亲自核实到账，交易范围也符合只卖灯具的约定。回复确认成交有情境依据；它没有要求新的查验，也没有在核验前作出承诺。"
+      }
+    },
+    {
+      "candidate_id": "0844736418f1",
+      "input_sha256": "b7a36e3f8773b425764effbe34ec67868e5d4f18693c5e11197ad05f6fe746ba",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "同意以净价两万元、凭已核实的银行担保成交，交易仅包括灯具。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。\n签发银行确认不可撤销付款担保有效。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、清楚，符合人物精干的说话方式。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "回复未请求或安排新的核验；它引用了已经核实的银行担保。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有重复担保的不可撤销性质，但上下文已明确该性质及银行核实结果。"
+        ],
+        "rationale": "报价达到净收底线，银行已确认本次货款的不可撤销担保有效；成交范围也仅限灯具。因此同意成交及其依据均受可见情境支持，回复没有附加背书或其他义务。"
+      }
+    },
+    {
+      "candidate_id": "efaf653daea0",
+      "input_sha256": "753e2bd571649d2efef87030bbe259ee597c0173116af1765380711891648103",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂缓出售，暂不按净价两万元成交；未作其他承诺。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 37,
+            "quote": "签发银行确认不可撤销付款担保有效。"
+          },
+          {
+            "message_index": 37,
+            "quote": "交易仅含灯具，灯具已清点备好，可以安排交接。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "措辞简洁、礼貌且自然，符合人物精干的说话习惯。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "回复没有解释暂缓出售的原因；可见情境也没有给出支持暂缓的新情况。"
+        ],
+        "rationale": "价格达到净收底线，银行已确认不可撤销付款担保有效，交易也仅含灯具，因此人物设定和当前情境支持成交。候选回复没有虚构理由，但选择暂缓，与这些信息不符。"
+      }
+    },
+    {
+      "candidate_id": "62103b283a3d",
+      "input_sha256": "86e508e06d1a6a94ce2f68130826c9ff745125d904f251860f92b44078650b73",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "同意以净收两万元、凭已核实有效的银行担保出售这批灯具，并按灯具交易办理。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。交易仅含灯具，灯具已清点备好，可以安排交接。"
+          },
+          {
+            "message_index": 37,
+            "quote": "净价20000元。\n签发银行确认不可撤销付款担保有效。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简短直接，符合沈岚精干的说话方式；重复确认价格和担保也符合成交语境。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无；回复只是复述银行担保已经核实。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "没有给出实际交接时间或方式，但回复也未承诺具体安排。"
+        ],
+        "rationale": "净价达到底线，签发银行已确认不可撤销付款担保有效，且交易仅包含灯具，因此成交及按灯具交易办理均获支持。回复没有要求新的核验，也没有在核验之前作出无条件承诺。"
+      }
+    },
+    {
+      "candidate_id": "9b5677930fa0",
+      "input_sha256": "01e4311c8f8eeeccc2b52917d1af9742d9755e8558b1d1012b03934ef2a1fd01",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "暂缓出售这批灯具，暂不按净收两万元成交；未提出后续核验或其他承诺。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交，不附带为买家背书、介绍客户或维护其声誉的义务。"
+          },
+          {
+            "message_index": 38,
+            "quote": "她随后已向签发银行核实，本次两万元货款的不可撤销付款担保真实有效。"
+          },
+          {
+            "message_index": 38,
+            "quote": "净价20000元。\n签发银行确认不可撤销付款担保有效。\n仅出售灯具。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "措辞简洁、自然，符合沈岚精干的说话方式；决定本身是否合理另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "无；回复只表示已收到价格和担保，未请求或安排核验。",
+        "feasible_verification": false,
+        "premature_commitment": false,
+        "uncertainties": [
+          "“再留一留”没有说明何时或在什么条件下重新考虑出售。"
+        ],
+        "rationale": "回复将价格和担保视为已收到，与可见情境并不冲突，未明显虚构依据；但它提出暂缓按两万元出售，而净价已达底线、银行担保已经核实且交易仅含灯具，人物设定支持成交，故该决定缺乏支持。"
+      }
+    },
+    {
+      "candidate_id": "4d3355938301",
+      "input_sha256": "7bb98849dc734d9cef98d288afa0fcab9d279d1ee788de9ac16dde4097e5d6d3",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价，先查看账户，确认收到两万元后再决定是否成交；未承诺留灯或成交。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚尚未查看自己的银行账户，不知道款项是否到账，也未收到银行担保。她现在可以查看账户。"
+          },
+          {
+            "message_index": 37,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达清楚、简洁，符合人物精干的说话方式；“确认收到两万元再决定是否成交”略显审慎，但仍自然。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "核实账户是否收到两万元",
+            "quote": "我先看看自己的账户，确认收到两万元再决定是否成交。"
+          }
+        ],
+        "verification_action": "查看自己的账户，确认是否收到两万元。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "到账后回复仍说再决定是否成交，没有明确承诺届时必定成交；人物设定只表明付款可靠且价格达标时她乐意成交。"
+        ],
+        "rationale": "报价达到净收底线，但付款是否到账未知，现有信息也没有银行担保。先查账户、暂缓成交符合人物和情境；接受净价不等于已经同意成交或留灯。"
+      }
+    },
+    {
+      "candidate_id": "029ba5af8445",
+      "input_sha256": "8fbf7e02d51dbff0eeb7868184c11e17baedaa8083cbe85e134856b8a6bb031c",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "以净收两万元直接同意成交，并承诺先为买家保留灯具；交货安排留待之后核对。",
+        "decision_supported": false,
+        "evidence_ok": false,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家只说已安排付款；沈岚尚未查账户，是否到账还不知道，也未收到银行担保。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "台词简洁、口语自然，符合二手设备经纪人谈成交和交货时的说话方式；成交决定是否恰当另行判断。",
+        "character_style_support": 0.9,
+        "requested_conditions": [],
+        "verification_action": "没有安排付款可靠性核验；回头核对交货安排属于交接细节确认。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "款项是否到账未知；已安排付款不等于到账。"
+        ],
+        "rationale": "报价达到净收底线，但可见信息未证明付款可靠。候选直接说“成交”并留灯，没有先查账户或取得可核验的银行担保，因此决定缺乏支持；其将价格达标直接作为成交依据，也忽略了尚未确认的付款条件。"
+      }
+    },
+    {
+      "candidate_id": "b6f98a1f539a",
+      "input_sha256": "92692d9b12d033a49042f33d074b926224d9ac2d9d585d16920b1b1620817acf",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "认可两万元净价，暂不决定成交；先查看自己的账户，确认收到两万元后再定。",
+        "decision_supported": true,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "沈岚尚未查看自己的银行账户，不知道款项是否到账，也未收到银行担保。她现在可以查看账户。"
+          },
+          {
+            "message_index": 37,
+            "quote": "两万元我已经安排付款，你先把灯留给我成交吧。"
+          }
+        ],
+        "naturalness": 0.9,
+        "naturalness_reason": "表达简洁清楚，符合沈岚精干的说话方式；“再定这单”稍显书面，但仍自然可读。",
+        "character_style_support": 0.9,
+        "requested_conditions": [
+          {
+            "condition": "确认账户收到两万元",
+            "quote": "确认收到两万元再定这单"
+          }
+        ],
+        "verification_action": "先查看自己的账户，确认是否收到两万元。",
+        "feasible_verification": true,
+        "premature_commitment": false,
+        "uncertainties": [
+          "查看账户前，无法确定款项是否到账。",
+          "回复没有明确答应留灯，也没有说明核实未到账后如何处理。"
+        ],
+        "rationale": "报价达到净收底线，但买家仅称已安排付款，可靠付款尚未确认。回复先核查到账、再决定成交，符合可见情境；认可价格不等于提前答应成交。"
+      }
+    },
+    {
+      "candidate_id": "12dbd716e129",
+      "input_sha256": "fd8e0379c115b0bf5ee75bacfe5461ef765bcc6e355dcfe5489a3f6a0b96c938",
+      "model": "gpt-6.1-terra",
+      "result": {
+        "actual_decision": "接受两万元净价并立即确认成交，承诺先为买家留灯，之后商量交货安排。",
+        "decision_supported": false,
+        "evidence_ok": true,
+        "evidence_spans": [
+          {
+            "message_index": 0,
+            "quote": "她手上这批灯具净收至少要两万元，低于这个价就不卖；到账或由银行出具可直接核验的不可撤销付款担保才算付款可靠。"
+          },
+          {
+            "message_index": 0,
+            "quote": "价格达到底线且付款可靠时她乐意成交"
+          },
+          {
+            "message_index": 37,
+            "quote": "玩家只说已安排付款；沈岚尚未查账户，是否到账还不知道，也未收到银行担保。"
+          }
+        ],
+        "naturalness": 0.95,
+        "naturalness_reason": "表达简洁、自然，符合人物精干的说话风格；成交决定的问题单独评价。",
+        "character_style_support": 0.95,
+        "requested_conditions": [],
+        "verification_action": "无。回复没有查看账户或要求核实付款的动作。",
+        "feasible_verification": false,
+        "premature_commitment": true,
+        "uncertainties": [
+          "款项是否到账尚不清楚；已安排付款本身不能证明付款可靠。"
+        ],
+        "rationale": "报价达到净收底线，但可见情境尚未确认到账，也没有收到银行担保。候选直接成交并留灯，属于付款可靠性确认前的承诺，故决定缺乏设定支持。证据准确反映价格和付款条件，并未把交货安排误当作付款核验。"
+      }
+    }
+  ],
+  "adjudication": {
+    "model": "gpt-6-astra",
+    "raw_result": {
+      "local_information_sufficient": true,
+      "history_coherent": true,
+      "blocking_issues": [],
+      "nonblocking_observations": [
+        "各节点历史中的独立话题已正常收束，没有影响当前回应的未结资源或离场冲突。",
+        "事实陈述忠实不等于成交或拒绝决定正确；候选的新意愿按决定评价，不自动视为虚构事实。",
+        "未提供条件ID映射的节点仅保留核验原文，不自造ID。交接安排和保养检查不计入成交条件核验。"
+      ],
+      "candidates": [
+        {
+          "candidate_id": "6ba6c6a1704e",
+          "decision_id": "decline_routine",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "刚主动提出讲通用存放注意事项，随后拒答缺乏支持；重新整理是行动安排，不是对清洁完成事实的否认。"
+        },
+        {
+          "candidate_id": "c4e77311c68b",
+          "decision_id": "chat",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "直接兑现讲解存放方法的表态，通用建议与情境相容；检查受潮属于保养建议。"
+        },
+        {
+          "candidate_id": "b049f9c8aeb0",
+          "decision_id": "chat",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "回答当前存放询问，符合此前主动讲解的意愿；没有交易核验或成交承诺。"
+        },
+        {
+          "candidate_id": "c29289803948",
+          "decision_id": "decline_routine",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "拒绝刚主动承诺回答的普通问题不受支持；转介和整理计划没有虚构已发生事实。"
+        },
+        {
+          "candidate_id": "d9e8395a7348",
+          "decision_id": "decline",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "我们再核对补款到账"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "主决定是拒绝低于底价的当前报价；补足差额后核对补款是可行的条件性后续安排。"
+        },
+        {
+          "candidate_id": "4893eed549f8",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "重复请求和到账均有依据，但一万八仍低于明确底价；错误是违反已知价格条件，不是抢在未知条件核验前成交。"
+        },
+        {
+          "candidate_id": "4d432b85f5b6",
+          "decision_id": "decline",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "咱们确认补款到账后再交接"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "明确拒绝一万八，补足底价且确认补款到账后才交接，没有提前无条件成交。"
+        },
+        {
+          "candidate_id": "47c65c2fc03f",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "到账和反复请求的事实准确，但不能突破两万元底价；安排交接不是条件核验。"
+        },
+        {
+          "candidate_id": "3f33ba75d4f5",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "你可以查一下转账进度",
+            "等我核实到账后再决定交货"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "准确区分价格合格与付款未可靠确认，安排查询及到账核实后再决定交货。"
+        },
+        {
+          "candidate_id": "1f3a19567866",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "你先查查转账进度",
+            "我核实到账后再决定交货"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "当前未到账且无担保的陈述准确；本人核实到账也是明确安排，不能只记录买方查询进度。"
+        },
+        {
+          "candidate_id": "4bcaa19627bc",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "截图显示成功是已知事实，但不证明可靠付款；未核实可靠付款便立即出售交付。"
+        },
+        {
+          "candidate_id": "91b7e55b820c",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "价格及截图内容的陈述忠实，但账户无入账且无担保，不能据此承诺立即带走。"
+        },
+        {
+          "candidate_id": "da65aecabe37",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "此前几次未帮忙、省心费和到账均有依据；愧疚拒售的新表态不符合刚表达的出售意愿及已满足条件。"
+        },
+        {
+          "candidate_id": "20c76671fd71",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "本人已核实两万五到账且愿意只卖灯具，直接成交成立；感谢省心费没有新增服务义务。"
+        },
+        {
+          "candidate_id": "6713552f9e11",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "价格、可靠付款和出售意愿均已明确，成交后约定交货时间自然且无需补设条件。"
+        },
+        {
+          "candidate_id": "9de3bc51baef",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "引用此前未帮忙和省心费的事实准确，但这些事实不支持推翻已明确的出售意愿；退款是未来承诺。"
+        },
+        {
+          "candidate_id": "009de65ffb3d",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "价格和担保确已明确；想继续保留是无支持的新决定，违背已表达的核实后成交意愿。"
+        },
+        {
+          "candidate_id": "d45c3ac0a722",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "净收达标且本人已核实不可撤销担保，兑现成交意愿正确；无须复述全部已知条件。"
+        },
+        {
+          "candidate_id": "930f60eee898",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "成交条件与明确出售意愿均已满足；担保核实是既成事实，不是新增核验。"
+        },
+        {
+          "candidate_id": "1ab65a95ba6c",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "了解价格和担保的陈述准确，但无新障碍支持撤回核实后成交的明确意愿。"
+        },
+        {
+          "candidate_id": "f8c514ce6085",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [
+            "arrival"
+          ],
+          "requested_condition_quotes": [
+            "先查一下自己的账户，收到两万元后再决定成交"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "到账未知且账户可查，先核实后决定符合条件；认可净价不是提前成交。"
+        },
+        {
+          "candidate_id": "4051db4fba63",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "已安排付款复述了买方说法，并未声称到账；但未确认可靠付款便宣布成交和留灯。"
+        },
+        {
+          "candidate_id": "51b233df79c1",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "付款安排有买方陈述依据，却不足以满足可靠付款要求；直接成交属于提前承诺。"
+        },
+        {
+          "candidate_id": "f2f185b9f3e4",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [
+            "arrival"
+          ],
+          "requested_condition_quotes": [
+            "到账我还没核实，我先查一下自己的账户；收到两万咱们就成交"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "明确先查账户，以核实收到两万为成交条件；条件性成交计划不是提前承诺。"
+        },
+        {
+          "candidate_id": "0fe0bb4355ce",
+          "decision_id": "decline_routine",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "刚主动提出讲通用注意事项却改为拒答，决定不受支持；转介建议没有声称已确认人员或场地条件。"
+        },
+        {
+          "candidate_id": "d749ae66cad5",
+          "decision_id": "chat",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "自然回答存放问题并兑现此前意愿；定期查看受潮只是保养建议。"
+        },
+        {
+          "candidate_id": "dc963851e8e2",
+          "decision_id": "decline_routine",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "转介他人不能兑现刚提出的通用讲解，拒答缺乏支持；没有编造具体场地事实或安排待决核验。"
+        },
+        {
+          "candidate_id": "39a6e07b9df4",
+          "decision_id": "chat",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "提供与问题相符的通用存放建议，未增加交易条件；检查受潮不构成成交核验。"
+        },
+        {
+          "candidate_id": "3bbb8f4d00d7",
+          "decision_id": "decline",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "我们再核对这笔补款是否到账"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "主决定为拒绝低于底价的当前提议；对未来新增补款安排核验，没有重复核验已知到账的原款。"
+        },
+        {
+          "candidate_id": "abf921e988db",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "到账事实准确，但一万八违反底价；数量和交接时间仅是交接细节，不能算成交条件核验。"
+        },
+        {
+          "candidate_id": "406a937b7425",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "反复请求及到账有依据，出售仍违反已知底价；随后核对交接细节不使其成为先承诺后核验成交条件。"
+        },
+        {
+          "candidate_id": "68099c583e0b",
+          "decision_id": "decline",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.9,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "咱们再核对这笔补款是否到账"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "明确拒绝一万八，提出补两千后核对新增款项；这是拒绝当前提议后的条件性方案。"
+        },
+        {
+          "candidate_id": "53a768651db8",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "你可以查一下转账进度",
+            "我会再查账户",
+            "你提供银行不可撤销付款担保，我向签发银行核实有效后再决定交货"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "如实说明当前未到账且无担保，安排再次查账或取得担保后向银行核实，两条路径均可行。"
+        },
+        {
+          "candidate_id": "d9464ed84130",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [
+            "你查查转账进度",
+            "我再查账户",
+            "也可以给我银行不可撤销付款担保，等我向签发银行核实有效再定交货"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "只认可价格，付款可靠性仍待本人查账或向银行核实担保；没有提前交货承诺。"
+        },
+        {
+          "candidate_id": "e6a8a912162d",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "收到截图与价格达标都属实，但未确认可靠付款就确认归属并立即交货。"
+        },
+        {
+          "candidate_id": "a72df204f89f",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "看到转账截图的陈述有依据；截图不能替代到账或合格担保，立即交付属于提前承诺。"
+        },
+        {
+          "candidate_id": "498e64959798",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "两万五已由本人核实到账，出售意愿及交易范围明确；安排打包有现成条件支持。"
+        },
+        {
+          "candidate_id": "ac70e487ee2e",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "到账金额准确，退款是未来安排；继续保留的新决定却违背刚明确的出售意愿和已满足条件。"
+        },
+        {
+          "candidate_id": "5a5513c562c3",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "价格、亲自核实到账及只卖灯具均有依据，成交和打包安排符合当前意愿与资源。"
+        },
+        {
+          "candidate_id": "7180397c3a05",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "没有虚构到账或已退款事实，但取消交易缺乏依据，违背已满足的条件和明确成交意愿。"
+        },
+        {
+          "candidate_id": "9b5677930fa0",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "价格和担保已收到有依据；暂留不卖是无支持的新决定，不能推翻已核实后成交的意愿。"
+        },
+        {
+          "candidate_id": "62103b283a3d",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "净收达标且担保已亲自核实，按仅含灯具的方案成交符合明确意愿。"
+        },
+        {
+          "candidate_id": "0844736418f1",
+          "decision_id": "sell",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "引用已完成的银行核验并确认成交，价格与范围均忠实；无需再核验已知条件。"
+        },
+        {
+          "candidate_id": "efaf653daea0",
+          "decision_id": "decline",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": false,
+          "rationale": "没有虚构具体事实，但等待不卖的新决定与此前明确意愿及已核实的合格方案不符。"
+        },
+        {
+          "candidate_id": "029ba5af8445",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "两万净收有依据，但到账仍未知且无担保，直接成交过早；回头核对交货安排不核实付款。"
+        },
+        {
+          "candidate_id": "12dbd716e129",
+          "decision_id": "sell",
+          "decision_correct": false,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [],
+          "requested_condition_quotes": [],
+          "feasible_verification": false,
+          "premature_commitment": true,
+          "rationale": "价格判断准确，却在可靠付款未确认时宣布成交并留灯；商量交货不能补足付款核验。"
+        },
+        {
+          "candidate_id": "4d3355938301",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [
+            "arrival"
+          ],
+          "requested_condition_quotes": [
+            "我先看看自己的账户，确认收到两万元再决定是否成交"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "准确保留到账未知状态，并安排当前可行的账户核验；价格接受不等于无条件成交。"
+        },
+        {
+          "candidate_id": "b6f98a1f539a",
+          "decision_id": "check",
+          "decision_correct": true,
+          "evidence_ok": true,
+          "naturalness": 0.95,
+          "requested_condition_ids": [
+            "arrival"
+          ],
+          "requested_condition_quotes": [
+            "我先查一下自己的账户，确认收到两万元再定这单"
+          ],
+          "feasible_verification": true,
+          "premature_commitment": false,
+          "rationale": "净价达标但到账未核实，先查账户再决定订单正确，没有承诺先成交或留灯。"
+        }
+      ]
+    },
+    "source_file": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/pilot12-20261101-semantic-v4/raw/semantic_adjudication/38a907cbcc1a61c3bce17431fe978dd3531952538ff5e4955c0c924bca84b456/attempt-000/result.json"
+  },
+  "source_paths": {
+    "dataset": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/pilot12-20261101-semantic-v4/families.jsonl",
+    "run_manifest": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/pilot12-20261101-semantic-v4/artifact_manifest.json"
+  },
+  "expression_style_supplement": []
+}

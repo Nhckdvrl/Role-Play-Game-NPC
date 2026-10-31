@@ -1,0 +1,54 @@
+{
+  "snapshot_local_date": "2026-11-01",
+  "audited_pilot": 12,
+  "audited_train": 9,
+  "audited_dev": 0,
+  "audited_test": 0,
+  "pilot_nodes": 144,
+  "pilot_unique_candidates": 576,
+  "train_nodes": 108,
+  "train_candidates": 432,
+  "extra_audited_candidate_calibration_items": 1,
+  "first_train_target": 5000,
+  "conditional_train_target": 20000,
+  "recorded_cli_sessions": 3074,
+  "recorded_returned_usage_tokens": {
+    "input_tokens": 55595369,
+    "cached_input_tokens": 39572352,
+    "output_tokens": 1472148,
+    "reasoning_output_tokens": 60964
+  },
+  "sessions_without_usage": 5,
+  "aborted_or_incomplete_metadata_records": 1,
+  "cost_usd": null,
+  "usage_scope": "Only completed metadata and returned usage from the six listed runs; native subagents, the initial CLI probe, and ongoing next-shard calls are excluded. Unknown usage is null, not estimated.",
+  "human_review": "not_sampled",
+  "style_recheck": {
+    "target_character_wrong_candidates": 144,
+    "first_pass_support_at_least_0_7": 127,
+    "low_confidence_rechecked": 17,
+    "recheck_supported_at_least_0_7": 16,
+    "hard_style_supported_total": 143,
+    "borderline_kept_as_ordinary_negative": 1
+  },
+  "pilot_dataset_sha256": "b670602151e845be8083629c5a6fc56064f3f914cde8cbce0941285bc08076cd",
+  "train_dataset_sha256": "f626bc384dd2b99ef992b7dc71b022a41942dae8890149a4e09cb09a5b1f35c1",
+  "source_runs": [
+    "pilot12-20261101",
+    "pilot12-20261101-semantic-v4",
+    "train-production-000000",
+    "train-production-000000-semantic-v4",
+    "train-scale/shards/shard-00000000",
+    "evaluator-calibration-20261101"
+  ],
+  "train_snapshot": "runs/train-snapshot-first9/families.jsonl",
+  "ongoing_scale_state": "runs/train-scale/state.json",
+  "style_support": {
+    "intended_character_wrong": 144,
+    "first_pass_at_least_0_7": 127,
+    "low_confidence_rechecked": 17,
+    "additional_supported": 16,
+    "hard_slice": 143,
+    "borderline_ordinary_negative": 1
+  }
+}
