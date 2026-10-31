@@ -1,60 +1,42 @@
 # Role-Play-Game-NPC
 
-## 当前研究：双向历史惯性下的角色条件决策学习
+## 当前研究：角色对话的人设一致性
 
-**方向A已确定，现在开展数据生产与方法原型。** 核心问题：多轮角色对话中，模型能否依据人物目标和当前证据改变决定，同时不被此前的合作／拒绝姿态带偏？
+本项目聚焦 **纯文本单轮与多轮角色对话中的 Persona Consistency & Character Fidelity**，研究浅层扮演与多轮人设消退／出戏，并兼顾表达自然度与基本指令能力。主要技术视角是 **A：强化学习与角色推理；B：Persona Probes 与激活控制**。
 
-该坚持时不盲从，该改变时不固执，信息不足时知道核实什么，并通过自然角色回复表达。研究仍属于纯文本Persona Consistency / Character Fidelity，主要技术路线为教师脚手架内化、条件关系训练与分支信用分配，以及Persona Probe／激活分析。不是把NPC缩成选择题或扩大为完整游戏引擎。
+**题目已经确定，具体机制与方法尚需实验发现。** 前期讨论用于梳理数据、Baseline、候选解释与初步实验，不是预先写好从 E0 到 E2 的完整成功路线。本地 Agent 在研究范围和资源边界内自主设计高信息量实验，依据实际数据修正假设、迭代方法和收敛 claim；不用为了符合文档去证明预设曲线，也不止步于复现报告。**研究想法文档中的十个具体候选切口用于启发有判别力的实验，不是十项必做工程。**
 
-用户已授权Astra总控＋Terra并行合成受控故事族。**数据生产不等待GPU；小批校准与覆盖扩产并行。** 强提示是可利用的教师信号，普通SFT/DPO是比较起点，不是停止后训练的理由。方向B/C暂作储备。
+## 文档入口
 
-## 立即开始
+| 文件 | 查阅用途 |
+| --- | --- |
+| **[RESEARCH_IDEAS.md](RESEARCH_IDEAS.md)** | **当前选题 v2.2**：稳定的研究问题、数据与 Baseline 布局、双层思考／奖励／多轮恢复／Persona Probe 的开放式具体方法菜单与初步实验 |
+| **[AGENT_HANDOFF.md](AGENT_HANDOFF.md)** | **本地实验入口**：自主权限、可选择的实验、已有工程审查线索、Probe 起点与简洁证据记录 |
+| [DISCUSSION_GUIDELINES.md](DISCUSSION_GUIDELINES.md) | 讨论与研究原则：事实／假设分离、高信息量实验、硬边界与协同纠偏 |
+| [ROADMAP.md](ROADMAP.md) | **18 章领域地图**：解释研究问题、方法、关键公式、证据与分支联系，不是当前项目必须实现的范围 |
+| [LITERATURE.md](docs/LITERATURE.md) | **113 篇去重论文**：7 篇综述、106 篇研究，按主题列出原文、发表状态与阅读深度 |
+| [RESOURCE_ATLAS.md](docs/RESOURCE_ATLAS.md) | **107 项资源**：106 项研究资源 + 1 项 Sony CPDC 挑战，核对数据、评测、Baseline、代码与模型发布状态 |
 
-给本地Agent直接使用：**[LOCAL_AGENT_DATA_START.md](prompts/LOCAL_AGENT_DATA_START.md)**。
+开始实验时先掌握选题、交接和讨论边界，再按当前问题查资源与论文；无需逐项完成领域地图中的全部内容。E0／E1／E2 是诊断、方法探索和独立验证三类工作，允许往返与并行，不是固定排期。
 
-最短流程：读研究、数据协议和生成提示词 → 运行接口测试 → 实际生成并审查首批12族（计入pilot150）→ 继续校准，同时生产训练覆盖流。不要停在“脚本已写好”，也不要把planned种子清单算成已生成数据。
+## 领域地图的覆盖范围
 
-## 当前文档入口
+这份中文领域地图以 Role-Playing NPC 本身为核心：人物身份、性格、动机与情绪，知识与错误信念、记忆与关系、角色成长，以及面对玩家时自然可信的对白与行为。Game 是有世界状态和玩家干预的交互情境；通用多智能体协作、资源采集、战术与低层部署只作必要背景。
 
-| 文件 | 用途 |
-|---|---|
-| **[RESEARCH_IDEAS.md](RESEARCH_IDEAS.md)** | 研究v3.0：问题、数据对照、教师内化、关系学习、Probe与实验布局。 |
-| **[docs/DATA_CONSTRUCTION.md](docs/DATA_CONSTRUCTION.md)** | 数据v0.2：故事族、六分支、四格候选、块置换、B6、隔离审查、划分与扩产。 |
-| **[docs/GENERATION_PROMPTS.md](docs/GENERATION_PROMPTS.md)** | Astra及各Terra角色可直接使用的设计／渲染／盲审／仲裁提示词。 |
-| **[AGENT_HANDOFF.md](AGENT_HANDOFF.md)** | 本地Agent执行授权、最短命令、首批交付和GPU并行通道。 |
-| [docs/METHOD.md](docs/METHOD.md) | 节点锚定奖励、对称度数边权、分解RLOO、固定锚点及独立教师恢复。 |
-| [docs/EVALUATOR.md](docs/EVALUATOR.md) | 自由台词多头评分器：独立标签、训练切片、B6语义提取与实测校准。 |
-| [data_factory/README.md](data_factory/README.md) | Schema、任务导出、块拼接、评分接口、奖励代码与16项测试的运行入口。 |
-| [docs/SOURCES_DIRECTION_A.md](docs/SOURCES_DIRECTION_A.md) | OSPD、Intent-OPSD、Conversational Inertia、CPC-GRPO、COMA／RLOO／DPO依据。 |
-| [docs/IMPLEMENTATION_STATUS.md](docs/IMPLEMENTATION_STATUS.md) | 已完成代码／文档、实际测试和仍未执行的模型工作。 |
-| [DISCUSSION_GUIDELINES.md](DISCUSSION_GUIDELINES.md) | 当前范围、数据授权、自主权与证据原则；已删除冲突的旧数据限制。 |
+地图还覆盖玩家意图与试探、承诺和世界反馈、图像／语音中的人物表现等直接交叉方向。**领域全景不等于本轮立项范围**；当前研究仍以自然文本角色对话的人设一致性为主干，不因地图中存在其他分支而自动扩题。
 
-## 生产目标，不是已完成数量
+文献与资源索引使用全局 ID **RP-001–RP-113**，每篇论文只在一个主题登记；PersonaArena 与 LSH-RL、ChARM 与 CHARM 等有明确消歧，NPTI／PersonalityBench、PAS、DPR 等前置基线单列。
 
-| 集合 | 目标故事族数 | 定位 |
-|---|---:|---|
-| 校准pilot | 150 | 修提示与审查协议，全部开发用途。 |
-| train | 2,000 | 两历史×六分支=24,000节点；四格独立候选目标96,000实例。 |
-| dev | 200 | 方法选择与阈值校准。 |
-| test | 300 | 按人物／骨架组隔离的独立验证，不用于错误驱动生产。 |
+**评测依赖速查：** [静态任务、本地学习型裁判、动态多轮与原论文 judge 依赖](docs/RESOURCE_ATLAS.md#evaluation-cost)。本地运行不等于零计算成本，也不保证复现原论文分数；源码存在、协议适配、成功运行和独立复现应分别报告。
 
-初始训练70%覆盖流、30%困难流；GPU未回报时先构造design-hard，得到真实失败后增加model-hard。机制子集使用同一批独立已结对话块的程序置换。B6必须指出缺失条件并提出可执行核验；四格候选的生成意图和独立审查标签分开保存。
+## 状态与使用边界
 
-## 代码与状态
+**文档更新：2026-10-30。** 本轮修订整合研究原则与实验授权，保留已有数据／代码审查线索，没有产生新的 GPU 实验结果，也没有改变两份索引的数量与审计口径。
 
-```bash
-python -m pip install -r data_factory/requirements.txt
-python -m unittest discover -s data_factory -p 'test_*.py' -v
-```
+领域核验快照同为 2026-10-30：M 82 篇（研究主文与必要附录阅读）、T 25 篇（定点核读）、B 6 篇（摘要及资源核查）；92 篇发表于或首发于 2025–2026。另有 4 篇官方工程资料，不计入论文数量。资源会变化，实际使用时冻结版本并检查需要的接口。
 
-本轮本地**16项单元测试通过**；短接口样例的结构验证、隔离任务导出、种子清单创建已跑通。样例为1族、12节点、48候选实例／24唯一文本，审查pending；它不是正式生产集。
+正式选题文档的改写遵循用户授权；普通实验设计与实现调整在已授权范围内由本地 Agent 自主推进。数据、裁判、训练与表征实验的真实结果应持续更新我们的认识，而不是被一份先验方案约束。
 
-目前尚未执行真实Astra–Terra批量生成、训练语义评分器、Probe或在线RL。`factory.py`不自动调用供应商；本地Agent需接已有授权工具。`scoring.py`提供接口与规则组合，不含已训练语言理解backend；奖励代码也不是完整veRL trainer。全错节点的教师恢复是独立CE/KL任务，不把离线示范伪装成在线采样。
+## 新增专项（不改变原有编号）
 
-## 领域地图与历史资产
-
-[ROADMAP.md](ROADMAP.md)仍是18章领域地图；[docs/LITERATURE.md](docs/LITERATURE.md)保留2026-10-30的113篇去重文献快照；[docs/RESOURCE_ATLAS.md](docs/RESOURCE_ATLAS.md)保留107项资源快照。全景覆盖身份、动机、知识／信念、记忆／关系、成长、玩家交互与相关接口，不等于本轮必须全部实现。
-
-原RP-001–RP-113编号和阅读／资源状态不因这次立项更新被改写。新增方法来源单列于方向A补充页，不虚增已核读数量。资源可用性、许可证和版本在实际使用时再冻结。
-
-**更新日期：2026-11-01。** 旧v2.2研究和工程交接保留于提交`08f6891143c6e991c2c8369b66b492c77b257b48`。现有实验、模型与数据不因文档升级被删除；本地Agent保留工作树修改，按当前交接开始真实数据工作。
+[多轮角色条件决策与历史惯性研究](projects/reason-sensitive-roleplay/README.md)：既有主线 A（RL／角色推理）下的具体研究项目，可结合主线 B 的 Persona Probe。数据、方法、代码与生成提示词独立存放；上文 A/B 主线、E0/E1/E2 和 RP 论文编号保持原义。

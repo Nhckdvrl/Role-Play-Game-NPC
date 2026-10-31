@@ -1,12 +1,14 @@
-# 给本地 Agent：立即启动方向 A 数据生产
+> **目录约定：**本研究位于 `projects/reason-sensitive-roleplay/`，先从仓库根目录 `cd projects/reason-sensitive-roleplay`。后文相对路径以专项根目录为准；不要覆盖原仓库根目录的研究方案与交接。新课题不占用旧 A/B 字母编号。
 
-你正在仓库 `Nhckdvrl/Role-Play-Game-NPC` 工作。方向A已经由用户确定：**多轮双向历史惯性下的角色条件决策学习**。本轮任务是实际构造、审查和整理数据，不再讨论是否立项，也不要等待GPU实验或完整RL训练器就绪。
+# 给本地 Agent：立即启动本专项 数据生产
+
+你正在仓库 `Nhckdvrl/Role-Play-Game-NPC` 工作。本专项已经由用户确定：**多轮双向历史惯性下的角色条件决策学习**。本轮任务是实际构造、审查和整理数据，不再讨论是否立项，也不要等待GPU实验或完整RL训练器就绪。
 
 ## 先读并接续
 
 先检查工作树、现有实验日志和数据目录，保留未提交修改，不reset覆盖其他Agent的工作。读取当前版本的：
 
-1. `RESEARCH_IDEAS.md`
+1. `RESEARCH_PLAN.md`
 2. `docs/DATA_CONSTRUCTION.md`
 3. `docs/GENERATION_PROMPTS.md`
 4. `AGENT_HANDOFF.md`

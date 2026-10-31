@@ -1,4 +1,4 @@
-# 方向 A：方法依据与增量文献
+# 本专项：方法依据与增量文献
 
 > 核查日期：2026-11-01。此页补充当前研究直接需要的来源，不改动2026-10-30主索引的113篇／107项历史统计。原论文结论限于原协议；本项目未独立复现下列结果。本轮补核以官方页面、摘要和已有方法阅读为基础，不宣称重新精读完整领域。
 
@@ -38,7 +38,7 @@ DPO是同条件下偏好学习的强参照，可以通过数据中的条件差�
 
 ## 4. 已有领域资产如何接续
 
-以下按原索引引用，不在本页重复宣称资源已经完整复现：RP-013 CoSER、RP-021 RoleMRC、RP-025 HER、RP-039 CRPO、RP-040 MOA、RP-061 Persistent Personas、RP-080 RoleCDE、RP-087 CharacterBench。论文与实际数据／模型状态见[LITERATURE](LITERATURE.md)和[RESOURCE_ATLAS](RESOURCE_ATLAS.md)。
+以下按原索引引用，不在本页重复宣称资源已经完整复现：RP-013 CoSER、RP-021 RoleMRC、RP-025 HER、RP-039 CRPO、RP-040 MOA、RP-061 Persistent Personas、RP-080 RoleCDE、RP-087 CharacterBench。论文与实际数据／模型状态见[LITERATURE](../../../docs/LITERATURE.md)和[RESOURCE_ATLAS](../../../docs/RESOURCE_ATLAS.md)。
 
 原索引中的角色奖励、思考、人格探针和多轮基线是实现工具箱。先选与当前问题最直接、能够在本地跑通的资产；不要求把每篇都复现，也不将不同judge、底座或输入信息下的分数直接拼为同一排名。
 

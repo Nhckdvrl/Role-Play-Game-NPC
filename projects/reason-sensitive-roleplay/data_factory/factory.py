@@ -158,7 +158,7 @@ def main():
     a=parser.parse_args()
     if a.command=='init':
         if a.count<1 or a.offset<0: parser.error('positive count and nonnegative offset required')
-        rows=[{'family_id':f'A-{a.split}-{i:05d}','split_group_id':f'A-{a.split}-{i:05d}',
+        rows=[{'family_id':f'RCD-{a.split}-{i:05d}','split_group_id':f'RCD-{a.split}-{i:05d}',
                'split':a.split,'motive':MOTIVES[i%len(MOTIVES)],'history_mode':'exact_permutation' if i%5==0 else 'natural',
                'status':'planned_not_generated','seed':i,'protocol_version':'0.2'} for i in range(a.offset,a.offset+a.count)]
         write_new(Path(a.out)/'plan.jsonl',rows)

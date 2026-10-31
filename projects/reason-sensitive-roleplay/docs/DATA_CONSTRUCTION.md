@@ -1,8 +1,8 @@
-# 方向 A 数据构建协议
+# 本专项 数据构建协议
 
 > **v0.2 · 2026-11-01。** 与研究v3配套。方向已确定，立即生产；数据工作不等待GPU。此文件是生产真源，旧启动包PROTOCOL.md v0.1仅作历史参考。
 
-关联：[研究](../RESEARCH_IDEAS.md) · [生成提示词](GENERATION_PROMPTS.md) · [评分器](EVALUATOR.md) · [方法](METHOD.md) · [代码入口](../data_factory/README.md)。
+关联：[研究](../RESEARCH_PLAN.md) · [生成提示词](GENERATION_PROMPTS.md) · [评分器](EVALUATOR.md) · [方法](METHOD.md) · [代码入口](../data_factory/README.md)。
 
 ## 1. 任务与不可变约束
 

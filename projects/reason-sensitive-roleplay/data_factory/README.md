@@ -1,8 +1,8 @@
-# Direction A 数据工厂 v0.2
+# 条件决策专项数据工厂 v0.2
 
 这是数据生产的最小可运行脚手架与条件关系奖励参考实现，不是已经接好供应商的全自动生成服务。正式协议见[数据构建](../docs/DATA_CONSTRUCTION.md)，worker提示词见[生成提示词](../docs/GENERATION_PROMPTS.md)，执行授权见[AGENT_HANDOFF](../AGENT_HANDOFF.md)。
 
-## 从仓库根目录运行
+## 先从仓库根目录 `cd projects/reason-sensitive-roleplay`，再运行
 
 ```bash
 python -m pip install -r data_factory/requirements.txt
@@ -10,7 +10,7 @@ python -m unittest discover -s data_factory -p 'test_*.py' -v
 python data_factory/make_smoke.py data_factory/examples/smoke.jsonl
 python data_factory/factory.py validate data_factory/examples/smoke.jsonl --report runs/smoke/validation.jsonl
 python data_factory/factory.py export data_factory/examples/smoke.jsonl --out runs/smoke/jobs --include-teacher
-python data_factory/factory.py init --split pilot --count 12 --out runs/A-pilot-first12
+python data_factory/factory.py init --split pilot --count 12 --out runs/RCD-pilot-first12
 ```
 
 `story_family.schema.json`已提交；修改schema时运行`python data_factory/build_schema.py`重新生成并一起提交。生成器输出缩进格式，与仓库初始紧凑JSON语义一致，可能产生纯格式差异。
