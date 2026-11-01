@@ -14,13 +14,13 @@
 
 代码测试 **64 项通过**（含跨进程共享8槽位、异常释放和跨集合隔离）。原协议的小样例及真实审查在 `data_factory/examples/`；完整数据和大日志保留于本地 `runs/`。累计快线用量按已返回 CLI metadata 实测，缺失与中断保持未知，原生子 Agent 不伪装成已计费记录。根目录原研究方案、A/B 与 RP 编号及原有未提交工作均保留。
 
-Hugging Face 私有快照：<https://huggingface.co/datasets/Nhckdvrl/reason-sensitive-roleplay-v02>。首版上传 Train557 / Dev3 / Test1，1128个文件远端哈希校验全部一致；最新本地计数见下方，上传按批增量更新。发布仍标记 IN_PROGRESS；模型审查不冒充人审，近重复全局审查仍在进行。
+Hugging Face 私有快照：<https://huggingface.co/datasets/Nhckdvrl/reason-sensitive-roleplay-v02>。最新已验证上传 Train845 / Dev41 / Test30，1860个文件远端哈希校验全部一致，提交 `6059f884a1bf`；最新本地计数见下方，上传按批增量更新。发布仍标记 IN_PROGRESS；模型审查不冒充人审，近重复全局审查仍在进行。
 
 <!-- TRAIN_LIVE_START -->
 
-更新：2026-11-01T10:51:18.569606+00:00。当前累计 **837/5000 个 Train 故事族**，40176 个四格候选实例，21102 条全局唯一候选正文。
+更新：2026-11-01T10:57:48.167512+00:00。当前累计 **848/5000 个 Train 故事族**，40704 个四格候选实例，21366 条全局唯一候选正文。
 
-Train / Dev / Test 生成与审查共享 **8 个模型调用槽位**；本 Train 流有 4 个故事族工作线程。CLI 进程：已退出，额度阻断：False。Dev：41/500；Test：30/800。已记录审查结果：{'needs_review': 288, 'audited': 636, 'service_failure': 35}；最近调度窗通过率：72.0%。排除和待审均不计入。停止原因：stop requested; in-flight jobs drained。
+Train / Dev / Test 生成与审查共享 **8 个模型调用槽位**；本 Train 流有 4 个故事族工作线程。CLI 进程：运行中，额度阻断：False。Dev：43/500；Test：41/800。已记录审查结果：{'needs_review': 284, 'audited': 647, 'service_failure': 35}；最近调度窗通过率：72.0%。排除和待审均不计入。停止原因：无。
 
 数据与原始盲审：`runs/train5000-live/`；旧批匿名重审：`runs/fast-v2-migration/`；用量范围和缺失项见 `runs/train5000-live/live_report.json`，费用尚无实测账单。
 
