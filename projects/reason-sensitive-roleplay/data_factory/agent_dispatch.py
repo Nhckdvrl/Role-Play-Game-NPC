@@ -12,12 +12,32 @@ import signal
 import subprocess
 import tempfile
 import threading
+import uuid
 
 from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError, ValidationError
 
 _LOCKS = {}
 _LOCKS_GUARD = threading.Lock()
+QUOTA_MARKER = Path(__file__).resolve().parent.parent / 'runs' / 'CLI_QUOTA_EXHAUSTED.json'
+
+def _quota_message(events, stderr):
+    texts = [str(e.get('message', '')) for e in events if isinstance(e, dict)] + [stderr]
+    for value in texts:
+        for line in value.splitlines():
+            normalized = line.casefold().replace('’', "'")
+            if 'hit your usage limit' in normalized or 'usage limit exceeded' in normalized:
+                return line[:1000]
+    return None
+
+def _quota_blocked():
+    return QUOTA_MARKER.is_file()
+
+def _set_quota_marker(message, attempt):
+    QUOTA_MARKER.parent.mkdir(parents=True, exist_ok=True)
+    tmp = QUOTA_MARKER.with_name(QUOTA_MARKER.name + '.' + uuid.uuid4().hex + '.tmp')
+    _write(tmp, {'status': 'quota_blocked', 'detected_utc': _now(), 'message': message, 'evidence_attempt': str(attempt)})
+    os.replace(tmp, QUOTA_MARKER)
 
 
 def _canonical(value):
@@ -80,6 +100,8 @@ def dispatch(task, run_dir, model='gpt-6.1-terra', effort='low', timeout=300):
                                 'result': cached_result, 'reused': True}
                 except (ValueError, OSError, ValidationError, SchemaError):
                     pass
+        if _quota_blocked():
+            return {'hash': digest, 'status': 'quota_blocked', 'path': str(QUOTA_MARKER), 'result': None, 'reused': True, 'failure_type': 'quota_exhausted'}
         next_index = max((int(p.name.split('-')[1]) for p in attempts), default=-1) + 1
         if next_index >= 3:
             previous = attempts[-1]
@@ -87,6 +109,8 @@ def dispatch(task, run_dir, model='gpt-6.1-terra', effort='low', timeout=300):
                     'result': None, 'reused': True}
         last = None
         for index in range(next_index, 3):
+            if _quota_blocked():
+                return {'hash': digest, 'status': 'quota_blocked', 'path': str(QUOTA_MARKER), 'result': None, 'reused': True, 'failure_type': 'quota_exhausted'}
             attempt = base / f'attempt-{index:03d}'
             attempt.mkdir()
             schema_path = attempt / 'schema.json'
@@ -146,6 +170,11 @@ def dispatch(task, run_dir, model='gpt-6.1-terra', effort='low', timeout=300):
             completed_turns = [e for e in events if e.get('type') == 'turn.completed']
             usage = completed_turns[-1].get('usage') if completed_turns else None
             result = None
+            quota_message = _quota_message(events, stderr)
+            if quota_message:
+                failure = quota_message
+                failure_type = 'quota_exhausted'
+                _set_quota_marker(quota_message, attempt)
             if failure is None and exit_code != 0:
                 failure = f'CLI exited with status {exit_code}'
                 failure_type = 'exit_error'
@@ -178,7 +207,7 @@ def dispatch(task, run_dir, model='gpt-6.1-terra', effort='low', timeout=300):
                 'forbidden_events': forbidden,
                 'isolation': 'Empty temporary working directory and CLI read-only sandbox; this is not a confidentiality sandbox against file reads.'})
             last = {'hash': digest, 'status': status, 'path': str(attempt), 'result': result, 'reused': False, 'failure_type': failure_type}
-            if status == 'success':
+            if status == 'success' or failure_type == 'quota_exhausted':
                 return last
         return last
 

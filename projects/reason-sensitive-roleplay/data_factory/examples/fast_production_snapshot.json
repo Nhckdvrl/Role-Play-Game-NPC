@@ -1,0 +1,57 @@
+{
+  "snapshot_utc": "2026-11-01T03:09:22.968956+00:00",
+  "main_families": 193,
+  "main_nodes": 2316,
+  "main_candidate_instances": 9264,
+  "main_unique_candidate_texts": 5736,
+  "independent_field_families": 2,
+  "pilot_families_separate": 12,
+  "source": {
+    "utc": "2026-11-01T03:09:22.968956+00:00",
+    "main_source": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/families.jsonl",
+    "main_source_sha256": "6c06c0e949fd05659216fea59f665b9924f093e68e871fe3939497b60d9e4e70",
+    "source_rows": 193,
+    "exclusions_sha256": "62489abcfa5c4954972bcb688b6fbc8de21ec4cda19e38669cdfbf3fa843d6e9",
+    "excluded_present": [],
+    "main_snapshot_sha256": "6c06c0e949fd05659216fea59f665b9924f093e68e871fe3939497b60d9e4e70",
+    "main_families": 193,
+    "field_source": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/field-natural-20261101/passed.jsonl",
+    "field_source_sha256": "7b897a2fb4562757113b6acefc6f2a976112be42143b914d61aeb622145f008b"
+  },
+  "phi4_summary": {
+    "families": 75,
+    "comparisons": {
+      "families": 75,
+      "message_multisets_equal_true": 75,
+      "token_lengths_equal_true": 75,
+      "token_id_multisets_equal_true": 75,
+      "token_sequences_equal_false": 75
+    },
+    "tokens": {
+      "min": 532,
+      "median": 641.0,
+      "max": 1212
+    },
+    "tokenizer_path": "/home/xiang/.cache/huggingface/hub/models--microsoft--Phi-4-mini-instruct/snapshots/cfbefacb99257ffa30c83adab238a50856ac3083",
+    "tokenizer_class": "GPT2TokenizerFast",
+    "input_sha256": "3cf37abd2d8902dc91375c4cc9c4f2047fc89044b98f83e636859074fa7f5f57",
+    "output_sha256": "1e9a975f5ad06cf2b7d4c397124674dbd07ed1dd62ac041c58424e5efb6a1e86"
+  },
+  "quality_report_sha256": "c34fba9933d686da06c78fb9c41d7e65e7153e751e3e712a0bfa8f55054800ae",
+  "astra_spot": {
+    "sampled_candidates": 24,
+    "completed": 24,
+    "success": 24,
+    "decision_agreements": 24,
+    "human_review": "not_sampled",
+    "scope": "independent one-candidate Astra contexts; no generation or prior review labels in worker payload",
+    "disagreements": []
+  },
+  "human_review": "not_sampled",
+  "current_live_directory": "runs/train5000-live",
+  "target_train_families": 5000,
+  "target_completed": false,
+  "references": "CrossWOZ train-only; details in reference_summary.json; no dialogue copied",
+  "astra_evidence_disagreements": 4,
+  "astra_evidence_note": "Four grounding disagreements reflected faithfulness-versus-reason-validity rubric differences; original labels and both raw reviews retained. Decision agreement is not agreement on every head."
+}

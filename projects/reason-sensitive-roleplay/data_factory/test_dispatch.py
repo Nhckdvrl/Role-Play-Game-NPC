@@ -33,6 +33,13 @@ class FakeProcess:
 
 
 class DispatchTest(unittest.TestCase):
+    def setUp(self):
+        self.marker_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.marker_dir.cleanup)
+        self.marker_patch = patch.object(agent_dispatch, 'QUOTA_MARKER', Path(self.marker_dir.name) / 'quota.json')
+        self.marker_patch.start()
+        self.addCleanup(self.marker_patch.stop)
+
     def run_fake(self, **kwargs):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
@@ -42,6 +49,30 @@ class DispatchTest(unittest.TestCase):
             calls.append(proc)
             return proc
         return tmp.name, calls, patch.object(agent_dispatch.subprocess, 'Popen', side_effect=make)
+
+    def test_quota_event_stops_after_one_attempt_and_blocks_new_calls(self):
+        quota = '{"type":"error","message":"You’ve hit your usage limit. Try again Nov 7."}\n'.encode()
+        path, calls, popen = self.run_fake(events=quota)
+        with popen:
+            first = agent_dispatch.dispatch(TASK, path)
+            second = agent_dispatch.dispatch(TASK, path)
+        self.assertEqual(first['failure_type'], 'quota_exhausted')
+        self.assertEqual(second['status'], 'quota_blocked')
+        self.assertEqual(len(calls), 1)
+        meta = json.loads((Path(first['path']) / 'metadata.json').read_text())
+        self.assertIsNone(meta['usage'])
+        self.assertIn('usage limit', json.loads(agent_dispatch.QUOTA_MARKER.read_text())['message'])
+
+    def test_prior_success_remains_reusable_when_quota_marker_exists(self):
+        path, calls, popen = self.run_fake()
+        with popen:
+            first = agent_dispatch.dispatch(TASK, path)
+            agent_dispatch.QUOTA_MARKER.write_text('{}')
+            second = agent_dispatch.dispatch(TASK, path)
+        self.assertEqual(first['status'], 'success')
+        self.assertEqual(second['status'], 'success')
+        self.assertTrue(second['reused'])
+        self.assertEqual(len(calls), 1)
 
     def test_schema_error_is_failed_and_preserves_raw(self):
         path, calls, popen = self.run_fake(body=b'{"answer":"not an integer"}')

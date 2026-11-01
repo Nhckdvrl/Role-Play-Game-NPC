@@ -4,6 +4,18 @@
 
 本地生产已接入当前授权的 Codex CLI；实时数量和质量状态以 [DATA_PROGRESS](../DATA_PROGRESS.md) 为准。`agent_dispatch.py` 保存每次独立会话的输入、原文、schema 校验、实际 token 和失败类型；`produce_pilot.py` 执行历史／四格／单候选盲审；`adjudicate_release.py` 在移除生成意图后独立仲裁标签。初次盲审可能误读，不能强迫改成作者答案，也不能把所有审查意见当作数据错误。
 
+当前持续生产使用 `fast_generate.py`：每个 Terra 任务输出完整故事族，再进入互相独立的局部与候选审查上下文；`fast_review.py` 按族批量处理独立反事实节点，隐藏作者契约、允许集合、教师答案与生成意图，候选 ID 使用打乱的匿名别名。这个审查粒度与下面 Pilot 的逐候选协议不同。v1 快线的顺序编号存在标签线索，必须经匿名 v2 补审后才可导入；原始 v1 与 v2 结果均保留。错误决定与错误依据独立保存，事实依据有误的负例不冒充纯决定困难负例，正确候选的失实依据仍阻断。
+
+CLI 额度错误由 `agent_dispatch.py` 单次熔断，保留未知 usage 和待审队列，不计作内容错误。标记 `runs/CLI_QUOTA_EXHAUSTED.json` 存在时不发新 CLI 调用；当前改用原生 `collaboration.spawn_agent` 的 Terra 作者和两个独立盲审上下文继续生产。`native_review.py` 导出不含作者标签的输入，再把真实原生审查结果送入相同质量门；输入字节与 canonical payload 的 hash 分开核实，metadata 明确 native transport、实际 agent 名及未知用量，没有虚构 CLI 会话。`import_native.py --source <passed.jsonl>` 规范化可追溯引用并通过 `--import-only` 离线汇总，永远不启动模型。每族48个候选实例可能复用24条正文，统计时始终分别报告实例数和唯一文本数。Luna 负责账本与简单确定性处理，语义生成和审查由 Terra 完成；原生状态见 `runs/NATIVE_PRODUCTION.json`。
+
+现有运行目录是 `runs/train5000-live/`，目标上限为 5,000 个审查通过的 **Train 故事族**，并发上限 64。实际启动参数、PID、seed 快照 hash、原始生成、两轮审查、隔离项与动态导入来源均保存在运行目录；续跑应复用 `launch.json` 的参数，同目录锁会阻止双控制器。`STOP_AFTER_DRAIN` 停止提交并等待在途任务结束。近重复或具体质量问题通过 `exclusions.json` 隔离，原文不删除。`monitor_fast.py --run-dir runs/train5000-live` 更新简洁进度及实际 CLI 用量；原生子 Agent 和没有返回 usage 的任务不补造费用。
+
+聚合快照按8项或10秒批量发布，单族结果始终先独立落盘，崩溃后从已完成任务恢复。滚动50项真实新审查的有效率低于70%提示调度告警、低于50%暂停提交；逐族通过条件不随此阈值改变，机械失败和恢复另记。监控每新增250的里程碑保存实际累计数据、结构／划分检查及本地模板token实测。`watch_global_quality.py` 每新增250族检索全量近邻并盲审30对、抽看8族完整历史；高置信复写或严重矛盾需两次独立审查且引用命中才隔离，原始候选标签不改。最终独立性仍有歧义的族可保守暂存待审池，不称已确认错误。全局原文、分歧与续补记录在 `runs/global-quality-live/`。
+
+固定实测快照为 `runs/fast-release-checkpoint-20261101/`：主193族，另2族独立样本；195族结构和与Pilot12的组隔离检查通过，全部75个机制族的本地 Phi-4-mini 完整聊天模板置换实测通过。必要的小样例、原始审查摘要及固定数量见 `examples/fast_*`；当前累计数量以运行状态为准。新任务按真实失败修正生成提示；B4 不能把拒绝可选好处直接当错误决定，精确块不能反复重置同一事项。自然度仍属模型审查结果，没有人工标定。
+
+以下命令保留原 Pilot 校准与单候选审查方式：
+
 ```bash
 python3 -m unittest discover -s data_factory -p 'test_*.py' -v
 python3 data_factory/produce_pilot.py --run-dir runs/<batch> --stage blind --concurrency 8

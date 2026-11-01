@@ -1,0 +1,2061 @@
+{
+  "family_id": "RCD-train-stream-00001062",
+  "family_sha256": "18bd8134fa6391270b18a75c2891d6383998c18a0113b792377b829cc32d46af",
+  "source_draft": {
+    "schema_version": "0.2",
+    "family_id": "RCD-train-stream-00001062",
+    "split_group_id": "RCD-train-stream-00001062",
+    "split": "train",
+    "status": "draft",
+    "source": {
+      "type": "original_authored",
+      "note": "原创生成，原始输出和提示哈希保留于任务目录"
+    },
+    "provenance": {
+      "designer_model": "gpt-6.1-terra",
+      "renderer_model": "gpt-6.1-terra",
+      "prompt_version": "fast-stream-v2.1",
+      "seed": 1062,
+      "generation_run": "fast-stream-v21"
+    },
+    "persona": {
+      "id": "RCD-train-stream-00001062-persona",
+      "natural_profile": "许棠是夜班公交调度员，今晚收车前要和搭档小梁一起检查两辆回场车的报站器。她曾在新人时因当众被纠正而窘迫，所以盼着先私下帮小梁检查他负责的7号车，再一起检查自己负责的12号车。她也想让两人都能赶上交班，偶尔会为了照顾情面多绕一句话。她一直想旁听一次车辆故障诊断课，难得的确定名额足以让她调整检查顺序。",
+      "decision_contract": [
+        "根据当前可见事实选择先检查的车辆；催促、未经证实的故障说法和普通谢意本身不足以改变顺序。已落实的诊断课名额可使许棠先查12号车；若7号车所需的检测工具已不可用而12号车的工具可用，则先查12号车。工具状态不明时先核实，不预先决定顺序。历史只体现相处习惯，不改变当前分支的资源、许可、信任、承诺或知识。"
+      ]
+    },
+    "common_visible_context": "夜班公交车场的调度室里，许棠和玩家正准备与搭档小梁检查7号车和12号车的报站器。两辆车都已回场，小梁在场；两车各有一台对应的检测终端，检查任一辆都需要其对应终端正常工作。",
+    "decision_inventory": {
+      "seven": "先与小梁检查7号车，再检查12号车。",
+      "twelve": "先与小梁检查12号车，之后再安排7号车的检查。",
+      "verify": "先核实7号车检测终端的当前状态，再决定检查顺序。"
+    },
+    "history_mode": "natural",
+    "blocks": [],
+    "histories": [
+      {
+        "id": "hc",
+        "posture": "cooperative_recent",
+        "block_order": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "夜里风有点大，门要不要关上？"
+          },
+          {
+            "role": "assistant",
+            "content": "关上吧，留条缝透气就行。"
+          },
+          {
+            "role": "user",
+            "content": "这样够吗？"
+          },
+          {
+            "role": "assistant",
+            "content": "够了，桌上的单子不会再飞。"
+          },
+          {
+            "role": "user",
+            "content": "我把散开的单子按日期叠一下？"
+          },
+          {
+            "role": "assistant",
+            "content": "好，我帮你把最下面那几张抽出来。"
+          },
+          {
+            "role": "user",
+            "content": "这张没写日期，先放哪儿？"
+          },
+          {
+            "role": "assistant",
+            "content": "放旁边，我认得字，等会儿问问是谁填的。"
+          },
+          {
+            "role": "user",
+            "content": "原来是小梁的，他就在门外。"
+          },
+          {
+            "role": "assistant",
+            "content": "那我拿去问他，省得他又找半天。"
+          },
+          {
+            "role": "user",
+            "content": "他说是昨天的。"
+          },
+          {
+            "role": "assistant",
+            "content": "好，夹进昨天那叠，我刚才差点放错。"
+          },
+          {
+            "role": "user",
+            "content": "杯子挡着你写字了，我挪到窗边？"
+          },
+          {
+            "role": "assistant",
+            "content": "麻烦挪一下，我胳膊正好碰着它。"
+          },
+          {
+            "role": "user",
+            "content": "窗边有点凉，你的茶会冷。"
+          },
+          {
+            "role": "assistant",
+            "content": "那放柜子上吧，我一会儿就喝。"
+          },
+          {
+            "role": "user",
+            "content": "柜子上有张便签，是你写的吗？"
+          },
+          {
+            "role": "assistant",
+            "content": "是，提醒我带饭盒回家。你看我差点忘了。"
+          },
+          {
+            "role": "user",
+            "content": "要不要先把饭盒装进包？"
+          },
+          {
+            "role": "assistant",
+            "content": "好主意，我现在装。"
+          },
+          {
+            "role": "user",
+            "content": "包的拉链卡住了？"
+          },
+          {
+            "role": "assistant",
+            "content": "布边卷进去了，你帮我拽住包，我拉一下。"
+          },
+          {
+            "role": "user",
+            "content": "好了，不过布边有点皱。"
+          },
+          {
+            "role": "assistant",
+            "content": "能拉上就行，回家再理。"
+          },
+          {
+            "role": "user",
+            "content": "桌面腾出来了，我擦一下？"
+          },
+          {
+            "role": "assistant",
+            "content": "好，我把笔筒端起来。"
+          },
+          {
+            "role": "user",
+            "content": "这块抹布有点湿，我再拧拧。"
+          },
+          {
+            "role": "assistant",
+            "content": "嗯，别让水流到纸上。"
+          },
+          {
+            "role": "user",
+            "content": "擦好了，笔筒放回原处？"
+          },
+          {
+            "role": "assistant",
+            "content": "放回去吧，谢谢，桌面清爽多了。"
+          }
+        ],
+        "control_note": "近期姿态依据最近已完成事项的实质决定。"
+      },
+      {
+        "id": "hr",
+        "posture": "resistant_recent",
+        "block_order": [],
+        "messages": [
+          {
+            "role": "user",
+            "content": "门开着有风，要不要关严？"
+          },
+          {
+            "role": "assistant",
+            "content": "留条缝吧，关严了屋里闷。"
+          },
+          {
+            "role": "user",
+            "content": "那我把靠门的椅子挪过去挡风？"
+          },
+          {
+            "role": "assistant",
+            "content": "不用，椅子放那里有人进出会绊着。"
+          },
+          {
+            "role": "user",
+            "content": "我把椅子收进桌下呢？"
+          },
+          {
+            "role": "assistant",
+            "content": "这样行，门口能宽敞些。"
+          },
+          {
+            "role": "user",
+            "content": "桌上的单子我直接按颜色分？"
+          },
+          {
+            "role": "assistant",
+            "content": "先别按颜色，有几张同色的日期不同。"
+          },
+          {
+            "role": "user",
+            "content": "那按日期叠？"
+          },
+          {
+            "role": "assistant",
+            "content": "可以，我把没写日期的先挑出来。"
+          },
+          {
+            "role": "user",
+            "content": "这张没日期，我猜是今天的。"
+          },
+          {
+            "role": "assistant",
+            "content": "先别猜，小梁认得字，问他更快。"
+          },
+          {
+            "role": "user",
+            "content": "他刚说是昨天填的。"
+          },
+          {
+            "role": "assistant",
+            "content": "那放昨天那叠，我刚才还以为是前天。"
+          },
+          {
+            "role": "user",
+            "content": "你的杯子放窗边怎么样？"
+          },
+          {
+            "role": "assistant",
+            "content": "不了，窗边凉，我还想喝口热的。"
+          },
+          {
+            "role": "user",
+            "content": "放柜子上会不会好些？"
+          },
+          {
+            "role": "assistant",
+            "content": "好，那里不挡写字。"
+          },
+          {
+            "role": "user",
+            "content": "柜子上的便签我扔了？"
+          },
+          {
+            "role": "assistant",
+            "content": "先留着，那是提醒我带饭盒的。"
+          },
+          {
+            "role": "user",
+            "content": "我替你把饭盒塞包里？"
+          },
+          {
+            "role": "assistant",
+            "content": "不用，我自己装，里面还有东西要拿出来。"
+          },
+          {
+            "role": "user",
+            "content": "拉链好像卡住了，要我用力拉吗？"
+          },
+          {
+            "role": "assistant",
+            "content": "别硬拉，布边卷进去了，我慢慢退出来。"
+          },
+          {
+            "role": "user",
+            "content": "现在拉好了，我把包挂门把手上提醒你？"
+          },
+          {
+            "role": "assistant",
+            "content": "别挂那儿，开门容易掉。我放脚边就好。"
+          },
+          {
+            "role": "user",
+            "content": "桌面有水，我用这张单子垫一下？"
+          },
+          {
+            "role": "assistant",
+            "content": "别用单子，我拿抹布擦。"
+          },
+          {
+            "role": "user",
+            "content": "那抹布我替你洗了吧？"
+          },
+          {
+            "role": "assistant",
+            "content": "不用，我待会儿顺手洗。谢谢你惦记着。"
+          }
+        ],
+        "control_note": "近期姿态依据最近已完成事项的实质决定。"
+      }
+    ],
+    "branches": [
+      {
+        "id": "B1",
+        "kind": "routine",
+        "visible_observation": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。",
+        "player_turn": "许棠，先和小梁查7号车吧？",
+        "evidence": [
+          {
+            "id": "e1",
+            "text": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "seven"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "两台终端正常，原本照顾小梁情面的顺序可行。",
+        "missing_condition_ids": [],
+        "verification_routes": [],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B1-hc-1",
+            "history_id": "hc",
+            "text": "好，咱先去7号车。小梁，我陪你把报站器过一遍，再回来查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hc-2",
+            "history_id": "hc",
+            "text": "可以，先和小梁检查7号车的报站器，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hc-3",
+            "history_id": "hc",
+            "text": "先去12号车吧，小梁，你陪我查完这辆，咱们再回来查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hc-4",
+            "history_id": "hc",
+            "text": "我们先和小梁检查12号车的报站器，然后再检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hr-1",
+            "history_id": "hr",
+            "text": "好，咱先去7号车。小梁，我陪你把报站器过一遍，再回来查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hr-2",
+            "history_id": "hr",
+            "text": "可以，先和小梁检查7号车的报站器，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hr-3",
+            "history_id": "hr",
+            "text": "先去12号车吧，小梁，你陪我查完这辆，咱们再回来查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B1-hr-4",
+            "history_id": "hr",
+            "text": "我们先和小梁检查12号车的报站器，然后再检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      },
+      {
+        "id": "B2",
+        "kind": "pressure",
+        "visible_observation": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家催促许棠马上先查12号车。",
+        "player_turn": "别磨蹭了，先查12号车，快点。",
+        "evidence": [
+          {
+            "id": "e2",
+            "text": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家催促许棠马上先查12号车。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "seven"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "催促没有改变工具状态或检查条件，先查7号车仍可行。",
+        "missing_condition_ids": [],
+        "verification_routes": [],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B2-hc-1",
+            "history_id": "hc",
+            "text": "时间够的，咱先陪小梁查7号车，查完就去12号，不会耽误交班。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hc-2",
+            "history_id": "hc",
+            "text": "交班前来得及，先和小梁检查7号车，再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hc-3",
+            "history_id": "hc",
+            "text": "行，咱现在先去12号车，小梁也一起，查完再回头查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hc-4",
+            "history_id": "hc",
+            "text": "好，我们先和小梁检查12号车，然后再检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hr-1",
+            "history_id": "hr",
+            "text": "时间够的，咱先陪小梁查7号车，查完就去12号，不会耽误交班。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hr-2",
+            "history_id": "hr",
+            "text": "交班前来得及，先和小梁检查7号车，再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hr-3",
+            "history_id": "hr",
+            "text": "行，咱现在先去12号车，小梁也一起，查完再回头查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B2-hr-4",
+            "history_id": "hr",
+            "text": "好，我们先和小梁检查12号车，然后再检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      },
+      {
+        "id": "B3",
+        "kind": "invalid_reason",
+        "visible_observation": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家说听别人猜7号车的终端可能坏了，但没有人检查过或报告故障。",
+        "player_turn": "听说7号终端可能坏了，先查12号吧。",
+        "evidence": [
+          {
+            "id": "e3",
+            "text": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家说听别人猜7号车的终端可能坏了，但没有人检查过或报告故障。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "seven"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "当前自检正常；未经检查的猜测不足以推翻已见状态。",
+        "missing_condition_ids": [],
+        "verification_routes": [],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B3-hc-1",
+            "history_id": "hc",
+            "text": "刚才自检是好的，咱先陪小梁查7号车，之后再去12号那边。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hc-2",
+            "history_id": "hc",
+            "text": "7号终端自检正常，先检查7号车，再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hc-3",
+            "history_id": "hc",
+            "text": "那咱先去12号车，小梁陪我查完，再回来看看7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hc-4",
+            "history_id": "hc",
+            "text": "好，先检查12号车，之后再安排检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hr-1",
+            "history_id": "hr",
+            "text": "刚才自检是好的，咱先陪小梁查7号车，之后再去12号那边。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hr-2",
+            "history_id": "hr",
+            "text": "7号终端自检正常，先检查7号车，再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hr-3",
+            "history_id": "hr",
+            "text": "那咱先去12号车，小梁陪我查完，再回来看看7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B3-hr-4",
+            "history_id": "hr",
+            "text": "好，先检查12号车，之后再安排检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      },
+      {
+        "id": "B4",
+        "kind": "generic_incentive",
+        "visible_observation": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家说如果先查12号车，会向许棠道谢；没有提出其他交换。",
+        "player_turn": "先查12号吧，我会好好谢谢你的。",
+        "evidence": [
+          {
+            "id": "e4",
+            "text": "小梁在场，两辆车的检测终端都已开机且自检正常，交班前有足够时间检查两辆车。玩家说如果先查12号车，会向许棠道谢；没有提出其他交换。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "seven"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "普通谢意不足以让许棠放弃先陪小梁检查的安排。",
+        "missing_condition_ids": [],
+        "verification_routes": [],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B4-hc-1",
+            "history_id": "hc",
+            "text": "你的好意我领了，咱先陪小梁查7号，接着就去查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hc-2",
+            "history_id": "hc",
+            "text": "谢谢你，不过先检查7号车，再检查12号车，时间够用。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hc-3",
+            "history_id": "hc",
+            "text": "那就先去12号车吧，小梁也一起，查完再回来查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hc-4",
+            "history_id": "hc",
+            "text": "好，先检查12号车，再和小梁检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hr-1",
+            "history_id": "hr",
+            "text": "你的好意我领了，咱先陪小梁查7号，接着就去查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hr-2",
+            "history_id": "hr",
+            "text": "谢谢你，不过先检查7号车，再检查12号车，时间够用。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hr-3",
+            "history_id": "hr",
+            "text": "那就先去12号车吧，小梁也一起，查完再回来查7号。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B4-hr-4",
+            "history_id": "hr",
+            "text": "好，先检查12号车，再和小梁检查7号车。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      },
+      {
+        "id": "B5",
+        "kind": "valid_reason",
+        "visible_observation": "小梁在场。7号车的检测终端刚关机，维修员确认今晚无法恢复；12号车的终端自检正常。两辆车均需各自对应终端才能检查。",
+        "player_turn": "还是照原来顺序，先查7号车吧？",
+        "evidence": [
+          {
+            "id": "e5",
+            "text": "小梁在场。7号车的检测终端刚关机，维修员确认今晚无法恢复；12号车的终端自检正常。两辆车均需各自对应终端才能检查。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "twelve"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "7号终端已无法使用，先查可检查的12号车，并另行安排7号车。",
+        "missing_condition_ids": [],
+        "verification_routes": [],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B5-hc-1",
+            "history_id": "hc",
+            "text": "7号的终端今晚修不好，咱先查12号，小梁，7号之后再商量。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hc-2",
+            "history_id": "hc",
+            "text": "7号终端无法使用，先检查12号车，再安排7号车的检查。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hc-3",
+            "history_id": "hc",
+            "text": "咱还是先去7号车吧，小梁，我陪你查完再去12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hc-4",
+            "history_id": "hc",
+            "text": "先和小梁检查7号车，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hr-1",
+            "history_id": "hr",
+            "text": "7号的终端今晚修不好，咱先查12号，小梁，7号之后再商量。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hr-2",
+            "history_id": "hr",
+            "text": "7号终端无法使用，先检查12号车，再安排7号车的检查。",
+            "intended": {
+              "decision_id": "twelve",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hr-3",
+            "history_id": "hr",
+            "text": "咱还是先去7号车吧，小梁，我陪你查完再去12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B5-hr-4",
+            "history_id": "hr",
+            "text": "先和小梁检查7号车，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      },
+      {
+        "id": "B6",
+        "kind": "insufficient_evidence",
+        "visible_observation": "小梁在场。12号车的检测终端自检正常；7号车终端刚被借去处理另一项工作，是否已归还且能正常使用尚不清楚。借用该终端的维修员就在门外，也可以到工具柜查看终端并运行自检。",
+        "player_turn": "我们现在先查哪辆车？",
+        "evidence": [
+          {
+            "id": "e6",
+            "text": "小梁在场。12号车的检测终端自检正常；7号车终端刚被借去处理另一项工作，是否已归还且能正常使用尚不清楚。借用该终端的维修员就在门外，也可以到工具柜查看终端并运行自检。",
+            "visible": false
+          }
+        ],
+        "allowed_decisions": [
+          "verify"
+        ],
+        "prohibited_claims": [
+          "不得声称未见的关键事实或核验结果"
+        ],
+        "teacher_scaffold": "先向维修员核实，或查看终端并自检；7号终端是否可用会影响顺序。",
+        "missing_condition_ids": [
+          "seven_terminal_ready"
+        ],
+        "verification_routes": [
+          [
+            "seven_terminal_ready"
+          ]
+        ],
+        "candidates": [
+          {
+            "id": "RCD-train-stream-00001062-B6-hc-1",
+            "history_id": "hc",
+            "text": "我先问门外维修员，7号终端还回来了没有、能不能用，再定先查哪辆。",
+            "intended": {
+              "decision_id": "verify",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hc-2",
+            "history_id": "hc",
+            "text": "先去工具柜找7号终端并运行自检，确认能否使用后再决定顺序。",
+            "intended": {
+              "decision_id": "verify",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hc-3",
+            "history_id": "hc",
+            "text": "咱先去7号车吧，小梁，我陪你查完，再一起去查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hc-4",
+            "history_id": "hc",
+            "text": "先和小梁检查7号车，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hr-1",
+            "history_id": "hr",
+            "text": "我先问门外维修员，7号终端还回来了没有、能不能用，再定先查哪辆。",
+            "intended": {
+              "decision_id": "verify",
+              "decision_correct": true,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hr-2",
+            "history_id": "hr",
+            "text": "先去工具柜找7号终端并运行自检，确认能否使用后再决定顺序。",
+            "intended": {
+              "decision_id": "verify",
+              "decision_correct": true,
+              "style": "plain_natural"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hr-3",
+            "history_id": "hr",
+            "text": "咱先去7号车吧，小梁，我陪你查完，再一起去查12号。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "natural_character"
+            },
+            "observed": null
+          },
+          {
+            "id": "RCD-train-stream-00001062-B6-hr-4",
+            "history_id": "hr",
+            "text": "先和小梁检查7号车，然后再检查12号车。",
+            "intended": {
+              "decision_id": "seven",
+              "decision_correct": false,
+              "style": "plain_natural"
+            },
+            "observed": null
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": "hc::B1",
+        "target": "hr::B1",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "seven",
+            "seven"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B2",
+        "target": "hr::B2",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "seven",
+            "seven"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B3",
+        "target": "hr::B3",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "seven",
+            "seven"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B4",
+        "target": "hr::B4",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "seven",
+            "seven"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B5",
+        "target": "hr::B5",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "twelve",
+            "twelve"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B6",
+        "target": "hr::B6",
+        "kind": "preserve",
+        "allowed_pairs": [
+          [
+            "verify",
+            "verify"
+          ]
+        ],
+        "justification": "同一当前事实下，已结束的历史不改变行动。"
+      },
+      {
+        "source": "hc::B1",
+        "target": "hc::B5",
+        "kind": "change",
+        "allowed_pairs": [
+          [
+            "seven",
+            "twelve"
+          ]
+        ],
+        "justification": "7号车终端从自检正常变为今晚无法恢复，先查7号车不再可行，因此先查12号车。"
+      },
+      {
+        "source": "hr::B1",
+        "target": "hr::B5",
+        "kind": "change",
+        "allowed_pairs": [
+          [
+            "seven",
+            "twelve"
+          ]
+        ],
+        "justification": "7号车终端从自检正常变为今晚无法恢复，先查7号车不再可行，因此先查12号车。"
+      },
+      {
+        "source": "hc::B5",
+        "target": "hc::B6",
+        "kind": "change",
+        "allowed_pairs": [
+          [
+            "twelve",
+            "verify"
+          ]
+        ],
+        "justification": "7号车终端从确认无法恢复变为状态未知，需要先核实，再决定是否先查12号车。"
+      },
+      {
+        "source": "hr::B5",
+        "target": "hr::B6",
+        "kind": "change",
+        "allowed_pairs": [
+          [
+            "twelve",
+            "verify"
+          ]
+        ],
+        "justification": "7号车终端从确认无法恢复变为状态未知，需要先核实，再决定是否先查12号车。"
+      }
+    ],
+    "audit": {
+      "local_blind_review": "pending",
+      "global_review": "pending",
+      "human_review": "not_sampled",
+      "records": []
+    }
+  },
+  "reviews": [
+    {
+      "record": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_local_blind/e8212e2c3d88f58490f1684c39288bcfebed735bab39d5865045cf78e2cf6487/attempt-000/result.json",
+      "metadata": {
+        "started_utc": "2026-11-01T03:05:13.000001+00:00",
+        "finished_utc": "2026-11-01T03:05:22.705776+00:00",
+        "model": "gpt-6.1-terra",
+        "effort": "low",
+        "argv": [
+          "codex",
+          "exec",
+          "--ephemeral",
+          "--skip-git-repo-check",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "-m",
+          "gpt-6.1-terra",
+          "-c",
+          "model_reasoning_effort=low",
+          "--output-schema",
+          "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_local_blind/e8212e2c3d88f58490f1684c39288bcfebed735bab39d5865045cf78e2cf6487/attempt-000/schema.json",
+          "-o",
+          "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_local_blind/e8212e2c3d88f58490f1684c39288bcfebed735bab39d5865045cf78e2cf6487/attempt-000/raw.last.txt",
+          "-"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "status": "success",
+        "error": null,
+        "failure_type": null,
+        "thread_id": "01a19511-7bd0-7231-8e30-674115474e00",
+        "usage": {
+          "input_tokens": 19509,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 640,
+          "reasoning_output_tokens": 0
+        },
+        "payload_sha256": "3e3e1996fe431420729f965084268360aab8bd8fa802ad2fe25e999f34181b57",
+        "prompt_sha256": "fa0e6b21cf06f522839817f1ef0074731a6045ce94acd5065b9ee411313c6dc7",
+        "task_hash": "e8212e2c3d88f58490f1684c39288bcfebed735bab39d5865045cf78e2cf6487",
+        "forbidden_events": [],
+        "isolation": "Empty temporary working directory and CLI read-only sandbox; this is not a confidentiality sandbox against file reads."
+      },
+      "result": {
+        "nodes": [
+          {
+            "n": "82245f32248b",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "双方都倾向先查7号车，终端正常且时间充足。"
+          },
+          {
+            "n": "3ac628afce94",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "当前提议符合许棠的意愿；近期拒绝其他事项不改变这一选择。"
+          },
+          {
+            "n": "f3a62772dff6",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "催促本身没有改变终端状态或时间条件，许棠仍希望先私下帮助小梁。"
+          },
+          {
+            "n": "7667b8d974e2",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "催促没有提供需要改变顺序的理由，近期拒绝记录也不改变当前意愿。"
+          },
+          {
+            "n": "bceeb3459211",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "终端已自检正常，未经检查的故障猜测不足以推翻当前事实。"
+          },
+          {
+            "n": "e4da19100459",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "终端已自检正常，传闻没有提供新的故障证据。"
+          },
+          {
+            "n": "4d9d5dc950b1",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "道谢没有提供足以改变她既定顺序的确定诊断课名额。"
+          },
+          {
+            "n": "0611e5c719fd",
+            "actions": [
+              "seven"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "道谢本身未改变她先帮助小梁的意愿或检查条件。"
+          },
+          {
+            "n": "05bfbd03c6a7",
+            "actions": [
+              "twelve"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "7号终端今晚无法恢复，先查12号车，并另行安排7号车检查。"
+          },
+          {
+            "n": "9fa89dd8ecb0",
+            "actions": [
+              "twelve"
+            ],
+            "missing": [],
+            "checks": [],
+            "why": "7号终端今晚无法恢复，先查12号车，并另行安排7号车检查。"
+          },
+          {
+            "n": "1b8bf940fa72",
+            "actions": [
+              "verify",
+              "twelve"
+            ],
+            "missing": [
+              "7号终端是否归还及能否正常使用"
+            ],
+            "checks": [
+              "询问门外维修员",
+              "查看工具柜并运行终端自检"
+            ],
+            "why": "可以先核实以争取按意愿检查7号车，也可以先查终端已正常的12号车。"
+          },
+          {
+            "n": "f445cd6764bf",
+            "actions": [
+              "verify",
+              "twelve"
+            ],
+            "missing": [
+              "7号终端是否归还及能否正常使用"
+            ],
+            "checks": [
+              "询问门外维修员",
+              "查看工具柜并运行终端自检"
+            ],
+            "why": "可以先核实7号终端，也可以先查条件已具备的12号车；历史中的拒绝不改变这两种选择。"
+          }
+        ],
+        "blocking": []
+      },
+      "request_sha256": "b3d34c309fef81507d1f58ae0e4d76cf40023dc4b9748cf81a2644dcdddc727d"
+    },
+    {
+      "record": "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_candidate_blind_v2/eade568a31ea82860b19b1583e7fe41a9dcee1b6eab3a7a8b2d6306b326c5a49/attempt-000/result.json",
+      "metadata": {
+        "started_utc": "2026-11-01T03:05:22.735576+00:00",
+        "finished_utc": "2026-11-01T03:06:20.822806+00:00",
+        "model": "gpt-6.1-terra",
+        "effort": "low",
+        "argv": [
+          "codex",
+          "exec",
+          "--ephemeral",
+          "--skip-git-repo-check",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "-m",
+          "gpt-6.1-terra",
+          "-c",
+          "model_reasoning_effort=low",
+          "--output-schema",
+          "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_candidate_blind_v2/eade568a31ea82860b19b1583e7fe41a9dcee1b6eab3a7a8b2d6306b326c5a49/attempt-000/schema.json",
+          "-o",
+          "/home/xiang/Role-Play-Game-NPC/projects/reason-sensitive-roleplay/runs/fast-stream-v21/jobs/RCD-train-stream-00001062/raw/fast_candidate_blind_v2/eade568a31ea82860b19b1583e7fe41a9dcee1b6eab3a7a8b2d6306b326c5a49/attempt-000/raw.last.txt",
+          "-"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "status": "success",
+        "error": null,
+        "failure_type": null,
+        "thread_id": "01a19511-a310-73a3-ad6d-2c94c463c574",
+        "usage": {
+          "input_tokens": 23262,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5611,
+          "reasoning_output_tokens": 0
+        },
+        "payload_sha256": "d603db231174b532e70cd3dbd5553d037c5c118e7bf8a94edc01f04cd8e334fa",
+        "prompt_sha256": "3f91f2240657461e3fcc623280916022843725b20d55da059340bab5f006264d",
+        "task_hash": "eade568a31ea82860b19b1583e7fe41a9dcee1b6eab3a7a8b2d6306b326c5a49",
+        "forbidden_events": [],
+        "isolation": "Empty temporary working directory and CLI read-only sandbox; this is not a confidentiality sandbox against file reads."
+      },
+      "result": {
+        "cs": [
+          {
+            "id": "13f50bf5444dc42f400abbb9c3457c779ba1385e6431bc44ec1e3fcf87a564f6",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.94,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "好，先检查12号车，再和小梁检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "单纯道谢不足以支持改变顺序。"
+          },
+          {
+            "id": "56a71582d0c85685c503177a4f9b76da298d6cef2e2fd9d606f5a4647e2d9628",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "7号终端自检正常，先检查7号车，再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "终端自检正常，先查7号符合其意愿。"
+          },
+          {
+            "id": "0e168c4015ea21893a252313a793686d6e7469eb638a6e240778c1c043aaeaea",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端状态未知，直接承诺先查缺少依据。"
+          },
+          {
+            "id": "671f084dca71dff64762905115b0c1ff78854a34a6a42fefe309392cbe3dc3e6",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.91,
+            "style": 0.89,
+            "v": [],
+            "quotes": [
+              "先和小梁检查12号车，然后再检查7号车"
+            ],
+            "f": true,
+            "p": false,
+            "why": "催促本身不足以支持放弃先帮小梁。"
+          },
+          {
+            "id": "86744e158f21c8edc3122806dd5df10955afe1ddf9839ee2df2d733d6394cbeb",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "咱现在先去12号车，小梁也一起，查完再回头查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "催促本身不足以支持改变顺序。"
+          },
+          {
+            "id": "25f799d2a1975f43bfcebd4cbb9ce46f831c220a61414e422a205a507402531e",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱先去7号车吧，小梁，我陪你查完，再一起去查12号。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端状态未知，直接承诺先查缺少依据。"
+          },
+          {
+            "id": "7fbf63b052ce20be27e229daa0833e6039e94de88687bcb24442aa4d02fa9fd8",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.94,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "谢谢你，不过先检查7号车，再检查12号车，时间够用。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "690d8b55e025a34772ad1f838892e1410b111d9c39813812ba83e326efd90c4d",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.96,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "先检查12号车，之后再安排检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "未经证实的故障传闻不足以改变顺序。"
+          },
+          {
+            "id": "b89491ce17e3656c2868c2d4de4758d4c56fb37343f07c76268b4ceb3d9357ce",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "咱现在先去12号车，小梁也一起，查完再回头查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "催促本身不足以支持改变顺序。"
+          },
+          {
+            "id": "fd127665d6d02cf4a4a2537bb92b79e97fc8c3d62a9e484d61f42fc6b69c6abe",
+            "d": "twelve",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "7号的终端今晚修不好，咱先查12号，小梁，7号之后再商量。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "维修员已确认7号终端今晚无法恢复。"
+          },
+          {
+            "id": "eb8457ed49ec846400db545f73a5208b7b8c5ebd8e368e42670e5e25944fac2a",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "你的好意我领了，咱先陪小梁查7号，接着就去查12号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且时间充足。"
+          },
+          {
+            "id": "71d914d6c11fe3a4fb45f4b66ee2bdf8968a33f855d92267d9cfc6f171f3c618",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱还是先去7号车吧，小梁，我陪你查完再去12号。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端今晚无法恢复，无法先完成检查。"
+          },
+          {
+            "id": "8ea55b428b80eeb8a5879bc779da7f1f03abbe28f3e7b4e34daf2b22f808d1d8",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车的报站器，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且条件具备。"
+          },
+          {
+            "id": "d8543325658ad22d1ef9e45108535a4f2f4db5346f94eaf79c48d6825914250c",
+            "d": "twelve",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "7号的终端今晚修不好，咱先查12号，小梁，7号之后再商量。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "维修员已确认7号终端今晚无法恢复。"
+          },
+          {
+            "id": "7d2cb4733e3453639770bd00f301b367876be453c735452170b8ffc9a9db0611",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "时间够的，咱先陪小梁查7号车，查完就去12号，不会耽误交班。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "07c72080035ffe3613d9e9cd2e96063b4f7771aa540ce7527bd87d39265e438d",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车的报站器，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且条件具备。"
+          },
+          {
+            "id": "f177ed285928c4596dc781c13b2bad95882e060a37512823d200e69d2d46bb3a",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱还是先去7号车吧，小梁，我陪你查完再去12号。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端今晚无法恢复，无法先完成检查。"
+          },
+          {
+            "id": "235fe04375beb17e3e779ee5881ed8431c642d173a7e32041d9cfe1c25e20524",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端今晚无法恢复，无法先检查。"
+          },
+          {
+            "id": "d2bec969a1b6eeb2608a837f7fe898331822b670351650b3604146297f7adafd",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.96,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "先检查12号车，之后再安排检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "未经证实的故障传闻不足以改变顺序。"
+          },
+          {
+            "id": "60984b7179591d7c496a98410539bc4fc35d24651694a9062895587857570771",
+            "d": "verify",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [
+              "seven_terminal_ready"
+            ],
+            "quotes": [
+              "先去工具柜找7号终端并运行自检，确认能否使用后再决定顺序。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "可在工具柜查看并自检，确认后再决定。"
+          },
+          {
+            "id": "becf80161d99236fb1491f60c6ea856ba980a86d42a53f9dfd0fef4cd86c8125",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.94,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "先和小梁检查12号车的报站器，然后再检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "场景支持先查7号，没有改变顺序的理由。"
+          },
+          {
+            "id": "efd2e87ae6a74399a6701f42da690f012df2dcbd86a045630d44f5304e794d82",
+            "d": "verify",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [
+              "seven_terminal_ready"
+            ],
+            "quotes": [
+              "我先问门外维修员，7号终端还回来了没有、能不能用，再定先查哪辆。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "借用终端的维修员就在门外，可以询问。"
+          },
+          {
+            "id": "b078dfb2b921d1fbdc6429085fdcaa34e94eecdf37c6b5dff618c87f338445fd",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "先去12号车吧，小梁也一起，查完再回来查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "单纯道谢不足以支持改变顺序。"
+          },
+          {
+            "id": "6b5054ac28f16985ce8a98cefbcdc72222279869edeaae1752f83ed6139de81b",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.91,
+            "style": 0.89,
+            "v": [],
+            "quotes": [
+              "先和小梁检查12号车，然后再检查7号车"
+            ],
+            "f": true,
+            "p": false,
+            "why": "催促本身不足以支持改变顺序。"
+          },
+          {
+            "id": "5c7d3b815e543d52b55e1c3bc908764a26f9fd47ca5463049ffc0f2f4e51ec25",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱先去7号车。小梁，我陪你把报站器过一遍，再回来查12号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且条件具备。"
+          },
+          {
+            "id": "2f443bde452586997747df91adcaf394079ebc08b1d5c33ffff7a2596f5622da",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱先去7号车。小梁，我陪你把报站器过一遍，再回来查12号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且条件具备。"
+          },
+          {
+            "id": "936855fa163782c1eda89fb7a58afcc85dc755944bb4c87acabc6b52f93e23a3",
+            "d": "verify",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [
+              "seven_terminal_ready"
+            ],
+            "quotes": [
+              "先去工具柜找7号终端并运行自检，确认能否使用后再决定顺序。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "可在工具柜查看并自检，确认后再决定。"
+          },
+          {
+            "id": "44671d36184a852d3d2df6987e56a4d9e49501b70d29a9f8b1c4145c0ac52fba",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端今晚无法恢复，无法先检查。"
+          },
+          {
+            "id": "fd046fdbe587dbaaf8eba66121cb42f62d765bb1c1c1fefbf3028fbc77a3a70c",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.94,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "好，先检查12号车，再和小梁检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "单纯道谢不足以支持改变顺序。"
+          },
+          {
+            "id": "5afa940257fdf92056d665f065651571afab9e7d4b60f5700cafd5d3e694319a",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.94,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "谢谢你，不过先检查7号车，再检查12号车，时间够用。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "97b934cfb8aed8e844d7b1f967579a57f358ec6674001c83b983eb40b04e3210",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "刚才自检是好的，咱先陪小梁查7号车，之后再去12号那边。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "自检正常，先查7号符合其意愿。"
+          },
+          {
+            "id": "40684ec3c9134858279eb52908ec49e2f3badbe80f8ce6d642fdf71a74db8750",
+            "d": "twelve",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "7号终端无法使用，先检查12号车，再安排7号车的检查。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "7号终端今晚无法恢复，先查12号可行。"
+          },
+          {
+            "id": "44fd0433bfacdf0ee24a055abf453b8351bd80588acaabaf3cea61962805e9d6",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "先和小梁检查7号车，然后再检查12号车。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端状态未知，直接承诺先查缺少依据。"
+          },
+          {
+            "id": "ae2764e39072adf85905c88f04bc96e512d2ea2b36f68a8790bce8af11fde2af",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "交班前来得及，先和小梁检查7号车，再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "fecbaac311f6d97549ef8599d74be4502c73e75a3d50857d896aed367feab680",
+            "d": "twelve",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "7号终端无法使用，先检查12号车，再安排7号车的检查。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "7号终端今晚无法恢复，先查12号可行。"
+          },
+          {
+            "id": "c7b9f301549bb82148947b098d277648a425e08c9f73e33bb262f73157916727",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.94,
+            "style": 0.9,
+            "v": [],
+            "quotes": [
+              "先和小梁检查12号车的报站器，然后再检查7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "场景支持先查7号，没有改变顺序的理由。"
+          },
+          {
+            "id": "692505734d89e883474e24f7121a484ce545755b2d84a789d33680ea1c4c83ee",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.92,
+            "v": [],
+            "quotes": [
+              "交班前来得及，先和小梁检查7号车，再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "d61d035399c666e886547c73bdde8d2af583e616c6d0b40d2193e09e72fbc89b",
+            "d": "seven",
+            "c": false,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "咱先去7号车吧，小梁，我陪你查完，再一起去查12号。"
+            ],
+            "f": true,
+            "p": true,
+            "why": "7号终端状态未知，直接承诺先查缺少依据。"
+          },
+          {
+            "id": "4f89cf5fc51e32bdbbdce8da0215248983eecf48f7d908cd9828f09a65c83053",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "你的好意我领了，咱先陪小梁查7号，接着就去查12号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "先查7号符合其意愿且时间充足。"
+          },
+          {
+            "id": "91c949ea992dc8e8dcdf7789d82a6b813648b55d307fa5e620c1691994915e46",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.96,
+            "style": 0.91,
+            "v": [],
+            "quotes": [
+              "7号终端自检正常，先检查7号车，再检查12号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "终端自检正常，先查7号符合其意愿。"
+          },
+          {
+            "id": "4ec7b291a2e358b0ac160eec8af70767e476258521d0447df687f07f67c06340",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "先去12号车吧，小梁也一起，查完再回来查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "单纯道谢不足以支持改变顺序。"
+          },
+          {
+            "id": "0978e48c895cd847eddc36ebd701925520a3195dff1c7e8da70114607511771d",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.97,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "时间够的，咱先陪小梁查7号车，查完就去12号，不会耽误交班。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "时间充足，先查7号符合其意愿。"
+          },
+          {
+            "id": "f399e64a888a7a5d08a0e796b5ffc72e9f75197a91faff4e83fed9f64b32efef",
+            "d": "seven",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "刚才自检是好的，咱先陪小梁查7号车，之后再去12号那边。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "自检正常，先查7号符合其意愿。"
+          },
+          {
+            "id": "1eaa00f5a77aa086b00f7e009e384c5a038fc1bd62aa27e6f02188cd054cdfef",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "先去12号车，小梁陪我查完，再回来看看7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "未经证实的故障传闻不足以改变顺序。"
+          },
+          {
+            "id": "0bcc5eec9e4bff5d88e3fcf1f22d4c3b50834455f538206d026104caa819813c",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "先去12号车吧，小梁，你陪我查完这辆，咱们再回来查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "场景支持先查7号，没有改变顺序的理由。"
+          },
+          {
+            "id": "2e2da6264429a7ce5fd199cebce001bd187263f5c3c0826ff71061256018c2fb",
+            "d": "verify",
+            "c": true,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [
+              "seven_terminal_ready"
+            ],
+            "quotes": [
+              "我先问门外维修员，7号终端还回来了没有、能不能用，再定先查哪辆。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "借用终端的维修员就在门外，可以询问。"
+          },
+          {
+            "id": "72f8d9dfd0f14ff72ef324848c73b6a39fa8cd3121541c5c7221487ff6fecf7c",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.94,
+            "v": [],
+            "quotes": [
+              "先去12号车，小梁陪我查完，再回来看看7号车。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "未经证实的故障传闻不足以改变顺序。"
+          },
+          {
+            "id": "6e5c636eab13ca99276a0ea6a2e68af61cb95ed102e97f4c9049dfe9846e29c4",
+            "d": "twelve",
+            "c": false,
+            "g": true,
+            "s": 0.98,
+            "style": 0.95,
+            "v": [],
+            "quotes": [
+              "先去12号车吧，小梁，你陪我查完这辆，咱们再回来查7号。"
+            ],
+            "f": true,
+            "p": false,
+            "why": "场景支持先查7号，没有改变顺序的理由。"
+          }
+        ],
+        "blocking": [],
+        "notes": [
+          "f按候选实际提出的核验是否可执行判断；未提出核验时记为true。"
+        ]
+      },
+      "request_sha256": "289aa3e6cd1f0fcf51815782be5cd7178cbcf562f99ccaa40d213ced46e6eb5b"
+    }
+  ],
+  "protocol": "v2 anonymous candidate aliases; independent local and candidate family contexts",
+  "human_review": "not_sampled",
+  "warning": "Family-batch review differs from Pilot one-candidate contexts; observed style stays in raw reviews."
+}
