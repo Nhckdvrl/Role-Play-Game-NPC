@@ -13,7 +13,7 @@ class RefillTest(unittest.TestCase):
   self.patches=[patch.object(watch,'RUN',self.run),patch.object(watch,'OUT',self.out),patch.object(watch,'Path',side_effect=lambda x:self.proc if x=='/proc' else Path(x)),patch.object(watch.os,'kill',side_effect=ProcessLookupError),patch.object(watch.subprocess,'Popen')]
   for p in self.patches:p.start();self.addCleanup(p.stop)
   self.pop=watch.subprocess.Popen;self.pop.return_value.pid=12345
-  (self.run/'production.pid').write_text('99999999');self.argv=['/usr/bin/python3','-u','data_factory/fast_generate.py','--run-dir','runs/train5000-live','--target','5000','--concurrency','64']
+  (self.run/'production.pid').write_text('99999999');self.argv=['/usr/bin/python3','-u','data_factory/fast_generate.py','--run-dir','runs/train5000-live','--target','5000','--concurrency','8']
   self.write('launch.json',{'argv':self.argv});self.write('exclusions.json',{'1':{'reason':'test'}});self.fs=[{'family_id':str(i)} for i in range(5000)]
   self.addCleanup(self.tmp.cleanup)
  def write(self,name,obj):(self.run/name).write_text(json.dumps(obj))

@@ -74,6 +74,7 @@ def call_model(job,payload):
  # Reuse the metered, tool-free dispatcher and its process-group timeout cleanup.
  # Output is JSON data only; no generated code is ever executed.
  job.mkdir(parents=True,exist_ok=False)
+ put(job/'split_assignment.json',{'family_id':job.name,'source_group_id':job.name,'split':payload.get('split_name','train')})
  put(job/'history_mode_request.json',{'history_mode_requested':payload['history_mode_requested']})
  result=dispatch({'stage':'fast_family_generation','payload':payload,'instruction':INSTRUCTION,
                   'output_schema':SCHEMA},job,MODEL,'medium',timeout=360)
@@ -85,7 +86,7 @@ def call_model(job,payload):
 
 def normalize_pairs(pairs):
  return [z for p in pairs for z in ({'role':'user','content':p['u']},{'role':'assistant','content':p['a']})]
-def build(x,fid,seed,run_name,reconciliation_path=None):
+def build(x,fid,seed,run_name,reconciliation_path=None,split='train'):
  ids=[a['id'] for a in x['actions']]
  if len(ids)<2 or len(set(ids))!=len(ids) or any(not i.strip() for i in ids):raise ValueError('actions require distinct nonempty IDs')
  inventory={a['id']:a['description'] for a in x['actions']}
@@ -139,7 +140,7 @@ def build(x,fid,seed,run_name,reconciliation_path=None):
    if len(seen)>=2:break
  if reconciliation_path is not None:put(reconciliation_path,{'policy':'programmatic_disjoint_only','proposals':x['changes'],'rejected':rejected,'added':added})
  if len(seen)<2:raise ValueError('fewer than two disjoint decision pairs')
- f={'schema_version':'0.2','family_id':fid,'split_group_id':fid,'split':'train','status':'draft','source':{'type':'original_authored','note':'原创生成，原始输出和提示哈希保留于任务目录'},'provenance':{'designer_model':MODEL,'renderer_model':MODEL,'prompt_version':'fast-stream-v2.2;edge_policy=programmatic_disjoint_only','seed':seed,'generation_run':run_name},'persona':{'id':fid+'-persona','natural_profile':x['profile'],'decision_contract':[x['contract']]},'common_visible_context':x['common'],'decision_inventory':inventory,'history_mode':x['history_mode'],'blocks':blocks,'histories':hist,'branches':branches,'edges':edges,'audit':{'local_blind_review':'pending','global_review':'pending','human_review':'not_sampled','records':[]}}
+ f={'schema_version':'0.2','family_id':fid,'split_group_id':fid,'split':split,'status':'draft','source':{'type':'original_authored','note':'原创生成，原始输出和提示哈希保留于任务目录'},'provenance':{'designer_model':MODEL,'renderer_model':MODEL,'prompt_version':'fast-stream-v2.2;edge_policy=programmatic_disjoint_only','seed':seed,'generation_run':run_name},'persona':{'id':fid+'-persona','natural_profile':x['profile'],'decision_contract':[x['contract']]},'common_visible_context':x['common'],'decision_inventory':inventory,'history_mode':x['history_mode'],'blocks':blocks,'histories':hist,'branches':branches,'edges':edges,'audit':{'local_blind_review':'pending','global_review':'pending','human_review':'not_sampled','records':[]}}
  validate(f);return f
 
 def gate_review(result):
@@ -150,12 +151,12 @@ def gate_review(result):
   result['status']='needs_review';result.setdefault('issues',[]).append('independent review removed required change edges')
  return result
 
-def run_job(run,idx,payload):
- fid=f'RCD-train-stream-{idx:08d}';job=run/'jobs'/fid
+def run_job(run,idx,payload,split='train'):
+ fid=f'RCD-{split}-stream-{idx:08d}';job=run/'jobs'/fid
  try:
   x=call_model(job,payload);
   if x['history_mode']!=payload['history_mode_requested']:raise ValueError('history_mode differs from requested mode')
-  f=build(x,fid,idx,run.name,job/'edge_reconciliation.json');put(job/'draft.json',f);put(job/'summary.json',{'summary':x['summary']})
+  f=build(x,fid,idx,run.name,job/'edge_reconciliation.json',split=split);put(job/'draft.json',f);put(job/'summary.json',{'summary':x['summary']})
   r=gate_review(review(f,job,MODEL));put(job/'review_result.json',r)
   return {'family_id':fid,'status':r['status'],'review':r,'summary':x['summary'],'job':str(job)}
  except Exception as e:
@@ -172,7 +173,7 @@ def recover_job(run,job):
    x=json.loads(raw.read_text());Draft202012Validator(SCHEMA).validate(x)
    mode_request=job/'history_mode_request.json'
    if mode_request.exists() and x['history_mode']!=json.loads(mode_request.read_text())['history_mode_requested']:raise ValueError('history_mode differs from requested mode')
-   f=build(x,fid,int(fid.rsplit('-',1)[-1]),run.name,job/'edge_reconciliation.json');put(draft,f);put(job/'summary.json',{'summary':x['summary']})
+   f=build(x,fid,int(fid.rsplit('-',1)[-1]),run.name,job/'edge_reconciliation.json',split=fid.split('-')[1]);put(draft,f);put(job/'summary.json',{'summary':x['summary']})
   else: raise ValueError('interrupted generation; no complete raw output to recover')
   validate(f);sp=job/'summary.json';summary=json.loads(sp.read_text())['summary'] if sp.exists() else summary_of(f)
   r=gate_review(review(f,job,MODEL));put(job/'review_result.json',r)
@@ -190,12 +191,46 @@ def similar_features(a,b):
   return len(gx&gy)/min(len(gx),len(gy)) if gx and gy else 0
  scores=[overlap(x,y) for x,y in zip(a,b)]
  return sum(v>=.55 for v in scores)>=3 and scores[3]>=.45
+def cross_features(f):
+ result=[]
+ for text in novelty_features(f,summary_of(f)):
+  normalized=re.sub(r'\W+','',text).casefold()
+  result.append(sorted({hashlib.blake2b(normalized[i:i+3].encode(),digest_size=8).hexdigest() for i in range(max(0,len(normalized)-2))}))
+ return result
+
+def cross_similar(a,b):
+ scores=[]
+ for x,y in zip(a,b):
+  left,right=set(x),set(y)
+  scores.append(len(left&right)/min(len(left),len(right)) if left and right else 0)
+ return sum(v>=.55 for v in scores)>=3 and scores[3]>=.45
+
+def registry_append(path,split,group,family=None):
+ path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
+ with path.open('a+',encoding='utf-8') as stream:
+  fcntl.flock(stream,fcntl.LOCK_EX);stream.seek(0)
+  records=[json.loads(line) for line in stream if line.strip()]
+  for entry in records:
+   if entry['group']==group and entry['split']!=split:raise ValueError('split group already frozen to '+entry['split'])
+  if family is None:
+   if not any(e['group']==group for e in records):
+    stream.write(canonical({'group':group,'split':split,'features':None})+'\n');stream.flush();os.fsync(stream.fileno())
+   return None
+  features=cross_features(family)
+  for entry in records:
+   if entry['split']!=split and entry.get('features') is not None and cross_similar(features,entry['features']):
+    return entry['group']
+  if not any(e['group']==group and e.get('features') is not None for e in records):
+   stream.write(canonical({'group':group,'split':split,'features':features})+'\n');stream.flush();os.fsync(stream.fileno())
+  return None
+
 def summary_of(f):
  return f.get('_summary') or ('人物目标：'+f['persona']['natural_profile']+'；请求：'+f['branches'][0]['player_turn']+'；有效事实：'+f['branches'][4]['visible_observation']+'；行动：'+', '.join(f['decision_inventory'].get(i,i) for i in f['branches'][4]['allowed_decisions']))
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--target',type=int,default=5000);p.add_argument('--concurrency',type=int,default=16);p.add_argument('--seed-snapshot',type=Path,action='append',default=[]);p.add_argument('--limit-new',type=int);p.add_argument('--start-index',type=int,default=0);p.add_argument('--import-snapshot',type=Path,action='append',default=[]);p.add_argument('--import-only',action='store_true',help='Merge verified snapshots without invoking any model')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--split',choices=['train','dev','test'],default='train');p.add_argument('--target',type=int);p.add_argument('--concurrency',type=int,default=8);p.add_argument('--seed-snapshot',type=Path,action='append',default=[]);p.add_argument('--limit-new',type=int);p.add_argument('--start-index',type=int,default=0);p.add_argument('--import-snapshot',type=Path,action='append',default=[]);p.add_argument('--import-only',action='store_true',help='Merge verified snapshots without invoking any model')
  a=p.parse_args()
- if a.start_index<0 or not 1<=a.target<=5000 or not 1<=a.concurrency<=64 or (a.limit_new is not None and a.limit_new<1):p.error('start-index must be nonnegative; target 1..5000; limit positive; concurrency 1..64')
+ limits={'train':5000,'dev':500,'test':800};a.target=limits[a.split] if a.target is None else a.target
+ if a.start_index<0 or not 1<=a.target<=limits[a.split] or not 1<=a.concurrency<=8 or (a.limit_new is not None and a.limit_new<1):p.error('start-index must be nonnegative; target must be within split limit; limit positive; concurrency 1..8')
  run=a.run_dir.resolve();run.mkdir(parents=True,exist_ok=True)
  with (run/'.lock').open('w') as lock:
   try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -209,20 +244,23 @@ def yield_gate(results):
  return {'samples':50,'rate':rate,'warning':rate<.70,'stop':rate<.50}
 
 def execute(a,run):
+ split=getattr(a,'split','train')
  guidance=json.loads((Path(__file__).resolve().parent.parent/'runs/pilot12-20261101/style_guidance.json').read_text())['principles']
  accepted={};out=run/'families.jsonl';queue=run/'needs_review.jsonl';state_path=run/'state.json'
  paths=([out] if out.exists() else [])+a.seed_snapshot
  for p in paths:
   for f in read_rows(p):
-   if not isinstance(f,dict) or f.get('status')!='audited' or f.get('split')!='train':continue
+   if not isinstance(f,dict) or f.get('status')!='audited' or f.get('split')!=split:continue
    validate(f);fid=f['family_id']
    if fid in accepted and digest(accepted[fid])!=digest(f):raise ValueError('conflicting audited family ID '+fid)
    accepted[fid]=f
  state=json.loads(state_path.read_text()) if state_path.exists() else {'completed':[],'next_index':0}
+ if state.get('split',split)!=split:raise ValueError('run directory split mismatch')
+ state['split']=split
  pending=list(read_rows(queue)) if queue.exists() else []
  jobs=run/'jobs';jobs.mkdir(exist_ok=True)
- existing=[int(p.name.rsplit('-',1)[-1]) for p in jobs.glob('RCD-train-stream-*') if p.name.rsplit('-',1)[-1].isdigit()]
- seed_indices=[int(fid.rsplit('-',1)[-1]) for fid in accepted if re.fullmatch(r'RCD-train-stream-\d+',fid)]
+ existing=[int(p.name.rsplit('-',1)[-1]) for p in jobs.glob(f'RCD-{split}-stream-*') if p.name.rsplit('-',1)[-1].isdigit()]
+ seed_indices=[int(fid.rsplit('-',1)[-1]) for fid in accepted if re.fullmatch(r'RCD-'+re.escape(split)+r'-stream-\d+',fid)]
  idx=max([state.get('next_index',0),a.start_index]+[i+1 for i in existing+seed_indices]);submitted=0;futures={};reason=None;started=time.time()
  summaries=[summary_of(f) for f in accepted.values()][-40:]
  summaries.extend(r['summary'] for r in state['completed'] if r.get('status')=='audited' and r.get('summary'))
@@ -238,6 +276,8 @@ def execute(a,run):
    r['status']='needs_review';r['error']='identical mechanism summary; novelty review required';pending.append(r);return
   features=novelty_features(f,summary);duplicate=next((other for other,old in novelty if similar_features(features,old)),None)
   if duplicate:r['status']='quarantined';r['error']='possible semantic duplicate of '+duplicate;r['related_family_id']=duplicate;pending.append(r);return
+  cross_duplicate=registry_append(run.parent/'split_fingerprints.jsonl',split,f['split_group_id'],f)
+  if cross_duplicate:r['status']='quarantined';r['error']='possible cross-split semantic duplicate';r['related_group_id']=cross_duplicate;pending.append(r);return
   accepted[fid]=f;summaries.append(summary);novelty.append((fid,features))
  # Also recover finished individual jobs after a crash before aggregate update.
  known={r['family_id'] for r in state['completed']+state.get('edge_recovery_history',[])}
@@ -253,7 +293,7 @@ def execute(a,run):
  for q in sorted(jobs.glob('*/failure.json')):
   r=json.loads(q.read_text());fid=r['family_id']
   if fid not in known: state['completed'].append(r);pending.append(r);known.add(fid)
- unfinished=[j for j in sorted(jobs.glob('RCD-train-stream-*')) if j.is_dir() and j.name not in known]
+ unfinished=[j for j in sorted(jobs.glob(f'RCD-{split}-stream-*')) if j.is_dir() and j.name not in known]
  accepted_hashes={fid:digest(f) for fid,f in accepted.items()}
  import_cache={};last_saved=time.monotonic();dirty=0
  def save():
@@ -278,7 +318,7 @@ def execute(a,run):
    stat=path.stat();signature=(stat.st_dev,stat.st_ino,stat.st_mtime_ns,stat.st_size)
    cached=import_cache.get(path)
    if cached is None or cached[0]!=signature:
-    rows=[(f,digest(f)) for f in read_rows(path) if isinstance(f,dict) and f.get('status')=='audited' and f.get('split')=='train']
+    rows=[(f,digest(f)) for f in read_rows(path) if isinstance(f,dict) and f.get('status')=='audited' and f.get('split')==split]
     import_cache[path]=(signature,rows)
    for f,fingerprint in import_cache[path][1]:
     fid=f['family_id']
@@ -312,7 +352,7 @@ def execute(a,run):
    if item.get('status')=='quarantined' and item['family_id'] not in quarantined:
     quarantine.append(item);quarantined.add(item['family_id'])
   jsonl(quarantine_path,quarantine)
-  jsonl(out,accepted.values());jsonl(queue,pending);state['next_index']=idx;state['audited_train']=len(accepted);state['stop_reason']=reason
+  jsonl(out,accepted.values());jsonl(queue,pending);state['next_index']=idx;state['audited_families']=len(accepted);state['audited_train']=len(accepted) if split=='train' else 0;state['stop_reason']=reason
   state['candidate_instances']=sum(sum(len(b['candidates']) for b in f['branches']) for f in accepted.values())
   state['unique_candidate_texts_within_families']=sum(len({c['text'] for b in f['branches'] for c in b['candidates']}) for f in accepted.values())
   state['unique_candidate_texts_global']=len({c['text'] for f in accepted.values() for b in f['branches'] for c in b['candidates']})
@@ -333,8 +373,10 @@ def execute(a,run):
     j=unfinished.pop(0);futures[pool.submit(recover_job,run,j)]=int(j.name.rsplit('-',1)[-1])
    if reason is None and stopped():reason='recent 50 generation jobs acceptance rate below 0.50'
    while reason is None and len(futures)<a.concurrency and len(accepted)+len(futures)<a.target and (a.limit_new is None or submitted<a.limit_new):
+    registry_append(run.parent/'split_fingerprints.jsonl',split,f'RCD-{split}-stream-{idx:08d}')
     payload={'reference_dialogue_guidance':guidance,'history_mode_requested':'exact_permutation' if idx%4==0 else 'natural','recent_mechanism_summaries':[s[:300] for s in summaries[-40:]],'motive_axis':MOTIVES[axis_index(idx,'motive',len(MOTIVES))],'scenario_axis':SCENARIOS[axis_index(idx,'scenario',len(SCENARIOS))],'evidence_axis':EVIDENCE[axis_index(idx,'evidence',len(EVIDENCE))],'transition_axis':TRANSITIONS[axis_index(idx,'transition',len(TRANSITIONS))],'request_type':REQUESTS[axis_index(idx,'request',len(REQUESTS))],'in_flight_scenario_axes':[SCENARIOS[axis_index(n,'scenario',len(SCENARIOS))] for n in futures.values()],'avoid_overused_scenarios':'避免父亲观看展览、模型桥与中央舞台遮挡、生日惊喜；情境、人物欲望及事实转变须实质不同。','variation_seed':idx}
-    future=pool.submit(run_job,run,idx,payload);futures[future]=idx;idx+=1;submitted+=1
+    payload.update({'split_name':split,'split_source_nonce':f'{split}:{idx}'})
+    future=pool.submit(run_job,run,idx,payload) if split=='train' else pool.submit(run_job,run,idx,payload,split); futures[future]=idx;idx+=1;submitted+=1
    if dirty>=8 or time.monotonic()-last_saved>=10:save();dirty=0
    if not futures:
     if reason is None and not stopped() and len(accepted)<a.target and (unfinished or a.limit_new is None or submitted<a.limit_new):continue
@@ -343,7 +385,7 @@ def execute(a,run):
    for future in list(done)[:8]:
     num=futures.pop(future)
     try:r=future.result()
-    except Exception as e:r={'family_id':f'RCD-train-stream-{num:08d}','status':'needs_review','error':f'{type(e).__name__}: {e}'}
+    except Exception as e:r={'family_id':f'RCD-{split}-stream-{num:08d}','status':'needs_review','error':f'{type(e).__name__}: {e}'}
     r['completed_utc']=datetime.now(timezone.utc).isoformat()
     if r['status']=='audited':
      f=json.loads(Path(r['review']['reviewed_path']).read_text());validate(f)
@@ -353,7 +395,7 @@ def execute(a,run):
     state['completed'].append(r)
     if reason is None and stopped():reason='recent 50 generation jobs acceptance rate below 0.50'
     dirty+=1
-    print(json.dumps({'family_id':r['family_id'],'status':r['status'],'audited_train':len(accepted),'target':a.target,'jobs_finished':len(state['completed']),'candidate_instances':len(accepted)*48,'elapsed_s':round(time.time()-started),'stop_reason':reason},ensure_ascii=False),flush=True)
+    print(json.dumps({'family_id':r['family_id'],'status':r['status'],'audited_families':len(accepted),'audited_train':len(accepted) if split=='train' else 0,'target':a.target,'jobs_finished':len(state['completed']),'candidate_instances':len(accepted)*48,'elapsed_s':round(time.time()-started),'stop_reason':reason},ensure_ascii=False),flush=True)
  if reason is None:reason='target reached' if len(accepted)>=a.target else 'limit-new reached' if a.limit_new is not None and submitted>=a.limit_new else 'stopped'
- save();print(json.dumps({'status':reason,'audited_train':len(accepted),'submitted':submitted},ensure_ascii=False),flush=True)
+ save();print(json.dumps({'status':reason,'audited_families':len(accepted),'audited_train':len(accepted) if split=='train' else 0,'submitted':submitted},ensure_ascii=False),flush=True)
 if __name__=='__main__':main()

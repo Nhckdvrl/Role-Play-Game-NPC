@@ -87,15 +87,19 @@ def review(f,run,model,dispatcher=None):
   '重大场景矛盾或真实不可判断列blocking，细微偏好列notes。','output_schema':rating_schema},run,model,aliases,dispatcher)
  if local['status']!='success' or rated['status']!='success':
   quota=any(x.get('failure_type')=='quota_exhausted' or x['status']=='quota_blocked' for x in (local,rated))
-  return {'family_id':fid,'status':'quota_blocked' if quota else 'service_failure','gate_version':'v2.1-independent-grounding','source':str(source)}
+  return {'family_id':fid,'status':'quota_blocked' if quota else 'service_failure','gate_version':'v2.2-local-action-reconciliation','source':str(source)}
  ls=local['result'];rs=rated['result'];actors={x['n']:set(x['actions']) for x in ls['nodes']};observed={aliases[x['id']]:x for x in rs['cs'] if x['id'] in aliases}
  expected={c['id'] for b in f['branches'] for c in b['candidates']};issues=list(ls['blocking'])+list(rs['blocking'])
  if set(actors)!=set(mapping) or len(ls['nodes'])!=12:issues.append('incomplete local reactions')
  if set(observed)!=expected or len(rs['cs'])!=48 or set(x['id'] for x in rs['cs'])!=set(aliases):issues.append('incomplete candidate ratings')
  if issues and (set(observed)!=expected or set(actors)!=set(mapping) or len(rs['cs'])!=48 or set(x['id'] for x in rs['cs'])!=set(aliases)):
-  return {'family_id':fid,'status':'needs_review','gate_version':'v2.1-independent-grounding','issues':issues,'source':str(source)}
+  return {'family_id':fid,'status':'needs_review','gate_version':'v2.2-local-action-reconciliation','issues':issues,'source':str(source)}
  family=deepcopy(f);expansions=[]
  for b in family['branches']:
+  for nid,(history_id,branch_id) in mapping.items():
+   if branch_id==b['id']:
+    extra=actors[nid]-set(b['allowed_decisions'])
+    if extra:issues.append(b['id']+':'+history_id+':needs_allowed_reconciliation:'+','.join(sorted(extra)))
   for c in b['candidates']:
    x=observed[c['id']];nid=next(n for n,pair in mapping.items() if pair==(c['history_id'],b['id']))
    if x['d'] not in family['decision_inventory']:issues.append(c['id']+':unknown action')
@@ -103,8 +107,7 @@ def review(f,run,model,dispatcher=None):
    if x['c'] and not x['g']:issues.append(c['id']+':positive has unfaithful basis')
    if x['s']<.7:issues.append(c['id']+':expression not natural')
    if x['c'] and x['d'] not in actors[nid]:issues.append(c['id']+':independent reviewers disagree')
-   if x['c'] and x['d'] not in b['allowed_decisions'] and x['d'] in actors[nid]:
-    b['allowed_decisions'].append(x['d']);expansions.append({'branch':b['id'],'action':x['d'],'candidate':c['id'],'reason':x['why']})
+   if not x['c'] and x['d'] in actors[nid]:issues.append(c['id']+':independent reviewers disagree on negative')
    if not x['c'] and x['d'] in b['allowed_decisions']:issues.append(c['id']+':author action set disagrees with independent rating')
    if not x['quotes'] or any(not q.strip() or q not in c['text'] for q in x['quotes']):issues.append(c['id']+':unfaithful quote')
    if b['kind']=='insufficient_evidence' and x['c']:
@@ -112,23 +115,24 @@ def review(f,run,model,dispatcher=None):
    c['observed']={'audit_id':str(Path(rated['path'])/'result.json')+'#/cs/'+str(rs['cs'].index(x)),
     'decision_id':x['d'],'decision_correct':x['c'],'evidence_ok':x['g'],'naturalness':x['s'],
     'requested_conditions':x['v'],'feasible_verification':x['f'],'premature_commitment':x['p']}
- # Permit independently grounded alternative reactions; never change their labels.
- if expansions:
-  by={b['id']:set(b['allowed_decisions']) for b in family['branches']};edges=[]
-  for edge in family['edges']:
-   l=by[edge['source'].split('::')[1]];r=by[edge['target'].split('::')[1]]
-   if edge['kind']=='change' and l&r:continue
-   e=deepcopy(edge);e['allowed_pairs']=([[d,d] for d in sorted(l&r)] if e['kind']=='preserve' else [[a,b] for a in sorted(l) for b in sorted(r)])
-   if e['allowed_pairs']:edges.append(e)
-  family['edges']=edges
+ if issues and all(':needs_allowed_reconciliation:' in issue for issue in issues):
+  from reconcile_fast_allowed import reconcile
+  try:
+   family,reconciliation=reconcile(family,mapping,actors)
+   artifact=run/'allowed_reconciliation_v2_3'/f'{fid}.json'
+   reconciliation.update(local_raw=local['path'],candidate_raw=rated['path'],source=str(source))
+   save(artifact,reconciliation);expansions=reconciliation['changes'];issues=[]
+  except ValueError as exc:
+   issues.append('metadata reconciliation withheld: '+str(exc))
  passed=not issues;family['status']='audited' if passed else 'needs_review'
  family['audit']={'local_blind_review':'pass' if not ls['blocking'] else 'fail','global_review':'pass' if passed else 'fail',
   'human_review':'not_sampled','records':[str(Path(local['path'])/'result.json'),str(Path(rated['path'])/'result.json')]}
- validate(family);save(run/'reviewed_v2_1'/f'{fid}.json',family)
+ if expansions:family['audit']['records'].append(str(artifact))
+ validate(family);save(run/'reviewed_v2_3'/f'{fid}.json',family)
  negative=[x for x in rs['cs'] if not x['c']]
  hard=sum(x['g'] and x['style']>=.7 for x in negative)
- return {'family_id':fid,'status':family['status'],'gate_version':'v2.1-independent-grounding','negative_counts':{'total':len(negative),'hard':hard,'easy':sum(not x['g'] for x in negative),'grounded_style_below_threshold':sum(x['g'] and x['style']<.7 for x in negative)},'issues':issues,'expansions':expansions,
-   'source':str(source),'reviewed_path':str(run/'reviewed_v2_1'/f'{fid}.json'),
+ return {'family_id':fid,'status':family['status'],'gate_version':'v2.3-verified-allowed-metadata','negative_counts':{'total':len(negative),'hard':hard,'easy':sum(not x['g'] for x in negative),'grounded_style_below_threshold':sum(x['g'] and x['style']<.7 for x in negative)},'issues':issues,'expansions':expansions,
+   'source':str(source),'reviewed_path':str(run/'reviewed_v2_3'/f'{fid}.json'),
    'local_raw':local['path'],'candidate_raw':rated['path'],'notes':rs['notes']}
 
 def main():

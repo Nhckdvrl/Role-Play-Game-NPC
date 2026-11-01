@@ -130,7 +130,7 @@ def exclusions(finalize_unresolved=False):
    atomic(path,new)
    if all(k in read(path,{}) for k in new):event('exclusions_merged',added=sorted(set(new)-set(old)));return
   event('exclusions_merge_conflict',pending=list(additions))
-def top_pairs(fs):
+def top_pairs(fs,cross_split=False):
  # Sparse trigram TF-IDF with postings, keeping only the global top 30 in memory.
  docs=[];df=collections.Counter()
  for f in fs:
@@ -141,6 +141,7 @@ def top_pairs(fs):
   for t,w in vec.items():
    for j,q in inv[t]:scores[j]+=w*q
   for j,val in scores.items():
+   if cross_split and fs[j]['split']==fs[i]['split']:continue
    score=val/(norm*norms[j]);item=(score,j,i)
    if len(heap)<30:heapq.heappush(heap,item)
    elif item>heap[0]:heapq.heapreplace(heap,item)
@@ -215,7 +216,7 @@ def refill_if_required(fs):
   k=argv[i]
   if k not in allowed or i+1>=len(argv):raise ValueError('unsafe launch argument')
   options.setdefault(k,[]).append(argv[i+1]);i+=2
- if options.get('--run-dir')!=['runs/train5000-live'] or options.get('--target')!=['5000'] or len(options.get('--concurrency',[]))!=1 or not 1<=int(options['--concurrency'][0])<=64 or '--limit-new' in options:raise ValueError('launch options failed validation')
+ if options.get('--run-dir')!=['runs/train5000-live'] or options.get('--target')!=['5000'] or len(options.get('--concurrency',[]))!=1 or not 1<=int(options['--concurrency'][0])<=8 or '--limit-new' in options:raise ValueError('launch options failed validation')
  if (ROOT/'data_factory/fast_generate.py').resolve()!=(ROOT/'data_factory/fast_generate.py').absolute():raise ValueError('unexpected generator path')
  if (RUN/'STOP_AFTER_DRAIN').exists() or read(RUN/'state.json',{}).get('stop_reason')!='target reached':return
  out=(OUT/'refill.log').open('a',encoding='utf-8');proc=subprocess.Popen(argv,cwd=ROOT,stdin=subprocess.DEVNULL,stdout=out,stderr=subprocess.STDOUT,start_new_session=True);out.close()

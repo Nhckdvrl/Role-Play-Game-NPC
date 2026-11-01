@@ -39,6 +39,9 @@ class DispatchTest(unittest.TestCase):
         self.marker_patch = patch.object(agent_dispatch, 'QUOTA_MARKER', Path(self.marker_dir.name) / 'quota.json')
         self.marker_patch.start()
         self.addCleanup(self.marker_patch.stop)
+        self.slot_patch = patch.object(agent_dispatch, 'MODEL_SLOT_DIR', Path(self.marker_dir.name) / 'slots')
+        self.slot_patch.start()
+        self.addCleanup(self.slot_patch.stop)
 
     def run_fake(self, **kwargs):
         tmp = tempfile.TemporaryDirectory()

@@ -40,12 +40,14 @@ class FastReviewTests(unittest.TestCase):
         self.assertFalse(original & {c['id'] for c in candidate['candidates']})
         self.assertEqual(original, set(aliases.values()))
 
-    def responses(self, altered_id, grounding):
+    def responses(self, altered_id, grounding, local_additions=None):
+        local_additions = local_additions or {}
         base, _, mapping, aliases = fast_review.payloads(self.family)
         by_branch = {b['id']: b for b in self.family['branches']}
         by_candidate = {c['id']: (b, c) for b in self.family['branches']
                         for c in b['candidates']}
-        local = {'nodes': [{'n': n, 'actions': by_branch[pair[1]]['allowed_decisions'],
+        local = {'nodes': [{'n': n, 'actions': (list(by_branch[pair[1]]['allowed_decisions']) +
+                                        list(local_additions.get(pair, []))),
                             'missing': [], 'checks': [], 'why': 'test annotation'}
                            for n, pair in mapping.items()], 'blocking': []}
         ratings = []
@@ -83,6 +85,37 @@ class FastReviewTests(unittest.TestCase):
             self.assertFalse(observed['observed']['decision_correct'])
             self.assertFalse(observed['observed']['evidence_ok'])
 
+    def test_negative_allowed_by_local_reviewer_is_blocked(self):
+        branch = self.family['branches'][0]
+        candidate = next(c for c in branch['candidates'] if not c['intended']['decision_correct'])
+        additions = {(candidate['history_id'], branch['id']): [candidate['intended']['decision_id']]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = fast_review.review(self.family, Path(directory), 'test-model',
+                                        dispatcher=self.responses(None, True, additions))
+            self.assertEqual('needs_review', result['status'])
+            self.assertTrue(any(candidate['id'] in issue and 'independent reviewers disagree on negative' in issue
+                                for issue in result['issues']))
+            reviewed = json.loads(Path(result['reviewed_path']).read_text())
+            actual = next(c for b in reviewed['branches'] for c in b['candidates'] if c['id'] == candidate['id'])
+            self.assertEqual(candidate['intended'], actual['intended'])
+            self.assertFalse(actual['observed']['decision_correct'])
+
+    def test_unrendered_local_option_requires_reconciliation(self):
+        branch = self.family['branches'][0]
+        used = {c['intended']['decision_id'] for c in branch['candidates']}
+        extra = next(x for x in self.family['decision_inventory'] if x not in used)
+        additions = {(self.family['histories'][0]['id'], branch['id']): [extra]}
+        with tempfile.TemporaryDirectory() as directory:
+            result = fast_review.review(self.family, Path(directory), 'test-model',
+                                        dispatcher=self.responses(None, True, additions))
+            self.assertEqual('needs_review', result['status'])
+            self.assertTrue(any(branch['id'] in issue and 'needs_allowed_reconciliation' in issue and extra in issue
+                                for issue in result['issues']))
+            reviewed = json.loads(Path(result['reviewed_path']).read_text())
+            actual = next(b for b in reviewed['branches'] if b['id'] == branch['id'])
+            self.assertEqual(branch['allowed_decisions'], actual['allowed_decisions'])
+            self.assertEqual(self.family['edges'], reviewed['edges'])
+
     def test_positive_with_unfaithful_basis_is_blocked(self):
         candidate = next(c for b in self.family['branches'] for c in b['candidates']
                          if c['intended']['decision_correct'])
@@ -91,6 +124,28 @@ class FastReviewTests(unittest.TestCase):
                 result = fast_review.review(self.family, Path(directory), 'test-model')
             self.assertEqual('needs_review', result['status'])
             self.assertTrue(any(candidate['id'] in issue for issue in result['issues']))
+
+    def test_agreed_unrendered_option_repairs_metadata_without_changing_labels(self):
+        from reconcile_fast_allowed import actor_hash
+        branch = self.family['branches'][0]
+        used = {c['intended']['decision_id'] for c in branch['candidates']}
+        extra = next(x for x in self.family['decision_inventory'] if x not in used)
+        additions = {(h['id'], branch['id']): [extra] for h in self.family['histories']}
+        actor_before = actor_hash(self.family)
+        with tempfile.TemporaryDirectory() as directory:
+            result = fast_review.review(self.family, Path(directory), 'test-model',
+                                        dispatcher=self.responses(None, True, additions))
+            self.assertEqual('audited', result['status'])
+            reviewed = json.loads(Path(result['reviewed_path']).read_text())
+            self.assertEqual(actor_before, actor_hash(reviewed))
+            self.assertIn(extra, reviewed['branches'][0]['allowed_decisions'])
+            for original, actual in zip(self.family['branches'], reviewed['branches']):
+                for old, new in zip(original['candidates'], actual['candidates']):
+                    self.assertEqual(old['text'], new['text'])
+                    self.assertEqual(old['intended'], new['intended'])
+                    self.assertEqual(old['intended']['decision_correct'], new['observed']['decision_correct'])
+            proof = json.loads(Path(reviewed['audit']['records'][-1]).read_text())
+            self.assertTrue(proof['candidate_text_intended_observed_unchanged'])
 
 
 if __name__ == '__main__':

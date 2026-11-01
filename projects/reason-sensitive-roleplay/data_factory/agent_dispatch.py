@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Resumable, independent Codex CLI calls with auditable per-attempt artifacts."""
 import argparse
+from contextlib import contextmanager
+import fcntl
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import hashlib
@@ -12,6 +14,7 @@ import signal
 import subprocess
 import tempfile
 import threading
+import time
 import uuid
 
 from jsonschema import Draft202012Validator
@@ -20,6 +23,30 @@ from jsonschema.exceptions import SchemaError, ValidationError
 _LOCKS = {}
 _LOCKS_GUARD = threading.Lock()
 QUOTA_MARKER = Path(__file__).resolve().parent.parent / 'runs' / 'CLI_QUOTA_EXHAUSTED.json'
+MODEL_SLOT_DIR = Path(__file__).resolve().parent.parent / 'runs' / '.cli_model_slots'
+MODEL_SLOT_COUNT = 8
+
+@contextmanager
+def _model_slot():
+    """One shared process/thread slot; cached results never acquire a slot."""
+    MODEL_SLOT_DIR.mkdir(parents=True, exist_ok=True)
+    handle = None
+    while handle is None:
+        for index in range(MODEL_SLOT_COUNT):
+            candidate = (MODEL_SLOT_DIR / f'slot-{index:02d}.lock').open('a')
+            try:
+                fcntl.flock(candidate, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                handle = candidate
+                break
+            except BlockingIOError:
+                candidate.close()
+        if handle is None:
+            time.sleep(.1)
+    try:
+        yield
+    finally:
+        fcntl.flock(handle, fcntl.LOCK_UN)
+        handle.close()
 
 def _quota_message(events, stderr):
     texts = [str(e.get('message', '')) for e in events if isinstance(e, dict)] + [stderr]
@@ -126,25 +153,28 @@ def dispatch(task, run_dir, model='gpt-6.1-terra', effort='low', timeout=300):
             timed_out = False
             failure = None
             failure_type = None
-            with tempfile.TemporaryDirectory(prefix='codex-dispatch-') as cwd:
-                try:
-                    proc = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                                            stderr=subprocess.PIPE, cwd=cwd, start_new_session=True)
+            with _model_slot():
+                if _quota_blocked():
+                    return {'hash': digest, 'status': 'quota_blocked', 'path': str(QUOTA_MARKER), 'result': None, 'reused': True, 'failure_type': 'quota_exhausted'}
+                with tempfile.TemporaryDirectory(prefix='codex-dispatch-') as cwd:
                     try:
-                        stdout_bytes, stderr_bytes = proc.communicate(prompt.encode('utf-8'), timeout=timeout)
-                    except subprocess.TimeoutExpired:
-                        timed_out = True
+                        proc = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                                stderr=subprocess.PIPE, cwd=cwd, start_new_session=True)
                         try:
-                            os.killpg(proc.pid, signal.SIGKILL)
-                        except ProcessLookupError:
-                            pass
-                        stdout_bytes, stderr_bytes = proc.communicate()
-                        failure = f'timeout after {timeout} seconds'
-                        failure_type = 'timeout'
-                    stdout, stderr, exit_code = _text(stdout_bytes), _text(stderr_bytes), proc.returncode
-                except OSError as exc:
-                    failure = f'CLI launch failed: {exc}'
-                    failure_type = 'launch_error'
+                            stdout_bytes, stderr_bytes = proc.communicate(prompt.encode('utf-8'), timeout=timeout)
+                        except subprocess.TimeoutExpired:
+                            timed_out = True
+                            try:
+                                os.killpg(proc.pid, signal.SIGKILL)
+                            except ProcessLookupError:
+                                pass
+                            stdout_bytes, stderr_bytes = proc.communicate()
+                            failure = f'timeout after {timeout} seconds'
+                            failure_type = 'timeout'
+                        stdout, stderr, exit_code = _text(stdout_bytes), _text(stderr_bytes), proc.returncode
+                    except OSError as exc:
+                        failure = f'CLI launch failed: {exc}'
+                        failure_type = 'launch_error'
             (attempt / 'events.jsonl').write_text(stdout, encoding='utf-8')
             (attempt / 'stderr.txt').write_text(stderr, encoding='utf-8')
             events, parse_errors, forbidden = [], [], []
