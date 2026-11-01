@@ -161,15 +161,20 @@ def main():
         pending[pstr] = {'sha256': sha(raw), 'metadata': item}
     jwrite('qa/quarantine_summary.json',pending)
     jwrite('reports/pending_summary.json',{'pilot_calibration':len(pilot),'train':pending})
-    token_path = P/'runs/train5000-live/checkpoints/000500/token_measurements.json'
+    measured = sorted((P/'runs/train5000-live/checkpoints').glob('*/token_measurements.json'))
+    if not measured: raise ValueError('no completed tokenizer measurement available')
+    token_path = measured[-1]
     token_bytes = token_path.read_bytes(); token = json.loads(token_bytes)
     source_hashes[str(token_path.relative_to(P))] = sha(token_bytes)
     token_counts = [h['token_count'] for f in token['families'] for h in f['histories']]
-    token_summary = {'checkpoint': '000500', 'family_count': len(token['families']), 'history_count': len(token_counts), 'min_tokens': min(token_counts), 'max_tokens': max(token_counts), 'tokenizer': 'Phi-4-mini-instruct GPT2TokenizerFast', 'chat_template_sha256': token['chat_template_sha256'], 'input_sha256': token['input_sha256'], 'scope': 'full actor template with neutral user turn at checkpoint, not this entire later snapshot or other templates'}
+    token_summary = {'checkpoint': token_path.parent.name, 'family_count': len(token['families']), 'history_count': len(token_counts), 'min_tokens': min(token_counts), 'max_tokens': max(token_counts), 'tokenizer': 'Phi-4-mini-instruct GPT2TokenizerFast', 'chat_template_sha256': token['chat_template_sha256'], 'input_sha256': token['input_sha256'], 'scope': 'full Train actor template with neutral user turn at the named checkpoint; no claim for other splits or templates'}
     head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=P,text=True).strip()
     status=subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=P,text=True)
     diff=subprocess.check_output(['git','diff','HEAD','--','data_factory'],cwd=P)
     manifest={'build_utc':start,'code_head':head,'tracked_worktree_dirty':bool(status),'tracked_status':status.splitlines(),'data_factory_diff_sha256':sha(diff),'packager_sha256':sha(Path(__file__).read_bytes()),'sources_sha256':source_hashes,'counts':summaries,'pilot_calibration_count':len(pilot),'audit_objects':len(cache),'audit_references':len(mapping),'audit_identity_method':'sha256(original project-relative path) plus sha256(content); distinct source paths never merge even for identical bytes', 'review_protocol':'Mixed batches and protocols; no claim of uniformly granular blind review. Legacy cache and newer native independent reviews have different provenance; inspect each audit record.','semantic_hash_method':'SHA256 canonical sorted-key UTF-8 JSON with audit.records and candidate observed.audit_id replaced by fixed sentinel; all other values unchanged','history_token_measurement':token_summary}
+    targets={'train':1000,'validation':65,'test':75}
+    reached=all(summaries[s]['families']==n for s,n in targets.items())
+    manifest.update(budget_targets=targets,budget_targets_reached=reached,expansion_authorized=False)
     jwrite('provenance/manifest.json',manifest)
     jwrite('qa/release_validation.json',{'result':'pass','factory_validate_and_quality_check':'all released families','cross_split_group_overlap':0,'duplicate_family_ids':0,'candidate_id_scope':'unique within each family; use family_id plus candidate id as composite key','cross_split_history_hash_collisions':0,'all_audit_pointers_resolved':True,'export_quality_analyze_passed':True,'unique_observed_audit_ids':True,'semantic_hashes_match':True})
     table='\n'.join(f"| {s} | {v['families']} | {v['nodes']} | {v['candidate_instances']} | {v['unique_candidate_texts']} |" for s,v in summaries.items())
@@ -186,14 +191,20 @@ configs:
 ---
 # Reason-sensitive roleplay 数据集 — IN_PROGRESS
 
-私有研究数据，模型合成并经模型审查，未进行人类审查；不构成人类金标准。当前快照并非最终发布，曾发生质量修订与撤回；不同批次使用不同的审查流程，审查记录见 audits。标注中 intended 与 observed 分开，前者不应当作为真值。完整族文件含教师信息；默认节点视图不含教师脚手架或决策契约。
+私有研究数据，模型合成并经模型审查，未进行人类审查；不构成人类金标准。当前快照按用户预算收口，曾发生质量修订与撤回；不同批次使用不同的审查流程，审查记录见 audits。标注中 intended 与 observed 分开，前者不应当作为真值。完整族文件含教师信息；默认节点视图不含教师脚手架或决策契约。
 
 | split | families | nodes | candidate instances | unique candidate texts |
 |---|---:|---:|---:|---:|
 '''+table+'''
 
-每族 12 个节点、48 个候选实例；实例数量与去重文本数量不同。目标为 train 5000 / validation 500 / test 800 families，当前尚有差距。Pilot 为独立校准数据，不计入已发布数据。候选 ID 仅保证族内唯一，跨族使用 family_id 与 candidate id 的复合键。按来源组隔离分割，已检查精确历史跨 split 散列冲突；这不排除语义近重复。000500 检查点以 Phi-4-mini 模板实测 514 族、1028 条历史，范围 450–1341 tokens；该实测不覆盖本快照全部族或其他模板。Test 严禁用于训练、teacher 或 probe。CrossWOZ 仅用于 train 统计与表达规律，未复制或读取其 test；参考摘要仅为小摘要。完整审计对象可能含审核用上下文，应在分享前审核访问范围。本数据未指定许可。
+每族 12 个节点、48 个候选实例；实例数量与去重文本数量不同。用户最终预算目标为 train 1000 / validation 65 / test 75 families；达到后停止扩产。Pilot 为独立校准数据，不计入已发布数据。候选 ID 仅保证族内唯一，跨族使用 family_id 与 candidate id 的复合键。按来源组隔离分割，已检查精确历史跨 split 散列冲突；这不排除语义近重复。000500 检查点以 Phi-4-mini 模板实测 514 族、1028 条历史，范围 450–1341 tokens；该实测不覆盖本快照全部族或其他模板。Test 严禁用于训练、teacher 或 probe。CrossWOZ 仅用于 train 统计与表达规律，未复制或读取其 test；参考摘要仅为小摘要。完整审计对象可能含审核用上下文，应在分享前审核访问范围。本数据未指定许可。
 '''
+    old='000500 检查点以 Phi-4-mini 模板实测 514 族、1028 条历史，范围 450–1341 tokens；该实测不覆盖本快照全部族或其他模板。'
+    measured_text=(f"{token_summary['checkpoint']} 检查点以 Phi-4-mini 模板实测 {token_summary['family_count']} 个Train族、"
+                   f"{token_summary['history_count']} 条历史，范围 {token_summary['min_tokens']}–{token_summary['max_tokens']} tokens；"
+                   '不外推未测分区或其他模板。')
+    card=card.replace(old,measured_text)
+    if reached:card=card.replace('数据集 — IN_PROGRESS','数据集 — BUDGET_FINAL')
     write('README.md',card.encode())
     write('build.log',('build_utc='+start+'\nresult=pass\n').encode())
     files=sorted(p for p in OUT.rglob('*') if p.is_file() and p.name!='SHA256SUMS')

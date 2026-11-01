@@ -4,15 +4,15 @@
   "status": "production_targets_not_completed_counts",
   "initial_end_to_end_batch": 12,
   "family_targets": {
-    "pilot": 150,
-    "train": 5000,
-    "dev": 500,
-    "test": 800
+    "pilot": 12,
+    "train": 1000,
+    "dev": 65,
+    "test": 75
   },
   "histories_per_family": 2,
   "branches_per_history": 6,
   "base_candidates_per_node": 4,
-  "train_base_candidate_instances_target": 240000,
+  "train_base_candidate_instances_target": 48000,
   "train_coverage_fraction": 0.7,
   "train_hard_fraction": 0.3,
   "hardness_sources": [
@@ -60,26 +60,22 @@
     "Extra evaluator calibration negatives and retries are separate from four-grid counts.",
     "All numerical targets are planning decisions, not measured quality or performance.",
     "User clarified the new 5,000 then conditional 20,000 counts mean Train story families. First checkpoint stays 5,000; a measured decision may then extend Train to 20,000. Pilot and dev/test stay separate.",
-    "Latest instruction fixes total model-call concurrency at eight and current delivery at Train/Dev/Test 5000/500/800; no automatic expansion."
+    "Latest instruction fixes total model-call concurrency at eight and current delivery at Train/Dev/Test 5000/500/800; no automatic expansion.",
+    "Latest explicit budget reduction: Train exactly 1000 story families, preserve existing Dev65/Test75; only Train top-up authorized, no further expansion.",
+    "Pilot remains the existing 12 calibration families. All 2000/200/300 and 5000/500/800 milestones are superseded by the explicit user budget limit."
   ],
   "production_protocol_version": "0.5",
-  "scaling_policy": "quality_first_5000_500_800_stop_then_user_decides",
+  "scaling_policy": "budget_limited_train_1000_then_stop_dev_test_frozen",
   "milestones": [
     {
-      "id": "first_trainable_snapshot",
-      "train": 2000,
-      "dev": 200,
-      "test": 300
-    },
-    {
-      "id": "current_realistic_target",
-      "train": 5000,
-      "dev": 500,
-      "test": 800
+      "id": "final_budget_snapshot",
+      "train": 1000,
+      "dev": 65,
+      "test": 75
     }
   ],
   "milestones_are_cumulative": true,
-  "training_family_hard_cap": 5000,
+  "training_family_hard_cap": 1000,
   "shard_family_range": {
     "pilot": [
       10,
@@ -99,12 +95,12 @@
     "available already authorized generation capacity"
   ],
   "pilot_is_additional_to_train_dev_test": true,
-  "current_train_checkpoint": 5000,
+  "current_train_checkpoint": 1000,
   "conditional_train_expansion": {
     "target": 20000,
     "unit": "train_story_families",
     "authorization": "user_2026-11-01_followup",
-    "status": "disabled_until_new_user_decision_after_5000_500_800",
+    "status": "disabled_by_explicit_user_budget_limit",
     "gates": [
       "independent semantic review keeps pace",
       "natural dialogue and distinct story structures remain strong",
@@ -115,8 +111,8 @@
   "total_model_concurrency": 8,
   "concurrency_scope": "shared across Train/Dev/Test generation and all reviews; cross-process lock enforced",
   "split_worker_threads": {
-    "train": 4,
-    "dev": 2,
-    "test": 2
+    "train": 8,
+    "dev": 0,
+    "test": 0
   }
 }

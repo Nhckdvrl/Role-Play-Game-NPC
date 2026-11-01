@@ -10,7 +10,7 @@ class RefillTest(unittest.TestCase):
  def setUp(self):
   self.tmp=tempfile.TemporaryDirectory();root=Path(self.tmp.name);self.run=root/'run';self.out=root/'out';self.proc=root/'proc'
   for p in (self.run,self.out,self.proc):p.mkdir()
-  self.patches=[patch.object(watch,'RUN',self.run),patch.object(watch,'OUT',self.out),patch.object(watch,'Path',side_effect=lambda x:self.proc if x=='/proc' else Path(x)),patch.object(watch.os,'kill',side_effect=ProcessLookupError),patch.object(watch.subprocess,'Popen')]
+  self.patches=[patch.object(watch,'ROOT',root),patch.object(watch,'RUN',self.run),patch.object(watch,'OUT',self.out),patch.object(watch,'Path',side_effect=lambda x:self.proc if x=='/proc' else Path(x)),patch.object(watch.os,'kill',side_effect=ProcessLookupError),patch.object(watch.subprocess,'Popen')]
   for p in self.patches:p.start();self.addCleanup(p.stop)
   self.pop=watch.subprocess.Popen;self.pop.return_value.pid=12345
   (self.run/'production.pid').write_text('99999999');self.argv=['/usr/bin/python3','-u','data_factory/fast_generate.py','--run-dir','runs/train5000-live','--target','5000','--concurrency','8']
@@ -23,6 +23,10 @@ class RefillTest(unittest.TestCase):
  def test_target_and_exclusion_restart_validated_argv_and_pid(self):
   self.write('state.json',{'stop_reason':'target reached'});watch.refill_if_required(self.fs)
   self.pop.assert_called_once();self.assertEqual(self.pop.call_args.args[0],self.argv);self.assertEqual((self.run/'production.pid').read_text().strip(),'12345');self.assertTrue((self.run/'launch_history.jsonl').exists())
+ def test_explicit_user_budget_never_restarts_old_target(self):
+  self.write('state.json',{'stop_reason':'target reached'})
+  path=watch.ROOT/'runs/USER_BUDGET_STOP.json';path.parent.mkdir();path.write_text('{}')
+  watch.refill_if_required(self.fs);self.pop.assert_not_called()
  def test_bad_target_or_command_rejected(self):
   self.write('state.json',{'stop_reason':'target reached'})
   for argv in (self.argv[:6]+['20000']+self.argv[7:],['/usr/bin/python3','-u','other.py']+self.argv[3:]):

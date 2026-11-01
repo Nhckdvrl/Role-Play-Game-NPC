@@ -84,7 +84,7 @@ def once(run, project, usage_cache):
                           if isinstance(v, (int, float))})
     report = {
         'utc': utc, 'run': str(run), 'pid': pid, 'process_alive': alive,
-        'target_train_families': 5000, 'audited_train': state.get('audited_train', 0),
+        'target_train_families': launch.get('target_train_families', 1000), 'audited_train': state.get('audited_train', 0),
         'candidate_instances': state.get('candidate_instances', 0),
         'unique_candidate_texts_global': state.get('unique_candidate_texts_global', 0),
         'concurrency': launch.get('concurrency'), 'completed_new_jobs': dict(counts),
@@ -101,9 +101,9 @@ def once(run, project, usage_cache):
         'splits': {split: {'target': target,
                   'audited_families': read(project/'runs'/directory/'state.json', {}).get('audited_families', 0),
                   'stop_reason': read(project/'runs'/directory/'state.json', {}).get('stop_reason')}
-                  for split, directory, target in [('train','train5000-live',5000),
-                                                   ('dev','dev500-live',500),
-                                                   ('test','test800-live',800)]},
+                  for split, directory, target in [('train','train5000-live',1000),
+                                                   ('dev','dev500-live',65),
+                                                   ('test','test800-live',75)]},
         'usage': {'scope_runs': scope, 'completed_cli_metadata': len(usage_cache),
                   'returned_usage': dict(usage), 'missing_usage': missing,
                   'cost_usd': None,
@@ -122,14 +122,14 @@ def once(run, project, usage_cache):
         rate = scheduler.get('rate')
         if rate is None and completed:
             rate = counts['audited'] / len(completed)
-        text = (f'\n\n更新：{utc}。当前累计 **{report["audited_train"]}/5000 个 Train 故事族**，'
+        text = (f'\n\n更新：{utc}。当前累计 **{report["audited_train"]}/1000 个 Train 故事族**，'
                 f'{report["candidate_instances"]} 个四格候选实例，'
                 f'{report["unique_candidate_texts_global"]} 条全局唯一候选正文。\n\n'
                 'Train / Dev / Test 生成与审查共享 **8 个模型调用槽位**；'
                 f'本 Train 流有 {report["concurrency"]} 个故事族工作线程。CLI 进程：'
                 f'{"运行中" if alive else "已退出"}，额度阻断：{report["quota_blocked"]}。'
-                f'Dev：{report["splits"]["dev"]["audited_families"]}/500；'
-                f'Test：{report["splits"]["test"]["audited_families"]}/800。'
+                f'Dev：{report["splits"]["dev"]["audited_families"]}/65；'
+                f'Test：{report["splits"]["test"]["audited_families"]}/75。'
                 f'已记录审查结果：{dict(counts)}；'
                 f'最近调度窗通过率：{f"{rate:.1%}" if rate is not None else "等待首批完成"}。'
                 f'排除和待审均不计入。停止原因：{report["stop_reason"] or "无"}。\n\n'

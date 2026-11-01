@@ -229,7 +229,7 @@ def summary_of(f):
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--run-dir',type=Path,required=True);p.add_argument('--split',choices=['train','dev','test'],default='train');p.add_argument('--target',type=int);p.add_argument('--concurrency',type=int,default=8);p.add_argument('--seed-snapshot',type=Path,action='append',default=[]);p.add_argument('--limit-new',type=int);p.add_argument('--start-index',type=int,default=0);p.add_argument('--import-snapshot',type=Path,action='append',default=[]);p.add_argument('--import-only',action='store_true',help='Merge verified snapshots without invoking any model')
  a=p.parse_args()
- limits={'train':5000,'dev':500,'test':800};a.target=limits[a.split] if a.target is None else a.target
+ limits={'train':1000,'dev':65,'test':75};a.target=limits[a.split] if a.target is None else a.target
  if a.start_index<0 or not 1<=a.target<=limits[a.split] or not 1<=a.concurrency<=8 or (a.limit_new is not None and a.limit_new<1):p.error('start-index must be nonnegative; target must be within split limit; limit positive; concurrency 1..8')
  run=a.run_dir.resolve();run.mkdir(parents=True,exist_ok=True)
  with (run/'.lock').open('w') as lock:

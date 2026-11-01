@@ -110,6 +110,8 @@ def main():
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         previous = None
         while True:
+            if (qa.ROOT/'runs/USER_BUDGET_STOP.json').exists():
+                return
             try:
                 if not (qa.ROOT/'runs/CLI_QUOTA_EXHAUSTED.json').exists():
                     _, sources = freeze()

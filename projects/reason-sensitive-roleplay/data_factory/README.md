@@ -1,5 +1,8 @@
 # 条件决策专项数据工厂 v0.2
 
+> 最新用户预算上限：最终 Train1000 / Dev65 / Test75，Pilot12另计。仅补齐Train；禁止自动扩产、续补到旧目标或启动全局模型仲裁。旧规模规划已被本条覆盖。
+
+
 这里包含本地数据生产管线、独立审查与条件关系奖励参考实现。模型调用使用本机已授权的 Codex CLI，仍依赖相应账户与可用配额。正式协议见[数据构建](../docs/DATA_CONSTRUCTION.md)，worker提示词见[生成提示词](../docs/GENERATION_PROMPTS.md)，执行授权见[AGENT_HANDOFF](../AGENT_HANDOFF.md)。
 
 本地生产已接入当前授权的 Codex CLI；实时数量和质量状态以 [DATA_PROGRESS](../DATA_PROGRESS.md) 为准。`agent_dispatch.py` 保存每次独立会话的输入、原文、schema 校验、实际 token 和失败类型；`produce_pilot.py` 执行历史／四格／单候选盲审；`adjudicate_release.py` 在移除生成意图后独立仲裁标签。初次盲审可能误读，不能强迫改成作者答案，也不能把所有审查意见当作数据错误。

@@ -189,6 +189,7 @@ def snapshot():
  with (RUN/'families.jsonl').open(encoding='utf-8') as f:return [x for line in f if line.strip() and (x:=json.loads(line)).get('status')=='audited']
 def refill_if_required(fs):
  # Explicitly authorized exception: never bypass maintenance or non-target stops.
+ if (ROOT/'runs/USER_BUDGET_STOP.json').exists():return
  if (RUN/'STOP_AFTER_DRAIN').exists():return
  state=read(RUN/'state.json',{});reason=state.get('stop_reason')
  try:
