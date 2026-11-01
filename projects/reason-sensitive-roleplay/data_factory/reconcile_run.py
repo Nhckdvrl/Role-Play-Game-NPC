@@ -49,7 +49,9 @@ def reconcile_run(run):
         results = []
         for item in original['completed']:
             issues = item.get('review', {}).get('issues', [])
-            if item['status'] != 'needs_review' or not issues or not all(':needs_allowed_reconciliation:' in s for s in issues):
+            metadata_hold = bool(issues) and all(':needs_allowed_reconciliation:' in s for s in issues)
+            import_failure = item.get('error', '').startswith("ImportError: cannot import name 'reconcile' from 'reconcile_allowed'")
+            if item['status'] != 'needs_review' or not (metadata_hold or import_failure):
                 continue
             fid = item['family_id']
             if fid in exclusions:
@@ -58,14 +60,24 @@ def reconcile_run(run):
             family = json.loads((job/'draft.json').read_text())
             result = gen.gate_review(fast_review.review(family, job, gen.MODEL, dispatcher=cached))
             row = {'family_id': fid, 'review': result, 'model_calls': 0}
+            if import_failure:
+                gen.put(out/(fid+'-engineering_failure.json'), item)
+                item.pop('error', None)
+                item.update(status=result['status'], review=result, engineering_retry_utc=stamp)
+                pending = [p for p in pending if p['family_id'] != fid]
+                if result['status'] != 'audited':
+                    pending.append(dict(item))
             if result['status'] == 'audited':
                 repaired = json.loads(Path(result['reviewed_path']).read_text())
                 features = gen.novelty_features(repaired, item.get('summary') or gen.summary_of(repaired))
                 duplicate = next((other for other, old in novelty if gen.similar_features(features, old)), None)
-                cross = gen.registry_append(run.parent/'split_fingerprints.jsonl', split,
-                                            repaired['split_group_id'], repaired)
+                cross = None if duplicate else gen.registry_append(run.parent/'split_fingerprints.jsonl', split,
+                                                                   repaired['split_group_id'], repaired)
                 if duplicate or cross:
                     row['withheld_novelty'] = duplicate or cross
+                    if import_failure:
+                        item.update(status='quarantined', error='possible duplicate of '+str(duplicate or cross))
+                        pending.append(dict(item))
                 else:
                     gen.put(out/(fid+'-previous_result.json'), item)
                     item.update(status='audited', review=result, metadata_reconciled_utc=stamp)
