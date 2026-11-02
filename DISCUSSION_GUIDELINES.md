@@ -3,7 +3,7 @@
 > **更新：2026-10-30。题目与研究约束保持稳定，具体机制、方法和实验路线由证据逐步确定。**
 > 前期讨论的任务是定下研究问题、找清数据与 Baseline、提出有根据的机制假设，并设计最值得先做的实验；不是替真机研究写好一份必然成功的完整剧本。
 
-本文与 [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md)、[AGENT_HANDOFF.md](AGENT_HANDOFF.md) 配套。[ROADMAP.md](ROADMAP.md)、[文献索引](docs/LITERATURE.md) 和 [资源地图](docs/RESOURCE_ATLAS.md) 是领域知识与资源依据，不是要求逐项执行的任务清单。
+本文与 [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md)、[AGENT_HANDOFF.md](AGENT_HANDOFF.md)、[DUAL_MODEL_WEAKNESSES.md](DUAL_MODEL_WEAKNESSES.md) 配套。[ROADMAP.md](ROADMAP.md)、[文献索引](docs/LITERATURE.md) 和 [资源地图](docs/RESOURCE_ATLAS.md) 是领域知识与资源依据，不是要求逐项执行的任务清单。
 
 ## 一、稳定的研究主干与硬约束
 
@@ -87,4 +87,4 @@
 | 把所有正反结果都预先包装成贡献 | 记录真实信息增量；有些结果只说明实现失败或证据不足，并不保证论文价值 |
 | 无限审计与诊断，不敢提出方法 | 一旦有足够的可解释信号，就推进最小方法原型；让效果与机制证据反过来修正判断 |
 
-**衡量讨论是否有用：它是否让下一轮真机实验更有判别力、让本地 Agent 更容易发现真实问题并形成有效方法，而不是让方案看起来更完整、更确定。** [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md) 的具体方法菜单是可用的武器库：既不因谨慎而抽空方法，也不把列出的每个候选变成待执行任务。
+**衡量讨论是否有用：它是否让下一轮真机实验更有判别力、让本地 Agent 更容易发现真实问题并形成有效方法，而不是让方案看起来更完整、更确定。** [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md) 的具体方法菜单是可用的武器库：既不因谨慎而抽空方法，也不把列出的每个候选变成待执行任务。关于 Gemini 与 GPT 在前期多轮讨论中暴露的具体思维弱点与犯病案例复盘，详见 [DUAL_MODEL_WEAKNESSES.md](DUAL_MODEL_WEAKNESSES.md)。

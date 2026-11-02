@@ -13,6 +13,7 @@
 | **[RESEARCH_IDEAS.md](RESEARCH_IDEAS.md)** | **当前选题 v2.2**：稳定的研究问题、数据与 Baseline 布局、双层思考／奖励／多轮恢复／Persona Probe 的开放式具体方法菜单与初步实验 |
 | **[AGENT_HANDOFF.md](AGENT_HANDOFF.md)** | **本地实验入口**：自主权限、可选择的实验、已有工程审查线索、Probe 起点与简洁证据记录 |
 | [DISCUSSION_GUIDELINES.md](DISCUSSION_GUIDELINES.md) | 讨论与研究原则：事实／假设分离、高信息量实验、硬边界与协同纠偏 |
+| **[DUAL_MODEL_WEAKNESSES.md](DUAL_MODEL_WEAKNESSES.md)** | **双模型弱点复盘与防偏指南**：系统总结 Gemini 与 GPT 在讨论中暴露的六大典型通病、具体犯病案例与即时纠偏动作 |
 | [ROADMAP.md](ROADMAP.md) | **18 章领域地图**：解释研究问题、方法、关键公式、证据与分支联系，不是当前项目必须实现的范围 |
 | [LITERATURE.md](docs/LITERATURE.md) | **113 篇去重论文**：7 篇综述、106 篇研究，按主题列出原文、发表状态与阅读深度 |
 | [RESOURCE_ATLAS.md](docs/RESOURCE_ATLAS.md) | **107 项资源**：106 项研究资源 + 1 项 Sony CPDC 挑战，核对数据、评测、Baseline、代码与模型发布状态 |
