@@ -8,7 +8,7 @@
 
 | 子项目 | 研究问题 | 状态（2026-11-02） |
 | --- | --- | --- |
-| [persona-consistency](projects/persona-consistency/README.md) | 单轮与多轮角色对话中的人设一致性：浅层扮演、多轮人设消退与出戏。当前聚焦**长对话中的顺从漂移**及其训练方法（在线 DPO）与表征机制 | 现象在 3 个模型规模、2 个裁判家族、2 个模拟器家族上观察到；方法在自建指标与 CoSER 上有效。**测量效度正在复核**（裁判会把坚定语气误判为纠正），并在 15 个模型的面板与 Qwen3.5-9B 上检验一般性 |
+| [persona-consistency](projects/persona-consistency/README.md) | 单轮与多轮角色对话中的人设一致性：浅层扮演、多轮人设消退与出戏；聚焦施压下的顺从与在线 DPO 方法 | **已归档（2026-11-02）**。人工审计发现所用裁判把强硬语气误判为纠正，原数值结论作废；经验证裁判重判后现象与训练效果仍在但幅度差异很大。见其 [SUMMARY.md](projects/persona-consistency/SUMMARY.md) |
 | [reason-sensitive-roleplay](projects/reason-sensitive-roleplay/README.md) | 多轮角色条件决策与双向历史惯性：该坚持时不盲从、该改变时不固执、信息不足时知道核实什么 | 受控故事族数据生产与方法原型，见其 [DATA_PROGRESS.md](projects/reason-sensitive-roleplay/DATA_PROGRESS.md) |
 
 新的研究题目在 `projects/` 下新建子目录，不改变已有子项目的编号与文档。
@@ -35,7 +35,7 @@ Role-Play-Game-NPC/
 ├── DUAL_MODEL_WEAKNESSES.md       讨论过程复盘与防偏指南
 ├── docs/                          文献索引、资源地图
 └── projects/
-    ├── persona-consistency/       子项目：长对话人设一致性与顺从漂移
+    ├── persona-consistency/       子项目（已归档）：长对话人设一致性
     └── reason-sensitive-roleplay/ 子项目：角色条件决策与历史惯性
 ```
 
