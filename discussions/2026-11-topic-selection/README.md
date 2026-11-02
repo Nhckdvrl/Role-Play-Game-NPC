@@ -17,6 +17,7 @@
 | [02_LITERATURE_VERIFIED.md](02_LITERATURE_VERIFIED.md) | 讨论中核查过的论文：读到什么程度（全文、摘要），方法、评测与裁判细节，与本讨论的关系 |
 | [03_CANDIDATES.md](03_CANDIDATES.md) | 各候选方向的评估与当前状态；首选方向的当前设计，区分“已确立的事实”和“尚待证实的假设” |
 | [04_OPEN_QUESTIONS.md](04_OPEN_QUESTIONS.md) | 未解决的问题与分歧，特别希望旁观者评估的点 |
+| [07_FIELD_AND_FEASIBILITY.md](07_FIELD_AND_FEASIBILITY.md) | 第 9 轮：领域重要性、候选方向的可行性对比；Z1 的数据清单（实际下载统计）、零 GPU 试分析、测量有效性、baseline、API 与计算量、风险 |
 | [06_EXPLORATION_ZONES.md](06_EXPLORATION_ZONES.md) | 第 8 轮：工作方式改为“先选探索地带、再用实验凝练 idea”；核查 Gemini 的五个地带；推荐地带与第一批实验草案 |
 | [05_ROADMAP_SCREEN.md](05_ROADMAP_SCREEN.md) | 第 7 轮：用固定的七条标准，对 ROADMAP 全部 31 个证据区域做系统筛选；最接近通过的两项补读了原文 |
 
@@ -29,9 +30,13 @@
 3. **不赌假设**（用户 2026-11-02 明确提出）：研究计划应建立在已确立的事实上，每个关键环节都应有独立的先验证据。论文的核心贡献，不应押在某一个尚未证实的现象上；
 4. 只做纯分析、不给出新方法（训练或训练无关），投稿前景有限（用户 2026-11-02 提出）。
 
-## 当前状态（2026-11-02，第 8 轮后）
+## 当前状态（2026-11-02，第 9 轮后）
 
-- **工作方式调整**（用户第 8 轮）：不再寻找“一次跑通”的完整 idea，而是先选一片宽广的探索地带，用高信息量实验凝练 insight。测量可靠（C2）和不与其他子项目重叠（C5）仍是硬约束。
-- **推荐地带**：“角色的认知状态与模型全知的分离”（Character Epistemics），合并了 Gemini 的地带 2、第 7 轮的 S3′ 和无条件的秘密。条件披露留给 reason-sensitive-roleplay。锚点现象为 Curse of Knowledge 与 SimpleToM；主测量是孪生场景加规则评分，不需要 LLM 裁判。见 [06_EXPLORATION_ZONES.md](06_EXPLORATION_ZONES.md)。
-- 第一批实验（X0–X5）只是草案，**尚未执行**。是否进入该地带、是否从 X0 开始，由用户决定。
-- 第 7 轮的系统筛选见 [05_ROADMAP_SCREEN.md](05_ROADMAP_SCREEN.md)；C、2b、G1、G2 仍为不推荐。
+- **可行性核查完成**，见 [07_FIELD_AND_FEASIBILITY.md](07_FIELD_AND_FEASIBILITY.md)。
+- 在“主测量不依赖裁判、不依赖多种 API、有公开数据、不与其他子项目重叠”这几条约束下，**Z1“角色认知与模型全知的分离”明显领先**：
+  - 多个社区（角色扮演、用户模拟、隐私、心智理论、游戏）在 2026 年 10 月前后同时报告同类失效；
+  - FANToM、OpenToM、SimpleToM、ExploreToM 均已下载统计，可改造为孪生测量；
+  - Curse of Knowledge 公开了 11 个模型的 20.6 万条已打分输出，可以零 GPU 复核；
+  - 已用这批数据证实：探针几乎全对时，同一题扮演仍有 0–69 个百分点的净泄露。
+- **新发现的测量问题**：关键词尺子的盲区正好被关键词输出过滤器覆盖，需要补充“孪生可区分度”指标。
+- 尚未开展模型实验；需要用户决定的事项见 07 第六节。

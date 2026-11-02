@@ -157,3 +157,16 @@ ArcHint（只给轴名和当前阶段的编号、名称）：在 DeepSeek-V4-Fla
 - **Tricking LLM-Based NPCs into Spilling Secrets**（arXiv 2508.19288，检索摘要）：30 条注入提示中 3 条导致泄漏，规模很小。
 - **LifeState-BENCH**（ACL 2026）· 全文相关段落：Hamlet 1.3K 与合成 202 条；用 LLM 裁判评分；非参数方法（摘要、拼接）优于参数方法（知识编辑、LoRA）。
 - **CAVI**（arXiv 2605.09443，摘要）：“模态—角色干扰”指通用视觉特征压过角色特质，而不是角色设定导致感知幻觉；摘要中没有给出数字。
+
+## 八、第 9 轮（可行性核查）
+
+- **Perception-to-Action Rules**（arXiv 2610.19796）· 正文相关部分：在 HiToM、ToMi、BigToM、OpenToM 的问答上，用 GRPO 训练 Qwen2.5 和 Llama3 生成“感知→行动”规则，比自由格式 GRPO 平均高 7.2%；用 SFT 教规则反而变差；更大模型生成的规则能提升 GPT-4o-mini。**只在问答上做，不涉及第一人称生成。**
+- **Loose Lips**（arXiv 2610.14071）· 正文相关部分：在 CIMemories 基础上扩展出 4,410 段双代理对话，测 Qwen3 与 Llama-3.1 的 7 个模型；由 Qwen3-8B 自动判定是否泄露；平均泄露率约 0.008–0.036；能力越强越漏；思考变体漏得更多；代码在 github.com/soummyaah/LooseLips。
+- **SimpleToM**（ICLR 2026）· 摘要与博客：1,147 个故事、3,441 道题；心理状态推断 >95%，行为预测与行为评价大幅下降；思维链加心理状态提醒能把 GPT-4o 的行为预测从 49.5% 提到 93.5%。
+- **Can LLMs Ignore What They Know?**（arXiv 2610.39939）· 摘要：真实项目与表面形式匹配的虚构“孪生”项目配对比较；明确的“不知道”声明压不住真实知识的影响；在两个家族、5 个 API 端点上测试。
+- **TRACE Bench**（arXiv 2608.11236）· 摘要：把人设离线分解为清单，由用户代理在对话中跟踪；评测了 26 个模型；代码公开（KuaishouGameMind）。
+- **PRISM**（arXiv 2608.26674，EMNLP 2026）· 摘要：把人设忠实度分为任务框架、人际立场、语言风格三个维度做结构化推断，替代整体式裁判；摘要中没有数字。
+- **侦探游戏结构化知识树**（arXiv 2609.23043）· 摘要：三代理流水线（检索、生成、校验），关键幻觉减少 64.78%，完全防止过早披露，代价是部分披露显得生硬；评估方式为用户研究。
+- **ToM-RL**（2504.01698）· 检索摘要：7B 模型用 3,200 道 ToM 题做 RL，HiToM 达到 84.5%。
+- **反面证据**：“Small LLMs do not learn a generalizable ToM via RL”（2507.15788，只见标题）。
+- **ExploreToM**（ICLR 2025）· 数据卡：A* 搜索加领域语言生成故事结构，再由 LLM 扩写；数据 CC-BY-NC，代码公开。
