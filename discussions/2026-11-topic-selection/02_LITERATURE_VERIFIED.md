@@ -170,3 +170,19 @@ ArcHint（只给轴名和当前阶段的编号、名称）：在 DeepSeek-V4-Fla
 - **ToM-RL**（2504.01698）· 检索摘要：7B 模型用 3,200 道 ToM 题做 RL，HiToM 达到 84.5%。
 - **反面证据**：“Small LLMs do not learn a generalizable ToM via RL”（2507.15788，只见标题）。
 - **ExploreToM**（ICLR 2025）· 数据卡：A* 搜索加领域语言生成故事结构，再由 LLM 扩写；数据 CC-BY-NC，代码公开。
+
+## 九、第 10 轮（角色声音方向）
+
+- **Speaker Verification in Agent-Generated Conversations**（ACL 2024，arXiv 2405.10150）· 正文主要部分：
+  - 数据来自 Friends、哈利波特、生活大爆炸、Cornell、MSC、AnnoMI，覆盖数千名说话人；
+  - 难度分三档：不同对话、同类情境、同一段对话；
+  - 微调后的验证器（STEL/SBERT/RoBERTa/LUAR 对比学习）对未见说话人的 AUC 约 86（不同对话）、约 79（同类情境）、约 60–63（同一段对话）；
+  - 人类与 ChatGPT 只看台词时只比随机略好（55–57%）；
+  - 角色扮演模型的模拟分为 44–59（真实台词 86），区分分为 39–64（真实台词 73）；
+  - 评测的是 2023 年的模型（Llama-2-Chat、ChatHaruhi、RoleGPT、Character-LLM、Character.AI）；
+  - 处理代码公开，处理后的数据不发布。
+- **Back in Style**（arXiv 2610.10988，NeurIPS 2026 UserSim 工作坊，非存档）· 摘要：在客服用户模拟中，把人设写成具体的文体比率，用作者验证文体学和词典内容分析代替 LLM 裁判；作者自称 pilot。
+- **Same Voice, Different Lab**（arXiv 2605.02897）· 摘要：前沿助手在 144 个特质上趋同于“系统、有条理、分析型”。
+- **Voice Under Revision**（arXiv 2604.22142）· 检索摘要：LLM 改写会降低个人叙事的文体方差，即使要求保留声音。
+- **Assistant Axis**（2601.10387）、**Attractor States**（2606.30571）、**Prompting Against Persona Drift**（2609.24532）· 检索层面：长对话向默认助手漂移的研究正在增加。
+- **Value-Based LLM Agent Simulation**（2507.11979）· 检索摘要：信任、亲近度随价值相似度单调上升（Jonckheere–Terpstra 检验）。
