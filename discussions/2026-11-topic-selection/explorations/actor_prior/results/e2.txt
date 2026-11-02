@@ -1,0 +1,6 @@
+llama31_8b_inst  P(role): recognize 0.590  predict 0.430  enact 0.344 | items recognized 1793/2958; of those, predicted-role 0.648, enacted-role 0.466
+                  enact by difficulty {'easy': 0.35, 'mid': 0.346, 'hard': 0.335}
+qwen3_8b         P(role): recognize 0.787  predict 0.660  enact 0.568 | items recognized 2427/2958; of those, predicted-role 0.793, enacted-role 0.665
+                  enact by difficulty {'easy': 0.578, 'mid': 0.56, 'hard': 0.566}
+qwen3_8b_base    P(role): recognize 0.723  predict 0.589  enact 0.492 | items recognized 2453/2958; of those, predicted-role 0.755, enacted-role 0.505
+                  enact by difficulty {'easy': 0.503, 'mid': 0.497, 'hard': 0.475}

@@ -21,7 +21,7 @@
 | [docs/LITERATURE.md](docs/LITERATURE.md) | **113 篇去重论文**：7 篇综述、106 篇研究，按主题列出原文、发表状态与阅读深度，全局编号 RP-001–RP-113 |
 | [docs/RESOURCE_ATLAS.md](docs/RESOURCE_ATLAS.md) | **107 项资源**：数据、评测、Baseline、代码与模型的发布状态核对；含[评测依赖速查](docs/RESOURCE_ATLAS.md#evaluation-cost) |
 | [DUAL_MODEL_WEAKNESSES.md](DUAL_MODEL_WEAKNESSES.md) | **双模型弱点复盘与防偏指南**：Gemini 与 GPT 在前期选题与专项讨论中暴露的典型通病、具体案例与即时纠偏动作，适用于所有子项目的讨论 |
-| [discussions/](discussions/2026-11-topic-selection/README.md) | **选题讨论记录**：各轮主张与纠正、核查过的文献、候选方向评估、未决问题，供旁观者给全局反馈。当前一份：2026-11 persona-consistency 归档后的新选题讨论（未立项） |
+| [discussions/](discussions/2026-11-topic-selection/README.md) | **选题讨论记录**：各轮主张与纠正、核查过的文献、候选方向评估、未决问题，供旁观者给全局反馈。当前一份：2026-11 persona-consistency 归档后的选题阶段，**已结束、未立项**，含领域综合、逐篇精读笔记与两组探索实验的总结（见其 SUMMARY.md） |
 
 领域地图以 Role-Playing NPC 本身为核心；Game 是有世界状态和玩家干预的交互情境，通用多智能体协作、资源采集、战术与底层部署只作必要背景。地图也覆盖玩家意图与试探、承诺与世界反馈、图像与语音中的人物表现等交叉方向。**领域全景不等于某个子项目的立项范围。**
 

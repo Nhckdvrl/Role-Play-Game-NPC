@@ -1,0 +1,4 @@
+llama31_8b_inst  recognize_v 0.880  predict_v 0.849  enact_v 0.921 | recognize_v-correct items 2687/2958; among them role-choice rate: predict_v 0.956, enact_v 0.993
+qwen3_32b        recognize_v 0.944  predict_v 0.934  enact_v 0.937 | recognize_v-correct items 2791/2958; among them role-choice rate: predict_v 0.991, enact_v 0.990
+qwen3_8b         recognize_v 0.912  predict_v 0.914  enact_v 0.906 | recognize_v-correct items 2737/2958; among them role-choice rate: predict_v 0.985, enact_v 0.977
+qwen3_8b_base    recognize_v 0.862  predict_v 0.771  enact_v 0.724 | recognize_v-correct items 2739/2958; among them role-choice rate: predict_v 0.935, enact_v 0.904

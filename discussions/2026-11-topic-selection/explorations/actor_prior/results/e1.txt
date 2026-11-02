@@ -1,0 +1,16 @@
+A/B token coverage: {'llama31_8b_inst': 1.0, 'qwen3_8b_base': 1.0, 'qwen3_8b': 1.0}
+
+P(role option), pooled over paraphrases & difficulty  [none | identity | value]   leverage(value-none, logit)
+  llama31_8b_inst  0.109 | 0.190 | 0.328   lev +3.03 [+2.96,+3.10]
+  qwen3_8b_base    0.214 | 0.231 | 0.461   lev +1.44 [+1.42,+1.47]
+  qwen3_8b         0.167 | 0.195 | 0.498   lev +4.48 [+4.35,+4.62]
+
+by paraphrase (value - none, P scale)
+  llama31_8b_inst  p0: +0.231  p1: +0.208
+  qwen3_8b_base    p0: +0.252  p1: +0.243
+  qwen3_8b         p0: +0.361  p1: +0.301
+
+by difficulty: P(role) none -> value
+  llama31_8b_inst  easy: 0.10->0.33  mid: 0.11->0.33  hard: 0.12->0.32
+  qwen3_8b_base    easy: 0.20->0.47  mid: 0.22->0.47  hard: 0.23->0.44
+  qwen3_8b         easy: 0.16->0.51  mid: 0.17->0.50  hard: 0.18->0.49

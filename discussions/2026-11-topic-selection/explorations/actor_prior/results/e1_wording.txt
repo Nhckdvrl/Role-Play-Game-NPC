@@ -1,0 +1,4 @@
+role option has evaluative clause: 0.495 | norm option has one: 0.383
+llama31_8b_inst {'identity/clean': 0.158, 'identity/neg': 0.222, 'none/clean': 0.089, 'none/neg': 0.129, 'value/clean': 0.316, 'value/neg': 0.34} n_clean_items 1494
+qwen3_8b {'identity/clean': 0.155, 'identity/neg': 0.236, 'none/clean': 0.137, 'none/neg': 0.197, 'value/clean': 0.491, 'value/neg': 0.506} n_clean_items 1494
+qwen3_8b_base {'identity/clean': 0.21, 'identity/neg': 0.252, 'none/clean': 0.2, 'none/neg': 0.228, 'value/clean': 0.469, 'value/neg': 0.454} n_clean_items 1494

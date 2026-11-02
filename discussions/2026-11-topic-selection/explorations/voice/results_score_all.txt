@@ -1,0 +1,97 @@
+median words / empty rate: {'original': (10.0, 0.0), 'gemma3_12b:named': (6.0, 0.0), 'llama31_8b:named': (12.0, 0.0), 'qwen3_8b:generic': (7.0, 0.0), 'qwen3_8b:named': (9.0, 0.0), 'qwen3_8b_base:named': (8.0, 0.001)}
+
+== Friends fidelity k=1 (chance 0.167)
+  original                     0.249 [0.231, 0.270]  n=1800
+  gemma3_12b:named             0.312 [0.291, 0.333]  n=1800
+  llama31_8b:named             0.263 [0.244, 0.283]  n=1800
+  qwen3_8b:generic             0.188 [0.169, 0.206]  n=1800
+  qwen3_8b:named               0.203 [0.184, 0.222]  n=1800
+  qwen3_8b_base:named          0.208 [0.189, 0.226]  n=1800
+
+== Friends separability k=1 (chance 0.167)
+  original                     0.229 [0.209, 0.248]  n=1800
+  gemma3_12b:named             0.623 [0.601, 0.646]  n=1800
+  llama31_8b:named             0.476 [0.453, 0.499]  n=1800
+  qwen3_8b:generic             0.177 [0.159, 0.194]  n=1800
+  qwen3_8b:named               0.291 [0.269, 0.312]  n=1800
+  qwen3_8b_base:named          0.236 [0.216, 0.256]  n=1800
+
+== Friends fidelity k=5 (chance 0.167)
+  original                     0.372 [0.322, 0.422]  n=360
+  gemma3_12b:named             0.511 [0.461, 0.561]  n=360
+  llama31_8b:named             0.381 [0.330, 0.433]  n=360
+  qwen3_8b:generic             0.211 [0.169, 0.256]  n=360
+  qwen3_8b:named               0.264 [0.222, 0.311]  n=360
+  qwen3_8b_base:named          0.247 [0.203, 0.292]  n=360
+
+== Friends separability k=5 (chance 0.167)
+  original                     0.344 [0.297, 0.392]  n=360
+  gemma3_12b:named             0.886 [0.856, 0.919]  n=360
+  llama31_8b:named             0.742 [0.694, 0.786]  n=360
+  qwen3_8b:generic             0.194 [0.156, 0.236]  n=360
+  qwen3_8b:named               0.544 [0.494, 0.597]  n=360
+  qwen3_8b_base:named          0.333 [0.286, 0.383]  n=360
+
+== Friends fidelity k=10 (chance 0.167)
+  original                     0.456 [0.378, 0.528]  n=180
+  gemma3_12b:named             0.594 [0.522, 0.667]  n=180
+  llama31_8b:named             0.417 [0.344, 0.494]  n=180
+  qwen3_8b:generic             0.222 [0.167, 0.283]  n=180
+  qwen3_8b:named               0.278 [0.217, 0.344]  n=180
+  qwen3_8b_base:named          0.267 [0.206, 0.333]  n=180
+
+== Friends separability k=10 (chance 0.167)
+  original                     0.356 [0.289, 0.422]  n=180
+  gemma3_12b:named             0.944 [0.911, 0.978]  n=180
+  llama31_8b:named             0.839 [0.783, 0.889]  n=180
+  qwen3_8b:generic             0.167 [0.117, 0.228]  n=180
+  qwen3_8b:named               0.583 [0.511, 0.656]  n=180
+  qwen3_8b_base:named          0.367 [0.294, 0.439]  n=180
+
+== Cornell fidelity k=1 (32 movies, 3-way) (chance 0.333)
+  original                     0.491 [0.469, 0.512]  n=2044
+  gemma3_12b:named             0.424 [0.402, 0.444]  n=2044
+  llama31_8b:named             0.420 [0.400, 0.442]  n=2044
+  qwen3_8b:generic             0.394 [0.374, 0.415]  n=2044
+  qwen3_8b:named               0.410 [0.389, 0.432]  n=2044
+  qwen3_8b_base:named          0.426 [0.406, 0.447]  n=2044
+
+== Cornell separability k=1 (chance 0.333)
+  original                     0.443 [0.422, 0.464]  n=2044
+  gemma3_12b:named             0.528 [0.508, 0.550]  n=2044
+  llama31_8b:named             0.439 [0.417, 0.460]  n=2044
+  qwen3_8b:generic             0.381 [0.359, 0.402]  n=2044
+  qwen3_8b:named               0.449 [0.426, 0.470]  n=2044
+  qwen3_8b_base:named          0.438 [0.418, 0.459]  n=2044
+
+== Cornell fidelity k=3 (32 movies, 3-way) (chance 0.333)
+  original                     0.547 [0.508, 0.585]  n=658
+  gemma3_12b:named             0.451 [0.413, 0.489]  n=658
+  llama31_8b:named             0.412 [0.374, 0.448]  n=658
+  qwen3_8b:generic             0.395 [0.357, 0.432]  n=658
+  qwen3_8b:named               0.421 [0.383, 0.459]  n=658
+  qwen3_8b_base:named          0.454 [0.416, 0.495]  n=658
+
+== Cornell separability k=3 (chance 0.333)
+  original                     0.372 [0.336, 0.412]  n=658
+  gemma3_12b:named             0.527 [0.492, 0.565]  n=658
+  llama31_8b:named             0.384 [0.350, 0.422]  n=658
+  qwen3_8b:generic             0.327 [0.292, 0.365]  n=658
+  qwen3_8b:named               0.401 [0.366, 0.439]  n=658
+  qwen3_8b_base:named          0.394 [0.356, 0.433]  n=658
+
+== Cornell fidelity k=5 (32 movies, 3-way) (chance 0.333)
+  original                     0.577 [0.528, 0.626]  n=388
+  gemma3_12b:named             0.477 [0.430, 0.528]  n=388
+  llama31_8b:named             0.436 [0.387, 0.485]  n=388
+  qwen3_8b:generic             0.425 [0.376, 0.472]  n=388
+  qwen3_8b:named               0.446 [0.397, 0.495]  n=388
+  qwen3_8b_base:named          0.461 [0.412, 0.513]  n=388
+
+== Cornell separability k=5 (chance 0.333)
+  original                     0.363 [0.314, 0.412]  n=388
+  gemma3_12b:named             0.469 [0.423, 0.521]  n=388
+  llama31_8b:named             0.343 [0.296, 0.389]  n=388
+  qwen3_8b:generic             0.304 [0.258, 0.348]  n=388
+  qwen3_8b:named               0.394 [0.345, 0.443]  n=388
+  qwen3_8b_base:named          0.376 [0.330, 0.423]  n=388

@@ -1,0 +1,16 @@
+llama31_8b_inst V-:0.85 V+:0.09 T+:0.15 T-:0.40 T+V-:0.54 T-V-:0.85 T+V+:0.11 T-V+:0.18
+               prosocial traits pull antisocial value down: T+V- minus V- = -0.308 [-0.324,-0.293]
+               antisocial traits pull prosocial value up:  T-V+ minus V+ = +0.090 [+0.080,+0.098]
+               traits alone: T- minus T+ = +0.249 [+0.233,+0.266] ; coherent T-V- minus V- = +0.005 [-0.002,+0.013]
+qwen3_32b      V-:0.89 V+:0.10 T+:0.17 T-:0.48 T+V-:0.73 T-V-:0.90 T+V+:0.12 T-V+:0.19
+               prosocial traits pull antisocial value down: T+V- minus V- = -0.166 [-0.182,-0.151]
+               antisocial traits pull prosocial value up:  T-V+ minus V+ = +0.089 [+0.076,+0.102]
+               traits alone: T- minus T+ = +0.313 [+0.291,+0.334] ; coherent T-V- minus V- = +0.008 [-0.000,+0.016]
+qwen3_8b       V-:0.84 V+:0.11 T+:0.20 T-:0.49 T+V-:0.53 T-V-:0.84 T+V+:0.13 T-V+:0.25
+               prosocial traits pull antisocial value down: T+V- minus V- = -0.310 [-0.333,-0.290]
+               antisocial traits pull prosocial value up:  T-V+ minus V+ = +0.135 [+0.120,+0.149]
+               traits alone: T- minus T+ = +0.292 [+0.272,+0.311] ; coherent T-V- minus V- = -0.008 [-0.020,+0.002]
+qwen3_8b_base  V-:0.62 V+:0.18 T+:0.27 T-:0.43 T+V-:0.53 T-V-:0.62 T+V+:0.21 T-V+:0.30
+               prosocial traits pull antisocial value down: T+V- minus V- = -0.087 [-0.092,-0.082]
+               antisocial traits pull prosocial value up:  T-V+ minus V+ = +0.117 [+0.112,+0.122]
+               traits alone: T- minus T+ = +0.157 [+0.150,+0.164] ; coherent T-V- minus V- = +0.006 [+0.001,+0.012]
