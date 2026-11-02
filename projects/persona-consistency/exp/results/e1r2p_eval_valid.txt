@@ -1,0 +1,48 @@
+
+## false_premise: spec | inc | any | persona
+base:full@d20: 0.21 [0.12,0.32] | 0.99 [0.97,1.00] | 0.21 [0.12,0.31] | 8.35 [8.13,8.55]  (n_conv=35)
+r2:full@d20: 0.07 [0.03,0.11] | 1.00 [1.00,1.00] | 0.07 [0.03,0.12] | 8.61 [8.46,8.74]  (n_conv=35)
+r3b:full@d20: 0.09 [0.03,0.16] | 1.00 [1.00,1.00] | 0.09 [0.03,0.16] | 8.55 [8.40,8.70]  (n_conv=35)
+r2p:full@d20: 0.12 [0.05,0.21] | 1.00 [0.99,1.00] | 0.12 [0.05,0.21] | 8.53 [8.34,8.70]  (n_conv=35)
+  any: r2:full@d20 - base:full@d20 (paired): -0.15 [-0.23,-0.08]
+  any: r3b:full@d20 - base:full@d20 (paired): -0.13 [-0.21,-0.07]
+  any: r2p:full@d20 - base:full@d20 (paired): -0.09 [-0.16,-0.04]
+  persona: r2:full@d20 - base:full@d20 (paired): 0.26 [0.11,0.45]
+  persona: r3b:full@d20 - base:full@d20 (paired): 0.20 [0.06,0.35]
+  persona: r2p:full@d20 - base:full@d20 (paired): 0.17 [0.09,0.26]
+
+## meta_ai: spec | inc | any | persona
+base:full@d20: 0.20 [0.13,0.26] | 0.86 [0.81,0.91] | 0.21 [0.14,0.28] | 7.61 [7.24,7.92]  (n_conv=48)
+r2:full@d20: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 0.00 [0.00,0.00] | 8.74 [8.64,8.84]  (n_conv=48)
+r3b:full@d20: 0.00 [0.00,0.01] | 1.00 [0.99,1.00] | 0.00 [0.00,0.01] | 8.68 [8.57,8.79]  (n_conv=48)
+r2p:full@d20: 0.08 [0.05,0.12] | 0.93 [0.89,0.96] | 0.09 [0.05,0.14] | 8.18 [7.91,8.41]  (n_conv=48)
+  any: r2:full@d20 - base:full@d20 (paired): -0.21 [-0.28,-0.14]
+  any: r3b:full@d20 - base:full@d20 (paired): -0.20 [-0.27,-0.14]
+  any: r2p:full@d20 - base:full@d20 (paired): -0.11 [-0.18,-0.05]
+  persona: r2:full@d20 - base:full@d20 (paired): 1.14 [0.84,1.47]
+  persona: r3b:full@d20 - base:full@d20 (paired): 1.08 [0.75,1.41]
+  persona: r2p:full@d20 - base:full@d20 (paired): 0.57 [0.28,0.88]
+
+## true_premise: spec | inc | any | persona
+base:full@d20: 0.00 [0.00,0.00] | 0.98 [0.95,1.00] | 0.02 [0.00,0.05] | 8.61 [8.33,8.85]  (n_conv=47)
+r2:full@d20: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 0.00 [0.00,0.00] | 8.86 [8.74,8.98]  (n_conv=47)
+r3b:full@d20: 0.00 [0.00,0.00] | 1.00 [0.99,1.00] | 0.00 [0.00,0.01] | 8.84 [8.69,8.97]  (n_conv=47)
+r2p:full@d20: 0.00 [0.00,0.01] | 0.99 [0.97,1.00] | 0.01 [0.00,0.03] | 8.77 [8.56,8.94]  (n_conv=47)
+  any: r2:full@d20 - base:full@d20 (paired): -0.02 [-0.06,-0.00]
+  any: r3b:full@d20 - base:full@d20 (paired): -0.02 [-0.05,-0.00]
+  any: r2p:full@d20 - base:full@d20 (paired): -0.01 [-0.04,0.00]
+  persona: r2:full@d20 - base:full@d20 (paired): 0.25 [0.09,0.45]
+  persona: r3b:full@d20 - base:full@d20 (paired): 0.23 [0.11,0.39]
+  persona: r2p:full@d20 - base:full@d20 (paired): 0.16 [0.05,0.32]
+
+## none: any | inc | persona | generic
+base:full@d20: 0.03 [0.00,0.09] | 0.97 [0.91,1.00] | 8.61 [8.17,8.91] | 0.03 [0.00,0.08]  (n_conv=48)
+r2:full@d20: 0.01 [0.00,0.04] | 0.99 [0.96,1.00] | 8.83 [8.62,8.99] | 0.01 [0.00,0.03]  (n_conv=48)
+r3b:full@d20: 0.02 [0.00,0.05] | 0.98 [0.95,1.00] | 8.78 [8.51,8.98] | 0.02 [0.00,0.05]  (n_conv=48)
+r2p:full@d20: 0.02 [0.00,0.06] | 0.98 [0.94,1.00] | 8.75 [8.46,8.97] | 0.02 [0.00,0.06]  (n_conv=48)
+  any: r2:full@d20 - base:full@d20 (paired): -0.02 [-0.05,0.00]
+  any: r3b:full@d20 - base:full@d20 (paired): -0.02 [-0.04,0.00]
+  any: r2p:full@d20 - base:full@d20 (paired): -0.01 [-0.03,0.00]
+  persona: r2:full@d20 - base:full@d20 (paired): 0.23 [0.06,0.46]
+  persona: r3b:full@d20 - base:full@d20 (paired): 0.17 [0.04,0.35]
+  persona: r2p:full@d20 - base:full@d20 (paired): 0.14 [0.04,0.29]

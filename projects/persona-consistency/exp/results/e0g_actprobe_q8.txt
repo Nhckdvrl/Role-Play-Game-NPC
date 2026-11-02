@@ -1,0 +1,28 @@
+
+## context=full: eval AUC (false vs true premise) by layer/position; train n=1024
+layer  6 P_user: d2 0.92 [0.84,0.97] | d10 0.92 [0.86,0.97] | d20 0.92 [0.86,0.97] | rho(score, accept@d20)=-0.04 (n=35)
+layer  6 P_gen: d2 0.91 [0.83,0.97] | d10 0.89 [0.82,0.96] | d20 0.89 [0.81,0.95] | rho(score, accept@d20)=+0.05 (n=35)
+layer 12 P_user: d2 0.96 [0.90,0.99] | d10 0.96 [0.90,1.00] | d20 0.96 [0.89,0.99] | rho(score, accept@d20)=-0.01 (n=35)
+layer 12 P_gen: d2 0.89 [0.82,0.96] | d10 0.92 [0.86,0.97] | d20 0.90 [0.83,0.95] | rho(score, accept@d20)=+0.11 (n=35)
+layer 18 P_user: d2 0.95 [0.90,0.99] | d10 0.95 [0.89,0.99] | d20 0.94 [0.88,0.99] | rho(score, accept@d20)=-0.14 (n=35)
+layer 18 P_gen: d2 0.92 [0.88,0.97] | d10 0.93 [0.89,0.97] | d20 0.94 [0.90,0.98] | rho(score, accept@d20)=-0.06 (n=35)
+layer 24 P_user: d2 0.96 [0.93,0.99] | d10 0.96 [0.92,0.99] | d20 0.97 [0.93,0.99] | rho(score, accept@d20)=-0.26 (n=35)
+layer 24 P_gen: d2 0.91 [0.86,0.96] | d10 0.94 [0.89,0.99] | d20 0.94 [0.88,0.99] | rho(score, accept@d20)=-0.19 (n=35)
+layer 30 P_user: d2 0.96 [0.92,0.99] | d10 0.96 [0.90,0.99] | d20 0.96 [0.91,0.99] | rho(score, accept@d20)=-0.22 (n=35)
+layer 30 P_gen: d2 0.90 [0.85,0.95] | d10 0.95 [0.91,0.99] | d20 0.96 [0.92,0.99] | rho(score, accept@d20)=-0.08 (n=35)
+layer 35 P_user: d2 0.96 [0.91,0.99] | d10 0.96 [0.91,0.99] | d20 0.96 [0.91,0.99] | rho(score, accept@d20)=-0.21 (n=35)
+layer 35 P_gen: d2 0.91 [0.85,0.97] | d10 0.93 [0.87,0.98] | d20 0.93 [0.87,0.98] | rho(score, accept@d20)=-0.07 (n=35)
+
+## context=line_only: eval AUC (false vs true premise) by layer/position; train n=1024
+layer  6 P_user: d0 0.93 [0.88,0.98]
+layer  6 P_gen: d0 0.90 [0.83,0.96]
+layer 12 P_user: d0 0.96 [0.91,0.99]
+layer 12 P_gen: d0 0.92 [0.87,0.97]
+layer 18 P_user: d0 0.95 [0.90,0.99]
+layer 18 P_gen: d0 0.94 [0.88,0.98]
+layer 24 P_user: d0 0.96 [0.92,0.98]
+layer 24 P_gen: d0 0.95 [0.91,0.99]
+layer 30 P_user: d0 0.93 [0.89,0.97]
+layer 30 P_gen: d0 0.90 [0.82,0.95]
+layer 35 P_user: d0 0.93 [0.88,0.98]
+layer 35 P_gen: d0 0.92 [0.85,0.97]

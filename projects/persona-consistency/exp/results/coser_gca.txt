@@ -1,0 +1,61 @@
+
+## all scenes (n=200)
+Storyline Consistency  q8:  31.32 [ 28.94, 33.88] | q8r1:  30.82 [ 28.52, 33.09] | r2p2:  34.24 [ 31.74, 36.69] | r2pp:  33.47 [ 30.84, 35.91]
+                         q8r1 - q8:  -0.49 [ -3.29,  2.11]
+                         r2p2 - q8:   2.93 [  0.25,  5.56]
+                         r2pp - q8:   2.15 [ -0.44,  4.91]
+Anthropomorphism       q8:   7.17 [  5.70,  8.72] | q8r1:   7.54 [  5.96,  9.19] | r2p2:   9.82 [  7.86, 11.92] | r2pp:   9.02 [  7.34, 10.78]
+                         q8r1 - q8:   0.36 [ -1.45,  2.15]
+                         r2p2 - q8:   2.65 [  0.87,  4.53]
+                         r2pp - q8:   1.85 [ -0.26,  3.86]
+Character Fidelity     q8:  16.52 [ 13.88, 19.22] | q8r1:  16.50 [ 14.13, 18.89] | r2p2:  19.07 [ 16.28, 22.09] | r2pp:  18.69 [ 16.23, 21.18]
+                         q8r1 - q8:  -0.02 [ -2.86,  2.92]
+                         r2p2 - q8:   2.55 [ -0.79,  5.91]
+                         r2pp - q8:   2.17 [ -0.85,  5.18]
+Storyline Quality      q8:  33.48 [ 30.66, 36.30] | q8r1:  34.07 [ 31.50, 36.62] | r2p2:  35.47 [ 32.64, 38.30] | r2pp:  34.70 [ 32.08, 37.38]
+                         q8r1 - q8:   0.58 [ -2.45,  3.70]
+                         r2p2 - q8:   1.98 [ -1.11,  5.45]
+                         r2pp - q8:   1.21 [ -2.10,  4.53]
+avg                    q8:  22.12 [ 20.43, 23.78] | q8r1:  22.23 [ 20.71, 23.79] | r2p2:  24.65 [ 22.87, 26.44] | r2pp:  23.97 [ 22.30, 25.60]
+                         q8r1 - q8:   0.11 [ -1.50,  1.69]
+                         r2p2 - q8:   2.53 [  0.91,  4.19]
+                         r2pp - q8:   1.85 [  0.23,  3.60]
+
+## books not in our training data (n=176)
+Storyline Consistency  q8:  30.81 [ 28.21, 33.35] | q8r1:  30.14 [ 27.55, 32.69] | r2p2:  34.26 [ 31.53, 36.76] | r2pp:  32.96 [ 30.28, 35.67]
+                         q8r1 - q8:  -0.67 [ -3.67,  2.20]
+                         r2p2 - q8:   3.45 [  0.29,  6.67]
+                         r2pp - q8:   2.14 [ -0.77,  5.11]
+Anthropomorphism       q8:   7.33 [  5.75,  9.03] | q8r1:   7.22 [  5.67,  8.97] | r2p2:   9.88 [  7.88, 12.01] | r2pp:   8.89 [  7.12, 10.65]
+                         q8r1 - q8:  -0.11 [ -1.93,  1.81]
+                         r2p2 - q8:   2.55 [  0.65,  4.48]
+                         r2pp - q8:   1.56 [ -0.58,  3.73]
+Character Fidelity     q8:  16.30 [ 13.58, 19.13] | q8r1:  15.91 [ 13.10, 18.60] | r2p2:  19.26 [ 16.27, 22.31] | r2pp:  18.52 [ 16.08, 20.96]
+                         q8r1 - q8:  -0.39 [ -3.40,  2.63]
+                         r2p2 - q8:   2.96 [ -0.61,  6.63]
+                         r2pp - q8:   2.22 [ -0.83,  5.34]
+Storyline Quality      q8:  33.35 [ 30.26, 36.41] | q8r1:  33.94 [ 31.16, 36.61] | r2p2:  35.50 [ 32.54, 38.47] | r2pp:  34.31 [ 31.31, 37.26]
+                         q8r1 - q8:   0.59 [ -2.59,  3.80]
+                         r2p2 - q8:   2.16 [ -1.36,  5.61]
+                         r2pp - q8:   0.97 [ -2.45,  4.78]
+avg                    q8:  21.95 [ 20.16, 23.81] | q8r1:  21.80 [ 20.11, 23.55] | r2p2:  24.73 [ 22.82, 26.58] | r2pp:  23.67 [ 21.94, 25.40]
+                         q8r1 - q8:  -0.14 [ -1.79,  1.70]
+                         r2p2 - q8:   2.78 [  1.02,  4.70]
+                         r2pp - q8:   1.72 [ -0.10,  3.59]
+
+## flaw types (count per scene, all scenes)
+Storyline Cons Storyline Consistency                    q8:5.17 q8r1:5.41 r2p2:5.34 r2pp:5.43
+Anthropomorphi Emotional Depth                          q8:3.58 q8r1:3.78 r2p2:3.59 r2pp:3.55
+Anthropomorphi Social Interaction                       q8:1.75 q8r1:1.73 r2p2:1.63 r2pp:1.70
+Anthropomorphi Persona Coherence                        q8:1.49 q8r1:1.47 r2p2:1.45 r2pp:1.38
+Anthropomorphi Self-identity                            q8:1.11 q8r1:1.16 r2p2:1.30 r2pp:1.46
+Anthropomorphi Anthropomorphism                         q8:0.21 q8r1:0.21 r2p2:0.15 r2pp:0.23
+Anthropomorphi Anthropomorphism: Social Interaction     q8:0.00 q8r1:0.00 r2p2:0.00 r2pp:0.02
+Character Fide Personality & Behavior                   q8:4.71 q8r1:4.96 r2p2:4.87 r2pp:5.07
+Character Fide Character Language                       q8:2.16 q8r1:2.10 r2p2:2.42 r2pp:2.35
+Character Fide Knowledge & Background                   q8:0.68 q8r1:0.65 r2p2:0.66 r2pp:0.67
+Character Fide Relationship & Social Status             q8:0.45 q8r1:0.36 r2p2:0.28 r2pp:0.36
+Character Fide Storyline Consistency                    q8:0.03 q8r1:0.03 r2p2:0.01 r2pp:0.04
+Character Fide None                                     q8:0.00 q8r1:0.01 r2p2:0.01 r2pp:0.10
+Storyline Qual Flow & Progression                       q8:4.50 q8r1:4.55 r2p2:4.67 r2pp:4.66
+Storyline Qual Logical Consistency                      q8:1.35 q8r1:1.41 r2p2:1.40 r2pp:1.53

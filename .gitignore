@@ -1,0 +1,15 @@
+# Large artifacts never go into Git: weights, adapters, checkpoints, raw generations, caches
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.gguf
+checkpoints/
+/runs/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+
+# compatibility symlink for running pipelines (points to projects/persona-consistency/exp)
+/exp

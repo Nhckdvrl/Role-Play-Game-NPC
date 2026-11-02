@@ -5,7 +5,7 @@
 
 ## 一、接手时掌握什么，之后可以自主决定什么
 
-先读 [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md) 的研究问题与候选机制，再读 [DISCUSSION_GUIDELINES.md](DISCUSSION_GUIDELINES.md) 的边界和证据要求。按当前问题查 [资源地图](docs/RESOURCE_ATLAS.md)、[文献索引](docs/LITERATURE.md) 和 [ROADMAP.md](ROADMAP.md) 相关章节，不必把 113 篇文献逐一重读完才开始实验。继续已有工作时，优先检查最近的实验记录、运行状态与未解决问题。
+先读 [RESEARCH_IDEAS.md](RESEARCH_IDEAS.md) 的研究问题与候选机制，再读 [DISCUSSION_GUIDELINES.md](DISCUSSION_GUIDELINES.md) 的边界和证据要求。按当前问题查 [资源地图](../../docs/RESOURCE_ATLAS.md)、[文献索引](../../docs/LITERATURE.md) 和 [ROADMAP.md](../../ROADMAP.md) 相关章节，不必把 113 篇文献逐一重读完才开始实验。继续已有工作时，优先检查最近的实验记录、运行状态与未解决问题。
 
 ### 1. 不变的边界
 

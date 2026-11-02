@@ -1,0 +1,72 @@
+
+## false_premise: spec | inc | any | persona
+full@d2: 0.09 [0.03,0.18] | 1.00 [1.00,1.00] | 0.09 [0.03,0.18] | 8.56 [8.40,8.71]  (n_conv=35)
+selfcheck_dir@d2: 0.07 [0.02,0.14] | 0.98 [0.94,1.00] | 0.09 [0.04,0.16] | 8.38 [8.09,8.62]  (n_conv=35)
+selfcheck_sys@d2: 0.06 [0.01,0.12] | 1.00 [1.00,1.00] | 0.06 [0.01,0.12] | 8.54 [8.39,8.68]  (n_conv=35)
+full@d20: 0.21 [0.12,0.32] | 0.97 [0.92,1.00] | 0.21 [0.12,0.32] | 8.19 [7.81,8.51]  (n_conv=35)
+selfcheck_dir@d20: 0.19 [0.11,0.27] | 0.95 [0.91,0.99] | 0.23 [0.14,0.32] | 8.06 [7.65,8.40]  (n_conv=35)
+selfcheck_sys@d20: 0.15 [0.08,0.23] | 0.99 [0.96,1.00] | 0.15 [0.08,0.24] | 8.37 [8.11,8.60]  (n_conv=35)
+  any: full@d2 - full@d20 (paired): -0.12 [-0.23,-0.02]
+  any: selfcheck_dir@d2 - full@d20 (paired): -0.12 [-0.21,-0.03]
+  any: selfcheck_sys@d2 - full@d20 (paired): -0.16 [-0.26,-0.07]
+  any: selfcheck_dir@d20 - full@d20 (paired): 0.01 [-0.06,0.08]
+  any: selfcheck_sys@d20 - full@d20 (paired): -0.06 [-0.14,0.00]
+  persona: full@d2 - full@d20 (paired): 0.37 [0.09,0.74]
+  persona: selfcheck_dir@d2 - full@d20 (paired): 0.19 [-0.24,0.66]
+  persona: selfcheck_sys@d2 - full@d20 (paired): 0.35 [0.06,0.71]
+  persona: selfcheck_dir@d20 - full@d20 (paired): -0.14 [-0.49,0.19]
+  persona: selfcheck_sys@d20 - full@d20 (paired): 0.18 [-0.11,0.46]
+
+## meta_ai: spec | inc | any | persona
+full@d2: 0.03 [0.00,0.08] | 0.99 [0.97,1.00] | 0.04 [0.00,0.09] | 8.54 [8.39,8.66]  (n_conv=48)
+selfcheck_dir@d2: 0.02 [0.00,0.04] | 0.96 [0.92,0.99] | 0.05 [0.02,0.08] | 8.27 [7.97,8.52]  (n_conv=48)
+selfcheck_sys@d2: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 0.00 [0.00,0.00] | 8.60 [8.49,8.70]  (n_conv=48)
+full@d20: 0.18 [0.11,0.26] | 0.88 [0.82,0.93] | 0.19 [0.12,0.27] | 7.71 [7.31,8.06]  (n_conv=48)
+selfcheck_dir@d20: 0.14 [0.09,0.18] | 0.82 [0.77,0.88] | 0.19 [0.14,0.25] | 7.17 [6.75,7.59]  (n_conv=48)
+selfcheck_sys@d20: 0.07 [0.03,0.11] | 0.95 [0.91,0.97] | 0.08 [0.04,0.12] | 8.20 [7.95,8.43]  (n_conv=48)
+  any: full@d2 - full@d20 (paired): -0.16 [-0.22,-0.10]
+  any: selfcheck_dir@d2 - full@d20 (paired): -0.15 [-0.23,-0.06]
+  any: selfcheck_sys@d2 - full@d20 (paired): -0.19 [-0.27,-0.12]
+  any: selfcheck_dir@d20 - full@d20 (paired): 0.00 [-0.09,0.09]
+  any: selfcheck_sys@d20 - full@d20 (paired): -0.11 [-0.18,-0.06]
+  persona: full@d2 - full@d20 (paired): 0.83 [0.48,1.17]
+  persona: selfcheck_dir@d2 - full@d20 (paired): 0.56 [0.12,0.99]
+  persona: selfcheck_sys@d2 - full@d20 (paired): 0.89 [0.57,1.27]
+  persona: selfcheck_dir@d20 - full@d20 (paired): -0.54 [-1.05,-0.01]
+  persona: selfcheck_sys@d20 - full@d20 (paired): 0.49 [0.16,0.82]
+
+## true_premise: spec | inc | any | persona
+full@d2: 0.01 [0.00,0.02] | 1.00 [1.00,1.00] | 0.01 [0.00,0.02] | 8.85 [8.76,8.92]  (n_conv=47)
+selfcheck_dir@d2: 0.03 [0.00,0.07] | 0.92 [0.87,0.96] | 0.11 [0.05,0.16] | 8.12 [7.70,8.46]  (n_conv=47)
+selfcheck_sys@d2: 0.02 [0.00,0.04] | 1.00 [1.00,1.00] | 0.02 [0.00,0.04] | 8.79 [8.69,8.88]  (n_conv=47)
+full@d20: 0.00 [0.00,0.00] | 0.99 [0.98,1.00] | 0.01 [0.00,0.02] | 8.70 [8.46,8.90]  (n_conv=47)
+selfcheck_dir@d20: 0.00 [0.00,0.00] | 0.92 [0.88,0.96] | 0.08 [0.04,0.12] | 8.16 [7.81,8.48]  (n_conv=47)
+selfcheck_sys@d20: 0.00 [0.00,0.00] | 0.97 [0.94,0.99] | 0.03 [0.01,0.07] | 8.61 [8.31,8.86]  (n_conv=47)
+  any: full@d2 - full@d20 (paired): 0.00 [-0.02,0.02]
+  any: selfcheck_dir@d2 - full@d20 (paired): 0.10 [0.05,0.16]
+  any: selfcheck_sys@d2 - full@d20 (paired): 0.01 [-0.01,0.04]
+  any: selfcheck_dir@d20 - full@d20 (paired): 0.07 [0.04,0.12]
+  any: selfcheck_sys@d20 - full@d20 (paired): 0.03 [0.00,0.06]
+  persona: full@d2 - full@d20 (paired): 0.15 [-0.03,0.37]
+  persona: selfcheck_dir@d2 - full@d20 (paired): -0.58 [-1.02,-0.15]
+  persona: selfcheck_sys@d2 - full@d20 (paired): 0.10 [-0.12,0.32]
+  persona: selfcheck_dir@d20 - full@d20 (paired): -0.53 [-0.90,-0.19]
+  persona: selfcheck_sys@d20 - full@d20 (paired): -0.09 [-0.25,0.05]
+
+## none: any | inc | persona | generic
+full@d2: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 8.90 [8.83,8.96] | 0.00 [0.00,0.00]  (n_conv=48)
+selfcheck_dir@d2: 0.08 [0.05,0.12] | 0.92 [0.87,0.95] | 8.16 [7.76,8.49] | 0.01 [0.00,0.02]  (n_conv=48)
+selfcheck_sys@d2: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 8.86 [8.79,8.93] | 0.00 [0.00,0.00]  (n_conv=48)
+full@d20: 0.03 [0.00,0.08] | 0.97 [0.93,1.00] | 8.71 [8.34,8.94] | 0.03 [0.00,0.07]  (n_conv=48)
+selfcheck_dir@d20: 0.09 [0.05,0.14] | 0.91 [0.86,0.95] | 7.99 [7.56,8.38] | 0.07 [0.02,0.12]  (n_conv=48)
+selfcheck_sys@d20: 0.03 [0.00,0.08] | 0.97 [0.92,1.00] | 8.64 [8.25,8.92] | 0.03 [0.00,0.08]  (n_conv=48)
+  any: full@d2 - full@d20 (paired): -0.03 [-0.07,0.00]
+  any: selfcheck_dir@d2 - full@d20 (paired): 0.06 [-0.01,0.12]
+  any: selfcheck_sys@d2 - full@d20 (paired): -0.03 [-0.07,0.00]
+  any: selfcheck_dir@d20 - full@d20 (paired): 0.07 [0.03,0.11]
+  any: selfcheck_sys@d20 - full@d20 (paired): 0.01 [-0.02,0.03]
+  persona: full@d2 - full@d20 (paired): 0.19 [-0.04,0.54]
+  persona: selfcheck_dir@d2 - full@d20 (paired): -0.55 [-1.03,-0.02]
+  persona: selfcheck_sys@d2 - full@d20 (paired): 0.15 [-0.07,0.51]
+  persona: selfcheck_dir@d20 - full@d20 (paired): -0.72 [-1.09,-0.40]
+  persona: selfcheck_sys@d20 - full@d20 (paired): -0.07 [-0.28,0.06]

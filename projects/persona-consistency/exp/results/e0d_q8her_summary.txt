@@ -1,0 +1,31 @@
+
+## false_premise: specific failure (accepted_false) | in_character | any failure
+full@d2: 0.09 [0.04,0.17] | 1.00 [1.00,1.00] | 0.09 [0.04,0.16]  (n_conv=48)
+full@d20: 0.25 [0.15,0.36] | 0.97 [0.94,1.00] | 0.25 [0.15,0.36]  (n_conv=48)
+trunc2@d20: 0.18 [0.10,0.27] | 0.98 [0.96,1.00] | 0.18 [0.10,0.26]  (n_conv=48)
+reanchor@d20: 0.15 [0.07,0.23] | 1.00 [1.00,1.00] | 0.15 [0.07,0.23]  (n_conv=48)
+generic_dir@d20: 0.17 [0.09,0.25] | 0.98 [0.96,1.00] | 0.17 [0.10,0.26]  (n_conv=48)
+oracle_dir@d20: 0.03 [0.00,0.06] | 1.00 [1.00,1.00] | 0.03 [0.00,0.06]  (n_conv=48)
+  any-failure full@d2 - full@d20 (paired): -0.16 [-0.26,-0.06]
+  any-failure trunc2@d20 - full@d20 (paired): -0.07 [-0.15,-0.01]
+  any-failure reanchor@d20 - full@d20 (paired): -0.10 [-0.19,-0.03]
+  any-failure generic_dir@d20 - full@d20 (paired): -0.08 [-0.15,-0.02]
+  any-failure oracle_dir@d20 - full@d20 (paired): -0.22 [-0.33,-0.12]
+
+## meta_ai: specific failure (revealed_ai) | in_character | any failure
+full@d2: 0.03 [0.01,0.07] | 0.97 [0.94,1.00] | 0.03 [0.01,0.07]  (n_conv=48)
+full@d20: 0.17 [0.11,0.24] | 0.88 [0.81,0.93] | 0.18 [0.11,0.26]  (n_conv=48)
+trunc2@d20: 0.11 [0.05,0.19] | 0.94 [0.90,0.98] | 0.12 [0.06,0.20]  (n_conv=48)
+reanchor@d20: 0.05 [0.02,0.08] | 0.97 [0.94,0.99] | 0.05 [0.03,0.08]  (n_conv=48)
+  any-failure full@d2 - full@d20 (paired): -0.15 [-0.22,-0.08]
+  any-failure trunc2@d20 - full@d20 (paired): -0.06 [-0.14,0.03]
+  any-failure reanchor@d20 - full@d20 (paired): -0.12 [-0.20,-0.06]
+
+## pressure: specific failure (caved) | in_character | any failure
+full@d2: 0.00 [0.00,0.00] | 1.00 [1.00,1.00] | 0.00 [0.00,0.00]  (n_conv=48)
+full@d20: 0.06 [0.01,0.12] | 0.99 [0.97,1.00] | 0.06 [0.01,0.12]  (n_conv=48)
+trunc2@d20: 0.05 [0.01,0.10] | 0.99 [0.97,1.00] | 0.05 [0.01,0.10]  (n_conv=48)
+reanchor@d20: 0.04 [0.01,0.07] | 0.99 [0.98,1.00] | 0.04 [0.01,0.07]  (n_conv=48)
+  any-failure full@d2 - full@d20 (paired): -0.06 [-0.12,-0.01]
+  any-failure trunc2@d20 - full@d20 (paired): -0.01 [-0.04,0.02]
+  any-failure reanchor@d20 - full@d20 (paired): -0.02 [-0.07,0.02]

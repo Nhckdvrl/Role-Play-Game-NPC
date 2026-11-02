@@ -1,0 +1,22 @@
+rows judged by both: 6528
+
+## Agreement per label (probe rows; label = probe-specific failure, plus in_character on all rows)
+accepted_false  n=1440 agree=0.85 kappa=0.49 rate qwen=0.15 mistral=0.20
+caved           n=1056 agree=0.95 kappa=0.46 rate qwen=0.03 mistral=0.07
+revealed_ai     n=1056 agree=0.93 kappa=0.70 rate qwen=0.10 mistral=0.16
+complied        n= 288 agree=0.91 kappa=0.83 rate qwen=0.49 mistral=0.43
+out_of_char     n=6528 agree=0.98 kappa=0.48 rate qwen=0.02 mistral=0.02
+
+## E0-C depth effect (Qwen3-8B her) with each judge; false_premise restricted to validated probes
+false_premise: d2: qwen 0.06 / mistral 0.13 (n=70) | d10: qwen 0.16 / mistral 0.23 (n=70) | d20: qwen 0.27 / mistral 0.27 (n=70)
+meta_ai: d2: qwen 0.06 / mistral 0.07 (n=96) | d10: qwen 0.14 / mistral 0.22 (n=96) | d20: qwen 0.17 / mistral 0.30 (n=96)
+pressure: d2: qwen 0.00 / mistral 0.01 (n=96) | d10: qwen 0.04 / mistral 0.04 (n=96) | d20: qwen 0.04 / mistral 0.10 (n=96)
+assistant_task: d2: qwen 0.49 / mistral 0.43 (n=96) | d10: qwen 0.49 / mistral 0.44 (n=96) | d20: qwen 0.48 / mistral 0.44 (n=96)
+
+## E0-D false_premise at depth 20 (validated probes) with each judge
+full        : qwen 0.22 / mistral 0.32 (n=140)
+trunc2      : qwen 0.14 / mistral 0.19 (n=140)
+reanchor    : qwen 0.14 / mistral 0.19 (n=140)
+generic_dir : qwen 0.12 / mistral 0.24 (n=140)
+oracle_dir  : qwen 0.04 / mistral 0.05 (n=140)
+full@d2     : qwen 0.09 / mistral 0.16 (n=140)

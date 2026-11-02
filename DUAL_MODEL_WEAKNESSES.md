@@ -3,7 +3,7 @@
 > **更新：2026-11-02 · 围绕 Role-Play Game NPC 选题讨论（v1.0 → v2.2）与专项落地（`projects/reason-sensitive-roleplay`）全过程的深度复盘**
 > 本文档系统总结了在多轮科研选题、方法设计、数据生产与实验交接讨论中，**Gemini** 与 **GPT**（含执行侧 Agent）各自暴露出的系统性思维弱点、具体犯病案例，以及我们在后续讨论和真机实验中必须执行的**双向防偏铁律**。
 
-关联文档：[讨论准则](DISCUSSION_GUIDELINES.md) · [研究方案 v2.2](RESEARCH_IDEAS.md) · [本地 Agent 交接](AGENT_HANDOFF.md) · [角色条件决策专项](projects/reason-sensitive-roleplay/README.md) · [仓库首页](README.md)
+关联文档：[讨论准则](projects/persona-consistency/DISCUSSION_GUIDELINES.md) · [研究方案 v2.2](projects/persona-consistency/RESEARCH_IDEAS.md) · [本地 Agent 交接](projects/persona-consistency/AGENT_HANDOFF.md) · [角色条件决策专项](projects/reason-sensitive-roleplay/README.md) · [仓库首页](README.md)
 
 ---
 
@@ -121,7 +121,7 @@
 | 方案里开始出现 $R = w_1 R_1 + w_2 R_2 + w_3 R_3 - \lambda_1 L_1 \dots$ 等超过 3 个组件叠加的复杂公式 | Gemini（打补丁螺旋） | **立刻砍掉次要项**！退回到单一或成对正交信号，先用消融实验证明每一项单独存在时的真实行为作用。 |
 | 讨论开始偏离“自然角色对话人设一致性”，变成专门研究“交不交钥匙、二选一道德题、特定剧本机关” | GPT（局部收缩癖）+ Gemini（随波逐流） | **立刻拉回主干**！受控题只能做辅助诊断，主训练与主评测必须回到 `HER` / `CoSER` / `CharacterBench` / `Persistent Personas` 的自然角色对话。 |
 | 文档或回复中每两句话就出现一次“不等于、不代表、不能证明、不保证有价值” | GPT（防御过度 / 免责强迫症） | **删掉重复免责声明**！直接写清楚：“要检验的假说是什么、用什么对照实验区分、观察什么指标和真实文本”。 |
-| 提出的方案只有“尝试优化奖励、探索不同思考格式、分析表征变化”等抽象口号，没有具体怎么改、怎么测 | GPT（过度抽象化） | **还原具体抓手**！回到 [RESEARCH_IDEAS.md 第五节](RESEARCH_IDEAS.md#五两条主线的开放式方法武器库具体锋利但不规定必做) 的 10 个具体候选切口，明确改哪个环节（如 `<system_thinking>` vs. `<role_thinking>` vs. 台词）。 |
+| 提出的方案只有“尝试优化奖励、探索不同思考格式、分析表征变化”等抽象口号，没有具体怎么改、怎么测 | GPT（过度抽象化） | **还原具体抓手**！回到 [RESEARCH_IDEAS.md 第五节](projects/persona-consistency/RESEARCH_IDEAS.md#五两条主线的开放式方法武器库具体锋利但不规定必做) 的 10 个具体候选切口，明确改哪个环节（如 `<system_thinking>` vs. `<role_thinking>` vs. 台词）。 |
 | 把某个尚未实测的配比（如 50/30/20）、层位或十个候选切口当成“必须全部按顺序跑完的硬性工程清单” | Gemini（过度预设） | **重申自主探索权**！每次只挑 1–2 个最能解决当前最大不确定性的最小实验先跑，根据结果决定舍弃还是深入。 |
 | 因为担心裁判有噪声、数据有瑕疵或某篇新论文出现相似词，迟迟不敢跑小规模 SFT / DPO / RL 或激活干预原型 | GPT（诊断瘫痪 / 关键词恐慌） | **立即启动最小方法原型（E1）**！用 4×A100 上的快速闭环实验说话，靠真实生成文本和正反例打破纸面纠结。 |
 | 还没测 10 个样本的真实 Token 账单和耗时，就规划生成 1 万 / 5 万 / 10 万条数据，或把单一子项目直接覆盖到根目录主文档 | 双模型 + 执行侧（规模狂热 / 鸠占鹊巢） | **强制先跑小 Pilot 算账 + 子目录隔离**！任何子方向放入 `projects/` 独立目录，先以百级/千级高质样本跑通模型训练闭环，严禁盲目扩产。 |

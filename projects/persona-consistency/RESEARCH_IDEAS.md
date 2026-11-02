@@ -4,7 +4,7 @@
 > **已确定的是题目、主要技术视角与研究边界；尚待确定的是主导失效机制、有效方法、最终证据与论文 claim。**
 > 本文保留前期领域研究、数据和 Baseline 积累，为真机探索提供起点，不预设一条从 E0 顺利走到 E2 的成功路线。
 
-关联：[讨论准则](DISCUSSION_GUIDELINES.md) · [本地 Agent 交接](AGENT_HANDOFF.md) · [领域地图](ROADMAP.md) · [113 篇文献](docs/LITERATURE.md) · [107 项资源](docs/RESOURCE_ATLAS.md)。文献与资产状态以索引中的 RP 编号追溯；工程审查和建议不等于本地实测。本轮文档修订没有产生新的训练、评测或表征实验结果。
+关联：[讨论准则](DISCUSSION_GUIDELINES.md) · [本地 Agent 交接](AGENT_HANDOFF.md) · [领域地图](../../ROADMAP.md) · [113 篇文献](../../docs/LITERATURE.md) · [107 项资源](../../docs/RESOURCE_ATLAS.md)。文献与资产状态以索引中的 RP 编号追溯；工程审查和建议不等于本地实测。本轮文档修订没有产生新的训练、评测或表征实验结果。
 
 ## 一、已经确定的研究题目
 
