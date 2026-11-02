@@ -90,3 +90,43 @@ Context-aware Decoding（Shi et al., NAACL 2024 short）：用无上下文的分
 - **Inworld**：mutations 在运行时修改角色字段（情绪、观点、举止）和当前场景描述；关系状态包括信任、熟悉度、尊重等数值；有知识过滤和运行时添加的知识。[mutations](https://docs.inworld.ai/docs/tutorial-basics/character-mutations/)、[relationships](https://docs.inworld.ai:443/docs/runtime-character-attributes/relationships)
 - **SillyTavern**：World Info / lorebook 在消息中出现关键词时注入对应条目，可以绑定到某个角色或某段对话。[docs](https://docs.sillytavern.app/usage/worldinfo)
 - **意义**：主流游戏中间件**提供**按剧情阶段编写状态的机制，游戏引擎通常知道当前阶段。“只有一张总设定卡”更接近开放式扮演平台的默认用法，而不是游戏的普遍做法。
+
+## 六、第 6 轮核查（Gemini 提出的备选方向及相关数字）
+
+### ArcANE 主表（论文表 2，Overall，1–100，DeepSeek-V4-Flash 关闭推理作裁判）
+| 模型 | Vanilla | Summary | RAG | Arc |
+| --- | --- | --- | --- | --- |
+| DeepSeek-V4-Flash | 52.9 | 55.8 | 54.9 | 59.7 |
+| DeepSeek-V4-Pro | 52.4 | 57.2 | 56.7 | 62.4 |
+| Qwen3-8B | 37.2 | 38.7 | 40.9 | 43.1 |
+| Qwen3-32B | 43.7 | 45.6 | 47.2 | 50.1 |
+| ArcANE-8B-DPO | 43.0 | 47.2 | 48.5 | 56.9 |
+| ArcANE-32B-DPO | 49.9 | 49.3 | 52.0 | 60.4 |
+
+ArcHint（只给轴名和当前阶段的编号、名称）：在 DeepSeek-V4-Flash 和 Qwen3-32B 上，各指标都在完整 Arc 的 ±2.6 分以内；在 ArcANE-32B-DPO 上只拿回约一半的“Arc 相对 Vanilla”收益（Per-Phase 平均低 5.1 分）。约 120 个探针。
+
+### KuaiRP 技术报告（arXiv 2609.11127v1）· 全文（BFCL 表与 OPD 部分）
+- Qwen3-8B 在领域角色 SFT 后，BFCL v4 Overall 从 24.83 降到 12.53；Non-Live Parallel AST 从 93.00 降到 0.50；Irrelevance Detection 从 79.69 降到 8.96。GRPO 之后仍处在退化水平。
+- OPD 第一阶段（领域模型作教师、原基座作学生的 on-policy 蒸馏）恢复到 24.83，加上 CDD 后为 24.78。作者的解释是训练分布过度集中于特定世界设定（灾难性遗忘）。
+- **意义**：已确立的是“微调导致的能力遗忘”，同一报告已经给出解法；并没有证明上下文中的入戏会抑制工具调用。
+
+### Deflanderization（arXiv 2510.13586）· 正文
+- CPDC 2025：Task 1 是函数调用（自动评分：函数名、参数精确匹配），Task 2 是人设对话，Task 3 是两者的组合。最终私有榜单使用人工评测。
+- “过度演戏妨碍功能正确性”是作者的假设。没有改变入戏强度的消融，只有一句“提升角色忠实度的方法有时会损害参数正确性，反之亦然”，没有给出数字。
+- 去脸谱化（D）提示：Task 2 CPDCscore 0.598→0.614，Task 3 0.510→0.525。
+- 文中名次在摘要、4.1 节和附录 F 之间不一致。
+
+### Persistent Personas?（EACL 2026）· 相关段落
+- 百轮级对话；IFBench（294 条，官方规则评分）上，persona 模型总体准确率低于无 persona 基线，但逐轮差异多数不显著（图 7、附录 F）。人设忠实度用 LLM 裁判评，只做了一名作者的人工校验。
+
+### SubtleMemory（EMNLP 2026 Findings）· 相关段落
+- 对象是持久型助手的记忆系统（6 个独立记忆系统，加若干 OpenClaw 类 agent），记忆关系分为互补、细微差别、矛盾三类；1,522 个评测实例，10 段长历史。
+- 用 LLM 裁判（Gemini 3.1 Pro Preview Thinking），在 225 个候选答案上校验过。
+- oracle 条件下，矛盾类准确率在两组主模型上为 68.7% 和 41.6%，最好的系统落后 oracle 15 分以上。
+- **不是角色扮演，也不是“无裁判”。**
+
+### CHARM 的后续工作声明
+- 正文明确写道：将设计并评测缓解策略（微调、约束感知解码、惩罚越界事实化的辅助目标）。数据公开于 github.com/sunkyoung19/CHARM。
+
+### 本仓库归档记录核对
+- persona-consistency 中“可见回复为空”：base 的出戏真诚提问中有 9%，模型把如实说明写进隐藏的导演段后直接结束。原因是 HER 格式没有给出戏回答留位置（EXPERIMENTS_LOG 第 914 行），不是“入戏抑制执行”。
