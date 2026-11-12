@@ -1,0 +1,4 @@
+qwen3_8b     K self exp +0.93 | no cost: self exp +0.39 stated +0.72 other +0.26 world +0.26 | with cost (v2): self exp +0.15 stated +0.40 | none p_pos nocost 0.74
+llama31_8b   K self exp +0.81 | no cost: self exp +0.29 stated +0.71 other +0.20 world +0.19 | with cost (v2): self exp +0.16 stated +0.57 | none p_pos nocost 0.55
+gemma3_12b   K self exp +1.00 | no cost: self exp +0.48 stated +0.85 other +0.24 world +0.22 | with cost (v2): self exp +0.19 stated +0.56 | none p_pos nocost 0.61
+mistral24b   K self exp +0.94 | no cost: self exp +0.61 stated +0.92 other +0.33 world +0.28 | with cost (v2): self exp +0.26 stated +0.64 | none p_pos nocost 0.58

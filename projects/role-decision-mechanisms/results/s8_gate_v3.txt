@@ -1,0 +1,48 @@
+######## gating on S8 values (judge v3): qwen3_8b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.99  gated=0.00  (n=1320)
+  other character's lines  P=0.00  gated=1.00  (n=1320)
+  world events             P=0.00  gated=1.00  (n=264)
+
+variant           self self/stated     other other/stated     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base            +16.31    +25.83     +6.58     +9.78     +4.09
+judge_win       +18.59    +27.47     +0.22     -0.40     +0.04
+judge_all       +18.61    +27.58     +0.20     -0.39     +0.11
+oracle_win      +18.59    +29.10     +0.22     -0.40     +0.04
+oracle_all      +18.61    +29.27     +0.20     -0.39     +0.11
+######## gating on S8 values (judge v3): llama31_8b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.57  gated=0.19  (n=1320)
+  other character's lines  P=0.13  gated=1.00  (n=1320)
+  world events             P=0.15  gated=1.00  (n=264)
+
+variant           self self/stated     other other/stated     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +3.78    +10.53     +0.96     +2.38     +0.55
+judge_win        +3.91     +6.29     +0.02     +0.00     -0.04
+judge_all        +3.89     +6.30     +0.02     +0.04     -0.04
+oracle_win       +3.82    +10.35     +0.07     +0.01     +0.07
+oracle_all       +3.78    +10.39     +0.07     -0.05     +0.05
+######## gating on S8 values (judge v3): gemma3_12b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=1.00  gated=0.00  (n=1320)
+  other character's lines  P=0.00  gated=1.00  (n=1320)
+  world events             P=0.00  gated=1.00  (n=264)
+
+variant           self self/stated     other other/stated     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base            +12.14    +25.39     +3.43     +6.58     +0.92
+judge_win       +11.74    +25.48     +0.23     +0.20     -0.22
+judge_all       +11.47    +25.40     +0.26     +0.16     -0.14
+oracle_win      +11.74    +25.48     +0.23     +0.20     -0.22
+oracle_all      +11.47    +25.40     +0.26     +0.16     -0.14
+######## gating on S8 values (judge v3): mistral24b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.88  gated=0.01  (n=1320)
+  other character's lines  P=0.01  gated=1.00  (n=1320)
+  world events             P=0.01  gated=1.00  (n=264)
+
+variant           self self/stated     other other/stated     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +6.02    +11.94     +2.28     +3.14     +0.97
+judge_win        +6.06    +11.30     +0.13     +0.42     +0.03
+judge_all        +6.06    +11.24     +0.05     +0.17     +0.08
+oracle_win       +6.06    +12.31     +0.11     +0.40     +0.03
+oracle_all       +6.06    +12.31     +0.04     +0.16     +0.08

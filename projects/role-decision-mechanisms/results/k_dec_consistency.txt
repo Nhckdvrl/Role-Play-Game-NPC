@@ -1,0 +1,8 @@
+T        qwen3_8b     base r=0.48 (n=648)  sft r=0.77 (n=648)
+T        llama31_8b   base r=0.60 (n=648)  sft r=0.86 (n=648)
+T        gemma3_12b   base r=0.45 (n=648)  sft r=0.77 (n=648)
+T        mistral24b   base r=0.53 (n=648)  sft r=0.95 (n=648)
+identity qwen3_8b     base r=0.58 (n=672)  sft r=0.76 (n=672)
+identity llama31_8b   base r=0.66 (n=672)  sft r=0.84 (n=672)
+identity gemma3_12b   base r=0.69 (n=672)  sft r=0.81 (n=672)
+identity mistral24b   base r=0.67 (n=672)  sft r=0.91 (n=672)

@@ -1,0 +1,48 @@
+######## qwen3_8b (judge with sheet context)
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=1.00  gated=0.00  (n=2688)
+  other character's lines  P=0.00  gated=1.00  (n=2688)
+  world events             P=0.00  gated=1.00  (n=672)
+
+variant           self     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +5.35     +3.30     +3.56
+judge_win        +6.17     +0.00     -0.04
+judge_all        +6.20     -0.00     -0.02
+oracle_win       +6.17     +0.00     -0.04
+oracle_all       +6.20     -0.00     -0.02
+######## llama31_8b (judge with sheet context)
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.56  gated=0.19  (n=2688)
+  other character's lines  P=0.00  gated=1.00  (n=2688)
+  world events             P=0.00  gated=1.00  (n=672)
+
+variant           self     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +1.85     +1.07     +1.18
+judge_win        +1.27     -0.04     -0.02
+judge_all        +1.28     -0.03     -0.01
+oracle_win       +1.61     -0.02     -0.00
+oracle_all       +1.61     -0.03     +0.03
+######## gemma3_12b (judge with sheet context)
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=1.00  gated=0.00  (n=2688)
+  other character's lines  P=0.00  gated=1.00  (n=2688)
+  world events             P=0.00  gated=1.00  (n=672)
+
+variant           self     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +5.28     +2.86     +2.79
+judge_win        +5.28     +0.15     +0.19
+judge_all        +5.35     +0.07     -0.01
+oracle_win       +5.28     +0.15     +0.19
+oracle_all       +5.32     +0.07     -0.01
+######## mistral24b (judge with sheet context)
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.98  gated=0.00  (n=2688)
+  other character's lines  P=0.00  gated=1.00  (n=2688)
+  world events             P=0.00  gated=1.00  (n=672)
+
+variant           self     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +3.38     +1.59     +1.42
+judge_win        +3.48     +0.02     +0.00
+judge_all        +3.48     +0.03     -0.00
+oracle_win       +3.48     +0.02     +0.00
+oracle_all       +3.48     +0.03     -0.00

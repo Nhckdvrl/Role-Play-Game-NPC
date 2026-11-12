@@ -1,0 +1,20 @@
+setting                self stated  self exp world exp   (exp and world also as fraction of unsteered stated)
+base                        +16.52     +5.29     +2.68   exp +0.32  world +0.16
+L10_all_a-0.5               +16.45     +5.03     +2.61   exp +0.30  world +0.16
+L10_all_a0.5                +16.35     +5.31     +2.69   exp +0.32  world +0.16
+L10_all_a1.0                +16.18     +5.27     +2.60   exp +0.32  world +0.16
+L10_last_a-0.5              +16.54     +5.20     +2.72   exp +0.31  world +0.16
+L10_last_a0.5               +16.43     +5.30     +2.68   exp +0.32  world +0.16
+L10_last_a1.0               +16.32     +5.30     +2.58   exp +0.32  world +0.16
+L14_all_a-0.5               +14.42     +3.38     +2.06   exp +0.20  world +0.12
+L14_all_a0.5                +16.09     +5.11     +2.23   exp +0.31  world +0.14
+L14_all_a1.0                +15.19     +4.58     +1.84   exp +0.28  world +0.11
+L14_last_a-0.5              +16.22     +5.07     +2.68   exp +0.31  world +0.16
+L14_last_a0.5               +16.45     +5.33     +2.58   exp +0.32  world +0.16
+L14_last_a1.0               +16.32     +5.17     +2.49   exp +0.31  world +0.15
+L18_all_a-0.5               +14.55     +3.97     +2.14   exp +0.24  world +0.13
+L18_all_a0.5                +16.50     +5.78     +3.01   exp +0.35  world +0.18
+L18_all_a1.0                +15.93     +5.88     +3.03   exp +0.36  world +0.18
+L18_last_a-0.5              +15.54     +4.75     +2.46   exp +0.29  world +0.15
+L18_last_a0.5               +16.50     +5.56     +2.83   exp +0.34  world +0.17
+L18_last_a1.0               +16.11     +5.55     +2.80   exp +0.34  world +0.17

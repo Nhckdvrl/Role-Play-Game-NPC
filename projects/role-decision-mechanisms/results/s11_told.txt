@@ -1,0 +1,28 @@
+qwen3_8b     decisions (plain): self +0.15  told +0.15  other +0.07  world +0.08
+llama31_8b   decisions (plain): self +0.16  told +0.15  other +0.11  world +0.11
+gemma3_12b   decisions (plain): self +0.19  told +0.16  other +0.10  world +0.07
+mistral24b   decisions (plain): self +0.26  told +0.19  other +0.12  world +0.12
+######## gating on S11: gemma3_12b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.95  gated=0.05  (n=3648)
+  other character's lines  P=0.00  gated=1.00  (n=3456)
+  world events             P=0.00  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +5.28     +3.84     +2.86     +2.79
+judge_win        +5.28     +0.99     +0.15     +0.19
+judge_all        +5.35     +0.91     +0.07     -0.01
+oracle_win       +5.28     +2.80     +0.15     +0.19
+oracle_all       +5.32     +2.74     +0.07     -0.01
+######## gating on S11: mistral24b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.94  gated=0.05  (n=3648)
+  other character's lines  P=0.01  gated=1.00  (n=3456)
+  world events             P=0.00  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +3.38     +2.25     +1.60     +1.42
+judge_win        +3.48     +0.02     +0.01     +0.00
+judge_all        +3.46     +0.01     +0.02     +0.01
+oracle_win       +3.48     +1.77     +0.01     +0.00
+oracle_all       +3.46     +1.76     +0.02     +0.01

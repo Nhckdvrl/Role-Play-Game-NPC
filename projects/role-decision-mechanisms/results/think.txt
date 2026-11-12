@@ -1,0 +1,6 @@
+qwen3_8b: unparsed think answers 2
+  no-think  self stated +0.41  self exp +0.13  other exp +0.07  world exp +0.08
+  think     self stated +0.70  self exp +0.54  other exp +0.11  world exp +0.28
+qwen3_14b: unparsed think answers 0
+  no-think  self stated +0.70  self exp +0.35  other exp +0.18  world exp +0.20
+  think     self stated +0.90  self exp +0.66  other exp +0.24  world exp +0.18

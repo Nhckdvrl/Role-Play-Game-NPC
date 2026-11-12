@@ -1,0 +1,96 @@
+
+######## qwen3_8b   (unparsed rows: 0, mean A+B mass: 1.000)
+mode form    | sens_self              | sens_other             | default p_pos
+K    stated  | +1.00 [+1.00,+1.00] | +0.09 [+0.03,+0.18] | 0.09
+K    exp     | +0.95 [+0.90,+0.99] | +0.25 [+0.13,+0.38] | 0.09
+P    stated  | +0.59 [+0.41,+0.75] | +0.23 [+0.09,+0.37] | 0.81
+P    exp     | +0.28 [+0.15,+0.43] | +0.13 [+0.04,+0.23] | 0.81
+EU   stated  | +0.55 [+0.40,+0.69] | +0.26 [+0.15,+0.38] | 0.82
+EU   exp     | +0.22 [+0.12,+0.33] | +0.13 [+0.05,+0.22] | 0.82
+ES   stated  | +0.59 [+0.43,+0.74] | +0.25 [+0.14,+0.37] | 0.81
+ES   exp     | +0.22 [+0.12,+0.33] | +0.11 [+0.04,+0.19] | 0.81
+  experience form, by family kind (sens_self / sens_other):
+    trust: K +1.00/+0.35  P +0.26/+0.20  EU +0.23/+0.18  ES +0.17/+0.15
+    pref : K +0.91/+0.14  P +0.30/+0.06  EU +0.22/+0.08  ES +0.27/+0.08
+  sens_self (exp) by wording para0 / para1, and by block order role-first / other-first:
+    K   self +0.96/+0.94  blocks +0.93/+0.98   other +0.26/+0.23
+    P   self +0.24/+0.33  blocks +0.31/+0.25   other +0.11/+0.15
+    EU  self +0.22/+0.23  blocks +0.25/+0.20   other +0.12/+0.13
+    ES  self +0.23/+0.21  blocks +0.24/+0.20   other +0.12/+0.11
+  P(role-consistent choice), self-owned, split by agreement with the default (none) choice:
+    stated (agree/conflict): K 1.00/1.00  P 0.99/0.60  EU 0.97/0.58  ES 0.98/0.61
+    exp    (agree/conflict): K 1.00/0.95  P 0.94/0.34  EU 0.91/0.31  ES 0.93/0.29
+  K/P/EU/ES correctness pattern, experience form, self-owned (per family x valence x blocks x wording):
+    1111:0.52  1000:0.28  1100:0.07  1011:0.03  1001:0.03  1110:0.02  1101:0.02  0111:0.01  0011:0.01  1010:0.01
+
+######## llama31_8b   (unparsed rows: 0, mean A+B mass: 0.811)
+mode form    | sens_self              | sens_other             | default p_pos
+K    stated  | +0.99 [+0.97,+1.00] | +0.01 [-0.06,+0.08] | 0.46
+K    exp     | +0.81 [+0.75,+0.88] | +0.37 [+0.29,+0.46] | 0.46
+P    stated  | +0.63 [+0.54,+0.73] | +0.36 [+0.29,+0.43] | 0.64
+P    exp     | +0.25 [+0.17,+0.33] | +0.15 [+0.09,+0.21] | 0.64
+EU   stated  | +0.56 [+0.49,+0.63] | +0.30 [+0.24,+0.37] | 0.67
+EU   exp     | +0.19 [+0.14,+0.25] | +0.11 [+0.07,+0.15] | 0.67
+ES   stated  | +0.65 [+0.56,+0.74] | +0.33 [+0.26,+0.41] | 0.69
+ES   exp     | +0.24 [+0.16,+0.32] | +0.13 [+0.08,+0.18] | 0.69
+  experience form, by family kind (sens_self / sens_other):
+    trust: K +0.84/+0.53  P +0.28/+0.18  EU +0.22/+0.14  ES +0.25/+0.16
+    pref : K +0.78/+0.22  P +0.22/+0.11  EU +0.17/+0.08  ES +0.23/+0.09
+  sens_self (exp) by wording para0 / para1, and by block order role-first / other-first:
+    K   self +0.81/+0.82  blocks +0.87/+0.76   other +0.38/+0.37
+    P   self +0.26/+0.24  blocks +0.29/+0.21   other +0.15/+0.15
+    EU  self +0.18/+0.21  blocks +0.25/+0.13   other +0.10/+0.12
+    ES  self +0.23/+0.25  blocks +0.30/+0.18   other +0.10/+0.15
+  P(role-consistent choice), self-owned, split by agreement with the default (none) choice:
+    stated (agree/conflict): K 1.00/0.99  P 0.94/0.69  EU 0.90/0.65  ES 0.96/0.69
+    exp    (agree/conflict): K 0.94/0.87  P 0.83/0.42  EU 0.78/0.41  ES 0.84/0.40
+  K/P/EU/ES correctness pattern, experience form, self-owned (per family x valence x blocks x wording):
+    1111:0.55  1000:0.27  1100:0.06  1011:0.05  1110:0.03  1001:0.02  0111:0.02  1101:0.01
+
+######## gemma3_12b   (unparsed rows: 0, mean A+B mass: 1.000)
+mode form    | sens_self              | sens_other             | default p_pos
+K    stated  | +0.97 [+0.92,+1.00] | -0.01 [-0.03,+0.00] | 0.07
+K    exp     | +0.99 [+0.97,+1.00] | +0.02 [+0.00,+0.07] | 0.07
+P    stated  | +0.76 [+0.62,+0.88] | +0.24 [+0.08,+0.39] | 0.80
+P    exp     | +0.34 [+0.21,+0.48] | +0.17 [+0.06,+0.29] | 0.80
+EU   stated  | +0.67 [+0.56,+0.76] | +0.25 [+0.18,+0.34] | 0.68
+EU   exp     | +0.36 [+0.25,+0.47] | +0.17 [+0.10,+0.24] | 0.68
+ES   stated  | +0.70 [+0.59,+0.80] | +0.34 [+0.24,+0.46] | 0.78
+ES   exp     | +0.36 [+0.26,+0.46] | +0.22 [+0.14,+0.30] | 0.78
+  experience form, by family kind (sens_self / sens_other):
+    trust: K +1.00/+0.00  P +0.20/+0.18  EU +0.35/+0.25  ES +0.32/+0.24
+    pref : K +0.98/+0.05  P +0.49/+0.15  EU +0.36/+0.10  ES +0.40/+0.20
+  sens_self (exp) by wording para0 / para1, and by block order role-first / other-first:
+    K   self +1.00/+0.98  blocks +1.00/+0.98   other +0.02/+0.03
+    P   self +0.35/+0.34  blocks +0.38/+0.30   other +0.18/+0.15
+    EU  self +0.39/+0.32  blocks +0.39/+0.32   other +0.20/+0.15
+    ES  self +0.38/+0.34  blocks +0.39/+0.33   other +0.23/+0.20
+  P(role-consistent choice), self-owned, split by agreement with the default (none) choice:
+    stated (agree/conflict): K 0.97/1.00  P 0.99/0.77  EU 0.95/0.72  ES 0.99/0.71
+    exp    (agree/conflict): K 0.99/1.00  P 0.98/0.37  EU 0.87/0.48  ES 0.92/0.44
+  K/P/EU/ES correctness pattern, experience form, self-owned (per family x valence x blocks x wording):
+    1111:0.61  1000:0.27  1101:0.03  1110:0.03  1011:0.02  1100:0.02  1010:0.02  1001:0.01  0011:0.01
+
+######## mistral24b   (unparsed rows: 0, mean A+B mass: 0.944)
+mode form    | sens_self              | sens_other             | default p_pos
+K    stated  | +1.00 [+1.00,+1.00] | -0.12 [-0.16,-0.08] | 0.15
+K    exp     | +0.94 [+0.86,+0.98] | +0.04 [+0.01,+0.08] | 0.15
+P    stated  | +0.80 [+0.67,+0.91] | +0.31 [+0.22,+0.39] | 0.68
+P    exp     | +0.46 [+0.33,+0.59] | +0.19 [+0.11,+0.27] | 0.68
+EU   stated  | +0.79 [+0.68,+0.89] | +0.41 [+0.32,+0.51] | 0.70
+EU   exp     | +0.45 [+0.34,+0.57] | +0.23 [+0.15,+0.32] | 0.70
+ES   stated  | +0.80 [+0.68,+0.90] | +0.44 [+0.34,+0.55] | 0.74
+ES   exp     | +0.53 [+0.41,+0.65] | +0.27 [+0.18,+0.37] | 0.74
+  experience form, by family kind (sens_self / sens_other):
+    trust: K +0.97/+0.06  P +0.44/+0.27  EU +0.46/+0.30  ES +0.52/+0.34
+    pref : K +0.90/+0.02  P +0.48/+0.12  EU +0.45/+0.17  ES +0.54/+0.21
+  sens_self (exp) by wording para0 / para1, and by block order role-first / other-first:
+    K   self +0.94/+0.93  blocks +0.94/+0.93   other +0.03/+0.05
+    P   self +0.45/+0.47  blocks +0.51/+0.41   other +0.17/+0.21
+    EU  self +0.46/+0.45  blocks +0.51/+0.40   other +0.23/+0.24
+    ES  self +0.60/+0.46  blocks +0.59/+0.48   other +0.29/+0.25
+  P(role-consistent choice), self-owned, split by agreement with the default (none) choice:
+    stated (agree/conflict): K 1.00/1.00  P 0.99/0.81  EU 0.99/0.81  ES 0.99/0.81
+    exp    (agree/conflict): K 0.96/0.98  P 0.93/0.53  EU 0.92/0.53  ES 0.94/0.59
+  K/P/EU/ES correctness pattern, experience form, self-owned (per family x valence x blocks x wording):
+    1111:0.66  1000:0.17  1011:0.06  1001:0.04  1100:0.02  0111:0.02  1010:0.02  1110:0.01  1101:0.01

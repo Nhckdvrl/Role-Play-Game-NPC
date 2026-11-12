@@ -1,0 +1,48 @@
+
+## qwen3_8b  items=400  P(target) without injection = 0.103
+near  self +0.757 [+0.723,+0.789]  other +0.499 [+0.461,+0.537]  world +0.683 [+0.645,+0.717]   other/self 0.66  world/self 0.90
+far   self +0.736 [+0.699,+0.773]  other +0.529 [+0.491,+0.565]  world +0.671 [+0.630,+0.706]   other/self 0.72  world/self 0.91
+
+## llama31_8b  items=400  P(target) without injection = 0.117
+near  self +0.475 [+0.446,+0.503]  other +0.190 [+0.170,+0.210]  world +0.324 [+0.298,+0.352]   other/self 0.40  world/self 0.68
+far   self +0.529 [+0.499,+0.558]  other +0.228 [+0.208,+0.250]  world +0.499 [+0.470,+0.527]   other/self 0.43  world/self 0.94
+
+## gemma3_12b  items=400  P(target) without injection = 0.100
+near  self +0.632 [+0.590,+0.672]  other +0.273 [+0.232,+0.314]  world +0.583 [+0.539,+0.625]   other/self 0.43  world/self 0.92
+far   self +0.481 [+0.439,+0.526]  other +0.181 [+0.150,+0.214]  world +0.472 [+0.427,+0.515]   other/self 0.38  world/self 0.98
+
+## mistral24b  items=400  P(target) without injection = 0.130
+near  self +0.526 [+0.500,+0.552]  other +0.205 [+0.185,+0.224]  world +0.298 [+0.274,+0.320]   other/self 0.39  world/self 0.57
+far   self +0.439 [+0.412,+0.467]  other +0.156 [+0.139,+0.172]  world +0.366 [+0.341,+0.392]   other/self 0.35  world/self 0.83
+
+## sft_qwen3_8b  items=400  P(target) without injection = 0.122
+near  self +0.819 [+0.797,+0.843]  other +0.461 [+0.433,+0.491]  world +0.653 [+0.624,+0.683]   other/self 0.56  world/self 0.80
+far   self +0.831 [+0.809,+0.853]  other +0.577 [+0.546,+0.607]  world +0.739 [+0.712,+0.765]   other/self 0.69  world/self 0.89
+
+## sft_llama31_8b  items=400  P(target) without injection = 0.120
+near  self +0.829 [+0.802,+0.853]  other +0.310 [+0.278,+0.345]  world +0.472 [+0.436,+0.510]   other/self 0.37  world/self 0.57
+far   self +0.859 [+0.834,+0.881]  other +0.533 [+0.495,+0.568]  world +0.832 [+0.805,+0.857]   other/self 0.62  world/self 0.97
+
+## sft_gemma3_12b  items=400  P(target) without injection = 0.138
+near  self +0.752 [+0.720,+0.783]  other +0.266 [+0.227,+0.301]  world +0.565 [+0.524,+0.603]   other/self 0.35  world/self 0.75
+far   self +0.640 [+0.602,+0.680]  other +0.284 [+0.247,+0.322]  world +0.594 [+0.552,+0.636]   other/self 0.44  world/self 0.93
+
+## sft_mistral24b  items=400  P(target) without injection = 0.174
+near  self +0.802 [+0.770,+0.834]  other +0.152 [+0.120,+0.184]  world +0.365 [+0.327,+0.405]   other/self 0.19  world/self 0.46
+far   self +0.817 [+0.784,+0.848]  other +0.438 [+0.395,+0.479]  world +0.795 [+0.763,+0.828]   other/self 0.54  world/self 0.97
+
+## qwen3_8b  A+B mass 1.00  P(Yes) none = 0.33
+near  P(Yes): self 0.91 other 0.02 world 0.52   K leak ratio: other -0.54 world 0.33
+far   P(Yes): self 0.95 other 0.02 world 0.81   K leak ratio: other -0.50 world 0.78
+
+## llama31_8b  A+B mass 0.98  P(Yes) none = 0.48
+near  P(Yes): self 0.71 other 0.17 world 0.42   K leak ratio: other -1.37 world -0.30
+far   P(Yes): self 0.74 other 0.10 world 0.54   K leak ratio: other -1.47 world 0.21
+
+## gemma3_12b  A+B mass 1.00  P(Yes) none = 0.34
+near  P(Yes): self 0.99 other 0.21 world 0.84   K leak ratio: other -0.21 world 0.77
+far   P(Yes): self 0.96 other 0.23 world 0.98   K leak ratio: other -0.17 world 1.02
+
+## mistral24b  A+B mass 0.96  P(Yes) none = 0.20
+near  P(Yes): self 0.65 other 0.02 world 0.21   K leak ratio: other -0.39 world 0.03
+far   P(Yes): self 0.55 other 0.03 world 0.45   K leak ratio: other -0.48 world 0.72

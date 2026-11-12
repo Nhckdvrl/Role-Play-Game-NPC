@@ -1,0 +1,96 @@
+######## gemma3_12b
+sanity: corr(sum of DLA, actual logit diff) = 1.0
+
+=== K: cumulative (attn+mlp) DLA of pos-neg, by layer; final actual logit diff in brackets
+layer       self/exp      world/exp      other/exp    self/stated
+    3          +0.00          +0.00          -0.00          +0.00
+    7          +0.01          +0.00          -0.00          +0.01
+   11          +0.01          +0.00          -0.01          +0.01
+   15          +0.01          +0.00          -0.01          +0.01
+   19          +0.01          +0.00          -0.01          +0.01
+   23          +0.01          +0.00          -0.01          -0.00
+   27          +0.43          +0.06          -0.00          +0.44
+   31          +3.62          +0.25          +0.10          +4.17
+   35         +12.30          +0.87          +0.66         +12.95
+   39         +10.57          +0.77          +0.57         +11.95
+   43         +46.03          +2.93          +2.18         +50.37
+   47         +29.57          +2.14          +1.82         +33.44
+actual         +29.63          +2.11          +1.79         +33.42
+
+=== EU: cumulative (attn+mlp) DLA of pos-neg, by layer; final actual logit diff in brackets
+layer       self/exp      world/exp      other/exp    self/stated
+    3          +0.00          +0.00          -0.00          +0.00
+    7          +0.00          +0.00          +0.00          +0.01
+   11          +0.00          +0.00          +0.00          +0.01
+   15          +0.00          +0.00          -0.00          +0.01
+   19          +0.00          +0.00          +0.00          +0.02
+   23          +0.00          +0.00          +0.00          +0.01
+   27          +0.06          +0.04          +0.04          +0.26
+   31          +0.57          +0.32          +0.34          +1.93
+   35          +1.91          +1.01          +1.11          +6.34
+   39          +2.09          +1.08          +1.19          +6.80
+   43          +9.46          +4.69          +5.13         +29.58
+   47          +5.30          +2.67          +2.87         +16.53
+actual          +5.31          +2.70          +2.86         +16.58
+
+K world/exp: largest positive L45attn:+1.32, L40mlp:+0.77, L43mlp:+0.68, L42mlp:+0.43, L35mlp:+0.34
+K world/exp: largest negative L45mlp:-1.14, L47mlp:-1.02, L43attn:-0.17, L38mlp:-0.13, L44attn:-0.11
+
+K self/exp: largest positive L40mlp:+10.37, L43mlp:+10.02, L42mlp:+9.04, L41mlp:+6.48, L45attn:+6.26
+K self/exp: largest negative L45mlp:-9.61, L47mlp:-8.28, L44attn:-3.75, L42attn:-1.87, L38mlp:-1.79
+
+EU world/exp: largest positive L43mlp:+1.25, L42mlp:+1.01, L40mlp:+0.97, L41mlp:+0.59, L45attn:+0.35
+EU world/exp: largest negative L47mlp:-0.89, L45mlp:-0.82, L44attn:-0.55, L42attn:-0.23, L46mlp:-0.14
+
+EU self/exp: largest positive L43mlp:+2.64, L42mlp:+2.04, L40mlp:+1.81, L41mlp:+1.17, L45attn:+0.77
+EU self/exp: largest negative L45mlp:-1.82, L47mlp:-1.71, L44attn:-1.22, L42attn:-0.33, L46mlp:-0.28
+######## mistral24b
+sanity: corr(sum of DLA, actual logit diff) = 1.0
+
+=== K: cumulative (attn+mlp) DLA of pos-neg, by layer; final actual logit diff in brackets
+layer       self/exp      world/exp      other/exp    self/stated
+    2          -0.00          -0.00          -0.00          -0.00
+    5          +0.00          +0.00          +0.00          +0.00
+    8          +0.00          +0.00          +0.00          +0.00
+   11          +0.00          +0.00          +0.00          +0.00
+   14          +0.00          +0.00          +0.00          +0.01
+   17          +0.02          +0.01          +0.01          +0.02
+   20          +0.06          +0.01          +0.01          +0.08
+   23          -0.03          +0.00          +0.01          -0.04
+   26          +0.16          +0.01          +0.02          +0.18
+   29          +0.28          -0.00          +0.01          +0.31
+   32          +1.15          -0.00          +0.07          +1.42
+   35          +3.33          +0.09          +0.23          +4.10
+   38          +9.85          +0.07          +0.46         +12.34
+   39         +10.81          -0.01          +0.44         +14.46
+actual         +10.81          -0.02          +0.44         +14.46
+
+=== EU: cumulative (attn+mlp) DLA of pos-neg, by layer; final actual logit diff in brackets
+layer       self/exp      world/exp      other/exp    self/stated
+    2          -0.00          -0.00          -0.00          -0.00
+    5          +0.00          +0.00          +0.00          +0.00
+    8          +0.00          +0.00          +0.00          +0.00
+   11          +0.00          +0.00          +0.00          +0.00
+   14          +0.00          +0.00          +0.00          +0.00
+   17          -0.00          +0.00          +0.00          +0.00
+   20          +0.01          +0.01          +0.01          +0.04
+   23          -0.01          -0.00          -0.01          -0.03
+   26          +0.06          +0.03          +0.03          +0.15
+   29          +0.10          +0.04          +0.05          +0.24
+   32          +0.43          +0.19          +0.21          +1.11
+   35          +1.16          +0.49          +0.56          +2.95
+   38          +3.16          +1.34          +1.56          +8.07
+   39          +3.40          +1.41          +1.61          +8.97
+actual          +3.39          +1.42          +1.61          +8.98
+
+K world/exp: largest positive L36mlp:+0.04, L35mlp:+0.04, L34attn:+0.02, L37attn:+0.02, L39attn:+0.02
+K world/exp: largest negative L39mlp:-0.10, L37mlp:-0.05, L38mlp:-0.04, L22mlp:-0.01, L29mlp:-0.01
+
+K self/exp: largest positive L38mlp:+2.48, L37mlp:+1.71, L36mlp:+1.70, L34mlp:+1.38, L32attn:+0.70
+K self/exp: largest negative L32mlp:-0.09, L29attn:-0.06, L21mlp:-0.05, L33attn:-0.05, L23mlp:-0.04
+
+EU world/exp: largest positive L38mlp:+0.28, L37mlp:+0.22, L36mlp:+0.22, L34mlp:+0.18, L32attn:+0.14
+EU world/exp: largest negative L32mlp:-0.04, L33attn:-0.01, L29attn:-0.01, L21mlp:-0.01, L36attn:-0.01
+
+EU self/exp: largest positive L38mlp:+0.68, L36mlp:+0.55, L37mlp:+0.54, L34mlp:+0.41, L32attn:+0.31
+EU self/exp: largest negative L32mlp:-0.07, L33attn:-0.03, L29attn:-0.02, L36attn:-0.02, L21mlp:-0.01

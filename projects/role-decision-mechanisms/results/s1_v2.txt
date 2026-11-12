@@ -1,0 +1,120 @@
+
+######## qwen3_8b   (unparsed rows: 0)
+Attitude effect averaged over cost arrangement (sens = p_pos|pos - p_pos|neg):
+mode form    | self                   | other                  | world (exp only)
+K    stated  | +1.00 [+1.00,+1.00] | +0.18 [+0.07,+0.32] | 
+K    exp     | +0.93 [+0.83,+1.00] | +0.29 [+0.15,+0.43] | +0.27 [+0.13,+0.41]
+P    stated  | +0.38 [+0.27,+0.50] | +0.12 [+0.07,+0.18] | 
+P    exp     | +0.16 [+0.09,+0.25] | +0.05 [+0.02,+0.09] | +0.07 [+0.03,+0.12]
+EU   stated  | +0.42 [+0.33,+0.53] | +0.18 [+0.13,+0.25] | 
+EU   exp     | +0.15 [+0.09,+0.22] | +0.09 [+0.04,+0.15] | +0.10 [+0.05,+0.15]
+ES   stated  | +0.40 [+0.29,+0.52] | +0.16 [+0.09,+0.24] | 
+ES   exp     | +0.16 [+0.09,+0.24] | +0.06 [+0.03,+0.10] | +0.07 [+0.03,+0.11]
+Convenience weight in the none condition, p_pos(neg_costly) - p_pos(pos_costly):
+    P +0.68 [+0.52,+0.82]  EU +0.64 [+0.47,+0.79]  ES +0.65 [+0.48,+0.80]
+Self-owned attitude effect split by cost arrangement (pos pole convenient / pos pole costly):
+    stated: P +0.36/+0.41  EU +0.33/+0.51  ES +0.35/+0.45
+    exp   : P +0.15/+0.17  EU +0.13/+0.16  ES +0.14/+0.17
+P(role-consistent choice), self-owned, when the role-consistent option is convenient / costly:
+    stated: P 0.94/0.45  EU 0.93/0.50  ES 0.94/0.47
+    exp   : P 0.88/0.28  EU 0.87/0.28  ES 0.89/0.27
+By family kind, experience form (self / other / world), decision modes pooled:
+    trust: decision +0.10 / +0.07 / +0.07    K +1.00 / +0.41 / +0.42
+    pref : decision +0.20 / +0.07 / +0.08    K +0.86 / +0.16 / +0.12
+Wording robustness (para0 / para1), experience form: self, other, world
+    K   self +0.94/+0.93  other +0.28/+0.29  world +0.26/+0.27
+    P   self +0.18/+0.14  other +0.06/+0.05  world +0.07/+0.07
+    EU  self +0.13/+0.16  other +0.07/+0.11  world +0.08/+0.11
+    ES  self +0.14/+0.17  other +0.06/+0.07  world +0.07/+0.07
+K / P / EU / ES correctness pattern, experience form, self-owned (family x valence x cost x wording):
+    1111:0.50  1000:0.36  1100:0.03  1101:0.03  1011:0.03  0000:0.02  0111:0.02  1110:0.02
+
+######## llama31_8b   (unparsed rows: 0)
+Attitude effect averaged over cost arrangement (sens = p_pos|pos - p_pos|neg):
+mode form    | self                   | other                  | world (exp only)
+K    stated  | +0.97 [+0.93,+1.00] | +0.06 [-0.04,+0.16] | 
+K    exp     | +0.81 [+0.74,+0.88] | +0.40 [+0.31,+0.50] | +0.38 [+0.30,+0.46]
+P    stated  | +0.58 [+0.49,+0.67] | +0.31 [+0.24,+0.39] | 
+P    exp     | +0.17 [+0.12,+0.22] | +0.12 [+0.08,+0.17] | +0.12 [+0.07,+0.17]
+EU   stated  | +0.55 [+0.47,+0.64] | +0.28 [+0.23,+0.35] | 
+EU   exp     | +0.14 [+0.10,+0.18] | +0.10 [+0.07,+0.13] | +0.10 [+0.06,+0.13]
+ES   stated  | +0.63 [+0.54,+0.72] | +0.27 [+0.21,+0.34] | 
+ES   exp     | +0.18 [+0.13,+0.23] | +0.11 [+0.07,+0.15] | +0.11 [+0.07,+0.15]
+Convenience weight in the none condition, p_pos(neg_costly) - p_pos(pos_costly):
+    P +0.47 [+0.36,+0.58]  EU +0.36 [+0.26,+0.47]  ES +0.45 [+0.34,+0.57]
+Self-owned attitude effect split by cost arrangement (pos pole convenient / pos pole costly):
+    stated: P +0.59/+0.57  EU +0.54/+0.56  ES +0.61/+0.65
+    exp   : P +0.19/+0.15  EU +0.16/+0.13  ES +0.16/+0.20
+P(role-consistent choice), self-owned, when the role-consistent option is convenient / costly:
+    stated: P 0.91/0.67  EU 0.86/0.69  ES 0.92/0.71
+    exp   : P 0.79/0.38  EU 0.72/0.43  ES 0.78/0.41
+By family kind, experience form (self / other / world), decision modes pooled:
+    trust: decision +0.20 / +0.15 / +0.16    K +0.86 / +0.59 / +0.53
+    pref : decision +0.12 / +0.07 / +0.06    K +0.77 / +0.22 / +0.23
+Wording robustness (para0 / para1), experience form: self, other, world
+    K   self +0.82/+0.81  other +0.41/+0.40  world +0.37/+0.39
+    P   self +0.17/+0.16  other +0.12/+0.12  world +0.12/+0.12
+    EU  self +0.14/+0.15  other +0.09/+0.11  world +0.09/+0.10
+    ES  self +0.17/+0.19  other +0.09/+0.13  world +0.09/+0.13
+K / P / EU / ES correctness pattern, experience form, self-owned (family x valence x cost x wording):
+    1111:0.53  1000:0.31  1011:0.04  1100:0.04  1110:0.02  1101:0.01  1010:0.01  0000:0.01
+
+######## gemma3_12b   (unparsed rows: 0)
+Attitude effect averaged over cost arrangement (sens = p_pos|pos - p_pos|neg):
+mode form    | self                   | other                  | world (exp only)
+K    stated  | +1.00 [+1.00,+1.00] | -0.02 [-0.05,+0.00] | 
+K    exp     | +1.00 [+1.00,+1.00] | +0.07 [+0.00,+0.18] | +0.11 [+0.00,+0.24]
+P    stated  | +0.60 [+0.49,+0.71] | +0.08 [+0.03,+0.15] | 
+P    exp     | +0.20 [+0.12,+0.28] | +0.08 [+0.04,+0.13] | +0.05 [+0.01,+0.09]
+EU   stated  | +0.53 [+0.43,+0.64] | +0.20 [+0.13,+0.28] | 
+EU   exp     | +0.19 [+0.12,+0.26] | +0.12 [+0.07,+0.17] | +0.10 [+0.06,+0.16]
+ES   stated  | +0.63 [+0.53,+0.74] | +0.20 [+0.13,+0.29] | 
+ES   exp     | +0.22 [+0.14,+0.30] | +0.12 [+0.07,+0.17] | +0.11 [+0.07,+0.16]
+Convenience weight in the none condition, p_pos(neg_costly) - p_pos(pos_costly):
+    P +0.81 [+0.66,+0.93]  EU +0.52 [+0.40,+0.63]  ES +0.71 [+0.57,+0.83]
+Self-owned attitude effect split by cost arrangement (pos pole convenient / pos pole costly):
+    stated: P +0.43/+0.77  EU +0.54/+0.52  ES +0.57/+0.70
+    exp   : P +0.09/+0.31  EU +0.23/+0.15  ES +0.23/+0.20
+P(role-consistent choice), self-owned, when the role-consistent option is convenient / costly:
+    stated: P 0.99/0.62  EU 0.90/0.63  ES 0.96/0.68
+    exp   : P 0.90/0.30  EU 0.81/0.38  ES 0.85/0.36
+By family kind, experience form (self / other / world), decision modes pooled:
+    trust: decision +0.20 / +0.10 / +0.07    K +1.00 / +0.06 / +0.00
+    pref : decision +0.20 / +0.11 / +0.10    K +1.00 / +0.08 / +0.22
+Wording robustness (para0 / para1), experience form: self, other, world
+    K   self +1.00/+1.00  other +0.06/+0.09  world +0.09/+0.12
+    P   self +0.16/+0.23  other +0.06/+0.09  world +0.03/+0.07
+    EU  self +0.20/+0.18  other +0.11/+0.12  world +0.10/+0.10
+    ES  self +0.26/+0.17  other +0.12/+0.12  world +0.09/+0.12
+K / P / EU / ES correctness pattern, experience form, self-owned (family x valence x cost x wording):
+    1111:0.52  1000:0.33  1100:0.05  1011:0.04  1101:0.02  1110:0.02  1001:0.02  1010:0.01
+
+######## mistral24b   (unparsed rows: 0)
+Attitude effect averaged over cost arrangement (sens = p_pos|pos - p_pos|neg):
+mode form    | self                   | other                  | world (exp only)
+K    stated  | +1.00 [+1.00,+1.00] | -0.12 [-0.18,-0.07] | 
+K    exp     | +0.94 [+0.87,+0.98] | +0.07 [+0.02,+0.12] | +0.02 [-0.04,+0.09]
+P    stated  | +0.60 [+0.48,+0.73] | +0.17 [+0.12,+0.24] | 
+P    exp     | +0.23 [+0.15,+0.31] | +0.08 [+0.06,+0.11] | +0.10 [+0.07,+0.14]
+EU   stated  | +0.68 [+0.56,+0.79] | +0.27 [+0.21,+0.34] | 
+EU   exp     | +0.28 [+0.20,+0.37] | +0.15 [+0.10,+0.21] | +0.14 [+0.10,+0.20]
+ES   stated  | +0.71 [+0.60,+0.82] | +0.29 [+0.22,+0.38] | 
+ES   exp     | +0.34 [+0.26,+0.43] | +0.17 [+0.11,+0.22] | +0.15 [+0.09,+0.22]
+Convenience weight in the none condition, p_pos(neg_costly) - p_pos(pos_costly):
+    P +0.77 [+0.67,+0.86]  EU +0.66 [+0.53,+0.78]  ES +0.64 [+0.51,+0.76]
+Self-owned attitude effect split by cost arrangement (pos pole convenient / pos pole costly):
+    stated: P +0.61/+0.59  EU +0.66/+0.69  ES +0.64/+0.78
+    exp   : P +0.26/+0.19  EU +0.33/+0.24  ES +0.33/+0.35
+P(role-consistent choice), self-owned, when the role-consistent option is convenient / costly:
+    stated: P 0.98/0.62  EU 0.97/0.70  ES 0.98/0.73
+    exp   : P 0.93/0.30  EU 0.89/0.39  ES 0.90/0.44
+By family kind, experience form (self / other / world), decision modes pooled:
+    trust: decision +0.25 / +0.15 / +0.13    K +0.97 / +0.06 / +0.01
+    pref : decision +0.31 / +0.11 / +0.14    K +0.91 / +0.07 / +0.03
+Wording robustness (para0 / para1), experience form: self, other, world
+    K   self +0.95/+0.93  other +0.06/+0.07  world +0.03/+0.01
+    P   self +0.21/+0.24  other +0.07/+0.10  world +0.09/+0.11
+    EU  self +0.29/+0.28  other +0.16/+0.14  world +0.15/+0.14
+    ES  self +0.38/+0.29  other +0.18/+0.15  world +0.14/+0.16
+K / P / EU / ES correctness pattern, experience form, self-owned (family x valence x cost x wording):
+    1111:0.56  1000:0.29  1011:0.05  1001:0.04  0111:0.02  1100:0.02  1010:0.02  1101:0.01

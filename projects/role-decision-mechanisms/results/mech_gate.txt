@@ -1,0 +1,24 @@
+######## gemma3_12b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=1.00  gated=0.00  (n=2688)
+  other character's lines  P=1.00  gated=0.00  (n=2688)
+  world events             P=1.00  gated=0.00  (n=672)
+
+variant       self exp (use)  other exp  world exp   other/self  world/self   (logit units)
+base                   +5.28      +2.86      +2.79   +0.54      +0.53
+judge_win              +5.28      +2.86      +2.79   +0.54      +0.53
+judge_all              +5.28      +2.86      +2.79   +0.54      +0.53
+oracle_win             +5.28      +0.15      +0.19   +0.03      +0.04
+oracle_all             +5.32      +0.07      -0.01   +0.01      -0.00
+######## mistral24b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.98  gated=0.00  (n=2688)
+  other character's lines  P=0.22  gated=0.98  (n=2688)
+  world events             P=0.24  gated=1.00  (n=672)
+
+variant       self exp (use)  other exp  world exp   other/self  world/self   (logit units)
+base                   +3.38      +1.59      +1.42   +0.47      +0.42
+judge_win              +3.39      +0.02      +0.00   +0.00      +0.00
+judge_all              +3.38      +0.03      +0.00   +0.01      +0.00
+oracle_win             +3.48      +0.02      +0.00   +0.00      +0.00
+oracle_all             +3.48      +0.03      -0.00   +0.01      -0.00

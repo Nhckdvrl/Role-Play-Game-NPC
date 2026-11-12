@@ -1,0 +1,4 @@
+qwen3_8b     base: MMLU 0.643 ARC 0.896 | sft: MMLU 0.704 ARC 0.922
+llama31_8b   base: MMLU 0.471 ARC 0.600 | sft: MMLU 0.547 ARC 0.720
+gemma3_12b   base: MMLU 0.704 ARC 0.906 | sft: MMLU 0.703 ARC 0.904
+mistral24b   base: MMLU 0.753 ARC 0.928 | sft: MMLU 0.647 ARC 0.880

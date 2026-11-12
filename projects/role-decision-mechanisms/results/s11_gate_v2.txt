@@ -1,0 +1,48 @@
+######## gating on S11 (judge v2): qwen3_8b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.97  gated=0.01  (n=3648)
+  other character's lines  P=0.06  gated=0.94  (n=3456)
+  world events             P=0.00  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +5.35     +5.10     +3.30     +3.56
+judge_win        +6.04     +5.46     +0.01     -0.02
+judge_all        +6.08     +5.41     +0.02     +0.00
+oracle_win       +6.17     +3.42     +0.00     -0.04
+oracle_all       +6.20     +3.36     -0.00     -0.02
+######## gating on S11 (judge v2): llama31_8b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.58  gated=0.23  (n=3648)
+  other character's lines  P=0.11  gated=0.96  (n=3456)
+  world events             P=0.05  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +1.85     +1.48     +1.07     +1.18
+judge_win        +1.35     +0.82     -0.01     -0.03
+judge_all        +1.35     +0.83     -0.03     +0.01
+oracle_win       +1.61     +0.92     -0.02     -0.00
+oracle_all       +1.61     +0.92     -0.03     +0.03
+######## gating on S11 (judge v2): gemma3_12b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.78  gated=0.21  (n=3648)
+  other character's lines  P=0.09  gated=0.91  (n=3456)
+  world events             P=0.00  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +5.28     +3.84     +2.86     +2.79
+judge_win        +5.23     +3.79     +0.15     +0.19
+judge_all        +5.26     +4.00     +0.11     -0.04
+oracle_win       +5.28     +2.80     +0.15     +0.19
+oracle_all       +5.32     +2.74     +0.07     -0.01
+######## gating on S11 (judge v2): mistral24b
+judge: mean P(knowable) and share judged not knowable (P<0.5)
+  role's own lines         P=0.91  gated=0.05  (n=3648)
+  other character's lines  P=0.06  gated=0.94  (n=3456)
+  world events             P=0.00  gated=1.00  (n=864)
+
+variant           self      told     other     world   (sens in logit units; 'told' should count like 'self', 'other'/'world' should not)
+base             +3.38     +2.26     +1.60     +1.41
+judge_win        +3.49     +2.40     +0.01     -0.02
+judge_all        +3.47     +2.41     +0.02     -0.01
+oracle_win       +3.48     +1.76     +0.01     +0.01
+oracle_all       +3.47     +1.75     +0.02     +0.01

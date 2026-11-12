@@ -10,6 +10,7 @@
 | --- | --- | --- |
 | [persona-consistency](projects/persona-consistency/README.md) | 单轮与多轮角色对话中的人设一致性：浅层扮演、多轮人设消退与出戏；聚焦施压下的顺从与在线 DPO 方法 | **已归档（2026-11-02）**。人工审计发现所用裁判把强硬语气误判为纠正，原数值结论作废；经验证裁判重判后现象与训练效果仍在但幅度差异很大。见其 [SUMMARY.md](projects/persona-consistency/SUMMARY.md) |
 | [reason-sensitive-roleplay](projects/reason-sensitive-roleplay/README.md) | 多轮角色条件决策与双向历史惯性：该坚持时不盲从、该改变时不固执、信息不足时知道核实什么 | 受控故事族数据生产与方法原型，见其 [DATA_PROGRESS.md](projects/reason-sensitive-roleplay/DATA_PROGRESS.md) |
+| [role-decision-mechanisms](projects/role-decision-mechanisms/README.md) | 角色条件决策的内部机制：模型能说出角色知道什么、信什么、守什么原则，为什么扮演时不照做，失败发生在模型内部哪里 | 两轮实验完成（2026-11-12）：现象、机制、干预、训练与真实小说上的外部效度。见其 [SUMMARY.md](projects/role-decision-mechanisms/SUMMARY.md) |
 
 新的研究题目在 `projects/` 下新建子目录，不改变已有子项目的编号与文档。
 
@@ -38,7 +39,8 @@ Role-Play-Game-NPC/
 ├── discussions/                   选题讨论记录（未立项的题目讨论）
 └── projects/
     ├── persona-consistency/       子项目（已归档）：长对话人设一致性
-    └── reason-sensitive-roleplay/ 子项目：角色条件决策与历史惯性
+    ├── reason-sensitive-roleplay/ 子项目：角色条件决策与历史惯性
+    └── role-decision-mechanisms/  子项目：角色条件决策的内部机制
 ```
 
 ## 仓库约定

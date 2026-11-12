@@ -1,0 +1,16 @@
+######## qwen3_8b: 1584 replies; judge agreement (Mistral vs Gemma) = 1.00; unclear rate M 0.00 G 0.00
+  judge Mistral  self/stated +0.35 [+0.20,+0.53]  self/exp +0.12 [+0.04,+0.22]  told/exp +0.15 [+0.03,+0.28]  other/exp +0.04 [+0.00,+0.10]  world/exp +0.08 [+0.00,+0.19]
+  judge Gemma    self/stated +0.35 [+0.20,+0.53]  self/exp +0.12 [+0.04,+0.22]  told/exp +0.15 [+0.03,+0.28]  other/exp +0.04 [+0.00,+0.10]  world/exp +0.08 [+0.00,+0.19]
+  agreed only    self/stated +0.35 [+0.20,+0.53]  self/exp +0.12 [+0.04,+0.22]  told/exp +0.15 [+0.03,+0.28]  other/exp +0.04 [+0.00,+0.10]  world/exp +0.08 [+0.00,+0.19]
+######## llama31_8b: 1584 replies; judge agreement (Mistral vs Gemma) = 0.95; unclear rate M 0.07 G 0.02
+  judge Mistral  self/stated +0.47 [+0.34,+0.61]  self/exp +0.14 [+0.04,+0.26]  told/exp +0.18 [+0.07,+0.32]  other/exp +0.11 [+0.04,+0.20]  world/exp +0.10 [+0.03,+0.20]
+  judge Gemma    self/stated +0.47 [+0.33,+0.60]  self/exp +0.13 [+0.03,+0.23]  told/exp +0.17 [+0.08,+0.27]  other/exp +0.07 [+0.03,+0.12]  world/exp +0.10 [+0.03,+0.19]
+  agreed only    self/stated +0.47 [+0.34,+0.61]  self/exp +0.14 [+0.04,+0.26]  told/exp +0.18 [+0.07,+0.32]  other/exp +0.11 [+0.04,+0.20]  world/exp +0.11 [+0.03,+0.21]
+######## mistral24b: 1584 replies; judge agreement (Mistral vs Gemma) = 0.99; unclear rate M 0.03 G 0.02
+  judge Mistral  self/stated +0.42 [+0.27,+0.58]  self/exp +0.26 [+0.11,+0.44]  told/exp +0.22 [+0.09,+0.36]  other/exp +0.15 [+0.03,+0.30]  world/exp +0.15 [+0.06,+0.26]
+  judge Gemma    self/stated +0.43 [+0.28,+0.59]  self/exp +0.26 [+0.11,+0.44]  told/exp +0.22 [+0.10,+0.36]  other/exp +0.15 [+0.03,+0.31]  world/exp +0.16 [+0.06,+0.27]
+  agreed only    self/stated +0.42 [+0.27,+0.58]  self/exp +0.26 [+0.11,+0.44]  told/exp +0.22 [+0.09,+0.36]  other/exp +0.15 [+0.03,+0.30]  world/exp +0.15 [+0.06,+0.26]
+######## gemma3_12b: 1584 replies; judge agreement (Mistral vs Gemma) = 1.00; unclear rate M 0.01 G 0.00
+  judge Mistral  self/stated +0.40 [+0.24,+0.56]  self/exp +0.10 [+0.03,+0.19]  told/exp +0.16 [+0.04,+0.30]  other/exp +0.08 [+0.01,+0.16]  world/exp +0.13 [+0.03,+0.24]
+  judge Gemma    self/stated +0.39 [+0.22,+0.56]  self/exp +0.10 [+0.03,+0.19]  told/exp +0.17 [+0.04,+0.30]  other/exp +0.08 [+0.01,+0.17]  world/exp +0.12 [+0.03,+0.23]
+  agreed only    self/stated +0.39 [+0.23,+0.56]  self/exp +0.10 [+0.03,+0.19]  told/exp +0.16 [+0.04,+0.30]  other/exp +0.08 [+0.01,+0.16]  world/exp +0.13 [+0.03,+0.24]

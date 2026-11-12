@@ -1,0 +1,28 @@
+
+## qwen3_8b.jsonl   cost effect (no info, logits): +20.22
+                        self/stated     self/exp     told/exp    other/exp    world/exp   other/use  world/use
+K                            +29.97       +24.77        +9.80        +5.02        +5.65        0.20      0.23
+dec both costs                +9.78        +4.21        +3.54        +2.52        +3.23        0.60      0.77
+dec cost vs pos               +9.79        +4.59        +3.82        +2.52        +3.16        0.55      0.69
+dec cost vs neg               +9.78        +3.83        +3.25        +2.53        +3.31        0.66      0.87
+
+## llama31_8b.jsonl   cost effect (no info, logits): +3.90
+                        self/stated     self/exp     told/exp    other/exp    world/exp   other/use  world/use
+K                            +16.76        +7.52        +3.17        +1.96        +2.29        0.26      0.30
+dec both costs                +3.98        +1.26        +0.97        +0.70        +0.76        0.55      0.60
+dec cost vs pos               +3.74        +0.97        +0.73        +0.53        +0.61        0.55      0.63
+dec cost vs neg               +4.23        +1.55        +1.20        +0.86        +0.91        0.55      0.59
+
+## gemma3_12b.jsonl   cost effect (no info, logits): +17.06
+                        self/stated     self/exp     told/exp    other/exp    world/exp   other/use  world/use
+K                            +28.93       +24.80        +7.71        +0.69        +0.76        0.03      0.03
+dec both costs               +10.42        +3.83        +2.32        +1.54        +1.88        0.40      0.49
+dec cost vs pos               +9.36        +3.25        +1.93        +1.39        +1.65        0.43      0.51
+dec cost vs neg              +11.49        +4.42        +2.72        +1.69        +2.10        0.38      0.48
+
+## mistral24b.jsonl   cost effect (no info, logits): +8.52
+                        self/stated     self/exp     told/exp    other/exp    world/exp   other/use  world/use
+K                            +15.26        +9.44        +2.47        +0.08        -0.38        0.01     -0.04
+dec both costs                +6.20        +2.97        +1.57        +1.05        +1.13        0.35      0.38
+dec cost vs pos               +5.68        +2.63        +1.52        +1.08        +1.03        0.41      0.39
+dec cost vs neg               +6.73        +3.32        +1.62        +1.03        +1.22        0.31      0.37

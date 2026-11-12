@@ -1,0 +1,16 @@
+qwen3_8b      base full 0.716 [0.693,0.739]  base nomem 0.658 [0.634,0.680]  sft full 0.720 [0.698,0.743]  sft nomem 0.658 [0.634,0.679]  kfirst kfirst 0.712 [0.690,0.733]  SFT-base (full) 0.004 [-0.011,0.019]  Kfirst-base -0.004 [-0.020,0.012]
+llama31_8b    base full 0.743 [0.721,0.762]  base nomem 0.633 [0.609,0.656]  sft full 0.702 [0.678,0.725]  sft nomem 0.619 [0.594,0.643]  kfirst kfirst 0.723 [0.699,0.746]  SFT-base (full) -0.040 [-0.058,-0.023]  Kfirst-base -0.019 [-0.034,-0.004]
+gemma3_12b    base full 0.734 [0.710,0.755]  base nomem 0.591 [0.567,0.616]  sft full 0.677 [0.653,0.697]  sft nomem 0.534 [0.511,0.559]  kfirst kfirst 0.688 [0.665,0.709]  SFT-base (full) -0.057 [-0.074,-0.040]  Kfirst-base -0.046 [-0.062,-0.030]
+mistral24b    base full 0.688 [0.665,0.711]  base nomem 0.538 [0.511,0.562]  sft full 0.600 [0.576,0.624]  sft nomem 0.567 [0.543,0.590]  kfirst kfirst 0.668 [0.643,0.690]  SFT-base (full) -0.088 [-0.114,-0.061]  Kfirst-base -0.020 [-0.037,-0.004]
+
+story-dependent subset (base nomem wrong):
+qwen3_8b     n=536  base full 0.343 [0.304,0.382]  sft full 0.431 [0.388,0.472]  kfirst 0.382 [0.341,0.424]
+llama31_8b   n=574  base full 0.409 [0.369,0.448]  sft full 0.448 [0.406,0.488]  kfirst 0.437 [0.397,0.477]
+gemma3_12b   n=641  base full 0.477 [0.437,0.520]  sft full 0.449 [0.410,0.490]  kfirst 0.429 [0.393,0.465]
+mistral24b   n=724  base full 0.425 [0.391,0.463]  sft full 0.503 [0.467,0.541]  kfirst 0.424 [0.388,0.460]
+
+model-independent story-dependent subset (>=3/4 base models wrong without story): n=521
+qwen3_8b      base 0.367 [0.322,0.407]  sft 0.440 [0.397,0.484]  kfirst 0.401 [0.359,0.443]
+llama31_8b    base 0.413 [0.372,0.453]  sft 0.438 [0.395,0.480]  kfirst 0.426 [0.386,0.468]
+gemma3_12b    base 0.440 [0.397,0.480]  sft 0.453 [0.411,0.497]  kfirst 0.420 [0.382,0.461]
+mistral24b    base 0.365 [0.324,0.397]  sft 0.461 [0.420,0.503]  kfirst 0.370 [0.326,0.409]

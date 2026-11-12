@@ -1,0 +1,24 @@
+qwen3_8b
+  nomem            acc 0.265 [0.244,0.286]  n=673
+  mem_sheet        acc 0.273 [0.249,0.293]  n=673
+  mem_selfbridge   acc 0.279 [0.257,0.301]  n=673
+  profile_sheet    acc 0.434 [0.408,0.459]  n=673
+  profile_bridge   acc 0.417 [0.392,0.441]  n=673
+llama31_8b
+  nomem            acc 0.262 [0.244,0.280]  n=673
+  mem_sheet        acc 0.270 [0.252,0.290]  n=673
+  mem_selfbridge   acc 0.290 [0.270,0.311]  n=673
+  profile_sheet    acc 0.313 [0.293,0.333]  n=673
+  profile_bridge   acc 0.288 [0.268,0.307]  n=673
+gemma3_12b
+  nomem            acc 0.282 [0.254,0.309]  n=673
+  mem_sheet        acc 0.309 [0.282,0.336]  n=673
+  mem_selfbridge   acc 0.314 [0.284,0.340]  n=673
+  profile_sheet    acc 0.581 [0.548,0.612]  n=673
+  profile_bridge   acc 0.557 [0.526,0.587]  n=673
+mistral24b
+  nomem            acc 0.276 [0.247,0.304]  n=673
+  mem_sheet        acc 0.291 [0.264,0.319]  n=673
+  mem_selfbridge   acc 0.316 [0.285,0.347]  n=673
+  profile_sheet    acc 0.574 [0.542,0.606]  n=673
+  profile_bridge   acc 0.570 [0.539,0.603]  n=673

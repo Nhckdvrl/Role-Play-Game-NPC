@@ -1,0 +1,44 @@
+T_gemma3_12b.jsonl: rows with >=1 gated segment: 0.99
+subset           self/stated      self/exp      told/exp     other/exp  other/stated     world/exp
+ALL base              +10.93         +3.60         +2.99         +2.24         +3.41         +2.63
+ALL judge_win         +11.36         +3.49         +1.66         +0.77         +2.00         +1.11
+card base             +12.29         +3.70         +3.26         +2.49         +3.74         +2.53
+card judge_win        +13.04         +3.40         +2.01         +0.78         +2.00         +0.97
+json base              +8.81         +2.47         +1.95         +1.25         +2.51         +1.62
+json judge_win         +9.28         +2.32         +0.49         +0.07         +1.26         +0.16
+prose base            +11.68         +4.63         +3.75         +2.97         +3.98         +3.74
+prose judge_win        +11.77         +4.75         +2.46         +1.45         +2.74         +2.20
+dlg_gemma3_12b.jsonl: rows with >=1 gated segment: 0.96
+subset           self/stated      self/exp      told/exp     other/exp  other/stated     world/exp
+ALL base               +9.46         +3.96         +2.98         +2.41         +2.42         +3.45
+ALL judge_win          +9.82         +3.89         +1.73         +1.46         +1.04         +1.77
+chatlog base           +9.82         +3.97         +3.33         +2.57         +2.25         +3.65
+chatlog judge_win        +10.26         +3.99         +2.07         +1.64         +1.17         +1.76
+chat base              +9.10         +3.95         +2.64         +2.25         +2.59         +3.26
+chat judge_win         +9.39         +3.78         +1.39         +1.29         +0.91         +1.77
+story_gemma3_12b.jsonl
+self  n=86  shift base +0.571  gated +0.588   injected sentence kept (score>=0): 1.00
+other n=86  shift base +0.215  gated +0.208   injected sentence kept (score>=0): 1.00
+fraction of story sentences gated: 0.04
+T_qwen3_8b.jsonl: rows with >=1 gated segment: 0.96
+subset           self/stated      self/exp      told/exp     other/exp  other/stated     world/exp
+ALL base              +14.28         +5.20         +4.90         +3.52         +6.30         +4.33
+ALL judge_win         +14.76         +5.24         +3.28         +1.46         +4.23         +1.57
+card base             +15.13         +5.06         +5.06         +3.61         +7.40         +4.41
+card judge_win        +15.52         +5.17         +3.25         +1.51         +4.45         +1.56
+json base             +12.27         +4.04         +3.39         +2.29         +4.94         +2.97
+json judge_win        +12.82         +4.13         +2.18         +0.65         +2.75         +0.70
+prose base            +15.44         +6.51         +6.25         +4.65         +6.57         +5.62
+prose judge_win        +15.95         +6.41         +4.42         +2.22         +5.48         +2.45
+dlg_qwen3_8b.jsonl: rows with >=1 gated segment: 0.96
+subset           self/stated      self/exp      told/exp     other/exp  other/stated     world/exp
+ALL base              +10.64         +5.68         +5.37         +3.62         +3.58         +4.48
+ALL judge_win         +10.90         +5.34         +3.80         +1.90         +2.90         +1.83
+chatlog base          +10.86         +5.79         +5.77         +3.70         +3.39         +4.56
+chatlog judge_win        +11.33         +5.28         +4.03         +1.80         +2.62         +1.51
+chat base             +10.43         +5.57         +4.96         +3.53         +3.77         +4.40
+chat judge_win        +10.46         +5.39         +3.57         +2.00         +3.18         +2.15
+story_qwen3_8b.jsonl
+self  n=85  shift base +0.778  gated +0.764   injected sentence kept (score>=0): 0.98
+other n=85  shift base +0.508  gated +0.347   injected sentence kept (score>=0): 0.74
+fraction of story sentences gated: 0.48

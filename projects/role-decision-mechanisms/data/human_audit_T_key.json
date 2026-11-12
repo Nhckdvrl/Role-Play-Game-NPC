@@ -1,0 +1,338 @@
+[
+ {
+  "fam": "X08_spacewalk",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 1
+ },
+ {
+  "fam": "X06_fund",
+  "cond": "told/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 2
+ },
+ {
+  "fam": "X17_dorm_pet",
+  "cond": "told/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 3
+ },
+ {
+  "fam": "X14_roommate",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 4
+ },
+ {
+  "fam": "X16_groupwork",
+  "cond": "told/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 5
+ },
+ {
+  "fam": "X16_groupwork",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 6
+ },
+ {
+  "fam": "X10_lowgrav",
+  "cond": "told/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 7
+ },
+ {
+  "fam": "X18_library",
+  "cond": "told/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 8
+ },
+ {
+  "fam": "X06_fund",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 9
+ },
+ {
+  "fam": "X16_groupwork",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 10
+ },
+ {
+  "fam": "X07_engineer",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 11
+ },
+ {
+  "fam": "X11_medic",
+  "cond": "told/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 12
+ },
+ {
+  "fam": "X02_mechanic",
+  "cond": "told/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 13
+ },
+ {
+  "fam": "X18_library",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 14
+ },
+ {
+  "fam": "X13_tutor",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 15
+ },
+ {
+  "fam": "X11_medic",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 16
+ },
+ {
+  "fam": "X01_landlord",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 17
+ },
+ {
+  "fam": "X15_stage",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 18
+ },
+ {
+  "fam": "X09_supplier",
+  "cond": "told/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 19
+ },
+ {
+  "fam": "X15_stage",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 20
+ },
+ {
+  "fam": "X05_cycling",
+  "cond": "told/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 21
+ },
+ {
+  "fam": "X11_medic",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 22
+ },
+ {
+  "fam": "X12_crowd",
+  "cond": "told/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 23
+ },
+ {
+  "fam": "X15_stage",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 24
+ },
+ {
+  "fam": "X06_fund",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 25
+ },
+ {
+  "fam": "X10_lowgrav",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 26
+ },
+ {
+  "fam": "X07_engineer",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 27
+ },
+ {
+  "fam": "X04_colleague",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 28
+ },
+ {
+  "fam": "X03_lift",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 29
+ },
+ {
+  "fam": "X07_engineer",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 30
+ },
+ {
+  "fam": "X12_crowd",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 31
+ },
+ {
+  "fam": "X09_supplier",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 32
+ },
+ {
+  "fam": "X17_dorm_pet",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 33
+ },
+ {
+  "fam": "X17_dorm_pet",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 34
+ },
+ {
+  "fam": "X01_landlord",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 35
+ },
+ {
+  "fam": "X08_spacewalk",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 36
+ },
+ {
+  "fam": "X14_roommate",
+  "cond": "told/exp/neg",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 37
+ },
+ {
+  "fam": "X12_crowd",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 38
+ },
+ {
+  "fam": "X04_colleague",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 39
+ },
+ {
+  "fam": "X13_tutor",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 40
+ },
+ {
+  "fam": "X01_landlord",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 41
+ },
+ {
+  "fam": "X03_lift",
+  "cond": "self/exp/pos",
+  "conv": "pos_costly",
+  "key": "B",
+  "item": 42
+ },
+ {
+  "fam": "X18_library",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 43
+ },
+ {
+  "fam": "X13_tutor",
+  "cond": "told/exp/pos",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 44
+ },
+ {
+  "fam": "X08_spacewalk",
+  "cond": "self/exp/pos",
+  "conv": "neg_costly",
+  "key": "B",
+  "item": 45
+ },
+ {
+  "fam": "X03_lift",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 46
+ },
+ {
+  "fam": "X04_colleague",
+  "cond": "self/exp/neg",
+  "conv": "pos_costly",
+  "key": "A",
+  "item": 47
+ },
+ {
+  "fam": "X10_lowgrav",
+  "cond": "self/exp/neg",
+  "conv": "neg_costly",
+  "key": "A",
+  "item": 48
+ }
+]
